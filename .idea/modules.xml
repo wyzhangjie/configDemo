@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/configRepo.iml" filepath="$PROJECT_DIR$/configRepo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/configRepo-common/configRepo-common.iml" filepath="$PROJECT_DIR$/configRepo-common/configRepo-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/configRepo-dao/configRepo-dao.iml" filepath="$PROJECT_DIR$/configRepo-dao/configRepo-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/configRepo-service/configRepo-service.iml" filepath="$PROJECT_DIR$/configRepo-service/configRepo-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/configRepo-web/configRepo-web.iml" filepath="$PROJECT_DIR$/configRepo-web/configRepo-web.iml" />
+    </modules>
+  </component>
+</project>

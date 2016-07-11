@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="configRepo-web:war">
+    <output-path>$PROJECT_DIR$/configRepo-web/target</output-path>
+    <root id="archive" name="configRepo-web.war">
+      <element id="artifact" artifact-name="configRepo-web:war exploded" />
+    </root>
+  </artifact>
+</component>
