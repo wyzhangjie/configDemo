@@ -1,0 +1,133 @@
+body{
+    font-size:16px;
+}
+div{
+    float:left;
+
+}
+div >span{
+    display:block;
+    float:left;
+    margin-top:5px;
+    width: 247px;
+    margin-bottom:5px;
+    margin-left:35px;
+    padding-right: 16px;
+    border:0px;
+    border-radius: 9px;
+    /*  text-align:right; */
+}
+.textbox{
+    border:0px;
+}
+#div_title1,#div_param1,#div_datasql1,#div_title2,#div_param2,#div_title3,#div_param3,#datasql3,#datasql2,#datasql1,#div_datasql2,#div_datasql1,#div_datasql3,.panel{
+    clear: both;
+}
+textarea{
+    height: 277px;
+    width: 930px;
+    border-radius: 9px;
+    border:0px;
+    background-color:rgb(252, 206, 145);
+}
+#btn1{
+    background-color:red;
+}
+input{
+    width: 187px;
+    border-radius: 9px;
+    border:0px;
+    background-color:antiquewhite;
+    height:30px;
+}
+.panel{
+    /*  float:left; */
+    margin-top:20px;
+    margin-left:50px;
+}
+#cdpz, #cdpz1, #tu2data,#divsql2,#data1,#data2,#data3,#tu3data,#tu4data,#tud1ata,#other,#other_1,#other_2,#other_3,#other_4,#other_5, #other_1_mix1,#other_2_jq,#other_1_jq,#other_2_mix1,#other_3_jq,#other_3_mix1,#other_4_jq,#other_4_mix1,#other_5_jq,#other_5_mix1{
+    float:left;
+    margin-top:10px;
+    width: 120%;
+    margin-left:40px;
+    /*   text-align:center; */
+}
+label{
+    float:left;
+    width: 200px;
+    margin-left: 50px;
+}
+#data_1_jqtwo,#data_2_jqtwo,#data_3_jqtwo{
+    float:left;
+    margin-top:10px;
+    width: 120%;
+    /*  margin-left:40px;*/
+}
+#cdpz, #cdpz0,#tud1ata, #tu2data,#divsql2,#data1,#data2,#data3,#tu3data,#tu4data,#mix1_div,#real_time,#time_type{
+    float:left;
+    margin-top:10px;
+    /* width: 120%;*/
+    margin-left:40px;
+    /*   text-align:center; */
+}
+#divsql3,#divsql,#divsql1,#mix_divsql1{
+    text-align:center;margin-left:auto; margin-right:auto;
+}
+
+#divsql2,#mix1_btn{
+    margin-left:560px;
+}
+#divsql, #divsql0{
+    /*  margin-top:20px; */
+    margin-right:30px;
+
+}
+#divsql0{
+    margin-left:560px;
+    margin-top:30px;
+}
+select{
+    width:187px;
+    border-radius: 9px;
+    background-color:aqua;
+    border:0px;
+    height:30px;
+}
+
+/* .panel{
+
+margin:20px 10px 0px 40px;
+position:center;
+text-align:center;
+} */
+
+#datasql3,#datasql1,#datasql2,#div_datasql1,#div_datasql2,#div_datasql3,#datasqlt1_jqtwo,#datasql2_jqtwo,#datasql3_jqtwo{
+    clear:both;
+
+}
+#pmenuName0,#pmenuName1{
+    width:187px;
+}
+#pmenuName0,#pmenuName1,#pmenuName1_jqtwo,#realtime,#timetype,#other_num_jq,#tablenum{
+    /*  width:169px;*/
+}
+p{
+    text-align:center;
+    color:black;
+    font-size:18px;
+}
+#modify_menuName0{
+    width:187px;
+}
+/*input.textbox-text , .textbox , .textbox-value{
+    width:187px;
+}*/
+#data1,#data2,#data3{
+    border:1px dashed #000;
+    border-style: double;
+    display:none;
+    width:88%;
+}
+.easyui-textbox{
+    height: 30px;
+}

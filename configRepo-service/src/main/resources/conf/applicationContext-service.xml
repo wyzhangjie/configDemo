@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+    <bean id="transactionInterceptor"
+          class="org.springframework.transaction.interceptor.TransactionInterceptor">
+        <property name="transactionManager" ref="transactionManager" />
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED,readOnly,-Throwable</prop>
+                <prop key="find*">PROPAGATION_REQUIRED,readOnly,-Throwable</prop>
+                <prop key="select*">PROPAGATION_REQUIRED,readOnly,-Throwable</prop>
+                <prop key="save*">PROPAGATION_REQUIRED,-Throwable</prop>
+                <prop key="insert*">PROPAGATION_REQUIRED,-Throwable</prop>
+                <prop key="del*">PROPAGATION_REQUIRED,-Throwable</prop>
+                <prop key="update*">PROPAGATION_REQUIRED,-Throwable</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="beanNameAutoProxyCreator"
+          class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <property name="beanNames">
+            <list>
+                <value>*Service</value>
+            </list>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>transactionInterceptor</value>
+            </list>
+        </property>
+    </bean>
+</beans>

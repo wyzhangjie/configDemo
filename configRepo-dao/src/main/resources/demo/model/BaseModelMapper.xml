@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.framework.demo.dao.model.ModelMapper">
+  <resultMap id="BaseResultMap" type="com.framework.demo.bo.model.Model">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="model" property="model" jdbcType="INTEGER" />
+    <result column="model_name" property="modelName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `model`, `model_name`
+  </sql>
+  <insert id="insert" parameterType="com.framework.demo.bo.model.Model" useGeneratedKeys="true" keyProperty="id">
+    <![CDATA[
+    insert into `tb_model` (`model`, `model_name`)
+    values (#{model,jdbcType=INTEGER}, #{modelName,jdbcType=VARCHAR})
+    ]]>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `tb_model` (`model`, `model_name`)
+     values 
+    <foreach collection="list" item="item" index="index" separator=",">
+       (#{item.model,jdbcType=INTEGER}, #{item.modelName,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.framework.demo.bo.model.Model" useGeneratedKeys="true" keyProperty="id">
+    insert into `tb_model`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="model != null">
+        `model`,
+      </if>
+      <if test="modelName != null">
+        `model_name`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="model != null">
+        #{model,jdbcType=INTEGER},
+      </if>
+      <if test="modelName != null">
+        #{modelName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from `tb_model`
+    where `id` = #{id,jdbcType=INTEGER}
+  </delete>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tb_model`
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tb_model`
+    where `id` = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(*) from `tb_model`
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.framework.demo.bo.model.Model">
+    update `tb_model`
+    <set>
+      <if test="model != null">
+        `model` = #{model,jdbcType=INTEGER},
+      </if>
+      <if test="modelName != null">
+        `model_name` = #{modelName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.framework.demo.bo.model.Model">
+    update `tb_model`
+    set `model` = #{model,jdbcType=INTEGER},
+      `model_name` = #{modelName,jdbcType=VARCHAR}
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

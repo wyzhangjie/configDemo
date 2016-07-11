@@ -1,0 +1,48 @@
+div{
+    float:left;
+
+}
+div >span{
+    display:block;
+    float:left;
+    margin-top:5px;
+    width:140px;
+    margin-bottom:5px;
+    margin-left:10px;
+    padding-right: 16px;
+    /*  text-align:right; */
+}
+input{
+    width: 141px;
+}
+
+.mask{
+    display:block;
+    position:absolute;
+    z-index:100;
+    top: 0px;
+    left:0px;
+    background-color:white;
+    /*filter:alpha(opacity=50);*/
+}
+
+#cdpz0{
+    float:left;
+    margin-top:10px;
+    /* width: 120%;*/
+    margin-left:40px;
+    /*   text-align:center; */
+}
+
+
+
+
+#divsql0{
+    margin-left:560px;
+    margin-top:30px;
+}
+p{
+    text-align:center;
+    color:black;
+    font-size:18px;
+}

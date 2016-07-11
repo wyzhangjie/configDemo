@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.framework.demo.sys.sysUserStatusHistory.dao.SysUserStatusHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.framework.demo.sys.sysUserStatusHistory.bo.SysUserStatusHistory">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="op_user_id" property="opUserId" jdbcType="BIGINT" />
+    <result column="op_date" property="opDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `user_id`, `status`, `reason`, `op_user_id`, `op_date`
+  </sql>
+  <insert id="insert" parameterType="com.framework.demo.sys.sysUserStatusHistory.bo.SysUserStatusHistory" useGeneratedKeys="true" keyProperty="id">
+    <![CDATA[
+    insert into `sys_user_status_history` (`user_id`, `status`, `reason`, 
+      `op_user_id`, `op_date`)
+    values (#{userId,jdbcType=BIGINT}, #{status,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, 
+      #{opUserId,jdbcType=BIGINT}, #{opDate,jdbcType=TIMESTAMP})
+    ]]>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `sys_user_status_history` (`user_id`, `status`, `reason`, 
+      `op_user_id`, `op_date`)
+     values 
+    <foreach collection="list" item="item" index="index" separator=",">
+       (#{item.userId,jdbcType=BIGINT}, #{item.status,jdbcType=VARCHAR}, #{item.reason,jdbcType=VARCHAR}, 
+        #{item.opUserId,jdbcType=BIGINT}, #{item.opDate,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.framework.demo.sys.sysUserStatusHistory.bo.SysUserStatusHistory" useGeneratedKeys="true" keyProperty="id">
+    insert into `sys_user_status_history`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        `user_id`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="reason != null">
+        `reason`,
+      </if>
+      <if test="opUserId != null">
+        `op_user_id`,
+      </if>
+      <if test="opDate != null">
+        `op_date`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="opUserId != null">
+        #{opUserId,jdbcType=BIGINT},
+      </if>
+      <if test="opDate != null">
+        #{opDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from `sys_user_status_history`
+    where `id` = #{id,jdbcType=BIGINT}
+  </delete>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `sys_user_status_history`
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `sys_user_status_history`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(*) from `sys_user_status_history`
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.framework.demo.sys.sysUserStatusHistory.bo.SysUserStatusHistory">
+    update `sys_user_status_history`
+    <set>
+      <if test="userId != null">
+        `user_id` = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        `reason` = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="opUserId != null">
+        `op_user_id` = #{opUserId,jdbcType=BIGINT},
+      </if>
+      <if test="opDate != null">
+        `op_date` = #{opDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.framework.demo.sys.sysUserStatusHistory.bo.SysUserStatusHistory">
+    update `sys_user_status_history`
+    set `user_id` = #{userId,jdbcType=BIGINT},
+      `status` = #{status,jdbcType=VARCHAR},
+      `reason` = #{reason,jdbcType=VARCHAR},
+      `op_user_id` = #{opUserId,jdbcType=BIGINT},
+      `op_date` = #{opDate,jdbcType=TIMESTAMP}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

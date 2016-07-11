@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>configRepo</artifactId>
+        <groupId>com.framework</groupId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>configRepo-web</artifactId>
+    <packaging>war</packaging>
+    <properties>
+        <profiles.dir>src/main/profiles</profiles.dir>
+        <shiro.uid.cookie.domain></shiro.uid.cookie.domain>
+        <shiro.uid.cookie.path>/</shiro.uid.cookie.path>
+        <tomcat.maven.version>2.2</tomcat.maven.version>
+
+    </properties>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty.version}</version>
+                <configuration>
+                    <reload>manual</reload>
+
+                    <!--<scanIntervalSeconds>2</scanIntervalSeconds>-->
+                    <stopPort>9999</stopPort>
+
+                    <connectors>
+                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                            <port>9090</port>
+                            <!--<maxIdleTime>60000</maxIdleTime>-->
+                        </connector>
+                   <!--     <connector implementation="org.eclipse.jetty.server.ssl.SslSocketConnector">
+                            <port>9443</port>
+                            <maxIdleTime>60000</maxIdleTime>
+                            <keystore>${project.basedir}/localhost.keystore</keystore>
+                            <password>123456</password>
+                            <keyPassword>123456</keyPassword>
+                        </connector>-->
+                    </connectors>
+                    <webAppSourceDirectory>${project.basedir}/src/main/webapp</webAppSourceDirectory>
+
+                    <!-- spring profile  -->
+                    <systemProperties>
+                        <systemProperty>
+                            <name>spring.profiles.active</name>
+                            <value>development</value>
+                        </systemProperty>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <webappDirectory>${project.build.directory}/${module.war.name}.war</webappDirectory>
+                    <warSourceDirectory>src/main/webapp</warSourceDirectory>
+                    <webResources>
+                        <resource>
+                            <directory>src/main/resources/META-INF</directory>
+                            <filtering>true</filtering>
+                            <targetPath>WEB-INF/classes/META-INF</targetPath>
+                            <includes>
+                                <include>*.properties</include>
+                            </includes>
+                        </resource>
+                        <resource>
+                            <directory>src/main/webapp/WEB-INF</directory>
+                            <filtering>true</filtering>
+                            <targetPath>WEB-INF</targetPath>
+                            <includes>
+                                <include>log4j.xml</include>
+                            </includes>
+                        </resource>
+                    </webResources>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-war</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>war</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>${tomcat.maven.version}</version>
+                <configuration>
+                    <port>9090</port>
+                    <path>/${project.build.finalName}</path>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>spring.profiles.active</name>
+                            <value>development</value>
+                        </systemProperty>
+                    </systemProperties>
+                </configuration>
+
+            </plugin>
+
+
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>native2ascii-maven-plugin</artifactId>
+                <version>1.0-alpha-1</version>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>native2ascii</goal>
+                        </goals>
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                            <src>src/main/messages</src>
+                            <dest>target/${project.artifactId}/WEB-INF/classes</dest>
+                            <includes>**/*.*</includes>
+                        </configuration>
+                    </execution>
+                </executions>
+                <!-- native2ascii 使用的tools.jar -->
+                <dependencies>
+                    <dependency>
+                        <groupId>com.sun</groupId>
+                        <artifactId>tools</artifactId>
+                        <version>1.7.0</version>
+                        <scope>system</scope>
+                        <systemPath>${java.home}/../lib/tools.jar</systemPath>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+
+
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>${profiles.dir}/dev</directory>
+            </resource>
+        </resources>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>${profiles.dir}/dev</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+        <profile>
+            <id>beta</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>${profiles.dir}/beta</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+        <profile>
+            <id>product</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>${profiles.dir}/product</directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.framework</groupId>
+            <artifactId>configRepo-common</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.framework</groupId>
+            <artifactId>configRepo-dao</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.framework</groupId>
+            <artifactId>configRepo-service</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+
+    </dependencies>
+</project>

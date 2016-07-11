@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.framework.demo.dao.pageTemplate.PageTempleteMapper">
+
+    <select id="selectPg" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from `page_templete` pt where pt.model =#{model,jdbcType=INTEGER}
+    </select>
+
+    <update id="saveComit" parameterType="java.lang.String">
+        update `page_templete` set comitment =#{comitmentarea,jdbcType=INTEGER}
+   where model= #{model,jdbcType=INTEGER}
+    </update>
+
+    <select id="findPageSql" parameterType="com.framework.demo.vo.template.SqlPage" resultType="java.util.Map">
+
+        ${sql}
+    </select>
+    <select id="getData" resultType="java.util.Map">
+        ${sql}
+    </select>
+</mapper>

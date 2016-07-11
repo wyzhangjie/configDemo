@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.framework.demo.dao.sysTemplColr.SysTemplColrMapper">
+  <resultMap id="BaseResultMap" type="com.framework.demo.bo.sysTemplColr.SysTemplColr">
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="templete_id" property="templeteId" jdbcType="VARCHAR" />
+    <result column="color1_id" property="color1Id" jdbcType="VARCHAR" />
+    <result column="color2_id" property="color2Id" jdbcType="VARCHAR" />
+    <result column="color3_id" property="color3Id" jdbcType="VARCHAR" />
+    <result column="condition1" property="condition1" jdbcType="VARCHAR" />
+    <result column="condition2" property="condition2" jdbcType="VARCHAR" />
+    <result column="condition3" property="condition3" jdbcType="VARCHAR" />
+    <result column="model" property="model" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `Id`, `templete_id`, `color1_id`, `color2_id`, `color3_id`, `condition1`, `condition2`, `condition3`
+  </sql>
+  <insert id="insert" parameterType="com.framework.demo.bo.sysTemplColr.SysTemplColr" useGeneratedKeys="true" keyProperty="Id">
+    <![CDATA[
+    insert into `sys_templ_colr` (`templete_id`, `color1_id`, `color2_id`, 
+      `color3_id`, `condition1`, `condition2`, 
+      `condition3`,`model`)
+    values (#{templeteId,jdbcType=VARCHAR}, #{color1Id,jdbcType=VARCHAR}, #{color2Id,jdbcType=VARCHAR}, 
+      #{color3Id,jdbcType=VARCHAR}, #{condition1,jdbcType=VARCHAR}, #{condition2,jdbcType=VARCHAR}, 
+      #{condition3,jdbcType=VARCHAR},#{model,jdbcType=VARCHAR})
+    ]]>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `sys_templ_colr` (`templete_id`, `color1_id`, `color2_id`, 
+      `color3_id`, `condition1`, `condition2`, 
+      `condition3`)
+     values 
+    <foreach collection="list" item="item" index="index" separator=",">
+       (#{item.templeteId,jdbcType=VARCHAR}, #{item.color1Id,jdbcType=VARCHAR}, #{item.color2Id,jdbcType=VARCHAR}, 
+        #{item.color3Id,jdbcType=VARCHAR}, #{item.condition1,jdbcType=VARCHAR}, #{item.condition2,jdbcType=VARCHAR}, 
+        #{item.condition3,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.framework.demo.bo.sysTemplColr.SysTemplColr" useGeneratedKeys="true" keyProperty="Id">
+    insert into `sys_templ_colr`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="templeteId != null">
+        `templete_id`,
+      </if>
+      <if test="color1Id != null">
+        `color1_id`,
+      </if>
+      <if test="color2Id != null">
+        `color2_id`,
+      </if>
+      <if test="color3Id != null">
+        `color3_id`,
+      </if>
+      <if test="condition1 != null">
+        `condition1`,
+      </if>
+      <if test="condition2 != null">
+        `condition2`,
+      </if>
+      <if test="condition3 != null">
+        `condition3`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="templeteId != null">
+        #{templeteId,jdbcType=VARCHAR},
+      </if>
+      <if test="color1Id != null">
+        #{color1Id,jdbcType=VARCHAR},
+      </if>
+      <if test="color2Id != null">
+        #{color2Id,jdbcType=VARCHAR},
+      </if>
+      <if test="color3Id != null">
+        #{color3Id,jdbcType=VARCHAR},
+      </if>
+      <if test="condition1 != null">
+        #{condition1,jdbcType=VARCHAR},
+      </if>
+      <if test="condition2 != null">
+        #{condition2,jdbcType=VARCHAR},
+      </if>
+      <if test="condition3 != null">
+        #{condition3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from `sys_templ_colr`
+    where `Id` = #{id,jdbcType=INTEGER}
+  </delete>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `sys_templ_colr`
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `sys_templ_colr`
+    where `Id` = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(*) from `sys_templ_colr`
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.framework.demo.bo.sysTemplColr.SysTemplColr">
+    update `sys_templ_colr`
+    <set>
+      <if test="templeteId != null">
+        `templete_id` = #{templeteId,jdbcType=VARCHAR},
+      </if>
+      <if test="color1Id != null">
+        `color1_id` = #{color1Id,jdbcType=VARCHAR},
+      </if>
+      <if test="color2Id != null">
+        `color2_id` = #{color2Id,jdbcType=VARCHAR},
+      </if>
+      <if test="color3Id != null">
+        `color3_id` = #{color3Id,jdbcType=VARCHAR},
+      </if>
+      <if test="condition1 != null">
+        `condition1` = #{condition1,jdbcType=VARCHAR},
+      </if>
+      <if test="condition2 != null">
+        `condition2` = #{condition2,jdbcType=VARCHAR},
+      </if>
+      <if test="condition3 != null">
+        `condition3` = #{condition3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `Id` = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.framework.demo.bo.sysTemplColr.SysTemplColr">
+    update `sys_templ_colr`
+    set `templete_id` = #{templeteId,jdbcType=VARCHAR},
+      `color1_id` = #{color1Id,jdbcType=VARCHAR},
+      `color2_id` = #{color2Id,jdbcType=VARCHAR},
+      `color3_id` = #{color3Id,jdbcType=VARCHAR},
+      `condition1` = #{condition1,jdbcType=VARCHAR},
+      `condition2` = #{condition2,jdbcType=VARCHAR},
+      `condition3` = #{condition3,jdbcType=VARCHAR}
+    where `Id` = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

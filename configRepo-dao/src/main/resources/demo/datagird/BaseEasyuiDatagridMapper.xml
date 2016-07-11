@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.framework.demo.dao.datagrid.EasyuiDatagridMapper">
+  <resultMap id="BaseResultMap" type="com.framework.demo.bo.datagrid.EasyuiDatagrid">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="model" property="model" jdbcType="INTEGER" />
+    <result column="fitColumns" property="fitColumns" jdbcType="TINYINT" />
+    <result column="resizeHandle" property="resizeHandle" jdbcType="VARCHAR" />
+    <result column="autoRowHeight" property="autoRowHeight" jdbcType="TINYINT" />
+    <result column="stripe" property="stripe" jdbcType="TINYINT" />
+    <result column="method" property="method" jdbcType="VARCHAR" />
+    <result column="nowrap" property="nowrap" jdbcType="TINYINT" />
+    <result column="idField" property="idField" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="loadMsg" property="loadMsg" jdbcType="VARCHAR" />
+    <result column="pagination" property="pagination" jdbcType="TINYINT" />
+    <result column="rownumbers" property="rownumbers" jdbcType="TINYINT" />
+    <result column="singleSelect" property="singleSelect" jdbcType="TINYINT" />
+    <result column="ctrlSelect" property="ctrlSelect" jdbcType="TINYINT" />
+    <result column="checkOnSelect" property="checkOnSelect" jdbcType="TINYINT" />
+    <result column="selectOnCheck" property="selectOnCheck" jdbcType="TINYINT" />
+    <result column="pagePosition" property="pagePosition" jdbcType="VARCHAR" />
+    <result column="pageNumber" property="pageNumber" jdbcType="TINYINT" />
+    <result column="pageSize" property="pageSize" jdbcType="TINYINT" />
+    <result column="pageList" property="pageList" jdbcType="VARCHAR" />
+    <result column="sortName" property="sortName" jdbcType="VARCHAR" />
+    <result column="sortOrder" property="sortOrder" jdbcType="VARCHAR" />
+    <result column="multiSort" property="multiSort" jdbcType="TINYINT" />
+    <result column="remoteSort" property="remoteSort" jdbcType="TINYINT" />
+    <result column="scrollbarSize" property="scrollbarSize" jdbcType="TINYINT" />
+    <result column="param" property="param" jdbcType="VARCHAR" />
+    <result column="sql" property="sql" jdbcType="VARCHAR" />
+    <result column="multime" property="multime" jdbcType="VARCHAR" />
+    <result column="width" property="width" jdbcType="VARCHAR" />
+    <result column="height" property="height" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `model`, `fitColumns`, `resizeHandle`, `autoRowHeight`, `stripe`, `method`, `nowrap`, `idField`, `url`, `loadMsg`, 
+    `pagination`, `rownumbers`, `singleSelect`, `ctrlSelect`, `checkOnSelect`, `selectOnCheck`, `pagePosition`, `pageNumber`, 
+    `pageSize`, `pageList`, `sortName`, `sortOrder`, `multiSort`, `remoteSort`, `scrollbarSize`, `param`, `sql`, `multime`,`width`,
+    `height`,`title`
+  </sql>
+  <insert id="insert" parameterType="com.framework.demo.bo.datagrid.EasyuiDatagrid" useGeneratedKeys="true" keyProperty="id">
+    <![CDATA[
+    insert into `easyui_datagrid` (`model`, `fitColumns`, `resizeHandle`, 
+      `autoRowHeight`, `stripe`, `method`, 
+      `nowrap`, `idField`, `url`, 
+      `loadMsg`, `pagination`, `rownumbers`, 
+      `singleSelect`, `ctrlSelect`, `checkOnSelect`, 
+      `selectOnCheck`, `pagePosition`, `pageNumber`, 
+      `pageSize`, `pageList`, `sortName`, 
+      `sortOrder`, `multiSort`, `remoteSort`, 
+      `scrollbarSize`, `param`, `sql`, 
+      `multime`,`width`,
+    `height`,`title`)
+    values (#{model,jdbcType=INTEGER}, #{fitColumns,jdbcType=TINYINT}, #{resizeHandle,jdbcType=VARCHAR}, 
+      #{autoRowHeight,jdbcType=TINYINT}, #{stripe,jdbcType=TINYINT}, #{method,jdbcType=VARCHAR}, 
+      #{nowrap,jdbcType=TINYINT}, #{idField,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{loadMsg,jdbcType=VARCHAR}, #{pagination,jdbcType=TINYINT}, #{rownumbers,jdbcType=TINYINT}, 
+      #{singleSelect,jdbcType=TINYINT}, #{ctrlSelect,jdbcType=TINYINT}, #{checkOnSelect,jdbcType=TINYINT}, 
+      #{selectOnCheck,jdbcType=TINYINT}, #{pagePosition,jdbcType=VARCHAR}, #{pageNumber,jdbcType=TINYINT}, 
+      #{pageSize,jdbcType=TINYINT}, #{pageList,jdbcType=VARCHAR}, #{sortName,jdbcType=VARCHAR}, 
+      #{sortOrder,jdbcType=VARCHAR}, #{multiSort,jdbcType=TINYINT}, #{remoteSort,jdbcType=TINYINT}, 
+      #{scrollbarSize,jdbcType=TINYINT}, #{param,jdbcType=VARCHAR}, #{sql,jdbcType=VARCHAR}, 
+      #{multime,jdbcType=VARCHAR},#{width,jdbcType=VARCHAR},#{height,jdbcType=VARCHAR},#{title,jdbcType=VARCHAR})
+    ]]>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `easyui_datagrid` (`model`, `fitColumns`, `resizeHandle`, 
+      `autoRowHeight`, `stripe`, `method`, 
+      `nowrap`, `idField`, `url`, 
+      `loadMsg`, `pagination`, `rownumbers`, 
+      `singleSelect`, `ctrlSelect`, `checkOnSelect`, 
+      `selectOnCheck`, `pagePosition`, 
+      `pageNumber`, `pageSize`, `pageList`, 
+      `sortName`, `sortOrder`, `multiSort`, 
+      `remoteSort`, `scrollbarSize`, `param`, 
+      `sql`, `multime`,`width`,
+    `height`,`title`)
+     values 
+    <foreach collection="list" item="item" index="index" separator=",">
+       (#{item.model,jdbcType=INTEGER}, #{item.fitColumns,jdbcType=TINYINT}, #{item.resizeHandle,jdbcType=VARCHAR}, 
+        #{item.autoRowHeight,jdbcType=TINYINT}, #{item.stripe,jdbcType=TINYINT}, #{item.method,jdbcType=VARCHAR}, 
+        #{item.nowrap,jdbcType=TINYINT}, #{item.idField,jdbcType=VARCHAR}, #{item.url,jdbcType=VARCHAR}, 
+        #{item.loadMsg,jdbcType=VARCHAR}, #{item.pagination,jdbcType=TINYINT}, #{item.rownumbers,jdbcType=TINYINT}, 
+        #{item.singleSelect,jdbcType=TINYINT}, #{item.ctrlSelect,jdbcType=TINYINT}, #{item.checkOnSelect,jdbcType=TINYINT}, 
+        #{item.selectOnCheck,jdbcType=TINYINT}, #{item.pagePosition,jdbcType=VARCHAR}, 
+        #{item.pageNumber,jdbcType=TINYINT}, #{item.pageSize,jdbcType=TINYINT}, #{item.pageList,jdbcType=VARCHAR}, 
+        #{item.sortName,jdbcType=VARCHAR}, #{item.sortOrder,jdbcType=VARCHAR}, #{item.multiSort,jdbcType=TINYINT}, 
+        #{item.remoteSort,jdbcType=TINYINT}, #{item.scrollbarSize,jdbcType=TINYINT}, #{item.param,jdbcType=VARCHAR}, 
+        #{item.sql,jdbcType=VARCHAR}, #{item.multime,jdbcType=VARCHAR},#{width,jdbcType=VARCHAR},#{height,jdbcType=VARCHAR},
+        #{title,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.framework.demo.bo.datagrid.EasyuiDatagrid" useGeneratedKeys="true" keyProperty="id">
+    insert into `easyui_datagrid`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="model != null">
+        `model`,
+      </if>
+      <if test="fitColumns != null">
+        `fitColumns`,
+      </if>
+      <if test="resizeHandle != null">
+        `resizeHandle`,
+      </if>
+      <if test="autoRowHeight != null">
+        `autoRowHeight`,
+      </if>
+      <if test="stripe != null">
+        `stripe`,
+      </if>
+      <if test="method != null">
+        `method`,
+      </if>
+      <if test="nowrap != null">
+        `nowrap`,
+      </if>
+      <if test="idField != null">
+        `idField`,
+      </if>
+      <if test="url != null">
+        `url`,
+      </if>
+      <if test="loadMsg != null">
+        `loadMsg`,
+      </if>
+      <if test="pagination != null">
+        `pagination`,
+      </if>
+      <if test="rownumbers != null">
+        `rownumbers`,
+      </if>
+      <if test="singleSelect != null">
+        `singleSelect`,
+      </if>
+      <if test="ctrlSelect != null">
+        `ctrlSelect`,
+      </if>
+      <if test="checkOnSelect != null">
+        `checkOnSelect`,
+      </if>
+      <if test="selectOnCheck != null">
+        `selectOnCheck`,
+      </if>
+      <if test="pagePosition != null">
+        `pagePosition`,
+      </if>
+      <if test="pageNumber != null">
+        `pageNumber`,
+      </if>
+      <if test="pageSize != null">
+        `pageSize`,
+      </if>
+      <if test="pageList != null">
+        `pageList`,
+      </if>
+      <if test="sortName != null">
+        `sortName`,
+      </if>
+      <if test="sortOrder != null">
+        `sortOrder`,
+      </if>
+      <if test="multiSort != null">
+        `multiSort`,
+      </if>
+      <if test="remoteSort != null">
+        `remoteSort`,
+      </if>
+      <if test="scrollbarSize != null">
+        `scrollbarSize`,
+      </if>
+      <if test="param != null">
+        `param`,
+      </if>
+      <if test="sql != null">
+        `sql`,
+      </if>
+      <if test="multime != null">
+        `multime`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="model != null">
+        #{model,jdbcType=INTEGER},
+      </if>
+      <if test="fitColumns != null">
+        #{fitColumns,jdbcType=TINYINT},
+      </if>
+      <if test="resizeHandle != null">
+        #{resizeHandle,jdbcType=VARCHAR},
+      </if>
+      <if test="autoRowHeight != null">
+        #{autoRowHeight,jdbcType=TINYINT},
+      </if>
+      <if test="stripe != null">
+        #{stripe,jdbcType=TINYINT},
+      </if>
+      <if test="method != null">
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="nowrap != null">
+        #{nowrap,jdbcType=TINYINT},
+      </if>
+      <if test="idField != null">
+        #{idField,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="loadMsg != null">
+        #{loadMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="pagination != null">
+        #{pagination,jdbcType=TINYINT},
+      </if>
+      <if test="rownumbers != null">
+        #{rownumbers,jdbcType=TINYINT},
+      </if>
+      <if test="singleSelect != null">
+        #{singleSelect,jdbcType=TINYINT},
+      </if>
+      <if test="ctrlSelect != null">
+        #{ctrlSelect,jdbcType=TINYINT},
+      </if>
+      <if test="checkOnSelect != null">
+        #{checkOnSelect,jdbcType=TINYINT},
+      </if>
+      <if test="selectOnCheck != null">
+        #{selectOnCheck,jdbcType=TINYINT},
+      </if>
+      <if test="pagePosition != null">
+        #{pagePosition,jdbcType=VARCHAR},
+      </if>
+      <if test="pageNumber != null">
+        #{pageNumber,jdbcType=TINYINT},
+      </if>
+      <if test="pageSize != null">
+        #{pageSize,jdbcType=TINYINT},
+      </if>
+      <if test="pageList != null">
+        #{pageList,jdbcType=VARCHAR},
+      </if>
+      <if test="sortName != null">
+        #{sortName,jdbcType=VARCHAR},
+      </if>
+      <if test="sortOrder != null">
+        #{sortOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="multiSort != null">
+        #{multiSort,jdbcType=TINYINT},
+      </if>
+      <if test="remoteSort != null">
+        #{remoteSort,jdbcType=TINYINT},
+      </if>
+      <if test="scrollbarSize != null">
+        #{scrollbarSize,jdbcType=TINYINT},
+      </if>
+      <if test="param != null">
+        #{param,jdbcType=VARCHAR},
+      </if>
+      <if test="sql != null">
+        #{sql,jdbcType=VARCHAR},
+      </if>
+      <if test="multime != null">
+        #{multime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from `easyui_datagrid`
+    where `id` = #{id,jdbcType=INTEGER}
+  </delete>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `easyui_datagrid`
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `easyui_datagrid`
+    where `id` = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(*) from `easyui_datagrid`
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.framework.demo.bo.datagrid.EasyuiDatagrid">
+    update `easyui_datagrid`
+    <set>
+      <if test="model != null">
+        `model` = #{model,jdbcType=INTEGER},
+      </if>
+      <if test="fitColumns != null">
+        `fitColumns` = #{fitColumns,jdbcType=TINYINT},
+      </if>
+      <if test="resizeHandle != null">
+        `resizeHandle` = #{resizeHandle,jdbcType=VARCHAR},
+      </if>
+      <if test="autoRowHeight != null">
+        `autoRowHeight` = #{autoRowHeight,jdbcType=TINYINT},
+      </if>
+      <if test="stripe != null">
+        `stripe` = #{stripe,jdbcType=TINYINT},
+      </if>
+      <if test="method != null">
+        `method` = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="nowrap != null">
+        `nowrap` = #{nowrap,jdbcType=TINYINT},
+      </if>
+      <if test="idField != null">
+        `idField` = #{idField,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        `url` = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="loadMsg != null">
+        `loadMsg` = #{loadMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="pagination != null">
+        `pagination` = #{pagination,jdbcType=TINYINT},
+      </if>
+      <if test="rownumbers != null">
+        `rownumbers` = #{rownumbers,jdbcType=TINYINT},
+      </if>
+      <if test="singleSelect != null">
+        `singleSelect` = #{singleSelect,jdbcType=TINYINT},
+      </if>
+      <if test="ctrlSelect != null">
+        `ctrlSelect` = #{ctrlSelect,jdbcType=TINYINT},
+      </if>
+      <if test="checkOnSelect != null">
+        `checkOnSelect` = #{checkOnSelect,jdbcType=TINYINT},
+      </if>
+      <if test="selectOnCheck != null">
+        `selectOnCheck` = #{selectOnCheck,jdbcType=TINYINT},
+      </if>
+      <if test="pagePosition != null">
+        `pagePosition` = #{pagePosition,jdbcType=VARCHAR},
+      </if>
+      <if test="pageNumber != null">
+        `pageNumber` = #{pageNumber,jdbcType=TINYINT},
+      </if>
+      <if test="pageSize != null">
+        `pageSize` = #{pageSize,jdbcType=TINYINT},
+      </if>
+      <if test="pageList != null">
+        `pageList` = #{pageList,jdbcType=VARCHAR},
+      </if>
+      <if test="sortName != null">
+        `sortName` = #{sortName,jdbcType=VARCHAR},
+      </if>
+      <if test="sortOrder != null">
+        `sortOrder` = #{sortOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="multiSort != null">
+        `multiSort` = #{multiSort,jdbcType=TINYINT},
+      </if>
+      <if test="remoteSort != null">
+        `remoteSort` = #{remoteSort,jdbcType=TINYINT},
+      </if>
+      <if test="scrollbarSize != null">
+        `scrollbarSize` = #{scrollbarSize,jdbcType=TINYINT},
+      </if>
+      <if test="param != null">
+        `param` = #{param,jdbcType=VARCHAR},
+      </if>
+      <if test="sql != null">
+        `sql` = #{sql,jdbcType=VARCHAR},
+      </if>
+      <if test="multime != null">
+        `multime` = #{multime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.framework.demo.bo.datagrid.EasyuiDatagrid">
+    update `easyui_datagrid`
+    set `model` = #{model,jdbcType=INTEGER},
+      `fitColumns` = #{fitColumns,jdbcType=TINYINT},
+      `resizeHandle` = #{resizeHandle,jdbcType=VARCHAR},
+      `autoRowHeight` = #{autoRowHeight,jdbcType=TINYINT},
+      `stripe` = #{stripe,jdbcType=TINYINT},
+      `method` = #{method,jdbcType=VARCHAR},
+      `nowrap` = #{nowrap,jdbcType=TINYINT},
+      `idField` = #{idField,jdbcType=VARCHAR},
+      `url` = #{url,jdbcType=VARCHAR},
+      `loadMsg` = #{loadMsg,jdbcType=VARCHAR},
+      `pagination` = #{pagination,jdbcType=TINYINT},
+      `rownumbers` = #{rownumbers,jdbcType=TINYINT},
+      `singleSelect` = #{singleSelect,jdbcType=TINYINT},
+      `ctrlSelect` = #{ctrlSelect,jdbcType=TINYINT},
+      `checkOnSelect` = #{checkOnSelect,jdbcType=TINYINT},
+      `selectOnCheck` = #{selectOnCheck,jdbcType=TINYINT},
+      `pagePosition` = #{pagePosition,jdbcType=VARCHAR},
+      `pageNumber` = #{pageNumber,jdbcType=TINYINT},
+      `pageSize` = #{pageSize,jdbcType=TINYINT},
+      `pageList` = #{pageList,jdbcType=VARCHAR},
+      `sortName` = #{sortName,jdbcType=VARCHAR},
+      `sortOrder` = #{sortOrder,jdbcType=VARCHAR},
+      `multiSort` = #{multiSort,jdbcType=TINYINT},
+      `remoteSort` = #{remoteSort,jdbcType=TINYINT},
+      `scrollbarSize` = #{scrollbarSize,jdbcType=TINYINT},
+      `param` = #{param,jdbcType=VARCHAR},
+      `sql` = #{sql,jdbcType=VARCHAR},
+      `multime` = #{multime,jdbcType=VARCHAR}
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

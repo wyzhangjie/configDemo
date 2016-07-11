@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.framework.demo.sys.sysGroupRelation.dao.SysGroupRelationMapper">
+  <resultMap id="BaseResultMap" type="com.framework.demo.sys.sysGroupRelation.bo.SysGroupRelation">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="group_id" property="groupId" jdbcType="BIGINT" />
+    <result column="organization_id" property="organizationId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="start_user_id" property="startUserId" jdbcType="BIGINT" />
+    <result column="end_user_id" property="endUserId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `group_id`, `organization_id`, `user_id`, `start_user_id`, `end_user_id`
+  </sql>
+  <insert id="insert" parameterType="com.framework.demo.sys.sysGroupRelation.bo.SysGroupRelation" useGeneratedKeys="true" keyProperty="id">
+    <![CDATA[
+    insert into `sys_group_relation` (`group_id`, `organization_id`, `user_id`, 
+      `start_user_id`, `end_user_id`)
+    values (#{groupId,jdbcType=BIGINT}, #{organizationId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{startUserId,jdbcType=BIGINT}, #{endUserId,jdbcType=BIGINT})
+    ]]>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `sys_group_relation` (`group_id`, `organization_id`, `user_id`, 
+      `start_user_id`, `end_user_id`)
+     values 
+    <foreach collection="list" item="item" index="index" separator=",">
+       (#{item.groupId,jdbcType=BIGINT}, #{item.organizationId,jdbcType=BIGINT}, #{item.userId,jdbcType=BIGINT}, 
+        #{item.startUserId,jdbcType=BIGINT}, #{item.endUserId,jdbcType=BIGINT})
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.framework.demo.sys.sysGroupRelation.bo.SysGroupRelation" useGeneratedKeys="true" keyProperty="id">
+    insert into `sys_group_relation`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="groupId != null">
+        `group_id`,
+      </if>
+      <if test="organizationId != null">
+        `organization_id`,
+      </if>
+      <if test="userId != null">
+        `user_id`,
+      </if>
+      <if test="startUserId != null">
+        `start_user_id`,
+      </if>
+      <if test="endUserId != null">
+        `end_user_id`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="groupId != null">
+        #{groupId,jdbcType=BIGINT},
+      </if>
+      <if test="organizationId != null">
+        #{organizationId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="startUserId != null">
+        #{startUserId,jdbcType=BIGINT},
+      </if>
+      <if test="endUserId != null">
+        #{endUserId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from `sys_group_relation`
+    where `id` = #{id,jdbcType=BIGINT}
+  </delete>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `sys_group_relation`
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `sys_group_relation`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(*) from `sys_group_relation`
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.framework.demo.sys.sysGroupRelation.bo.SysGroupRelation">
+    update `sys_group_relation`
+    <set>
+      <if test="groupId != null">
+        `group_id` = #{groupId,jdbcType=BIGINT},
+      </if>
+      <if test="organizationId != null">
+        `organization_id` = #{organizationId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        `user_id` = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="startUserId != null">
+        `start_user_id` = #{startUserId,jdbcType=BIGINT},
+      </if>
+      <if test="endUserId != null">
+        `end_user_id` = #{endUserId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.framework.demo.sys.sysGroupRelation.bo.SysGroupRelation">
+    update `sys_group_relation`
+    set `group_id` = #{groupId,jdbcType=BIGINT},
+      `organization_id` = #{organizationId,jdbcType=BIGINT},
+      `user_id` = #{userId,jdbcType=BIGINT},
+      `start_user_id` = #{startUserId,jdbcType=BIGINT},
+      `end_user_id` = #{endUserId,jdbcType=BIGINT}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

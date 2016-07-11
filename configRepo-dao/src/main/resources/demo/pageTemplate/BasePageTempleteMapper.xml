@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.framework.demo.dao.pageTemplate.PageTempleteMapper">
+  <resultMap id="BaseResultMap" type="com.framework.demo.bo.pageTemplate.PageTemplete">
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="model" property="model" jdbcType="INTEGER" />
+    <result column="timersql" property="timersql" jdbcType="VARCHAR" />
+    <result column="legend" property="legend" jdbcType="VARCHAR" />
+    <result column="stack" property="stack" jdbcType="VARCHAR" />
+    <result column="kind" property="kind" jdbcType="VARCHAR" />
+    <result column="catalog" property="catalog" jdbcType="LONGVARCHAR" />
+    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
+    <result column="filePath" property="filePath" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="subtitle" property="subtitle" jdbcType="VARCHAR" />
+    <result column="pmenuName" property="pmenuName" jdbcType="VARCHAR" />
+    <result column="menuName" property="menuName" jdbcType="VARCHAR" />
+    <result column="comitment" property="comitment" jdbcType="VARCHAR" />
+    <result column="report_kind" property="reportKind" jdbcType="VARCHAR" />
+    <result column="sql_yaxis" property="sqlYaxis" jdbcType="VARCHAR" />
+    <result column="yaxisNames" property="yaxisNames" jdbcType="VARCHAR" />
+    <result column="other_option" property="otherOption" jdbcType="VARCHAR" />
+    <result column="realtime" property="realtime" jdbcType="VARCHAR" />
+    <result column="timetype" property="timetype" jdbcType="VARCHAR" />
+    <result column="isColor" property="isColor" jdbcType="VARCHAR" />
+    <result column="multime" property="multime" jdbcType="VARCHAR" />
+    <result column="daynum" property="daynum" jdbcType="VARCHAR" />
+    <result column="ispercent" property="ispercent" jdbcType="VARCHAR" />
+    <result column="leftLegendNum" property="leftLegendNum" jdbcType="VARCHAR" />
+    <result column="average" property="average" jdbcType="VARCHAR" />
+    <result column="maxandmin" property="maxandmin" jdbcType="VARCHAR" />
+    <result column="params" property="params" jdbcType="VARCHAR"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    `Id`, `model`, `timersql`, `legend`, `stack`, `kind`, `catalog`, `file_name`, `filePath`, `title`, `subtitle`, `pmenuName`, 
+    `menuName`, `comitment`, `report_kind`, `sql_yaxis`, `yaxisNames`, `other_option`, `realtime`, `timetype`, `isColor`, `multime`, 
+    `daynum`, `ispercent`, `leftLegendNum`, `average`, `maxandmin`,`params`
+  </sql>
+  <insert id="insert" parameterType="com.framework.demo.bo.pageTemplate.PageTemplete" useGeneratedKeys="true" keyProperty="Id">
+    <![CDATA[
+    insert into `page_templete` (`model`, `timersql`, `legend`, 
+      `stack`, `kind`, `catalog`, 
+      `file_name`, `filePath`, `title`, 
+      `subtitle`, `pmenuName`, `menuName`, 
+      `comitment`, `report_kind`, `sql_yaxis`, 
+      `yaxisNames`, `other_option`, `realtime`, 
+      `timetype`, `isColor`, `multime`, 
+      `daynum`, `ispercent`, `leftLegendNum`, 
+      `average`, `maxandmin`,`params`)
+    values (#{model,jdbcType=INTEGER}, #{timersql,jdbcType=VARCHAR}, #{legend,jdbcType=VARCHAR}, 
+      #{stack,jdbcType=VARCHAR}, #{kind,jdbcType=VARCHAR}, #{catalog,jdbcType=LONGVARCHAR}, 
+      #{fileName,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{subtitle,jdbcType=VARCHAR}, #{pmenuName,jdbcType=VARCHAR}, #{menuName,jdbcType=VARCHAR}, 
+      #{comitment,jdbcType=VARCHAR}, #{reportKind,jdbcType=VARCHAR}, #{sqlYaxis,jdbcType=VARCHAR}, 
+      #{yaxisNames,jdbcType=VARCHAR}, #{otherOption,jdbcType=VARCHAR}, #{realtime,jdbcType=VARCHAR}, 
+      #{timetype,jdbcType=VARCHAR}, #{isColor,jdbcType=VARCHAR}, #{multime,jdbcType=VARCHAR}, 
+      #{daynum,jdbcType=VARCHAR}, #{ispercent,jdbcType=VARCHAR}, #{leftLegendNum,jdbcType=VARCHAR}, 
+      #{average,jdbcType=VARCHAR}, #{maxandmin,jdbcType=VARCHAR},#{params,jdbcType=VARCHAR})
+    ]]>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `page_templete` (`model`, `timersql`, `legend`, 
+      `stack`, `kind`, `catalog`, 
+      `file_name`, `filePath`, `title`, 
+      `subtitle`, `pmenuName`, `menuName`, 
+      `comitment`, `report_kind`, `sql_yaxis`, 
+      `yaxisNames`, `other_option`, `realtime`, 
+      `timetype`, `isColor`, `multime`, 
+      `daynum`, `ispercent`, `leftLegendNum`, 
+      `average`, `maxandmin`,`params`)
+     values 
+    <foreach collection="list" item="item" index="index" separator=",">
+       (#{item.model,jdbcType=INTEGER}, #{item.timersql,jdbcType=VARCHAR}, #{item.legend,jdbcType=VARCHAR}, 
+        #{item.stack,jdbcType=VARCHAR}, #{item.kind,jdbcType=VARCHAR}, #{item.catalog,jdbcType=LONGVARCHAR}, 
+        #{item.fileName,jdbcType=VARCHAR}, #{item.filePath,jdbcType=VARCHAR}, #{item.title,jdbcType=VARCHAR}, 
+        #{item.subtitle,jdbcType=VARCHAR}, #{item.pmenuName,jdbcType=VARCHAR}, #{item.menuName,jdbcType=VARCHAR}, 
+        #{item.comitment,jdbcType=VARCHAR}, #{item.reportKind,jdbcType=VARCHAR}, #{item.sqlYaxis,jdbcType=VARCHAR}, 
+        #{item.yaxisNames,jdbcType=VARCHAR}, #{item.otherOption,jdbcType=VARCHAR}, #{item.realtime,jdbcType=VARCHAR}, 
+        #{item.timetype,jdbcType=VARCHAR}, #{item.isColor,jdbcType=VARCHAR}, #{item.multime,jdbcType=VARCHAR}, 
+        #{item.daynum,jdbcType=VARCHAR}, #{item.ispercent,jdbcType=VARCHAR}, #{item.leftLegendNum,jdbcType=VARCHAR}, 
+        #{item.average,jdbcType=VARCHAR}, #{item.maxandmin,jdbcType=VARCHAR},#{item.params,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.framework.demo.bo.pageTemplate.PageTemplete" useGeneratedKeys="true" keyProperty="Id">
+    insert into `page_templete`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="model != null">
+        `model`,
+      </if>
+      <if test="timersql != null">
+        `timersql`,
+      </if>
+      <if test="legend != null">
+        `legend`,
+      </if>
+      <if test="stack != null">
+        `stack`,
+      </if>
+      <if test="kind != null">
+        `kind`,
+      </if>
+      <if test="catalog != null">
+        `catalog`,
+      </if>
+      <if test="fileName != null">
+        `file_name`,
+      </if>
+      <if test="filePath != null">
+        `filePath`,
+      </if>
+      <if test="title != null">
+        `title`,
+      </if>
+      <if test="subtitle != null">
+        `subtitle`,
+      </if>
+      <if test="pmenuName != null">
+        `pmenuName`,
+      </if>
+      <if test="menuName != null">
+        `menuName`,
+      </if>
+      <if test="comitment != null">
+        `comitment`,
+      </if>
+      <if test="reportKind != null">
+        `report_kind`,
+      </if>
+      <if test="sqlYaxis != null">
+        `sql_yaxis`,
+      </if>
+      <if test="yaxisNames != null">
+        `yaxisNames`,
+      </if>
+      <if test="otherOption != null">
+        `other_option`,
+      </if>
+      <if test="realtime != null">
+        `realtime`,
+      </if>
+      <if test="timetype != null">
+        `timetype`,
+      </if>
+      <if test="isColor != null">
+        `isColor`,
+      </if>
+      <if test="multime != null">
+        `multime`,
+      </if>
+      <if test="daynum != null">
+        `daynum`,
+      </if>
+      <if test="ispercent != null">
+        `ispercent`,
+      </if>
+      <if test="leftLegendNum != null">
+        `leftLegendNum`,
+      </if>
+      <if test="average != null">
+        `average`,
+      </if>
+      <if test="maxandmin != null">
+        `maxandmin`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="model != null">
+        #{model,jdbcType=INTEGER},
+      </if>
+      <if test="timersql != null">
+        #{timersql,jdbcType=VARCHAR},
+      </if>
+      <if test="legend != null">
+        #{legend,jdbcType=VARCHAR},
+      </if>
+      <if test="stack != null">
+        #{stack,jdbcType=VARCHAR},
+      </if>
+      <if test="kind != null">
+        #{kind,jdbcType=VARCHAR},
+      </if>
+      <if test="catalog != null">
+        #{catalog,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null">
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="subtitle != null">
+        #{subtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="pmenuName != null">
+        #{pmenuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null">
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="comitment != null">
+        #{comitment,jdbcType=VARCHAR},
+      </if>
+      <if test="reportKind != null">
+        #{reportKind,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlYaxis != null">
+        #{sqlYaxis,jdbcType=VARCHAR},
+      </if>
+      <if test="yaxisNames != null">
+        #{yaxisNames,jdbcType=VARCHAR},
+      </if>
+      <if test="otherOption != null">
+        #{otherOption,jdbcType=VARCHAR},
+      </if>
+      <if test="realtime != null">
+        #{realtime,jdbcType=VARCHAR},
+      </if>
+      <if test="timetype != null">
+        #{timetype,jdbcType=VARCHAR},
+      </if>
+      <if test="isColor != null">
+        #{isColor,jdbcType=VARCHAR},
+      </if>
+      <if test="multime != null">
+        #{multime,jdbcType=VARCHAR},
+      </if>
+      <if test="daynum != null">
+        #{daynum,jdbcType=VARCHAR},
+      </if>
+      <if test="ispercent != null">
+        #{ispercent,jdbcType=VARCHAR},
+      </if>
+      <if test="leftLegendNum != null">
+        #{leftLegendNum,jdbcType=VARCHAR},
+      </if>
+      <if test="average != null">
+        #{average,jdbcType=VARCHAR},
+      </if>
+      <if test="maxandmin != null">
+        #{maxandmin,jdbcType=VARCHAR},
+      </if>
+      <if test="param != null">
+        #{param,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from `page_templete`
+    where `Id` = #{id,jdbcType=INTEGER}
+  </delete>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `page_templete`
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `page_templete`
+    where `Id` = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(*) from `page_templete`
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.framework.demo.bo.pageTemplate.PageTemplete">
+    update `page_templete`
+    <set>
+      <if test="model != null">
+        `model` = #{model,jdbcType=INTEGER},
+      </if>
+      <if test="timersql != null">
+        `timersql` = #{timersql,jdbcType=VARCHAR},
+      </if>
+      <if test="legend != null">
+        `legend` = #{legend,jdbcType=VARCHAR},
+      </if>
+      <if test="stack != null">
+        `stack` = #{stack,jdbcType=VARCHAR},
+      </if>
+      <if test="kind != null">
+        `kind` = #{kind,jdbcType=VARCHAR},
+      </if>
+      <if test="catalog != null">
+        `catalog` = #{catalog,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fileName != null">
+        `file_name` = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null">
+        `filePath` = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        `title` = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="subtitle != null">
+        `subtitle` = #{subtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="pmenuName != null">
+        `pmenuName` = #{pmenuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null">
+        `menuName` = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="comitment != null">
+        `comitment` = #{comitment,jdbcType=VARCHAR},
+      </if>
+      <if test="reportKind != null">
+        `report_kind` = #{reportKind,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlYaxis != null">
+        `sql_yaxis` = #{sqlYaxis,jdbcType=VARCHAR},
+      </if>
+      <if test="yaxisNames != null">
+        `yaxisNames` = #{yaxisNames,jdbcType=VARCHAR},
+      </if>
+      <if test="otherOption != null">
+        `other_option` = #{otherOption,jdbcType=VARCHAR},
+      </if>
+      <if test="realtime != null">
+        `realtime` = #{realtime,jdbcType=VARCHAR},
+      </if>
+      <if test="timetype != null">
+        `timetype` = #{timetype,jdbcType=VARCHAR},
+      </if>
+      <if test="isColor != null">
+        `isColor` = #{isColor,jdbcType=VARCHAR},
+      </if>
+      <if test="multime != null">
+        `multime` = #{multime,jdbcType=VARCHAR},
+      </if>
+      <if test="daynum != null">
+        `daynum` = #{daynum,jdbcType=VARCHAR},
+      </if>
+      <if test="ispercent != null">
+        `ispercent` = #{ispercent,jdbcType=VARCHAR},
+      </if>
+      <if test="leftLegendNum != null">
+        `leftLegendNum` = #{leftLegendNum,jdbcType=VARCHAR},
+      </if>
+      <if test="average != null">
+        `average` = #{average,jdbcType=VARCHAR},
+      </if>
+      <if test="param != null">
+        #{param,jdbcType=VARCHAR},
+      </if>
+      <if test="maxandmin != null">
+        `maxandmin` = #{maxandmin,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `Id` = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.framework.demo.bo.pageTemplate.PageTemplete">
+    update `page_templete`
+    set `model` = #{model,jdbcType=INTEGER},
+      `timersql` = #{timersql,jdbcType=VARCHAR},
+      `legend` = #{legend,jdbcType=VARCHAR},
+      `stack` = #{stack,jdbcType=VARCHAR},
+      `kind` = #{kind,jdbcType=VARCHAR},
+      `catalog` = #{catalog,jdbcType=LONGVARCHAR},
+      `file_name` = #{fileName,jdbcType=VARCHAR},
+      `filePath` = #{filePath,jdbcType=VARCHAR},
+      `title` = #{title,jdbcType=VARCHAR},
+      `subtitle` = #{subtitle,jdbcType=VARCHAR},
+      `pmenuName` = #{pmenuName,jdbcType=VARCHAR},
+      `menuName` = #{menuName,jdbcType=VARCHAR},
+      `comitment` = #{comitment,jdbcType=VARCHAR},
+      `report_kind` = #{reportKind,jdbcType=VARCHAR},
+      `sql_yaxis` = #{sqlYaxis,jdbcType=VARCHAR},
+      `yaxisNames` = #{yaxisNames,jdbcType=VARCHAR},
+      `other_option` = #{otherOption,jdbcType=VARCHAR},
+      `realtime` = #{realtime,jdbcType=VARCHAR},
+      `timetype` = #{timetype,jdbcType=VARCHAR},
+      `isColor` = #{isColor,jdbcType=VARCHAR},
+      `multime` = #{multime,jdbcType=VARCHAR},
+      `daynum` = #{daynum,jdbcType=VARCHAR},
+      `ispercent` = #{ispercent,jdbcType=VARCHAR},
+      `leftLegendNum` = #{leftLegendNum,jdbcType=VARCHAR},
+      `average` = #{average,jdbcType=VARCHAR},
+      `maxandmin` = #{maxandmin,jdbcType=VARCHAR},
+      `params` =#{params,jdbcType=VARCHAR}
+    where `Id` = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

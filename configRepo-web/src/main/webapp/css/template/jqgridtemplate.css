@@ -1,0 +1,74 @@
+a{
+    text-decoration:none;
+    color: #111;
+
+}
+
+.ztree li{
+    line-height:28px;
+}
+ul li{
+    list-style: none;
+    padding-left:0px;
+}
+.ztree li span.button.ico_docu{
+    margin-right:-16px;
+    background-position:-159px -32px;
+    vertical-align:top; *vertical-align:middle
+}
+/*.by{
+    background-image: url("${basePath}/jsp/headbg1.jpg");
+}*/
+ul .ztree{border:1px solid rgba(245, 245, 245, 0)}
+.ztree li a.curSelectedNode{border:0px #B0FFF4 solid;height:25px;background-color: #E21313;}
+
+a > span
+{
+    font-family : 微软雅黑,宋体;
+    font-size : 1em;
+    color: #f5f5f5;
+}
+
+#comit{
+
+    background:url('/images/comitment.png');
+    width: 43px;
+    height: 45px;
+    z-index:99999999;
+}
+
+.taledown{
+    margin-left:200px;
+    height: 300px;
+    left: 370px;
+    position: absolute;
+    top: -40px;
+    width:  420px;
+    display: none;
+
+}
+
+span{
+    padding-top:10px;
+}
+#main{
+    margin-top:20px;
+}
+.show{
+    display:none;
+}
+
+#collection ,#hasCollect{
+    height:28px;
+    text-align: right;
+    position: relative;
+    top:0;
+    right:0;
+}
+#collection:hover,#collection a:hover{background:#fff;}
+#collection a{ position: absolute;top:0;right:48px;}
+#mul_time{float: left;margin-left: 10px;margin-top: 10px;}
+#mul_time
+span{
+    margin-top:10px;margin-right:10px;
+}

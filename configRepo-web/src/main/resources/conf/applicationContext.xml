@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-2.5.xsd
+        http://www.springframework.org/schema/task
+        http://www.springframework.org/schema/task/spring-task-3.0.xsd
+        http://www.springframework.org/schema/data/jpa
+        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+        "
+            default-autowire="byName">
+    <import resource="classpath:conf/applicationContext-properties.xml"/>
+    <import resource="classpath:conf/applicationContext-persistence.xml"/>
+     <import resource="classpath:conf/applicationContext-service.xml"/>
+     <import resource="classpath:conf/applicationContext-kv.xml"/>
+    <import resource="spring-config-cache.xml"/>
+    <import resource="spring-config-shiro.xml"/>
+    <context:component-scan base-package="org.apache.shiro;com.framework.demo.service;com.framework.demo.dao;com.framework.demo.sys;com.framework.demo.dto;com.framework.demo.bo;">
+    </context:component-scan>
+    <!-- 定时任务注解扫描@Scheduled -->
+    <task:annotation-driven/>
+    <bean id="easyUITreeService" class="cn.vansky.framework.core.web.easyUI.service.EasyUITreeServiceImpl"/>
+</beans>

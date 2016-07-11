@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.framework.demo.dao.datagrid.EasyuiColumnMapper">
+  <resultMap id="BaseResultMap" type="com.framework.demo.bo.datagrid.EasyuiColumn">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="rowspan" property="rowspan" jdbcType="INTEGER" />
+    <result column="width" property="width" jdbcType="INTEGER" />
+    <result column="sortable" property="sortable" jdbcType="TINYINT" />
+    <result column="colspan" property="colspan" jdbcType="TINYINT" />
+    <result column="align" property="align" jdbcType="VARCHAR" />
+    <result column="halign" property="halign" jdbcType="VARCHAR" />
+    <result column="order" property="order" jdbcType="VARCHAR" />
+    <result column="resizable" property="resizable" jdbcType="TINYINT" />
+    <result column="fixed" property="fixed" jdbcType="TINYINT" />
+    <result column="hidden" property="hidden" jdbcType="TINYINT" />
+    <result column="checkbox" property="checkbox" jdbcType="TINYINT" />
+    <result column="model" property="model" jdbcType="VARCHAR" />
+    <result column="field" property="field" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `title`, `rowspan`, `width`, `sortable`, `colspan`, `align`, `halign`, `order`, `resizable`, `fixed`, `hidden`, `checkbox`, 
+    `model`, `field`
+  </sql>
+  <insert id="insert" parameterType="com.framework.demo.bo.datagrid.EasyuiColumn" useGeneratedKeys="true" keyProperty="id">
+    <![CDATA[
+    insert into `easyui_column` (`title`, `rowspan`, `width`, 
+      `sortable`, `colspan`, `align`, 
+      `halign`, `order`, `resizable`, 
+      `fixed`, `hidden`, `checkbox`, 
+      `model`, `field`)
+    values (#{title,jdbcType=VARCHAR}, #{rowspan,jdbcType=INTEGER}, #{width,jdbcType=INTEGER}, 
+      #{sortable,jdbcType=TINYINT}, #{colspan,jdbcType=TINYINT}, #{align,jdbcType=VARCHAR}, 
+      #{halign,jdbcType=VARCHAR}, #{order,jdbcType=VARCHAR}, #{resizable,jdbcType=TINYINT}, 
+      #{fixed,jdbcType=TINYINT}, #{hidden,jdbcType=TINYINT}, #{checkbox,jdbcType=TINYINT}, 
+      #{model,jdbcType=VARCHAR}, #{field,jdbcType=VARCHAR})
+    ]]>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `easyui_column` (`title`, `rowspan`, `width`, 
+      `sortable`, `colspan`, `align`, 
+      `halign`, `order`, `resizable`, 
+      `fixed`, `hidden`, `checkbox`, 
+      `model`, `field`)
+     values 
+    <foreach collection="list" item="item" index="index" separator=",">
+       (#{item.title,jdbcType=VARCHAR}, #{item.rowspan,jdbcType=INTEGER}, #{item.width,jdbcType=INTEGER}, 
+        #{item.sortable,jdbcType=TINYINT}, #{item.colspan,jdbcType=TINYINT}, #{item.align,jdbcType=VARCHAR}, 
+        #{item.halign,jdbcType=VARCHAR}, #{item.order,jdbcType=VARCHAR}, #{item.resizable,jdbcType=TINYINT}, 
+        #{item.fixed,jdbcType=TINYINT}, #{item.hidden,jdbcType=TINYINT}, #{item.checkbox,jdbcType=TINYINT}, 
+        #{item.model,jdbcType=VARCHAR}, #{item.field,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.framework.demo.bo.datagrid.EasyuiColumn" useGeneratedKeys="true" keyProperty="id">
+    insert into `easyui_column`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        `title`,
+      </if>
+      <if test="rowspan != null">
+        `rowspan`,
+      </if>
+      <if test="width != null">
+        `width`,
+      </if>
+      <if test="sortable != null">
+        `sortable`,
+      </if>
+      <if test="colspan != null">
+        `colspan`,
+      </if>
+      <if test="align != null">
+        `align`,
+      </if>
+      <if test="halign != null">
+        `halign`,
+      </if>
+      <if test="order != null">
+        `order`,
+      </if>
+      <if test="resizable != null">
+        `resizable`,
+      </if>
+      <if test="fixed != null">
+        `fixed`,
+      </if>
+      <if test="hidden != null">
+        `hidden`,
+      </if>
+      <if test="checkbox != null">
+        `checkbox`,
+      </if>
+      <if test="model != null">
+        `model`,
+      </if>
+      <if test="field != null">
+        `field`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="rowspan != null">
+        #{rowspan,jdbcType=INTEGER},
+      </if>
+      <if test="width != null">
+        #{width,jdbcType=INTEGER},
+      </if>
+      <if test="sortable != null">
+        #{sortable,jdbcType=TINYINT},
+      </if>
+      <if test="colspan != null">
+        #{colspan,jdbcType=TINYINT},
+      </if>
+      <if test="align != null">
+        #{align,jdbcType=VARCHAR},
+      </if>
+      <if test="halign != null">
+        #{halign,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null">
+        #{order,jdbcType=VARCHAR},
+      </if>
+      <if test="resizable != null">
+        #{resizable,jdbcType=TINYINT},
+      </if>
+      <if test="fixed != null">
+        #{fixed,jdbcType=TINYINT},
+      </if>
+      <if test="hidden != null">
+        #{hidden,jdbcType=TINYINT},
+      </if>
+      <if test="checkbox != null">
+        #{checkbox,jdbcType=TINYINT},
+      </if>
+      <if test="model != null">
+        #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="field != null">
+        #{field,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from `easyui_column`
+    where `id` = #{id,jdbcType=INTEGER}
+  </delete>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `easyui_column`
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `easyui_column`
+    where `id` = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(*) from `easyui_column`
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.framework.demo.bo.datagrid.EasyuiColumn">
+    update `easyui_column`
+    <set>
+      <if test="title != null">
+        `title` = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="rowspan != null">
+        `rowspan` = #{rowspan,jdbcType=INTEGER},
+      </if>
+      <if test="width != null">
+        `width` = #{width,jdbcType=INTEGER},
+      </if>
+      <if test="sortable != null">
+        `sortable` = #{sortable,jdbcType=TINYINT},
+      </if>
+      <if test="colspan != null">
+        `colspan` = #{colspan,jdbcType=TINYINT},
+      </if>
+      <if test="align != null">
+        `align` = #{align,jdbcType=VARCHAR},
+      </if>
+      <if test="halign != null">
+        `halign` = #{halign,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null">
+        `order` = #{order,jdbcType=VARCHAR},
+      </if>
+      <if test="resizable != null">
+        `resizable` = #{resizable,jdbcType=TINYINT},
+      </if>
+      <if test="fixed != null">
+        `fixed` = #{fixed,jdbcType=TINYINT},
+      </if>
+      <if test="hidden != null">
+        `hidden` = #{hidden,jdbcType=TINYINT},
+      </if>
+      <if test="checkbox != null">
+        `checkbox` = #{checkbox,jdbcType=TINYINT},
+      </if>
+      <if test="model != null">
+        `model` = #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="field != null">
+        `field` = #{field,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.framework.demo.bo.datagrid.EasyuiColumn">
+    update `easyui_column`
+    set `title` = #{title,jdbcType=VARCHAR},
+      `rowspan` = #{rowspan,jdbcType=INTEGER},
+      `width` = #{width,jdbcType=INTEGER},
+      `sortable` = #{sortable,jdbcType=TINYINT},
+      `colspan` = #{colspan,jdbcType=TINYINT},
+      `align` = #{align,jdbcType=VARCHAR},
+      `halign` = #{halign,jdbcType=VARCHAR},
+      `order` = #{order,jdbcType=VARCHAR},
+      `resizable` = #{resizable,jdbcType=TINYINT},
+      `fixed` = #{fixed,jdbcType=TINYINT},
+      `hidden` = #{hidden,jdbcType=TINYINT},
+      `checkbox` = #{checkbox,jdbcType=TINYINT},
+      `model` = #{model,jdbcType=VARCHAR},
+      `field` = #{field,jdbcType=VARCHAR}
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

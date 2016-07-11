@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.framework.demo.dao.general.CompositeDictionaryMapper">
+    <select id="findByParams" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from `td_composite_dictionary`
+        <where>
+            <if test="dicType != null">
+                AND `dic_type` = #{dicType}
+            </if>
+            <if test="dicId != null">
+                AND `dic_id` = #{dicId}
+            </if>
+        </where>
+    </select>
+</mapper>

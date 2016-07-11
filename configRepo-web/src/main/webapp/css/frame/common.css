@@ -1,0 +1,210 @@
+*{
+    font-size:12px;
+}
+#search {
+    width: 98%;
+    height: 5%;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+.commonDiv {
+    width: 98%;
+    height: 90%;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+body {
+    font-family:verdana,helvetica,arial,sans-serif;
+    padding:20px;
+    font-size:12px;
+    margin:0;
+}
+#fl_1{
+    z-index: 99;
+}
+#nouse{
+
+}
+h2 {
+    font-size:18px;
+    font-weight:bold;
+    margin:0;
+    margin-bottom:15px;
+}
+.demo-info{
+    padding:0 0 12px 0;
+}
+.demo-tip{
+    display:none;
+}
+.easyui-layout{
+
+}
+.easyui_north{
+    border:1px solid #429fff;
+    border-collapse:collapse;
+    margin-top:-5px;
+    margin:auto;
+    margin-bottom:10px;
+
+}
+.easyui_north th{
+    border:1px solid #429fff;
+    text-align:right;
+    width:250px;
+    height:30px;
+}
+.easyui_north td{
+    border:1px solid #429fff;
+    text-align:center;
+    width:200px;
+    height:30px;
+}
+.dateAndbutton{
+    width:300px;
+    height:40px;
+    margin-left:41px;
+    margin-top:15px;
+    margin-bottom:5px;
+}
+
+.easyui_AllNorth{
+    height:auto;
+    overflow:hidden;
+
+}
+#sumit{
+    clear:both;
+    margin-left:10px;
+    margin:0 auto;
+    margin-top:10px;
+
+}
+
+#tiaojian{
+    margin-left:10px;
+}
+#ui-datepicker-div {
+    font-size: 11px;
+}
+
+.ui-datepicker {
+    z-index: 2000
+}
+
+/* set the size of the autocomplete search control*/
+.ui-menu-item {
+    font-size: 11px;
+}
+
+.ui-autocomplete {
+    z-index: 2000;
+    font-size: 11px;
+}
+
+/* set the size of the datepicker search control for Order Date*/
+#ui-datepicker-div {
+    font-size: 11px;
+}
+
+.ui-datepicker {
+    z-index: 2000
+}
+
+/* set the size of the autocomplete search control*/
+.ui-menu-item {
+    font-size: 12px;
+}
+
+.ui-autocomplete {
+    z-index: 2000;
+    font-size: 11px;
+}
+#taledown {
+    position:absolute;
+    left: 40%;
+    top: 30%;
+    font-size:12px;
+    z-index:99; //浮动在最上层
+}
+.dis-none{
+    display: none;
+}
+.dis-blk{
+    display: block;
+}
+#tiaojian{
+    float:left;
+    margin-top:10px;
+}
+
+#dat{
+    float:left;
+    margin-left:10px;
+    margin-top:10px;
+}
+a{
+    text-decoration:none;
+    color: #111;
+
+}
+
+.ztree li{
+    line-height:28px;
+}
+ul li{
+    list-style: none;
+    padding-left:0px;
+}
+.ztree li span.button.ico_docu{
+    margin-right:-16px;
+    background-position:-159px -32px;
+    vertical-align:top; *vertical-align:middle
+}
+/*.by{
+    background-image: url("${basePath}/jsp/headbg1.jpg");
+}*/
+ul .ztree{border:1px solid rgba(245, 245, 245, 0)}
+.ztree li a.curSelectedNode{border:0px #B0FFF4 solid;height:25px;background-color: #E21313;}
+
+a > span
+{
+    font-family : 微软雅黑,宋体;
+    font-size : 1em;
+    width:auto;
+}
+
+
+
+.taledown{
+    margin-left:200px;
+    height: 295px;
+    left: 370px;
+    position: absolute;
+    top: -40px;
+    width:  420px;
+    display: none;
+
+}
+
+#main{
+    margin-top:20px;
+}
+.show{
+    display:none;
+}
+#collection ,#hasCollect{
+
+    text-align: right;
+    position: relative;
+    top:0;
+    right:0;
+}
+#collection:hover,#collection a:hover{background:#fff;}
+#collection a{ position: absolute;top:0;right:48px;}
+#mul_time{float: left;margin-left: 10px;margin-top: 10px;}
+#mul_time  span{
+    margin-top:10px;margin-right:10px;
+}

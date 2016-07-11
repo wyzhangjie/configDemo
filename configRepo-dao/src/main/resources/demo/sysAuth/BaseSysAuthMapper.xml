@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.framework.demo.sys.sysAuth.dao.SysAuthMapper">
+  <resultMap id="BaseResultMap" type="com.framework.demo.sys.sysAuth.bo.SysAuth.SysAuth">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="organization_id" property="organizationId" jdbcType="BIGINT" />
+    <result column="job_id" property="jobId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="group_id" property="groupId" jdbcType="BIGINT" />
+    <result column="role_ids" property="roleIds" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `organization_id`, `job_id`, `user_id`, `group_id`, `role_ids`, `type`
+  </sql>
+  <insert id="insert" parameterType="com.framework.demo.sys.sysAuth.bo.SysAuth.SysAuth" useGeneratedKeys="true" keyProperty="id">
+    <![CDATA[
+    insert into `sys_auth` (`organization_id`, `job_id`, `user_id`, 
+      `group_id`, `role_ids`, `type`
+      )
+    values (#{organizationId,jdbcType=BIGINT}, #{jobId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{groupId,jdbcType=BIGINT}, #{roleIds,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}
+      )
+    ]]>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `sys_auth` (`organization_id`, `job_id`, `user_id`, 
+      `group_id`, `role_ids`, `type`
+      )
+     values 
+    <foreach collection="list" item="item" index="index" separator=",">
+       (#{item.organizationId,jdbcType=BIGINT}, #{item.jobId,jdbcType=BIGINT}, #{item.userId,jdbcType=BIGINT}, 
+        #{item.groupId,jdbcType=BIGINT}, #{item.roleIds,jdbcType=VARCHAR}, #{item.type,jdbcType=VARCHAR}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.framework.demo.sys.sysAuth.bo.SysAuth.SysAuth" useGeneratedKeys="true" keyProperty="id">
+    insert into `sys_auth`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="organizationId != null">
+        `organization_id`,
+      </if>
+      <if test="jobId != null">
+        `job_id`,
+      </if>
+      <if test="userId != null">
+        `user_id`,
+      </if>
+      <if test="groupId != null">
+        `group_id`,
+      </if>
+      <if test="roleIds != null">
+        `role_ids`,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="organizationId != null">
+        #{organizationId,jdbcType=BIGINT},
+      </if>
+      <if test="jobId != null">
+        #{jobId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=BIGINT},
+      </if>
+      <if test="roleIds != null">
+        #{roleIds,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from `sys_auth`
+    where `id` = #{id,jdbcType=BIGINT}
+  </delete>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `sys_auth`
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `sys_auth`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(*) from `sys_auth`
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.framework.demo.sys.sysAuth.bo.SysAuth.SysAuth">
+    update `sys_auth`
+    <set>
+      <if test="organizationId != null">
+        `organization_id` = #{organizationId,jdbcType=BIGINT},
+      </if>
+      <if test="jobId != null">
+        `job_id` = #{jobId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        `user_id` = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="groupId != null">
+        `group_id` = #{groupId,jdbcType=BIGINT},
+      </if>
+      <if test="roleIds != null">
+        `role_ids` = #{roleIds,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.framework.demo.sys.sysAuth.bo.SysAuth.SysAuth">
+    update `sys_auth`
+    set `organization_id` = #{organizationId,jdbcType=BIGINT},
+      `job_id` = #{jobId,jdbcType=BIGINT},
+      `user_id` = #{userId,jdbcType=BIGINT},
+      `group_id` = #{groupId,jdbcType=BIGINT},
+      `role_ids` = #{roleIds,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=VARCHAR}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

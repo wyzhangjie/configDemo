@@ -1,0 +1,187 @@
+body{/*background:rgba(95, 219, 153, 0.12);*/overflow-x : hidden;}
+div{
+    float:left;
+
+}
+
+
+div >span{
+    display:block;
+    float:left;
+    margin-top:5px;
+    width:165px;
+    margin-bottom:5px;
+    margin-left:10px;
+    padding-right: 16px;
+    font-size: 15px;
+    font-family: '微软雅黑';
+    border-radius: 5px;
+    /*  text-align:right; */
+}
+input{
+    width: 163px;
+    height: 20px;
+    border-radius: 5px;
+}
+.panel{
+    /*  float:left; */
+    margin-top:20px;
+    margin-left:50px;
+}
+#cdpz1,#mix1_div{
+    float:left;
+    margin-top:50px;
+    width: 120%;
+    margin-left:40px;
+}
+#cdpz, #cdpz1, #tu2data,#divsql2,#data1,#data2,#data3,#tu3data,#tu4data,#tud1ata,#other,#other_1,#other_2,#other_3,#other_4,#other_5, #other_1_mix1,#other_2_jq,#other_1_jq,#other_2_mix1,#other_3_jq,#other_3_mix1,#other_4_jq,#other_4_mix1,#other_5_jq,#other_5_mix1,#real_time,#maxmin_average,#time_type,#divsql3,#divsql_comit,#mulTime{
+    float:left;
+    margin-top:10px;
+    width: 100%;
+    margin-left:80px;
+    /*   text-align:center; */
+}
+#data_1_jqtwo,#data_2_jqtwo,#data_3_jqtwo{
+    float:left;
+    margin-top:10px;
+    width: 120%;
+    /*  margin-left:40px;*/
+}
+#divsql3,#divsql,#divsql1,#mix_divsql1,#divsql2_jqtwo,#divsql1_{
+    text-align:center;margin-left:auto; margin-right:auto;
+}
+#divsql2,#mix1_btn,#btn_jqtwo{
+    margin-left:560px;
+}
+#divsql{
+    /*  margin-top:20px; */
+    margin-right:30px;
+
+}
+#datasql3, #datasql1, #datasql2,#datasqlt1_jqtwo,#datasql2_jqtwo,#datasql3_jqtwo {
+    clear: both;
+}
+
+#data1,#data2,#data3,#data_1_jqtwo,#data_2_jqtwo,#data_3_jqtwo{
+    display:none;
+}
+#datasql3,#datasql1,#datasql2,#datasqlt1_jqtwo,#datasql2_jqtwo,#datasql3_jqtwo{
+    clear:both;
+
+}
+#pmenuName0,#pmenuName1,#pmenuName1_jqtwo,#realtime,#timetype,#multime,#ispercent,#maxandmin,#average{
+    width:165px;
+    height: 25px;
+    border-radius: 5px;
+}
+h1{
+    text-align:center;
+    font-size: 25px;
+    font-family: 'Microsoft YaHei', '微软雅黑', 'Lucida Grande', Verdana, Arial, Sans-Serif;
+    color: #0000cc;
+    margin-bottom:10px;
+    margin-top:10px;
+}
+.textbox_text{
+    width:162px;
+    height: 27px;
+    font-size: 14px;
+    font-family: 'Microsoft YaHei', '微软雅黑', 'Lucida Grande', Verdana, Arial, Sans-Serif;
+
+}
+div >span >select{
+    font-size: 14px;
+    font-family: 'Microsoft YaHei', '微软雅黑', 'Lucida Grande', Verdana, Arial, Sans-Serif;
+    width: 165px;
+    height: 25px;
+    border-radius: 5px;
+}
+#divsql3 span{
+    margin-left:65px;
+}
+
+#divsql3 textarea{
+    margin-left:-90px;
+}
+textarea{
+    width: 950px;
+    height: 80px;
+    font-size: 15px;
+    font-family: 'Microsoft YaHei', '微软雅黑', 'Lucida Grande', Verdana, Arial, Sans-Serif;
+    margin-left:10px;
+    border-radius: 5px;
+    border:2px solid #a0b3d6;
+}
+#timer_sql{
+    width: 950px;
+    min-height: 80px;
+    _height:80px;
+    /* font-size: 15px;
+     font-family: 'Microsoft YaHei', '微软雅黑', 'Lucida Grande', Verdana, Arial, Sans-Serif;*/
+    margin-left:25px;
+    border-radius: 5px;
+    border:2px solid #a0b3d6;
+    text-align: left;
+    outline: 0;
+    /*margin-left: auto;    margin-right: auto;*/
+}
+#comitment_area{
+    width: 950px;
+    min-height: 80px;
+    font-size: 15px;
+    font-family: 'Microsoft YaHei', '微软雅黑', 'Lucida Grande', Verdana, Arial, Sans-Serif;
+    margin-left:0px;
+    border-radius: 5px;
+    border: 2px solid #a0b3d6;
+    text-align: left;
+}
+#tab_name_1,#tab_name_2,#tab_name_3,#tab_name_4,#tab_name_5,#tab_option_col_1,#tab_option_col_2,#tab_option_col_3,#tab_option_col_4,#tab_option_col_5{
+    width: 150px;
+    height: 25px;
+    font-size: 14px;
+    font-family: '微软雅黑';
+}
+.textbox{
+    width:165px;
+    height: 25px;
+    font-size: 14px;
+    font-family: 'Microsoft YaHei', '微软雅黑', 'Lucida Grande', Verdana, Arial, Sans-Serif;
+    border: 1px solid #f2f2f2;
+}
+#btn{
+    height: 35px;
+    margin-top: 0px;
+    margin-left: -1010px;
+    font-size: 15px;
+    width: 90px;
+    font-family: '微软雅黑';
+    background: yellow;
+    margin-bottom:0px;
+}
+div >span >span >input{
+    font-size:14px;
+    font-family: 'Microsoft YaHei', '微软雅黑', 'Lucida Grande', Verdana, Arial, Sans-Serif;
+}
+#titleecharts{
+    text-align:center;
+    font-size: 25px;
+    font-family: 'Microsoft YaHei', '微软雅黑', 'Lucida Grande', Verdana, Arial, Sans-Serif;
+    color: #F44336;
+    margin-bottom:10px;
+    margin-top:10px;
+    float: left;
+    margin-left: 565px;
+}
+
+#divsql_comit span{
+    margin-left: -28px;
+}
+textarea#comitmentarea {
+    margin-left: -157px;
+}
+#reportkind{
+    height:26px;
+}
+#file_path{
+    width:0px;
+}

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.framework.demo.dao.collection.CollectionMapper">
+  <resultMap id="BaseResultMap" type="com.framework.demo.bo.collection.Collection">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="model" property="model" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `username`, `model`
+  </sql>
+  <insert id="insert" parameterType="com.framework.demo.bo.collection.Collection" useGeneratedKeys="true" keyProperty="id">
+    <![CDATA[
+    insert into `tb_collection` (`username`, `model`)
+    values (#{username,jdbcType=VARCHAR}, #{model,jdbcType=INTEGER})
+    ]]>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `tb_collection` (`username`, `model`)
+     values 
+    <foreach collection="list" item="item" index="index" separator=",">
+       (#{item.username,jdbcType=VARCHAR}, #{item.model,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.framework.demo.bo.collection.Collection" useGeneratedKeys="true" keyProperty="id">
+    insert into `tb_collection`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        `username`,
+      </if>
+      <if test="model != null">
+        `model`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null">
+        #{model,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from `tb_collection`
+    where `id` = #{id,jdbcType=INTEGER}
+  </delete>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tb_collection`
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `tb_collection`
+    where `id` = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(*) from `tb_collection`
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.framework.demo.bo.collection.Collection">
+    update `tb_collection`
+    <set>
+      <if test="username != null">
+        `username` = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null">
+        `model` = #{model,jdbcType=INTEGER},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.framework.demo.bo.collection.Collection">
+    update `tb_collection`
+    set `username` = #{username,jdbcType=VARCHAR},
+      `model` = #{model,jdbcType=INTEGER}
+    where `id` = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
