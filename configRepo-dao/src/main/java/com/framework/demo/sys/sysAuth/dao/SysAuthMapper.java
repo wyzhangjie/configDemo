@@ -16,7 +16,9 @@ import java.util.Set;
  */
 @SqlMapper
 public interface SysAuthMapper extends DaoMapper<SysAuth, Long> {
-    Set<String> findStringRoles(SysUser user);
+   /* Set<String> findStringRoles(SysUser user);*/
 
     Set<String> findStringPermissions(SysUser user);
+
+    SysAuth findByUserid(Long userId);
 }

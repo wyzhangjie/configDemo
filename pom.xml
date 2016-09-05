@@ -27,7 +27,7 @@
         <testng.version>6.8.8</testng.version>
         <shiro.version>1.2.3</shiro.version>
         <hamcrest.version>1.3</hamcrest.version>
-
+        <javassist_version>3.20.0-GA</javassist_version>
         <jsp.version>2.2</jsp.version>
         <aopalliance.version>1.0</aopalliance.version>
         <aspectj.version>1.8.0</aspectj.version>
@@ -87,6 +87,7 @@
         <hibernate.validator.version>5.0.2.Final</hibernate.validator.version>
         <spring.data.jpa.version>1.4.1.RELEASE</spring.data.jpa.version>
         <commons-lang3.version>3.1</commons-lang3.version>
+        <standard.version>1.1.2</standard.version>
         <common-collections4.version>4.0</common-collections4.version>
         <commons-io.version>2.4</commons-io.version>
         <guava.version>15.0</guava.version>
@@ -95,7 +96,7 @@
         <javassist.version>3.18.0-GA</javassist.version>
         <common.fileupload.version>1.3</common.fileupload.version>
         <jetty.version>8.1.8.v20121106</jetty.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
     </properties>
     <dependencyManagement>
 
@@ -103,9 +104,9 @@
 
             <!-- utils 相关jar包 -->
             <dependency>
-                <groupId>com.framework</groupId>
-                <artifactId>configRepo-common</artifactId>
-                <version>1.0.0</version>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -117,10 +118,16 @@
                 <artifactId>commons-collections4</artifactId>
                 <version>${common-collections4.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>taglibs</groupId>
+                <artifactId>standard</artifactId>
+                <version>${standard.version}</version>
             </dependency>
             <!-- html处理jar包 -->
             <dependency>
@@ -179,6 +186,11 @@
                 <version>${common.compress.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.ant</groupId>
                 <artifactId>ant</artifactId>
                 <version>${ant.version}</version>
@@ -221,6 +233,12 @@
                         <artifactId>commons-logging</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.9</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
@@ -278,7 +296,7 @@
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>servlet-api</artifactId>
-                <version>${servlet-api.version}</version>
+                <version>${servlet.version}</version>
                 <scope>provided</scope>
             </dependency>
 
@@ -466,25 +484,14 @@
             <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis-spring</artifactId>
-                <version>${mybatis-spring.version}</version>
+                <version>1.2.2</version>
             </dependency>
             <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis</artifactId>
                 <version>${mybatis.version}</version>
             </dependency>
-            <!-- spring jpa -->
-            <dependency>
-                <groupId>org.springframework.data</groupId>
-                <artifactId>spring-data-jpa</artifactId>
-                <version>${spring.data.jpa.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <artifactId>jcl-over-slf4j</artifactId>
-                        <groupId>org.slf4j</groupId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
+
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
@@ -561,17 +568,7 @@
             </dependency>
 
 
-            <dependency>
-                <groupId>org.springframework.data</groupId>
-                <artifactId>spring-data-jpa</artifactId>
-                <version>${spring.data.jpa.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <artifactId>jcl-over-slf4j</artifactId>
-                        <groupId>org.slf4j</groupId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
+
 
             <dependency>
                 <groupId>commons-collections</groupId>
@@ -624,6 +621,7 @@
                 <artifactId>antlr</artifactId>
                 <version>${antlr.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi-ooxml</artifactId>
@@ -634,6 +632,12 @@
                         <artifactId>log4j</artifactId>
                     </exclusion>
                 </exclusions>
+
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpasyncclient</artifactId>
+                <version>4.0</version>
             </dependency>
             <dependency>
                 <groupId>javax.mail</groupId>
@@ -645,6 +649,7 @@
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>net.sf.opencsv</groupId>
                 <artifactId>opencsv</artifactId>
@@ -703,10 +708,12 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
+
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>
         </dependency>
+
         <!-- utils 相关jar包 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -976,17 +983,7 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
         </dependency>
-        <!-- spring jpa -->
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>jcl-over-slf4j</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -1088,6 +1085,11 @@
             <artifactId>commons-logging</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>${javassist_version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.jcraft</groupId>
             <artifactId>jsch</artifactId>
         </dependency>
@@ -1156,7 +1158,10 @@
             <groupId>cn.vansky</groupId>
             <artifactId>framework-security</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpasyncclient</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.antlr</groupId>
             <artifactId>ST4</artifactId>

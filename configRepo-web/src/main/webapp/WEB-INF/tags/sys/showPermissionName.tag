@@ -1,16 +1,16 @@
-<%@ tag import="com.sishuok.es.common.utils.SpringUtils" %>
-<%@ tag import="com.sishuok.es.sys.permission.entity.Permission" %>
-<%@ tag import="com.sishuok.es.sys.permission.service.PermissionService" %>
+<%@ tag import="com.framework.demo.utils.SpringUtils" %>
+<%@ tag import="com.framework.demo.sys.sysPermission.bo.SysPermission" %>
+<%@ tag import="com.framework.demo.conf.service.sys.sysPermission.conf.service.SysPermissionService" %>
 <%@ tag pageEncoding="UTF-8"%>
 <%@ attribute name="id" type="java.lang.Long" required="true" description="当前要展示的组织机构的名字" %>
-<%!private PermissionService permissionService;%>
+<%!private SysPermissionService permissionService;%>
 <%
 
     if(permissionService == null) {
-        permissionService = SpringUtils.getBean(PermissionService.class);
+        permissionService = SpringUtils.getBean(SysPermissionService.class);
     }
 
-    Permission permission = permissionService.findOne(id);
+    SysPermission permission = permissionService.findById(id);
 
     if(permission == null) {
         out.write("<span class='label label-important'>删除的数据，请修改</span>");

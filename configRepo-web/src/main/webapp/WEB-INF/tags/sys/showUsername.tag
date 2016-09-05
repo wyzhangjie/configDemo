@@ -1,17 +1,17 @@
-<%@ tag import="com.sishuok.es.common.utils.SpringUtils" %>
-<%@ tag import="com.sishuok.es.sys.user.entity.User" %>
-<%@ tag import="com.sishuok.es.sys.user.service.UserService" %>
+<%@ tag import="com.framework.demo.utils.SpringUtils" %>
+<%@ tag import="com.framework.demo.bo.sysUser.SysUser" %>
+<%@ tag import="com.framework.demo.conf.service.sysuser.SysUserService" %>
 <%@ tag pageEncoding="UTF-8"%>
 <%@ attribute name="id" type="java.lang.Long" required="true" description="当前要展示的用户的id" %>
 <%@ attribute name="needLink" type="java.lang.Boolean" required="false" description="是否需要链接" %>
-<%!private UserService userService;%>
+<%!private SysUserService userService;%>
 <%
 
     if(userService == null) {
-        userService = SpringUtils.getBean(UserService.class);
+        userService = SpringUtils.getBean(SysUserService.class);
     }
 
-    User user = userService.findOne(id);
+    SysUser user = userService.findById(id);
 
     if(user == null) {
         out.write("<span class='label label-important'>删除的数据，请修改</span>");

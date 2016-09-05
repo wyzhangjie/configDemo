@@ -16,4 +16,6 @@ import java.util.Set;
 public interface SysAuthDao extends SqlMapDao<SysAuth, Long> {
 
     Set<String> findStringPermissions(SysUser user);
+
+    SysAuth findByUserid(Long userId);
 }

@@ -22,7 +22,7 @@
             <item name="es" href="/index.html"/>
             <item name="parent" href="/es-parent/index.html"/>
             <item name="common" href="/es-common/index.html"/>
-            <item name="web" href="/es-web/index.html"/>
+            <item name="web" href="/index.html"/>
         </menu>
         <links>
             <item name="GitHub" href="http://github.com/"/>

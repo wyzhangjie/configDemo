@@ -7,7 +7,7 @@ package com.framework.demo.web.controller.test.multidasource;
  * 根据DataSourceType是write/read 来决定是使用读/写数据库
  * 通过ThreadLocal绑定实现选择功能
  * </pre>
- * @author Zhang Kaitao
+ * @author hyssop
  *
  */
 public class ReadWriteDataSourceDecision {

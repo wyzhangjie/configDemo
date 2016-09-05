@@ -19,7 +19,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Repository;
-import repository.support.SimpleBaseRepositoryFactoryBean;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Repository
 public class UserRealm extends AuthorizingRealm {
@@ -29,7 +31,7 @@ public class UserRealm extends AuthorizingRealm {
     @Autowired
     private SysAuthService userAuthService;
 
-    private static final Logger log = LoggerFactory.getLogger("es-error");
+    private static final Logger log = LoggerFactory.getLogger(UserRealm.class);
 
     @Autowired
     public UserRealm(ApplicationContext ctx) {
@@ -39,7 +41,7 @@ public class UserRealm extends AuthorizingRealm {
         //因为spring在查找findAutowireCandidates时对FactoryBean做了优化，即只获取Bean，但不会autowire属性，
         //所以如果我们的bean在依赖它的bean之前初始化，那么就得不到ObjectType（永远是Repository）
         //所以此处我们先getBean一下 就没有问题了
-        ctx.getBeansOfType(SimpleBaseRepositoryFactoryBean.class);
+    /*    ctx.getBeansOfType(SimpleBaseRepositoryFactoryBean.class);*/
     }
 
     @Override
@@ -50,6 +52,15 @@ public class UserRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         authorizationInfo.setRoles(userAuthService.findStringRoles(user));
         authorizationInfo.setStringPermissions(userAuthService.findStringPermissions(user));
+        if(username.equalsIgnoreCase("root")){
+            Set<String> setStringPermissions = new HashSet<String>();
+            setStringPermissions.add("showcase:*:*");
+            setStringPermissions.add(" monitor:*:*");
+            setStringPermissions.add("maintain:*:*");
+            setStringPermissions.add("sys:*:*");
+            authorizationInfo.setStringPermissions(setStringPermissions);
+        }
+
 
         return authorizationInfo;
     }
@@ -104,8 +115,8 @@ public class UserRealm extends AuthorizingRealm {
         if (upToken.getPassword() != null) {
             password = new String(upToken.getPassword());
         }
-
         SysUser user = null;
+
         try {
             user = userService.login(username, password);
         } catch (UserNotExistsException e) {
@@ -121,7 +132,7 @@ public class UserRealm extends AuthorizingRealm {
             throw new AuthenticationException(new UserException("user.unknown.error", null));
         }
 
-        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, password.toCharArray(), getName());
+        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(username, password.toCharArray(), getName());
         return info;
     }
 

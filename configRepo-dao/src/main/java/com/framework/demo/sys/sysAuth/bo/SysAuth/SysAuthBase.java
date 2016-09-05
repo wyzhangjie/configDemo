@@ -8,6 +8,9 @@ import cn.vansky.framework.core.dao.FieldAccessVo;
 import cn.vansky.framework.core.dao.TableDataConvertable;
 import cn.vansky.framework.core.dao.annotation.ColumnDescription;
 import cn.vansky.framework.core.dao.annotation.Id;
+import com.google.common.collect.Sets;
+
+import java.util.Set;
 
 /**
  * This class corresponds to the database table `sys_auth`
@@ -251,4 +254,6 @@ public abstract class SysAuthBase extends FieldAccessVo implements TableDataConv
     public void setType(String type) {
         this.type = type;
     }
+
+
 }

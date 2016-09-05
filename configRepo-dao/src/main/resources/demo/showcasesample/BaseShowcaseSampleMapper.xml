@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.framework.demo.dao.showcaseSample.ShowcaseSampleMapper">
+  <resultMap id="BaseResultMap" type="com.framework.demo.bo.showcaseSample.ShowcaseSample">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="SMALLINT" />
+    <result column="birthday" property="birthday" jdbcType="TIMESTAMP" javaType="String"  />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="isShow" property="isShow" jdbcType="BIT" />
+    <result column="deleted" property="deleted" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `name`, `age`, `birthday`, `sex`, `isShow`, `deleted`
+  </sql>
+  <insert id="insert" parameterType="com.framework.demo.bo.showcaseSample.ShowcaseSample" useGeneratedKeys="true" keyProperty="id">
+    <![CDATA[
+    insert into `showcase_sample` (`name`, `age`, `birthday`, 
+      `sex`, `isShow`, `deleted`)
+    values (#{name,jdbcType=VARCHAR}, #{age,jdbcType=SMALLINT}, #{birthday,jdbcType=TIMESTAMP}, 
+      #{sex,jdbcType=VARCHAR}, #{isShow,jdbcType=BIT}, #{deleted,jdbcType=BIT})
+    ]]>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `showcase_sample` (`name`, `age`, `birthday`, 
+      `sex`, `isShow`, `deleted`
+      )
+     values 
+    <foreach collection="list" item="item" index="index" separator=",">
+       (#{item.name,jdbcType=VARCHAR}, #{item.age,jdbcType=SMALLINT}, #{item.birthday,jdbcType=TIMESTAMP}, 
+        #{item.sex,jdbcType=VARCHAR}, #{item.isShow,jdbcType=BIT}, #{item.deleted,jdbcType=BIT}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.framework.demo.bo.showcaseSample.ShowcaseSample" useGeneratedKeys="true" keyProperty="id">
+    insert into `showcase_sample`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="age != null">
+        `age`,
+      </if>
+      <if test="birthday != null">
+        `birthday`,
+      </if>
+      <if test="sex != null">
+        `sex`,
+      </if>
+      <if test="isShow != null">
+        `isShow`,
+      </if>
+      <if test="deleted != null">
+        `deleted`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=SMALLINT},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null">
+        #{isShow,jdbcType=BIT},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from `showcase_sample`
+    where `id` = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteBantch" parameterType="java.util.List">
+    delete from `showcase_sample`
+    where `id` in
+    (
+    <foreach collection="array" item="item" index="index" separator="," >
+      #{item,jdbcType=BIGINT}
+    </foreach>
+    )
+  </delete>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `showcase_sample`
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `showcase_sample`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(*) from `showcase_sample`
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.framework.demo.bo.showcaseSample.ShowcaseSample">
+    update `showcase_sample`
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        `age` = #{age,jdbcType=SMALLINT},
+      </if>
+      <if test="birthday != null">
+        `birthday` = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null">
+        `sex` = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="isShow != null">
+        `isShow` = #{isShow,jdbcType=BIT},
+      </if>
+      <if test="deleted != null">
+        `deleted` = #{deleted,jdbcType=BIT},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.framework.demo.bo.showcaseSample.ShowcaseSample">
+    update `showcase_sample`
+    set `name` = #{name,jdbcType=VARCHAR},
+      `age` = #{age,jdbcType=SMALLINT},
+      `birthday` = #{birthday,jdbcType=TIMESTAMP},
+      `sex` = #{sex,jdbcType=VARCHAR},
+      `isShow` = #{isShow,jdbcType=BIT},
+      `deleted` = #{deleted,jdbcType=BIT}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

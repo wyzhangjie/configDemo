@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
-<%@ include file="../../common/taglib.jsp" %>
+<%--<%@ include file="../../common/taglib.jsp" %>--%>
+<%@include file="/WEB-INF/jsp/common/taglibs.jspf"%>
+<es:contentHeader/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,16 +10,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Echarts2.0报表配置区域</title>
     <link rel="stylesheet" type="text/css"
-          href="<%=basePath%>css/page/config/create/configGeneralDemo.css?v=7" charset="utf-8"/>
-    <script type="text/javascript" src="<%=basePath%>js/page/config/otherOption.js" charset="utf-8"></script>
-    <script type="text/javascript" src="<%=basePath%>js/page/config/create/configGeneralDemo.js?v=4" charset="utf-8"></script>
+          href="/css/page/config/create/configGeneralDemo.css?v=7" charset="utf-8"/>
+    <script type="text/javascript" src="/js/page/config/otherOption.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/js/page/config/create/configGeneralDemo.js?v=4" charset="utf-8"></script>
 
 </head>
 <body>
 <div style="margin:20px 0 10px 0;"></div>
 <div title="普通报表配置区域" style="padding:10px">
-    <div id="titleecharts">普通报表配置区域(1)</div>
-    <%--<h1>普通报表配置区域</h1>--%>
+
+
+    <form class="form-horizontal" role="form">
+
+        <div class="form-group">
+            <label for="pmenuName" class="col-sm-2 control-label">母菜单名称</label>
+            <div class="col-sm-10">
+                <select name="pmenuName"  id="pmenuName0" class="form-control">
+
+                </select>
+
+            </div>
+            <label for="menuName" class="col-sm-2 control-label"> 新增菜单名称</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" name="menuName"
+                       id="menuName0" >
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="menuName" class="col-sm-2 control-label"> 新增菜单名称</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" name="menuName"
+                       id="menuName0" >
+
+            </div>
+        </div>
+
+
+
+
+    </form>
+
+
+
+<%--<h1>普通报表配置区域</h1>--%>
     <form id="form1" class="easyui-form" method="post">
         <%--<div style="text-align: center;font-size: 25px;margin-left: 400px;">普通报表配置区域</div>--%>
         <div id="cdpz">
@@ -193,6 +229,6 @@
         </div>
     </form>
 </div>
-
+<es:contentFooter/>
 </body>
 </html>

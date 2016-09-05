@@ -73,7 +73,7 @@ import java.util.Map.Entry;
  *  4.3、determineReadOrWriteDB方法用于决策是走读/写库的，请参考
  *
  * </pre>
- * @author Zhang Kaitao
+ * @author hyssop
  *
  */
 public class ReadWriteDataSourceProcessor implements BeanPostProcessor {

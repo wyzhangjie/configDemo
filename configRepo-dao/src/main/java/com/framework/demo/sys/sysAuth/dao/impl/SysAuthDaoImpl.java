@@ -37,13 +37,17 @@ public class SysAuthDaoImpl extends ConfigurableBaseSqlMapDao<SysAuth, Long> imp
         setSqlSessionFactoryInternal(sqlSessionFactory);
     }
 
-    @Override
     public Set<String> findStringRoles(SysUser user) {
-        return sysAuthMapper.findStringRoles(user);
+        return sysAuthMapper.findStringPermissions(user);
     }
 
     @Override
     public Set<String> findStringPermissions(SysUser user) {
         return sysAuthMapper.findStringPermissions(user);
+    }
+
+    @Override
+    public SysAuth findByUserid(Long userId) {
+        return sysAuthMapper.findByUserid(userId);
     }
 }

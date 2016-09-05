@@ -14,10 +14,10 @@ function changeImg() {
     $("#img1").trigger("onclick");
 
 }
-$(function () {
-/*    showImg();*/
+/*$(function () {
+/!*    showImg();*!/
 
-/*    ilm();*/
+/!*    ilm();*!/
     var formLogin = $("#formLogin");
     var username = getCookie("userName");
     if (username == null) {
@@ -97,7 +97,7 @@ $(function () {
 
         ilo();
 
-});
+});*/
 
 function ilo() {
     $("#loginOut").click(function () {

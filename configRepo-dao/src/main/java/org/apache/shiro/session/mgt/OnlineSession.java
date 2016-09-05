@@ -13,7 +13,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- * <p>User: Zhang Kaitao
+ * <p>User: hyssop
  * <p>Date: 13-3-20 下午2:29
  * <p>Version: 1.0
  */

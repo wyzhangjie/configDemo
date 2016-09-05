@@ -8,7 +8,7 @@ package org.apache.shiro.web.filter.user;
 import com.framework.demo.bo.sysUser.SysUser;
 import com.framework.demo.enm.UserStatus;
 import com.framework.demo.service.sysuser.SysUserService;
-import common.Constants;
+import com.framework.demo.common.Constants;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
@@ -24,7 +24,7 @@ import java.io.IOException;
  * 验证用户过滤器
  * 1、用户是否删除
  * 2、用户是否锁定
- * <p>User: Zhang Kaitao
+ * <p>User: hyssop
  * <p>Date: 13-3-19 下午3:09
  * <p>Version: 1.0
  */
@@ -74,7 +74,7 @@ public class SysUserFilter extends AccessControlFilter {
     @Override
     protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {
         Subject subject = getSubject(request, response);
-        if (subject == null) {
+        if (subject == null||subject.getPrincipal()==null) {
             return true;
         }
 
@@ -83,6 +83,7 @@ public class SysUserFilter extends AccessControlFilter {
         SysUser user = userService.findByUsername(username);
         //把当前用户放到session中
         request.setAttribute(Constants.CURRENT_USER, user);
+        request.getServletContext().setAttribute(Constants.CURRENT_USER, user);
         //druid监控需要
         ((HttpServletRequest)request).getSession().setAttribute(Constants.CURRENT_USERNAME, username);
 

@@ -11,4 +11,8 @@ import com.framework.demo.sys.sysGroupRelation.bo.SysGroupRelation;
  * This class corresponds to the database table `sys_group_relation`
  */
 public interface SysGroupRelationService extends GenericService<SysGroupRelation, Long> {
+
+
+    void appendRelation(Long id, Long[] ids);
+    void appendRelation(Long groupId, Long[] userIds, Long[] startUserIds, Long[] endUserIds);
 }

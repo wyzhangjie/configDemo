@@ -135,7 +135,7 @@ $(document).ready(function(){
         cache:false,
         type: 'POST',
         dataType : "json",
-        url: getlocal()+"/demo/config/findNoFirestMenu",//请求的action路径
+        url: getlocal()+"/config/findNoFirestMenu",//请求的action路径
         error: function () {//请求失败处理函数
             alert('请求失败');
         },
@@ -259,7 +259,7 @@ $(document).ready(function(){
             return false;
         }
         $("#form1").form({
-            url: getlocal()+'demo/config/hasPageTepMody',
+            url: getlocal()+'config/hasPageTepMody',
             onSubmit: function () {
                 //表单验证
                 return $("#form1").form('validate');
@@ -291,7 +291,7 @@ $(document).ready(function(){
                 };
                 var t=false;
                 $.ajax({
-                    url:getlocal()+'demo/config/checkMenuName',
+                    url:getlocal()+'/config/checkMenuName',
 
                     data:param,
 

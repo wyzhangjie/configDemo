@@ -82,7 +82,7 @@ $().ready(function(){
         type: 'POST',
 
         dataType : "json",
-        url: getlocal()+"/demo/config/findNoFirestMenu",//请求的action路径
+        url: getlocal()+"/config/findNoFirestMenu",//请求的action路径
         error: function () {//请求失败处理函数
             alert('请求失败');
         },

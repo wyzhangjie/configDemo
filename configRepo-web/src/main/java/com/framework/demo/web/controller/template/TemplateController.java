@@ -1,6 +1,6 @@
 package com.framework.demo.web.controller.template;
 
-import com.framework.demo.web.controller.AbstractController;
+import com.framework.demo.web.controller.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping(value = "template")
-public class TemplateController   extends AbstractController {
+public class TemplateController   extends BaseController {
 
 
 }

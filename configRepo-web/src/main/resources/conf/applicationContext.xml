@@ -3,27 +3,68 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:task="http://www.springframework.org/schema/task"
-       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
-       xsi:schemaLocation="
-        http://www.springframework.org/schema/beans
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-2.5.xsd
         http://www.springframework.org/schema/task
         http://www.springframework.org/schema/task/spring-task-3.0.xsd
         http://www.springframework.org/schema/data/jpa
-        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
-        "
-            default-autowire="byName">
+        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"
+       default-autowire="byName">
     <import resource="classpath:conf/applicationContext-properties.xml"/>
     <import resource="classpath:conf/applicationContext-persistence.xml"/>
-     <import resource="classpath:conf/applicationContext-service.xml"/>
-     <import resource="classpath:conf/applicationContext-kv.xml"/>
+    <import resource="classpath:conf/applicationContext-service.xml"/>
+    <import resource="classpath:conf/applicationContext-kv.xml"/>
     <import resource="spring-config-cache.xml"/>
+    <import resource="spring-mvc-shiro.xml"/>
     <import resource="spring-config-shiro.xml"/>
-    <context:component-scan base-package="org.apache.shiro;com.framework.demo.service;com.framework.demo.dao;com.framework.demo.sys;com.framework.demo.dto;com.framework.demo.bo;">
+
+    <context:component-scan
+            base-package="com.framework.demo.utils;org.apache.shiro;com.framework.demo.service;com.framework.demo.dao;com.framework.demo.sys;com.framework.demo.dto;com.framework.demo.bo;">
     </context:component-scan>
     <!-- 定时任务注解扫描@Scheduled -->
     <task:annotation-driven/>
     <bean id="easyUITreeService" class="cn.vansky.framework.core.web.easyUI.service.EasyUITreeServiceImpl"/>
+    <!-- 国际化的消息资源文件（本系统中主要用于显示/错误消息定制） -->
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <!-- 在web环境中一定要定位到classpath 否则默认到当前web应用下找  -->
+                <value>classpath:messages</value>
+                <value>classpath:ValidationMessages</value>
+            </list>
+        </property>
+        <property name="useCodeAsDefaultMessage" value="false"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="cacheSeconds" value="60"/>
+    </bean>
+
+    <!-- 以下 validator  ConversionService 在使用 mvc:annotation-driven 会 自动注册-->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+        <!-- 如果不加默认到 使用classpath下的 ValidationMessages.properties -->
+        <property name="validationMessageSource" ref="messageSource"/>
+    </bean>
+
+    <!-- 类型转换及数据格式化 -->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+        <set>
+            <bean id="domainClassConverter" class="com.framework.demo.web.controller.converter.DomainClassConverter"/>
+            <bean id="stringToDateConverter" class="com.framework.demo.utils.converter.StringToDateConverter"/>
+        </set>
+        </property>
+    </bean>
+
+
+    <!--设置查询字符串转换器的conversion service-->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod"
+                  value="cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.utils.SearchableConvertUtils.setConversionService"/>
+        <property name="arguments" ref="conversionService"/>
+    </bean>
+    <bean id="myDateTypeHandler" class="com.framework.demo.utils.MyDateTypeHandler"/>
+
 </beans>

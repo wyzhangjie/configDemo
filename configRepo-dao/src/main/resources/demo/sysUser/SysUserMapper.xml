@@ -1,13 +1,117 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.framework.demo.dao.sysUser.SysUserMapper">
-<select id="findByUsername" parameterType="java.lang.Long" resultMap="BaseResultMap" >
-    select
-    <include refid="Base_Column_List" />
-    from `sys_user`
-    where `username` = #{username,jdbcType=BIGINT}
-</select>
-<select id="login" resultType="B">
 
+    <select id="findByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from `sys_user`
+        where `username` = #{username,jdbcType=BIGINT}
+    </select>
+
+    <select id="login" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from `sys_user`
+        where `username` = #{param1,jdbcType=BIGINT} and
+        `password` = #{param2,jdbcType=VARCHAR}
+    </select>
+
+    <update id="changePassword" parameterType="map">
+        update `sys_user` set
+        `password` = #{newPassword,jdbcType=VARCHAR}
+        where where `id` = #{userid,jdbcType=BIGINT}
+    </update>
+    <insert id="correlationRoles">
+        insert into `user_role`(user_id,role_id) VALUES
+        <foreach item="item" collection="roleIds" open="" close="" separator=",">
+
+            (#{userId}, #{item})
+
+        </foreach>
+
+
+    </insert>
+
+    <select id="findRolesByUserName" parameterType="java.lang.String" resultType="java.util.Set">
+        select role_id from `user_role` where `user_id` in
+        (select id from `sys_user` where username = #{username,jdbcType=VARCHAR})
+    </select>
+
+    <select id="findPermissionsByUserName" resultType="java.util.Set">
+        select permission_ids from
+        `sys_role_resource_permission`
+        where role_id in(
+        select id from `user_role`
+        where `user_id` in
+        (select id from `sys_user` where
+        username =
+        #{"username",jdbcType=VARCHAR}  )
+      )
+    </select>
+
+    <delete id="deleteUserOrganizationJobOnNotExistsUser">
+        DELETE
+        FROM
+        b USING sys_user a,
+        `sys_user_organization_job` b
+        WHERE a.id = b.user_id
+        AND a.id IS NULL
+    </delete>
+    <select id="findUserOrganizationJobOnNotExistsOrganizationOrJob" resultMap="BaseResultMap">
+
+        SELECT
+        *
+        FROM
+        `sys_user_organization_job` uoj
+        WHERE NOT EXISTS
+        (SELECT
+        1
+        FROM
+        `sys_job` j
+        WHERE uoj.job_id = j.id)
+        OR NOT EXISTS
+        (SELECT
+        1
+        FROM
+        `sys_organization` o
+        WHERE uoj.organization_id = o.id)
+    </select>
+    <delete id="deleteSysUserOrganizationJobOnNotExistsUser" parameterType="java.lang.String">
+        DELETE
+        FROM
+        b USING sys_user a,
+        `sys_user_organization_job` b
+        WHERE a.id = b.user_id
+        AND a.id IS NULL
+    </delete>
+<select id="findSysUserOrganizationJobOnNotExistsOrganizationOrJob" parameterType="org.springframework.data.domain.Pageable"  resultMap="BaseResultMap">
+    SELECT
+    *
+    FROM
+    `sys_user_organization_job` uoj
+    WHERE NOT EXISTS
+    (SELECT
+    1
+    FROM
+    `sys_job` j
+    WHERE uoj.job_id = j.id)
+    OR NOT EXISTS
+    (SELECT
+    1
+    FROM
+    `sys_organization` o
+    WHERE uoj.organization_id = o.id)
 </select>
+    <select id="findByEmail"  resultMap="BaseResultMap">
+        select *  from `sys_user` where email =#{"email",jdbcType=VARCHAR}
+    </select>
+
+<select id="findByMobilePhoneNumber"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from `sys_user` where mobile_phone_number = #{"mobilePhoneNumber",jdbcType=VARCHAR}
+</select>
+
+
 </mapper>

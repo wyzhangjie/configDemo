@@ -27,6 +27,8 @@ public enum TemplateEnum {
      * 路径名称
      */
     private Class tClass;
+
+
     public String getCode() {
         return code;
     }

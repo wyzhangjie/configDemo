@@ -115,7 +115,7 @@ $().ready(function(){
             return false;
         }
         $("#form1").form({
-            url: getlocal()+'demo/config/defult',
+            url: getlocal()+'/config/defult',
             onSubmit: function () {
                 //表单验证
                 return $("#form1").form('validate');
@@ -178,7 +178,7 @@ $().ready(function(){
                 };
                 var t=false;
                 $.ajax({
-                    url:getlocal()+'demo/config/checkMenuName',
+                    url:getlocal()+'/config/checkMenuName',
 
                     data:param,
 

@@ -14,7 +14,7 @@ $.app = {
         var notification = $.app.initNotification();
         var fiveMinute = 5 * 60 * 1000;
         var pollingUrl = ctx + "/admin/polling";
-        var longPolling = function(url, callback) {
+     /*   var longPolling = function(url, callback) {
             $.ajax({
                 url: url,
                 async: true,
@@ -47,8 +47,8 @@ $.app = {
                     );
                 }
             });
-        };
-        longPolling(pollingUrl, function(data) {
+        };*/
+      /*  longPolling(pollingUrl, function(data) {
             if(data) {
                 if(data.unreadMessageCount) {
                     message.update(data.unreadMessageCount);
@@ -57,7 +57,7 @@ $.app = {
                     notification.update(data.notifications);
                 }
             }
-        });
+        });*/
 
     },
     initCommonBtn : function() {

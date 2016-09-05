@@ -13,4 +13,11 @@ import com.framework.demo.sys.sysGroupRelation.bo.SysGroupRelation;
  */
 @SqlMapper
 public interface SysGroupRelationMapper extends DaoMapper<SysGroupRelation, Long> {
+    SysGroupRelation findByGroupIdAndOrganizationId(Long groupId, Long organizationId);
+
+    void deleteInRange(Long startUserId, Long endUserId);
+
+    SysGroupRelation findByGroupIdAndUserId(Long groupId, Long userId);
+
+    SysGroupRelation findByGroupIdAndStartUserIdLessThanEqualAndEndUserIdGreaterThanEqual(Long groupId, Long startUserId, Long endUserId);
 }

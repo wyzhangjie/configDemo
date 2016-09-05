@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.framework.demo.dao.showcaseUpload.ShowcaseUploadMapper">
+  <resultMap id="BaseResultMap" type="com.framework.demo.bo.showcaseUpload.ShowcaseUpload">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="src" property="src" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `name`, `src`
+  </sql>
+  <insert id="insert" parameterType="com.framework.demo.bo.showcaseUpload.ShowcaseUpload" useGeneratedKeys="true" keyProperty="id">
+    <![CDATA[
+    insert into `showcase_upload` (`name`, `src`)
+    values (#{name,jdbcType=VARCHAR}, #{src,jdbcType=VARCHAR})
+    ]]>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `showcase_upload` (`name`, `src`)
+     values 
+    <foreach collection="list" item="item" index="index" separator=",">
+       (#{item.name,jdbcType=VARCHAR}, #{item.src,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.framework.demo.bo.showcaseUpload.ShowcaseUpload" useGeneratedKeys="true" keyProperty="id">
+    insert into `showcase_upload`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="src != null">
+        `src`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="src != null">
+        #{src,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from `showcase_upload`
+    where `id` = #{id,jdbcType=BIGINT}
+  </delete>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `showcase_upload`
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `showcase_upload`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(*) from `showcase_upload`
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.framework.demo.bo.showcaseUpload.ShowcaseUpload">
+    update `showcase_upload`
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="src != null">
+        `src` = #{src,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.framework.demo.bo.showcaseUpload.ShowcaseUpload">
+    update `showcase_upload`
+    set `name` = #{name,jdbcType=VARCHAR},
+      `src` = #{src,jdbcType=VARCHAR}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -11,4 +11,5 @@ import com.framework.demo.sys.sysUserLastOnline.bo.SysUserLastOnline;
  * This class corresponds to the database table `sys_user_last_online`
  */
 public interface SysUserLastOnlineService extends GenericService<SysUserLastOnline, Long> {
+    Object findByUserId(Long id);
 }

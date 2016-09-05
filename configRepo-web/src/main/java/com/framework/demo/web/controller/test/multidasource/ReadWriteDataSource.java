@@ -28,7 +28,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  *   已实现：一写多读、当写时默认读操作到写库、当写时强制读操作到读库
  *   TODO 读库负载均衡、读库故障转移
  * </pre>  
- * @author Zhang Kaitao 
+ * @author hyssop
  *
  */
 public class ReadWriteDataSource extends AbstractDataSource implements InitializingBean {

@@ -9,7 +9,7 @@
         <property name="transactionManager" ref="transactionManager" />
         <property name="transactionAttributes">
             <props>
-                <prop key="*">PROPAGATION_REQUIRED,readOnly,-Throwable</prop>
+                <prop key="*">PROPAGATION_REQUIRED,-Throwable</prop>
                 <prop key="find*">PROPAGATION_REQUIRED,readOnly,-Throwable</prop>
                 <prop key="select*">PROPAGATION_REQUIRED,readOnly,-Throwable</prop>
                 <prop key="save*">PROPAGATION_REQUIRED,-Throwable</prop>

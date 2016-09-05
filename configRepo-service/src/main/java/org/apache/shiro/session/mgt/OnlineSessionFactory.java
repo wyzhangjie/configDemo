@@ -10,8 +10,8 @@ import com.framework.demo.sys.sysUserOnline.bo.SysUserOnline;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.web.session.mgt.WebSessionContext;
 import org.springframework.stereotype.Repository;
-import utils.HexObjUtils;
-import utils.IpUtils;
+import com.framework.demo.utils.HexObjUtils;
+import com.framework.demo.utils.IpUtils;
 
 import javax.servlet.http.HttpServletRequest;
 

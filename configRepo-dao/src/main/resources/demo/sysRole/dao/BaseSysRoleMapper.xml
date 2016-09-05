@@ -24,9 +24,9 @@
       `is_show`)
      values 
     <foreach collection="list" item="item" index="index" separator=",">
-       (#{item.name,jdbcType=VARCHAR}, #{item.role,jdbcType=VARCHAR}, #{item.description,jdbcType=VARCHAR}, 
-        #{item.isShow,jdbcType=BIT})
-    </foreach>
+    (#{item.name,jdbcType=VARCHAR}, #{item.role,jdbcType=VARCHAR}, #{item.description,jdbcType=VARCHAR},
+    #{item.isShow,jdbcType=BIT})
+  </foreach>
   </insert>
   <insert id="insertSelective" parameterType="com.framework.demo.bo.sysRole.SysRole" useGeneratedKeys="true" keyProperty="id">
     insert into `sys_role`

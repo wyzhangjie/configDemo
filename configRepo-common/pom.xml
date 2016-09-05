@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.framework</groupId>
         <artifactId>configRepo</artifactId>
+        <groupId>com.framework</groupId>
         <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
@@ -15,10 +15,13 @@
     <artifactId>configRepo-common</artifactId>
     <version>1.0.0</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>4.0.0.RELEASE</version>
+        </dependency>
+    </dependencies>
 
-    <properties>
-        <support.basedir>${project.parent.basedir}/src/support</support.basedir>
-        <site.basedir>${project.parent.basedir}</site.basedir>
-    </properties>
 
 </project>

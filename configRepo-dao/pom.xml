@@ -16,6 +16,12 @@
         <artifactId>configRepo-common</artifactId>
         <version>1.0.0</version>
     </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <scope>test</scope>
+    </dependency>
+
 </dependencies>
 
 </project>

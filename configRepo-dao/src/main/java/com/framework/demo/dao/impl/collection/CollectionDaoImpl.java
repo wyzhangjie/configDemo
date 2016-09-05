@@ -9,12 +9,18 @@ import cn.vansky.framework.core.dao.ConfigurableBaseSqlMapDao;
 import cn.vansky.framework.core.dao.DaoMapper;
 import javax.annotation.Resource;
 
+import cn.vansky.framework.core.dao.FieldAccessVo;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable;
 import com.framework.demo.bo.collection.Collection;
 import com.framework.demo.dao.collection.CollectionDao;
 import com.framework.demo.dao.collection.CollectionMapper;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * This class corresponds to the database table `tb_collection`
@@ -38,5 +44,11 @@ public class CollectionDaoImpl extends ConfigurableBaseSqlMapDao<Collection, Int
 
     public int saveComit(String comitmentarea, String model) {
         return collectionMapper.saveComit(comitmentarea,model);
+    }
+
+
+    @Override
+    public long countBySearchable(Searchable searchable) {
+        return 0;
     }
 }

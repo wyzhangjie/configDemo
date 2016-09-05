@@ -113,14 +113,14 @@
 
 
     <cache
-            name="org.hibernate.cache.internal.StandardQueryCache"
+            name="org.hibernate.com.framework.demo.cache.internal.StandardQueryCache"
             maxEntriesLocalHeap="5000"
             eternal="false"
             timeToLiveSeconds="3600"
             overflowToDisk="false"/>
 
     <cache
-            name="org.hibernate.cache.spi.UpdateTimestampsCache"
+            name="org.hibernate.com.framework.demo.cache.spi.UpdateTimestampsCache"
             maxEntriesLocalHeap="5000"
             eternal="true"
             overflowToDisk="true"/>

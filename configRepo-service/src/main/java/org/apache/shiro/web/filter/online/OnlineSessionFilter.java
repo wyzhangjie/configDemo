@@ -9,7 +9,7 @@ package org.apache.shiro.web.filter.online;
 import com.framework.demo.bo.sysUser.SysUser;
 import org.apache.shiro.ShiroConstants;
 import org.apache.shiro.session.mgt.OnlineSession;
-import common.Constants;
+import com.framework.demo.common.Constants;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.eis.OnlineSessionDAO;
 import org.apache.shiro.subject.Subject;
@@ -22,7 +22,7 @@ import javax.servlet.ServletResponse;
 import java.io.IOException;
 
 /**
- * <p>User: Zhang Kaitao
+ * <p>User: hyssop
  * <p>Date: 13-3-20 下午3:17
  * <p>Version: 1.0
  */

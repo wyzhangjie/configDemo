@@ -1,5 +1,7 @@
 package com.framework.demo.dto.user;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
 /**
@@ -7,6 +9,7 @@ import java.util.Date;
  * Auth: CK
  * Date: 2016/5/12
  */
+@Component("userDto")
 public class UserDto {
     private Integer id;
     private String name;

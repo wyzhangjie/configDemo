@@ -67,16 +67,12 @@
         <module name="configRepo-dao" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.7">
       <module name="configRepo" target="1.6" />
       <module name="configRepo-common" target="1.6" />
       <module name="configRepo-dao" target="1.6" />
       <module name="configRepo-service" target="1.6" />
       <module name="configRepo-web" target="1.6" />
-      <module name="demo" target="1.6" />
-      <module name="demo-dao" target="1.6" />
-      <module name="demo-service" target="1.6" />
-      <module name="demo-web" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>

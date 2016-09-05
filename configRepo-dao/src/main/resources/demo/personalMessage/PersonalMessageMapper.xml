@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.framework.demo.dao.personalMessage.PersonalMessageMapper">
+
+
+
+    <update id="changeState" parameterType="java.lang.String" >
+        update `personal_message`
+        <set>
+            `receiver_state` = #{receiverState,jdbcType=VARCHAR}
+        </set>
+
+    </update>
+
+    <select id="countUnread" resultType="java.lang.Long">
+        select count(*) from `personal_message`
+        where `receiver_id`= #{param1,jdbcType=BIGINT}
+        and   `type` = #{param2,jdbcType=VARCHAR}
+
+    </select>
+</mapper>

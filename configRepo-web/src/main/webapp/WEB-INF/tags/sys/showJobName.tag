@@ -1,13 +1,13 @@
-<%@ tag import="com.google.common.collect.Lists" %>
-<%@ tag import="com.sishuok.es.common.utils.SpringUtils" %>
-<%@ tag import="com.sishuok.es.sys.organization.entity.Job" %>
-<%@ tag import="com.sishuok.es.sys.organization.service.JobService" %>
+<%@ tag import="com.google.com.framework.demo.common.collect.Lists" %>
+<%@ tag import="com.framework.demo.utils.SpringUtils" %>
+<%@ tag import="com.framework.demo.sys.sysJob.bo.SysJob" %>
+<%@ tag import="com.framework.demo.conf.service.sys.sysJob.conf.service.SysJobService" %>
 <%@ tag import="java.util.List" %>
 <%@ tag pageEncoding="UTF-8"%>
 <%@ attribute name="id" type="java.lang.Long" required="true" description="当前要展示的组织机构的名字" %>
 <%@ attribute name="showParents" type="java.lang.Boolean" required="false" description="是否显示父亲" %>
 <%@ attribute name="includeRoot" type="java.lang.Boolean" required="false" description="是否包含根" %>
-<%!private JobService jobService;%>
+<%!private SysJobService jobService;%>
 <%
 
     if(showParents == null) {
@@ -18,10 +18,10 @@
     }
 
     if(jobService == null) {
-        jobService = SpringUtils.getBean(JobService.class);
+        jobService = SpringUtils.getBean(SysJobService.class);
     }
 
-    Job job = jobService.findOne(id);
+    SysJob job = jobService.findById(id);
 
     if(job == null) {
         out.write("<span class='label label-important'>删除的数据，请修改</span>");
@@ -32,7 +32,7 @@
 
     names.add(job.getName());
 
-    if(showParents == true) {
+  /*  if(showParents == true) {
         List<Job> parents = jobService.findAncestor(job.getParentIds());
         for(Job o : parents) {
             if(includeRoot == false && o.isRoot()) {
@@ -41,7 +41,7 @@
             names.add(o.getName());
         }
     }
-
+*/
 
     StringBuilder s = new StringBuilder();
     s.append(String.format("<a class='btn btn-link no-padding' href='%s/admin/sys/organization/job/%d'>", request.getContextPath(), id));

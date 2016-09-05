@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <typeHandlers>
+        <typeHandler  handler="com.framework.demo.utils.MyDateTypeHandler" javaType="String" jdbcType="TIMESTAMP"/>
+    </typeHandlers>
+
     <plugins>
         <plugin interceptor="cn.vansky.framework.core.orm.mybatis.plugin.page.PaginationInterceptor"/>
+        <plugin interceptor="cn.vansky.framework.core.orm.mybatis.plugin.search.SearchableInterceptor"/>
     </plugins>
+
+
 </configuration>

@@ -33,17 +33,20 @@ public class SysUserOnlineServiceImpl extends GenericSqlMapServiceImpl<SysUserOn
 
     @Override
     public void offline(String s) {
-
+        SysUserOnline userOnline = findOne(s);
+        if (userOnline != null) {
+            delete(userOnline);
+        }
     }
 
     @Override
     public SysUserOnline findOne(String s) {
-        return null;
+        return sysUserOnlineDao.findById(s);
     }
 
     @Override
     public void online(SysUserOnline sysUserOnline) {
-
+        sysUserOnlineDao.update(sysUserOnline);
     }
 
     @Override

@@ -6,7 +6,7 @@
 package org.apache.shiro;
 
 /**
- * <p>User: Zhang Kaitao
+ * <p>User: hyssop
  * <p>Date: 13-3-22 上午7:44
  * <p>Version: 1.0
  */

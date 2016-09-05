@@ -7,7 +7,7 @@
           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
     <!-- realm -->
-    <!--depends-on="userRepository, userLastOnlineRepository, userStatusHistoryRepository, springUtils" -->
+      <!--depends-on="userRepository, userLastOnlineRepository, userStatusHistoryRepository, springUtils" -->
     <bean id="userRealm" class="org.apache.shiro.realm.UserRealm">
         <!-- 用切面缓存代理了 此处就不缓存了 -->
         <property name="authenticationCachingEnabled" value="false"/>
@@ -71,7 +71,7 @@
         <property name="sessionIdCookie" ref="sessionIdCookie"/>
     </bean>
 
-    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <!-- Single realm app.  If you have multiple realms, use the 'realms' property instead. -->
         <property name="realm" ref="userRealm"/>
         <property name="sessionManager" ref="sessionManager"/>
@@ -113,26 +113,33 @@
         <property name="onlineSessionDAO" ref="onlineSessionDAO"/>
     </bean>
 
-
+    <bean id="myFilter" class="com.framework.demo.web.controller.collection.MyFilter"/>
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
         <property name="loginUrl" value="${shiro.login.url}"/>
         <property name="unauthorizedUrl" value="${shiro.unauthorizedUrl}"/>
         <property name="filters">
-            <util:map>
+           <util:map>
                 <entry key="authc" value-ref="formAuthenticationFilter"/>
                 <entry key="logout" value-ref="logoutFilter"/>
                 <entry key="sysUser" value-ref="sysUserFilter"/>
                 <entry key="onlineSession" value-ref="onlineSessionFilter"/>
                 <entry key="syncOnlineSession" value-ref="syncOnlineSessionFilter"/>
+                <entry key="myfilter" value-ref="myFilter"/>
             </util:map>
         </property>
+
         <property name="filterChainDefinitions">
+
             <value>
                 /static/** = anon
+                /js/**  =anon
+                /css/** =anon
+                /favicon.ico =anon
+                /images/** = anon
                 /logout = logout
-                /login = authc
-
+                /user/login=authc
+                /** =sysUser,onlineSession,syncOnlineSession,perms,roles
             </value>
         </property>
     </bean>

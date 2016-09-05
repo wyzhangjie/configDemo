@@ -4,21 +4,21 @@
 
     <select id="findMenuByUserId"  resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
-        menu.`id`, `name`, `path`, `sort`, `status`, `update_time`, `create_time`, `create_id`, `linkId`, `parentId`, `templeteId`
-        FROM
+        <include refid="Base_Column_List" />   FROM
         menu
         LEFT JOIN sys_role_menu rm ON menu.id=rm.`menuid`
-        LEFT JOIN sys_user_role ur ON  menu.id = rm.`menuid`
+        LEFT JOIN sys_user_role ur ON  menu.id = rm.`menuid` and status=1
         WHERE ur.userid = #{id,jdbcType=INTEGER}  GROUP BY NAME
     </select>
 
     <select id="findNoFirestMenu" resultMap="BaseResultMap" >
-        SELECT     `id`, `name`, `path`, `sort`, `status`, `update_time`, `create_time`, `create_id`, `linkId`, `parentId`, `templeteId`
+        SELECT
+        <include refid="Base_Column_List" />
         FROM
-        menu WHERE menu.parentId = 0
+        menu WHERE menu.parentId = 0 and status=1
     </select>
     <select id="findById" resultType="java.lang.String">
-        select id from menu where name=#{name,jdbcType=VARCHAR}
+        select id from menu where name=#{name,jdbcType=VARCHAR} and status=1
     </select>
 <update id="updateById" parameterType="com.framework.demo.bo.menu.Menu">
     update menu
@@ -53,8 +53,21 @@
         <if test="templeteId != null">
             `templeteId` = #{templeteId,jdbcType=INTEGER},
         </if>
+        <if test="parentIds != null">
+            #{parentIds,jdbcType=INTEGER},
+        </if>
     </set>
     where `id` = #{id,jdbcType=INTEGER}
 
 </update>
+
+    <select id="findBySearchable"   parameterType="org.springframework.data.domain.Sort" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from menu where 1=1
+    </select>
+    <select id="findActualResourceIdentity" parameterType="java.lang.String" resultType="java.lang.String">
+        select identity from `menu` where id =#{id,jdbcType=BIGINT}
+
+    </select>
 </mapper>

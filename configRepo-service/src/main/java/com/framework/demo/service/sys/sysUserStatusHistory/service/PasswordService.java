@@ -16,12 +16,12 @@ import net.sf.ehcache.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import utils.security.Md5Utils;
+import com.framework.demo.utils.security.Md5Utils;
 
 import javax.annotation.PostConstruct;
 
 /**
- * <p>User: Zhang Kaitao
+ * <p>User: hyssop
  * <p>Date: 13-3-12 上午7:18
  * <p>Version: 1.0
  */

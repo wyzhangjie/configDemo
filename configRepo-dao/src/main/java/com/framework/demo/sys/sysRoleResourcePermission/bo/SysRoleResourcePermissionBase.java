@@ -8,6 +8,9 @@ import cn.vansky.framework.core.dao.FieldAccessVo;
 import cn.vansky.framework.core.dao.TableDataConvertable;
 import cn.vansky.framework.core.dao.annotation.ColumnDescription;
 import cn.vansky.framework.core.dao.annotation.Id;
+import org.springframework.util.StringUtils;
+
+import java.util.Set;
 
 /**
  * This class corresponds to the database table `sys_role_resource_permission`
@@ -149,4 +152,9 @@ public abstract class SysRoleResourcePermissionBase extends FieldAccessVo implem
     public void setPermissionIds(String permissionIds) {
         this.permissionIds = permissionIds;
     }
+ /*   public SysRoleResourcePermissionBase(Long resourceId, Set<Long> permissionIds) {
+        this.resourceId = resourceId;
+
+        this.permissionIds = StringUtils.arrayToDelimitedString(permissionIds.toArray(),",");
+    }*/
 }

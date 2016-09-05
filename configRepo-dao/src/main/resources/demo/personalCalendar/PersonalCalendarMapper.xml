@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.framework.demo.dao.personalCalendar.PersonalCalendarMapper">
+
+    <select id="countRecentlyCalendar" parameterType="java.lang.Long" resultType="java.lang.Object">
+
+        <![CDATA[
+        select count(id) from `personal_calendar`  where user_id=#{param1,jdbcType=BIGINT}
+
+        ]]>
+    </select>
+    <select id="findAllWithNoPageNoSort" parameterType="cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable" resultMap="BaseResultMap">
+        select * from `personal_calendar`
+    </select>
+</mapper>

@@ -10,11 +10,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import utils.IpUtils;
-import utils.LogUtils;
+import com.framework.demo.utils.IpUtils;
+import com.framework.demo.utils.LogUtils;
 
 /**
- * <p>User: Zhang Kaitao
+ * <p>User: hyssop
  * <p>Date: 13-5-20 下午3:46
  * <p>Version: 1.0
  */

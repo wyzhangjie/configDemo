@@ -18,7 +18,7 @@ $().ready(function(){
         type: 'POST',
 
         dataType : "json",
-        url: getlocal()+"/demo/config/findNoFirestMenu",//请求的action路径
+        url: getlocal()+"/config/findNoFirestMenu",//请求的action路径
         error: function () {//请求失败处理函数
             alert('请求失败');
         },
@@ -42,7 +42,7 @@ $().ready(function(){
             return false;
         }
         $("#form1").form({
-            url: getlocal()+"/demo/config/defult",
+            url: getlocal()+"/config/defult",
             onSubmit: function () {
                 //表单验证
                 return $("#form1").form('validate');
@@ -74,7 +74,7 @@ $().ready(function(){
                 };
                 var t=false;
                 $.ajax({
-                    url:getlocal()+"/demo/config/checkMenuName",
+                    url:getlocal()+"/config/checkMenuName",
                     data:param,
                     dataType: '',
                     type:"POST",

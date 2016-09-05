@@ -1,17 +1,23 @@
 
+function getlocal(){
+    var hr = window.location.href;
+    var pathname = window.location.pathname;
+    var lo = hr.substr(0,hr.indexOf(pathname));
+    return lo;
+}
 
 
 $().ready(function(){
 
 
-
+/*
     $.ajax({
         async : false,
         cache:false,
         type: 'POST',
         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
         dataType : "json",
-        url: getlocal()+"/demo/config/findNoFirestMenu",//请求的action路径
+        url: getlocal()+"/config/findNoFirestMenu",//请求的action路径
         error: function () {//请求失败处理函数
             alert('请求失败');
         },
@@ -27,7 +33,7 @@ $().ready(function(){
                 $("#pmenuName1_jqtwo").append("<option value="+data[i].name+">"+data[i].name+"</option>");
             }
         }
-    });
+    });*/
     $("#btn").click(function(hidden){
         var val1 = $("#timersql").val();
 
@@ -36,7 +42,7 @@ $().ready(function(){
             return false;
         }
         $("#form1").form({
-            url: getlocal()+'/demo/config/echartsCreate',
+            url: getlocal()+'/config/echartsCreate',
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
             onSubmit: function () {
                 //表单验证

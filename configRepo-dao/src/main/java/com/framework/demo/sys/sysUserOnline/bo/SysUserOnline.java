@@ -5,13 +5,14 @@
 package com.framework.demo.sys.sysUserOnline.bo;
 
 import org.apache.shiro.session.mgt.OnlineSession;
-import utils.HexObjUtils;
+import com.framework.demo.utils.HexObjUtils;
 
 import java.io.IOException;
 
 /**
  * This class corresponds to the database table `sys_user_online`
  */
+
 public class SysUserOnline extends SysUserOnlineBase {
     public static final SysUserOnline fromOnlineSession(OnlineSession session) throws IOException {
         SysUserOnline online = new SysUserOnline();

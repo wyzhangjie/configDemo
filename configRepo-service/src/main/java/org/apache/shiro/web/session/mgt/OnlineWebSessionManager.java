@@ -7,7 +7,7 @@ package org.apache.shiro.web.session.mgt;
 
 import com.framework.demo.service.sys.sysUserOnline.service.SysUserOnlineService;
 import com.framework.demo.sys.sysUserOnline.bo.SysUserOnline;
-import common.Constants;
+import com.framework.demo.common.Constants;
 import org.apache.shiro.session.mgt.OnlineSession;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.time.DateUtils;
@@ -32,7 +32,7 @@ import java.util.List;
  * 为OnlineSession定制的Web Session Manager
  * 主要是在此如果会话的属性修改了 就标识下其修改了 然后方便 OnlineSessionDao同步
  * <p/>
- * <p>User: Zhang Kaitao
+ * <p>User: hyssop
  * <p>Date: 13-3-21 下午2:28
  * <p>Version: 1.0
  */

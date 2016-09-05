@@ -175,7 +175,15 @@ public abstract class MenuBase extends FieldAccessVo {
      * This field corresponds to the database column `menu`.parentId
      */
     @ColumnDescription(desc = PROPERTY_REMARK_PARENTID)
-    private Integer parentId;
+    private Long parentId;
+
+
+    private static final String PROPERTY_PARENTIDS = "parentIds";
+
+    private static final String PROPERTY_REMARK_PARENTIDS = "";
+
+    @ColumnDescription(desc = PROPERTY_REMARK_PARENTIDS)
+    private String parentIds;
 
     /**
      * This field corresponds to the database column `menu`.templeteId
@@ -193,6 +201,12 @@ public abstract class MenuBase extends FieldAccessVo {
     @ColumnDescription(desc = PROPERTY_REMARK_TEMPLETEID)
     private Integer templeteId;
 
+
+    private String identity;
+
+    private Integer weight;
+
+    private String icon;
     /**
      * This method returns the value of the database column `menu`.id
      *
@@ -359,25 +373,25 @@ public abstract class MenuBase extends FieldAccessVo {
      * This method returns the value of the database column `menu`.parentId
      *
      * @return the value of `menu`.parentId
-     */
+     *//*
     public Integer getParentId() {
         return parentId;
     }
 
-    /**
+    *//**
      * This method sets the value of the database column `menu`.parentId
      *
      * @param parentId the value for `menu`.parentId
      */
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
-    }
+
 
     /**
      * This method returns the value of the database column `menu`.templeteId
      *
      * @return the value of `menu`.templeteId
      */
+
+
     public Integer getTempleteId() {
         return templeteId;
     }
@@ -389,6 +403,46 @@ public abstract class MenuBase extends FieldAccessVo {
      */
     public void setTempleteId(Integer templeteId) {
         this.templeteId = templeteId;
+    }
+
+    public String getIdentity() {
+        return identity;
+    }
+
+    public void setIdentity(String identity) {
+        this.identity = identity;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
+    }
+
+    public String getParentIds() {
+        return parentIds;
+    }
+
+    public void setParentIds(String parentIds) {
+        this.parentIds = parentIds;
     }
 
     /**

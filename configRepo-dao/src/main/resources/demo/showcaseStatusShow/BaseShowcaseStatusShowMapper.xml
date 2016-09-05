@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.framework.demo.dao.showcaseStatusShow.ShowcaseStatusShowMapper">
+  <resultMap id="BaseResultMap" type="com.framework.demo.bo.showcaseStatusShow.ShowcaseStatusShow">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `name`, `status`
+  </sql>
+  <insert id="insert" parameterType="com.framework.demo.bo.showcaseStatusShow.ShowcaseStatusShow" useGeneratedKeys="true" keyProperty="id">
+    <![CDATA[
+    insert into `showcase_status_show` (`name`, `status`)
+    values (#{name,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+    ]]>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `showcase_status_show` (`name`, `status`)
+     values 
+    <foreach collection="list" item="item" index="index" separator=",">
+       (#{item.name,jdbcType=VARCHAR}, #{item.status,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.framework.demo.bo.showcaseStatusShow.ShowcaseStatusShow" useGeneratedKeys="true" keyProperty="id">
+    insert into `showcase_status_show`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from `showcase_status_show`
+    where `id` = #{id,jdbcType=BIGINT}
+  </delete>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `showcase_status_show`
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `showcase_status_show`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(*) from `showcase_status_show`
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.framework.demo.bo.showcaseStatusShow.ShowcaseStatusShow">
+    update `showcase_status_show`
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.framework.demo.bo.showcaseStatusShow.ShowcaseStatusShow">
+    update `showcase_status_show`
+    set `name` = #{name,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=VARCHAR}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

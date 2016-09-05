@@ -1,5 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.framework.demo.demo.sysGroupRelation.dao.SysGroupRelationMapper">
+<mapper namespace="com.framework.demo.sys.sysGroupRelation.dao.SysGroupRelationMapper">
+
+    <select id="findByGroupIdAndOrganizationId" resultMap="BaseResultMap">
+
+         select
+        <include refid="Base_Column_List" />
+        from `sys_group_relation` where 1=1
+        and
+        `organization_id` = #{organizationId,jdbcType=BIGINT},
+        and
+        `group_id` = #{groupId,jdbcType=BIGINT}
+         </select>
+
+    <select id="deleteInRange" parameterType="java.lang.Long">
+        <![CDATA[
+       delete from  `sys_group_relation` where  `user_id>  #{startUserId,jdbcType=BIGINT}
+        and
+        `user_id <  #{endUserId,jdbcType=BIGINT}
+        ]]>
+    </select>
+
+    <select id="findByGroupIdAndUserId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from `sys_group_relation`
+        where  `group_id` = #{groupId,jdbcType=BIGINT}
+        and user_id` = #{userId,jdbcType=BIGINT}
+    </select>
+
+    <select id="findByGroupIdAndStartUserIdLessThanEqualAndEndUserIdGreaterThanEqual"  resultMap="BaseResultMap">
+        <![CDATA[
+        select
+        <include refid="Base_Column_List" />
+        from `sys_group_relation`
+        where  `group_id` = #{groupId,jdbcType=BIGINT}
+        and
+        delete from  `sys_group_relation` where  `user_id>  #{startUserId,jdbcType=BIGINT}
+        and
+        `user_id <  #{endUserId,jdbcType=BIGINT}
+        ]]>
+    </select>
+
 
 </mapper>

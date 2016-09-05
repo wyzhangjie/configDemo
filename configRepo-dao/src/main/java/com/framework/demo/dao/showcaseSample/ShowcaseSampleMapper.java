@@ -13,4 +13,5 @@ import com.framework.demo.bo.showcaseSample.ShowcaseSample;
  */
 @SqlMapper
 public interface ShowcaseSampleMapper extends DaoMapper<ShowcaseSample, Long> {
+    ShowcaseSample findByName(String name);
 }

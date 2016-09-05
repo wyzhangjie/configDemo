@@ -11,4 +11,5 @@ import com.framework.demo.bo.showcaseSample.ShowcaseSample;
  * This class corresponds to the database table `showcase_sample`
  */
 public interface ShowcaseSampleDao extends SqlMapDao<ShowcaseSample, Long> {
+    ShowcaseSample findByName(String fieldValue);
 }

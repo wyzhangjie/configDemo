@@ -7,7 +7,7 @@ package com.framework.demo.exception;
 
 
 /**
- * <p>User: Zhang Kaitao
+ * <p>User: hyssop
  * <p>Date: 13-3-11 下午8:28
  * <p>Version: 1.0
  */

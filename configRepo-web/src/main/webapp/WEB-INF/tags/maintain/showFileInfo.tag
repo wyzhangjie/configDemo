@@ -2,7 +2,6 @@
 <%@ attribute name="fileInfo" type="java.util.Map" required="false" description="当前文件" %>
 <%@ attribute name="checkbox" type="java.lang.Boolean" required="false" description="是否需要checkbox，默认true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="pretty" tagdir="/WEB-INF/tags/pretty" %>
 <c:if test="${empty checkbox}">
     <c:set var="checkbox" value="${true}"/>
 </c:if>

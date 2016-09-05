@@ -2151,7 +2151,11 @@ body .ui-tooltip {
 	text-align: center;
 	filter: none;
 }
-
+.center{
+	text-align: center;
+	margin: 0 auto;
+	margin-left: 250px;
+}
 .ui-datepicker td .ui-state-highlight{
 	color: #404040;
 	background: #eedc94;

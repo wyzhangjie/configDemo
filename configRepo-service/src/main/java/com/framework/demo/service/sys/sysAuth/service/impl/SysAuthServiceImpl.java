@@ -8,24 +8,26 @@ import cn.vansky.framework.core.dao.SqlMapDao;
 import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
 import javax.annotation.Resource;
 
+import com.framework.demo.bo.menu.Menu;
 import com.framework.demo.bo.sysRole.SysRole;
 import com.framework.demo.bo.sysUser.SysUser;
+import com.framework.demo.service.menu.MenuService;
 import com.framework.demo.service.sys.sysAuth.service.SysAuthService;
 import com.framework.demo.service.sys.sysGroup.service.SysGroupService;
 import com.framework.demo.service.sys.sysJob.service.SysJobService;
 import com.framework.demo.service.sys.sysOrganization.service.SysOrganizationService;
 import com.framework.demo.service.sys.sysPermission.service.SysPermissionService;
-import com.framework.demo.service.sys.sysResource.service.SysResourceService;
 import com.framework.demo.service.sys.sysRoleResourcePermission.service.SysRoleResourcePermissionService;
 import com.framework.demo.service.sysRole.SysRoleService;
+import com.framework.demo.service.sysuser.SysUserService;
 import com.framework.demo.sys.sysAuth.bo.SysAuth.SysAuth;
 import com.framework.demo.sys.sysAuth.dao.SysAuthDao;
 import com.framework.demo.sys.sysPermission.bo.SysPermission;
-import com.framework.demo.sys.sysResource.bo.SysResource;
 import com.framework.demo.sys.sysRoleResourcePermission.bo.SysRoleResourcePermission;
 import com.google.common.base.Function;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Sets;
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,10 +58,13 @@ public class SysAuthServiceImpl extends GenericSqlMapServiceImpl<SysAuth, Long> 
     private SysRoleService roleService;
 
     @Autowired
-    private SysResourceService resourceService;
+    private MenuService resourceService;
 
     @Autowired
     private SysPermissionService permissionService;
+
+    @Autowired
+    private SysUserService sysUserService;
 
     @Autowired
     private SysRoleResourcePermissionService sysRoleResourcePermissionService;
@@ -70,7 +75,7 @@ public class SysAuthServiceImpl extends GenericSqlMapServiceImpl<SysAuth, Long> 
 
     @Override
     public Set<String> findStringRoles(SysUser user) {
-        Set<SysRole> roles = ((SysRoleService) AopContext.currentProxy()).findRoles(user);
+        Set<SysRole> roles =roleService.findRoles(user);
         return Sets.newHashSet(Collections2.transform(roles, new Function<SysRole, String>() {
             @Override
             public String apply(SysRole input) {
@@ -89,16 +94,16 @@ public class SysAuthServiceImpl extends GenericSqlMapServiceImpl<SysAuth, Long> 
         //获取资源标示符
         //根据资源标示符号获得
 
-        Set<SysRole> roles = findRoles(user);
+        Set<SysRole> roles = roleService.findRoles(user);
         for (SysRole role : roles) {
             List<SysRoleResourcePermission> rrps = sysRoleResourcePermissionService.findByRoleIds(role.getId());
             for (SysRoleResourcePermission rrp :rrps) {
-                SysResource resource = resourceService.findById(rrp.getResourceId());
+                Menu resource = resourceService.findById(rrp.getResourceId().intValue());
 
                 String actualResourceIdentity = resourceService.findActualResourceIdentity(resource);
 
                 //不可用 即没查到 或者标识字符串不存在
-                if (resource == null || StringUtils.isEmpty(actualResourceIdentity) || Boolean.FALSE.equals(resource.getIsShow())) {
+                if (resource == null || StringUtils.isEmpty(actualResourceIdentity) || Boolean.FALSE.equals(resource)) {
                     continue;
                 }
                 String[] permissionIds = rrp.getPermissionIds().split(",");
@@ -119,6 +124,44 @@ public class SysAuthServiceImpl extends GenericSqlMapServiceImpl<SysAuth, Long> 
         return permissions;
 
     }
+
+    @Override
+    public void addUserAuth(Long[] userIds, SysAuth m) {
+        if (ArrayUtils.isEmpty(userIds)) {
+            return;
+        }
+
+        for (Long userId : userIds) {
+
+            SysUser user = sysUserService.findById(userId);
+            if (user == null) {
+                continue;
+            }
+
+            SysAuth auth = sysAuthDao.findByUserid(userId);
+            if (auth != null) {
+                auth.setRoleIds(m.getRoleIds());
+                continue;
+            }
+            auth = new SysAuth();
+            auth.setUserId(userId);
+            auth.setType(m.getType());
+            auth.setRoleIds(m.getRoleIds());
+            sysAuthDao.save(auth);
+        }
+
+    }
+
+    @Override
+    public void addGroupAuth(Long[] groupIds, SysAuth m) {
+
+    }
+
+    @Override
+    public void addOrganizationJobAuth(Long[] organizationIds, Long[][] jobIds, SysAuth m) {
+
+    }
+
 
     private Set<SysRole> findRoles(SysUser user) {
         return roleService.findRoles(user);

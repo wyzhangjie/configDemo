@@ -17,7 +17,7 @@
         <div class="easyui_AllNorth" data-options="region:'north',split:true" title="查询条件">
 
             <div class="div1">
-                <jsp:include page="../timer/singleTime.jsp"/>
+                <jsp:include page="/WEB-INF/jsp/timer/singleTime.jsp"/>
             </div>
         </div>
 

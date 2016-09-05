@@ -1,13 +1,13 @@
-<%@ tag import="com.google.common.collect.Lists" %>
-<%@ tag import="com.sishuok.es.common.utils.SpringUtils" %>
-<%@ tag import="com.sishuok.es.sys.resource.entity.Resource" %>
-<%@ tag import="com.sishuok.es.sys.resource.service.ResourceService" %>
+<%@ tag import="com.google.com.framework.demo.common.collect.Lists" %>
+<%@ tag import="com.framework.demo.utils.SpringUtils" %>
+<%@ tag import="com.framework.demo.bo.menu.Menu" %>
+<%@ tag import="com.framework.demo.service.menu.MenuService" %>
 <%@ tag import="java.util.List" %>
 <%@ tag pageEncoding="UTF-8"%>
 <%@ attribute name="id" type="java.lang.Long" required="true" description="当前要展示的资源的名字" %>
 <%@ attribute name="showParents" type="java.lang.Boolean" required="false" description="是否显示父亲" %>
 <%@ attribute name="includeRoot" type="java.lang.Boolean" required="false" description="是否包含根" %>
-<%!private ResourceService resourceService;%>
+<%!private MenuService resourceService;%>
 <%
 
     if(showParents == null) {
@@ -18,10 +18,10 @@
     }
 
     if(resourceService == null) {
-        resourceService = SpringUtils.getBean(ResourceService.class);
+        resourceService = SpringUtils.getBean(MenuService.class);
     }
 
-    Resource resource = resourceService.findOne(id);
+    Menu resource = resourceService.findById(id.intValue());
 
     if(resource == null ) {
         out.write("<span class='label label-important'>删除的数据，请修改</span>");
@@ -31,16 +31,16 @@
     List<String> names = Lists.newArrayList();
 
     names.add(resource.getName());
-
+/*
     if(showParents == true) {
-        List<Resource> parents = resourceService.findAncestor(resource.getParentIds());
-        for(Resource o : parents) {
+        List<SysResource> parents = resourceService.findAncestor(resource.getParentIds());
+        for(SysResource o : parents) {
             if(includeRoot == false && o.isRoot()) {
                 continue;
             }
             names.add(o.getName());
         }
-    }
+    }*/
 
     StringBuilder s = new StringBuilder();
     s.append(String.format("<a class='btn btn-link no-padding' href='%s/admin/sys/resource/%d'>", request.getContextPath(), id));

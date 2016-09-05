@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- - - - - - - 懒加载和缓存 - - - - - - - - - - 
+	<settings>
+		<setting name="cacheEnabled" value="true" />
+		<setting name="lazyLoadingEnabled" value="true" />
+		<setting name="aggressiveLazyLoading" value="false" />
+	</settings>-->
+
+    <typeAliases>
+        <typeAlias alias="hashMap" type="java.util.HashMap"/>
+    </typeAliases>
+
+	<!-- - - - - - - - 物理分页拦截器 - - - - - - - -->
+	<!--<plugins> -->
+	    <!--<plugin interceptor="ibator.dialect.tool.ResultSetInterceptor"/> -->
+		<!--<plugin interceptor="ibator.dialect.tool.StatementInterceptor"> -->
+		    <!--<property name="dialect" value="ibator.dialect.OracleDialect"/> -->
+		<!--</plugin> -->
+	<!--</plugins>-->
+
+	<!-- - - - - - - 分页拦截器- - - - - - - - - -->
+    <plugins>
+        <plugin interceptor="cn.vansky.framework.core.orm.mybatis.com.framework.demo.plugin.page.PaginationInterceptor">
+            <property name="dialectClass" value="cn.vansky.framework.core.orm.mybatis.com.framework.demo.plugin.page.dialect.MySQLDialect"/>
+            <property name="sqlPattern" value=".*findPage*.*"/>
+        </plugin>
+    </plugins>
+</configuration>

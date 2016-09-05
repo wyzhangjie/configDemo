@@ -503,7 +503,8 @@ public class DBServerImpl implements DBService{
 				}
 				if(k.equalsIgnoreCase("parentid")){
 					Integer parentId = (Integer)results.get(i).get(k);
-					menu.setParentId(parentId);
+					//menu.setParentId(parentId);
+					menu.setParentId(Long.getLong(String.valueOf(parentId)));
 				}
 			}
 			menus.add(menu);

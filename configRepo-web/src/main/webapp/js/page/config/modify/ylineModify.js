@@ -224,7 +224,7 @@ $().ready(function(){
         type: 'POST',
 
         dataType : "json",
-        url: getlocal()+"/demo/config/findNoFirestMenu",//请求的action路径
+        url: getlocal()+"/config/findNoFirestMenu",//请求的action路径
         error: function () {//请求失败处理函数
             alert('请求失败');
         },
@@ -257,7 +257,7 @@ $().ready(function(){
         $("#mix1_menuId").val(menuId);
 
         $("#form3").form({
-            url: getlocal()+'demo/config/mix1Modify',
+            url: getlocal()+'/config/mix1Modify',
             onSubmit: function () {
                 //表单验证
                 return $("#form3").form('validate');
@@ -298,7 +298,7 @@ $().ready(function(){
                 };
                 var t=false;
                 $.ajax({
-                    url:getlocal()+'demo/config/checkMenuName',
+                    url:getlocal()+'/config/checkMenuName',
 
                     data:param,
 

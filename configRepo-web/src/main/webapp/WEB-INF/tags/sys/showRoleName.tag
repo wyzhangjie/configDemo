@@ -1,16 +1,16 @@
-<%@ tag import="com.sishuok.es.common.utils.SpringUtils" %>
-<%@ tag import="com.sishuok.es.sys.permission.entity.Role" %>
-<%@ tag import="com.sishuok.es.sys.permission.service.RoleService" %>
+<%@ tag import="com.framework.demo.utils.SpringUtils" %>
+<%@ tag import="com.framework.demo.bo.sysRole.SysRole" %>
+<%@ tag import="com.framework.demo.conf.service.sysRole.SysRoleService" %>
 <%@ tag pageEncoding="UTF-8"%>
 <%@ attribute name="id" type="java.lang.Long" required="true" description="当前要展示的组织机构的名字" %>
-<%!private RoleService roleService;%>
+<%!private SysRoleService roleService;%>
 <%
 
     if(roleService == null) {
-        roleService = SpringUtils.getBean(RoleService.class);
+        roleService = SpringUtils.getBean(SysRoleService.class);
     }
 
-    Role role = roleService.findOne(id);
+    SysRole role = roleService.findById(id);
     if(role == null) {
         out.write("<span class='label label-important'>删除的数据，请修改</span>");
         return;

@@ -1,6 +1,6 @@
 package com.framework.demo.web.controller.template;
 
-import cn.vansky.framework.common.util.DateUtil;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.enums.BooleanEnum;
 import cn.vansky.framework.core.util.JsonResp;
 import com.alibaba.fastjson.JSON;
 
@@ -9,10 +9,12 @@ import com.framework.demo.bo.datagrid.EasyuiDatagrid;
 import com.framework.demo.bo.menu.Menu;
 import com.framework.demo.bo.pageTemplate.EchartsPg;
 import com.framework.demo.bo.pageTemplate.PageTemplete;
+import com.framework.demo.bo.showcaseSample.ShowcaseSample;
 import com.framework.demo.bo.sysTemplColr.SysTemplColr;
 import com.framework.demo.dto.echarts.OutputParams;
 import com.framework.demo.dto.jqgrid.JqGridConfigInfo;
 import com.framework.demo.dto.page.DataVelodity;
+import com.framework.demo.enm.*;
 import com.framework.demo.service.collection.CollectionService;
 import com.framework.demo.service.datagrid.EasyuiColumnService;
 import com.framework.demo.service.datagrid.EasyuiDatagridService;
@@ -20,9 +22,6 @@ import com.framework.demo.service.dbservice.DBService;
 import com.framework.demo.service.menu.MenuService;
 import com.framework.demo.service.pageTemplate.PageTempleteService;
 import com.framework.demo.vo.template.EasyUiDatagridPage;
-import com.framework.demo.vo.template.Pagination;
-import com.framework.demo.vo.template.SqlPage;
-import com.framework.demo.web.controller.AbstractController;
 import com.framework.demo.service.util.PageTempleteUtil;
 import com.framework.demo.service.util.TimerUtil;
 import org.apache.commons.lang.StringUtils;
@@ -32,16 +31,18 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.Assert;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import com.framework.demo.web.controller.BaseController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @author zhangjie@qianbao.com
@@ -51,8 +52,9 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping(value = "/config")
-public class ConfigController   extends AbstractController {
+public class ConfigController   extends BaseController<PageTemplete, Long> {
     Logger logger = LoggerFactory.getLogger(ConfigController.class);
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 
     @Autowired
@@ -180,6 +182,88 @@ public class ConfigController   extends AbstractController {
 
     }
 
+    @RequestMapping({"/create/bootconfigJqGridDemo"})
+    public String renderJqGrid(HttpServletRequest request,Model model){
+        model.addAttribute("m", new JqGridConfigInfo());
+        setCommonDataForJq(model);
+        return viewName("/create/bootconfigJqGridDemo");
+    }
+
+    @RequestMapping({"/create/bootconfigEasyDatagrid"})
+    public String renderEasyUiGrid(HttpServletRequest request,Model model){
+        model.addAttribute("m", new EasyuiDatagrid());
+        setCommonDataForEasyUi(model);
+        return viewName("/create/bootconfigEasyDatagrid");
+    }
+
+    /**
+     * easyui修改方法
+     * @param request
+     * @param model
+     * @param easyuiDatagrid
+     * @return
+     */
+
+    @RequestMapping({"/create/easydatagridmodify"})
+    public String easydatagridmodify(HttpServletRequest request,Model model,EasyuiDatagrid easyuiDatagrid){
+
+        return viewName("/create/bootconfigEasyDatagrid");
+    }
+
+    private void setCommonDataForEasyUi(Model model) {
+        List<Menu> menus = menuService.findNoFirestMenu();
+        JSON.toJSONString(menus);
+        Map<String,String> menu =new HashMap();
+        int size = menus.size();
+        for(int i=0;i<size;i++){
+            menu.put(menus.get(i).getName(),menus.get(i).getName());
+        }
+        model.addAttribute("pmenuName",menu.keySet());
+        model.addAttribute("boolean", BooleanEnum.values());
+        model.addAttribute("kind", Kind.values());
+    }
+
+    private void setCommonDataForJq(Model model) {
+        List<Menu> menus = menuService.findNoFirestMenu();
+        JSON.toJSONString(menus);
+        Map<String,String> menu =new HashMap();
+        int size = menus.size();
+        for(int i=0;i<size;i++){
+            menu.put(menus.get(i).getName(),menus.get(i).getName());
+        }
+        model.addAttribute("pmenuName",menu.keySet());
+        model.addAttribute("reportKind", ReportKind.values());
+        model.addAttribute("realtime", Realtime.values());
+        model.addAttribute("timetype", Timetype.values());
+    }
+
+    @RequestMapping({"/create/bootconfigGeneralDemo"})
+    public String renderEchars(HttpServletRequest request,Model model){
+        model.addAttribute("m", new PageTemplete());
+
+        setCommonData(model);
+        return viewName("/create/bootconfigGeneralDemo");
+
+    }
+    protected void setCommonData(Model model) {
+        List<Menu> menus = menuService.findNoFirestMenu();
+         JSON.toJSONString(menus);
+        Map<String,String> menu =new HashMap();
+        int size = menus.size();
+        for(int i=0;i<size;i++){
+            menu.put(menus.get(i).getName(),menus.get(i).getName());
+        }
+        model.addAttribute("pmenuName",menu.keySet());
+        model.addAttribute("kind", Kind.values());
+        model.addAttribute("reportKind", ReportKind.values());
+        model.addAttribute("realtime", Realtime.values());
+        model.addAttribute("timetype", Timetype.values());
+        model.addAttribute("ispercent", Ispercent.values());
+        model.addAttribute("maxandmin", Maxandmin.values());
+        model.addAttribute("average",Average.values());
+
+    }
+
     @RequestMapping({"/easydatagrid"})
     @ResponseBody
     public String easydatagrid(EasyuiDatagrid easyUiDatagrid) throws Exception {
@@ -213,6 +297,7 @@ public class ConfigController   extends AbstractController {
     @RequestMapping({"/easyuimenu"})
     @ResponseBody
     public String easyuimenu(EasyUiDatagridPage easyUiDatagridPage) throws Exception {
+
         EasyuiDatagrid easyuiDatagrid=   easyuiDatagridService.findByModel(Integer.parseInt(easyUiDatagridPage.getModl()));
         List<EasyuiColumn> easyuiColumns= easyuiColumnService.findByModel(Integer.parseInt(easyUiDatagridPage.getModl()));
        //列信息
@@ -295,7 +380,26 @@ public class ConfigController   extends AbstractController {
    }
 
 
+    protected boolean hasError(ShowcaseSample m, BindingResult result) {
+        Assert.notNull(m);
 
+        //字段错误 前台使用<es:showFieldError commandName="showcase/sample"/> 显示
+        try {
+            if (m.getBirthday() != null && dateFormat.parse(m.getBirthday()).after(new Date())) {
+                //前台字段名（前台使用[name=字段名]取得dom对象） 错误消息键。。
+                result.rejectValue("birthday", "birthday.past");
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        //全局错误 前台使用<es:showGlobalError commandName="showcase/sample"/> 显示
+        if (m.getName().contains("admin")) {
+            result.reject("name.must.not.admin");
+        }
+
+        return result.hasErrors();
+    }
 
 
     @RequestMapping({"/checkMenuName"})
@@ -308,4 +412,6 @@ public class ConfigController   extends AbstractController {
         }
         return "0";
     }
+
+
 }

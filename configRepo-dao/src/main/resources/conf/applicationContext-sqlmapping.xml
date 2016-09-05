@@ -4,6 +4,7 @@
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
+        <property name="databaseIdProvider" ref="endorDatabaseIdProvider"/>
         <property name="configLocation" value="classpath:conf/sqlMapConfig.xml" />
         <property name="mapperLocations">
             <list>
@@ -11,28 +12,14 @@
             </list>
         </property>
     </bean>
+    <bean id="endorDatabaseIdProvider" class="org.apache.ibatis.mapping.VendorDatabaseIdProvider"/>
     <bean name="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
         <property name="basePackage" value="com.framework.demo" />
         <property name="annotationClass" value="cn.vansky.framework.core.orm.mybatis.annotation.SqlMapper" />
-        <property name="markerInterface" value="org.mybatis.spring.mapper.MapperFactoryBean" />
+        <property name="markerInterface" value=" org.mybatis.spring.mapper.MapperFactoryBean" />
     </bean>
-    <!--数据扫面-->
-    <bean id="sqlSessionFactorydata" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="configLocation" value="classpath:conf/sqlMapConfig.xml" />
-        <property name="mapperLocations">
-            <list>
-                <value>classpath*:data/**/*Mapper.xml</value>
-            </list>
-        </property>
-    </bean>
-    <bean name="mapperScannerConfigurerdata" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactorydata" />
-        <property name="basePackage" value="com.framework.data" />
-        <property name="annotationClass" value="cn.vansky.framework.core.orm.mybatis.annotation.SqlMapper" />
-        <property name="markerInterface" value="org.mybatis.spring.mapper.MapperFactoryBean" />
-    </bean>
+
 
 </beans>
 

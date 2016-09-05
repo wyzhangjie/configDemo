@@ -1,5 +1,7 @@
 package com.framework.demo.dto.jqgrid;
 
+import org.springframework.stereotype.Component;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * 2015.6.25
  *
  */
+@Component("jqGridInfo")
 public class JqGridInfo implements Serializable{
 
 	/**

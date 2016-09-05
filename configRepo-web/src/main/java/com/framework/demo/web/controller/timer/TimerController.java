@@ -1,6 +1,6 @@
 package com.framework.demo.web.controller.timer;
 
-import com.framework.demo.web.controller.AbstractController;
+import com.framework.demo.web.controller.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(value = "timer")
-public class TimerController extends AbstractController {
+public class TimerController extends BaseController {
 
 }

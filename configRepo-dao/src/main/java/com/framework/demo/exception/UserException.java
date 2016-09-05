@@ -6,10 +6,10 @@
 package com.framework.demo.exception;
 
 
-import exception.BaseException;
+import com.framework.demo.exception.BaseException;
 
 /**
- * <p>User: Zhang Kaitao
+ * <p>User: hyssop
  * <p>Date: 13-3-11 下午8:19
  * <p>Version: 1.0
  */

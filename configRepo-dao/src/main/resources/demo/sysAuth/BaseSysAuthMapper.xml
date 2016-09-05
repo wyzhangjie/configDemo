@@ -129,4 +129,30 @@
       `type` = #{type,jdbcType=VARCHAR}
     where `id` = #{id,jdbcType=BIGINT}
   </update>
+  <select id="findStringPermissions" parameterType="com.framework.demo.bo.sysUser.SysUser" resultType="java.util.Set">
+    SELECT
+    permission
+    FROM
+    sys_permission
+    WHERE id IN
+    (SELECT
+    permission_ids
+    FROM
+    sys_role_resource_permission
+    WHERE role_id IN
+    (SELECT
+    role_ids
+    FROM
+    sys_auth
+    WHERE user_id =  #{id,jdbcType=BIGINT}))
+  </select>
+
+  <select id="findByUserid" parameterType="com.framework.demo.bo.sysUser.SysUser" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from `sys_auth` where   `user_id` = #{userId,jdbcType=BIGINT},
+
+  </select>
+
+
 </mapper>

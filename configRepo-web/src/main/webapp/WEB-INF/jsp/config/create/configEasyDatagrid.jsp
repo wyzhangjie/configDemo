@@ -6,9 +6,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="<%=basePath%>css/page/config/create/configEasyDatagrid.css?v=6"/>
-    <script type="text/javascript" src="<%=basePath%>js/page/config/otherOption.js" charset="utf-8"></script>
-    <script type="text/javascript" src="<%=basePath%>js/page/config/create/configEasyDatagrid.js"></script>
+
 </head>
 
 <body>

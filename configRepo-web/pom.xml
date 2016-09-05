@@ -20,7 +20,7 @@
     </properties>
 
     <build>
-        <finalName>${project.artifactId}</finalName>
+        <finalName>demo</finalName>
         <plugins>
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
@@ -37,20 +37,14 @@
                             <port>9090</port>
                             <!--<maxIdleTime>60000</maxIdleTime>-->
                         </connector>
-                   <!--     <connector implementation="org.eclipse.jetty.server.ssl.SslSocketConnector">
-                            <port>9443</port>
-                            <maxIdleTime>60000</maxIdleTime>
-                            <keystore>${project.basedir}/localhost.keystore</keystore>
-                            <password>123456</password>
-                            <keyPassword>123456</keyPassword>
-                        </connector>-->
+
                     </connectors>
                     <webAppSourceDirectory>${project.basedir}/src/main/webapp</webAppSourceDirectory>
 
                     <!-- spring profile  -->
                     <systemProperties>
                         <systemProperty>
-                            <name>spring.profiles.active</name>
+                            <name>com.framework.demo.spring.profiles.active</name>
                             <value>development</value>
                         </systemProperty>
                     </systemProperties>
@@ -61,10 +55,11 @@
                 <version>2.3</version>
                 <configuration>
                     <webappDirectory>${project.build.directory}/${module.war.name}.war</webappDirectory>
+
                     <warSourceDirectory>src/main/webapp</warSourceDirectory>
                     <webResources>
                         <resource>
-                            <directory>src/main/resources/META-INF</directory>
+                            <directory>src/main/resources</directory>
                             <filtering>true</filtering>
                             <targetPath>WEB-INF/classes/META-INF</targetPath>
                             <includes>
@@ -100,7 +95,7 @@
                     <path>/${project.build.finalName}</path>
                     <systemProperties>
                         <systemProperty>
-                            <name>spring.profiles.active</name>
+                            <name>com.framework.demo.spring.profiles.active</name>
                             <value>development</value>
                         </systemProperty>
                     </systemProperties>
@@ -208,7 +203,17 @@
             <artifactId>configRepo-service</artifactId>
             <version>1.0.0</version>
         </dependency>
-
-
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+        </dependency>
     </dependencies>
 </project>

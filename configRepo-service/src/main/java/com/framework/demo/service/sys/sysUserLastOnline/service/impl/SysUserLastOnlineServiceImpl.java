@@ -25,4 +25,9 @@ public class SysUserLastOnlineServiceImpl extends GenericSqlMapServiceImpl<SysUs
     public SqlMapDao<SysUserLastOnline, Long> getDao() {
         return sysUserLastOnlineDao;
     }
+
+    @Override
+    public Object findByUserId(Long id) {
+        return sysUserLastOnlineDao.findByUserId(id);
+    }
 }

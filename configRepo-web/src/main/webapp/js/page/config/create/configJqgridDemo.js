@@ -47,15 +47,7 @@ $().ready(function(){
     var textcomit1=document.getElementById("comitmentarea_ds1");
     var textcomit2=document.getElementById("comitmentarea_ds2");
     var textcomit3=document.getElementById("comitmentarea_ds3");
-    autoTextarea(textparam1);
-    autoTextarea(textparam2);
-    autoTextarea(textparam3);
-    autoTextarea(textsql1);
-    autoTextarea(textsql2);
-    autoTextarea(textsql3);
-    autoTextarea(textcomit1);
-    autoTextarea(textcomit2);
-    autoTextarea(textcomit3);
+
     $('#picker1_1').farbtastic('#col1_cols_1');
     $('#picker1_2').farbtastic('#col1_cols_2');
     $('#picker1_3').farbtastic('#col1_cols_3');
@@ -66,13 +58,13 @@ $().ready(function(){
     $('#picker3_2').farbtastic('#col3_cols_2');
     $('#picker3_3').farbtastic('#col3_cols_3');
 
-    $.ajax({
+   /* $.ajax({
         async : false,
         cache:false,
         type: 'POST',
         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
         dataType : "json",
-        url: getlocal()+"/demo/config/findNoFirestMenu",//请求的action路径
+        url: getlocal()+"/config/findNoFirestMenu",//请求的action路径
         error: function () {//请求失败处理函数
             alert('请求失败');
         },
@@ -88,7 +80,7 @@ $().ready(function(){
                 $("#pmenuName1_jqtwo").append("<option value="+data[i].name+">"+data[i].name+"</option>");
             }
         }
-    });
+    });*/
     $("#other_num_jq").change(function(){
         var value =$("#other_num_jq").val();
 
@@ -150,7 +142,7 @@ $().ready(function(){
 
 
         $("#form2").form({
-            url: getlocal()+'/demo/config/jqgridCreate',
+            url: getlocal()+'/config/jqgridCreate',
             contentType: "application/x-www-form-urlencoded; charset=UTF-8",
             onSubmit: function () {
                 //表单验证
@@ -170,73 +162,6 @@ $().ready(function(){
 
 
 });
-/**
- * 文本框根据输入内容自适应高度
- * @param                {HTMLElement}        输入框元素
- * @param                {Number}                设置光标与输入框保持的距离(默认0)
- * @param                {Number}                设置最大高度(可选)
- */
-var autoTextarea = function (elem, extra, maxHeight) {
-    extra = extra || 0;
-    var isFirefox = !!document.getBoxObjectFor || 'mozInnerScreenX' in window,
-        isOpera = !!window.opera && !!window.opera.toString().indexOf('Opera'),
-        addEvent = function (type, callback) {
-            elem.addEventListener ?
-                elem.addEventListener(type, callback, false) :
-                elem.attachEvent('on' + type, callback);
-        },
-        getStyle = elem.currentStyle ? function (name) {
-            var val = elem.currentStyle[name];
 
-            if (name === 'height' && val.search(/px/i) !== 1) {
-                var rect = elem.getBoundingClientRect();
-                return rect.bottom - rect.top -
-                    parseFloat(getStyle('paddingTop')) -
-                    parseFloat(getStyle('paddingBottom')) + 'px';
-            };
-
-            return val;
-        } : function (name) {
-            return getComputedStyle(elem, null)[name];
-        },
-        minHeight = parseFloat(getStyle('height'));
-
-    elem.style.resize = 'none';
-
-    var change = function () {
-        var scrollTop, height,
-            padding = 0,
-            style = elem.style;
-
-        if (elem._length === elem.value.length) return;
-        elem._length = elem.value.length;
-
-        if (!isFirefox && !isOpera) {
-            padding = parseInt(getStyle('paddingTop')) + parseInt(getStyle('paddingBottom'));
-        };
-        scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-
-        elem.style.height = minHeight + 'px';
-        if (elem.scrollHeight > minHeight) {
-            if (maxHeight && elem.scrollHeight > maxHeight) {
-                height = maxHeight - padding;
-                style.overflowY = 'auto';
-            } else {
-                height = elem.scrollHeight - padding;
-                style.overflowY = 'hidden';
-            };
-            style.height = height + extra + 'px';
-            scrollTop += parseInt(style.height) - elem.currHeight;
-            document.body.scrollTop = scrollTop;
-            document.documentElement.scrollTop = scrollTop;
-            elem.currHeight = parseInt(style.height);
-        };
-    };
-
-    addEvent('propertychange', change);
-    addEvent('input', change);
-    addEvent('focus', change);
-    change();
-};
 
 
