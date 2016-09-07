@@ -1,16 +1,16 @@
-<%@ tag import="com.sishuok.es.common.utils.SpringUtils" %>
-<%@ tag import="com.sishuok.es.sys.group.entity.Group" %>
-<%@ tag import="com.sishuok.es.sys.group.service.GroupService" %>
+<%@ tag import="utils.SpringUtils" %>
+<%@ tag import="com.framework.demo.sys.sysGroup.bo.SysGroup" %>
+<%@ tag import="com.framework.demo.service.sys.sysGroup.service.SysGroupService" %>
 <%@ tag pageEncoding="UTF-8"%>
 <%@ attribute name="id" type="java.lang.Long" required="true" description="当前要展示的用户的id" %>
-<%!private GroupService groupService;%>
+<%!private SysGroupService groupService;%>
 <%
 
     if(groupService == null) {
-        groupService = SpringUtils.getBean(GroupService.class);
+        groupService = SpringUtils.getBean(SysGroupService.class);
     }
 
-    Group group = groupService.findOne(id);
+    SysGroup group = groupService.findById(id);
 
     if(group == null) {
         out.write("<span class='label label-important'>删除的数据，请修改</span>");

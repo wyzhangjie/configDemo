@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.framework.demo.personalCalendar.dao.PersonalCalendarMapper">
+  <resultMap id="BaseResultMap" type="com.framework.demo.personalCalendar.bo.PersonalCalendar">
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="details" property="details" jdbcType="VARCHAR" />
+    <result column="start_date" property="startDate" jdbcType="DATE" />
+    <result column="length" property="length" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="TIME" />
+    <result column="end_time" property="endTime" jdbcType="TIME" />
+    <result column="background_color" property="backgroundColor" jdbcType="VARCHAR" />
+    <result column="text_color" property="textColor" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    `id`, `user_id`, `title`, `details`, `start_date`, `length`, `start_time`, `end_time`, `background_color`, `text_color`
+  </sql>
+  <insert id="insert" parameterType="com.framework.demo.personalCalendar.bo.PersonalCalendar" useGeneratedKeys="true" keyProperty="id">
+    <![CDATA[
+    insert into `personal_calendar` (`user_id`, `title`, `details`, 
+      `start_date`, `length`, `start_time`, 
+      `end_time`, `background_color`, `text_color`
+      )
+    values (#{userId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{details,jdbcType=VARCHAR}, 
+      #{startDate,jdbcType=DATE}, #{length,jdbcType=INTEGER}, #{startTime,jdbcType=TIME}, 
+      #{endTime,jdbcType=TIME}, #{backgroundColor,jdbcType=VARCHAR}, #{textColor,jdbcType=VARCHAR}
+      )
+    ]]>
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into `personal_calendar` (`user_id`, `title`, `details`, 
+      `start_date`, `length`, `start_time`, 
+      `end_time`, `background_color`, `text_color`
+      )
+     values 
+    <foreach collection="list" item="item" index="index" separator=",">
+       (#{item.userId,jdbcType=BIGINT}, #{item.title,jdbcType=VARCHAR}, #{item.details,jdbcType=VARCHAR}, 
+        #{item.startDate,jdbcType=DATE}, #{item.length,jdbcType=INTEGER}, #{item.startTime,jdbcType=TIME}, 
+        #{item.endTime,jdbcType=TIME}, #{item.backgroundColor,jdbcType=VARCHAR}, #{item.textColor,jdbcType=VARCHAR}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertSelective" parameterType="com.framework.demo.personalCalendar.bo.PersonalCalendar" useGeneratedKeys="true" keyProperty="id">
+    insert into `personal_calendar`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        `user_id`,
+      </if>
+      <if test="title != null">
+        `title`,
+      </if>
+      <if test="details != null">
+        `details`,
+      </if>
+      <if test="startDate != null">
+        `start_date`,
+      </if>
+      <if test="length != null">
+        `length`,
+      </if>
+      <if test="startTime != null">
+        `start_time`,
+      </if>
+      <if test="endTime != null">
+        `end_time`,
+      </if>
+      <if test="backgroundColor != null">
+        `background_color`,
+      </if>
+      <if test="textColor != null">
+        `text_color`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="details != null">
+        #{details,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="length != null">
+        #{length,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIME},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIME},
+      </if>
+      <if test="backgroundColor != null">
+        #{backgroundColor,jdbcType=VARCHAR},
+      </if>
+      <if test="textColor != null">
+        #{textColor,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from `personal_calendar`
+    where `id` = #{id,jdbcType=BIGINT}
+  </delete>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `personal_calendar`
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from `personal_calendar`
+    where `id` = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(*) from `personal_calendar`
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.framework.demo.personalCalendar.bo.PersonalCalendar">
+    update `personal_calendar`
+    <set>
+      <if test="userId != null">
+        `user_id` = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        `title` = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="details != null">
+        `details` = #{details,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        `start_date` = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="length != null">
+        `length` = #{length,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        `start_time` = #{startTime,jdbcType=TIME},
+      </if>
+      <if test="endTime != null">
+        `end_time` = #{endTime,jdbcType=TIME},
+      </if>
+      <if test="backgroundColor != null">
+        `background_color` = #{backgroundColor,jdbcType=VARCHAR},
+      </if>
+      <if test="textColor != null">
+        `text_color` = #{textColor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.framework.demo.personalCalendar.bo.PersonalCalendar">
+    update `personal_calendar`
+    set `user_id` = #{userId,jdbcType=BIGINT},
+      `title` = #{title,jdbcType=VARCHAR},
+      `details` = #{details,jdbcType=VARCHAR},
+      `start_date` = #{startDate,jdbcType=DATE},
+      `length` = #{length,jdbcType=INTEGER},
+      `start_time` = #{startTime,jdbcType=TIME},
+      `end_time` = #{endTime,jdbcType=TIME},
+      `background_color` = #{backgroundColor,jdbcType=VARCHAR},
+      `text_color` = #{textColor,jdbcType=VARCHAR}
+    where `id` = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
