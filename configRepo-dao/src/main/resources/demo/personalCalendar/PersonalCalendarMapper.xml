@@ -9,7 +9,7 @@
 
         ]]>
     </select>
-    <select id="findAllWithNoPageNoSort" parameterType="cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable" resultMap="BaseResultMap">
+    <select id="findAllWithNoPageNoSort" parameterType="cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable" resultMap="BaseResultMap">
         select * from `personal_calendar`
     </select>
 </mapper>

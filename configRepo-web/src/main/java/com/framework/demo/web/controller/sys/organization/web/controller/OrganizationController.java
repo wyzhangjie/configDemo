@@ -7,6 +7,7 @@ package com.framework.demo.web.controller.sys.organization.web.controller;
 
 
 import com.framework.demo.enm.OrganizationType;
+import com.framework.demo.service.sys.sysOrganization.service.SysOrganizationService;
 import com.framework.demo.sys.sysOrganization.bo.SysOrganization;
 import com.framework.demo.common.Constants;
 import org.springframework.stereotype.Controller;
@@ -26,16 +27,21 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 @RequestMapping(value = "/admin/sys/organization/organization")
-public class OrganizationController extends BaseTreeableController<SysOrganization, Long> {
+public class OrganizationController extends BaseTreeableController<SysOrganizationService,SysOrganization, Long> {
 
       public OrganizationController() {
         setResourceIdentity("sys:organization");
     }
 
-    @Override
+
     protected void setCommonData(Model model) {
         super.setCommonData(model);
         model.addAttribute("types", OrganizationType.values());
+    }
+
+
+    public void setBaseService(SysOrganizationService baseService) {
+
     }
 
 
@@ -50,7 +56,7 @@ public class OrganizationController extends BaseTreeableController<SysOrganizati
         this.permissionList.assertHasUpdatePermission();
 
         for (Long id : ids) {
-            SysOrganization organization = baseService.findById(id);
+            SysOrganization organization = (SysOrganization) baseService.findById(id);
             organization.setIsShow(newStatus);
             baseService.saveOrUpdate(organization);
         }

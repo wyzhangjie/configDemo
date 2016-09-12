@@ -4,13 +4,12 @@
 
 package com.framework.demo.bo.showcaseTree;
 
-import com.framework.demo.plugin.entity.Treeable;
 import org.apache.commons.lang3.StringUtils;
 
 /**
  * This class corresponds to the database table `showcase_tree`
  */
-public class ShowcaseTree extends ShowcaseTreeBase   implements Treeable<Long> {
+public class ShowcaseTree extends ShowcaseTreeBase {
     public void setName(String name) {
         super.setName(name);
     }
@@ -34,7 +33,6 @@ public class ShowcaseTree extends ShowcaseTreeBase   implements Treeable<Long> {
         super.setParentIds(parentIds);
     }
 
-    @Override
     public String makeSelfAsNewParentIds() {
         return getParentIds() + getId() + getSeparator();
     }
@@ -49,7 +47,6 @@ public class ShowcaseTree extends ShowcaseTreeBase   implements Treeable<Long> {
         return parentIds.substring(0, parentIds.length() - 1);
     }
 
-    @Override
     public String getSeparator() {
         return "/";
     }
@@ -80,7 +77,7 @@ public class ShowcaseTree extends ShowcaseTreeBase   implements Treeable<Long> {
     }
 
 
-    @Override
+
     public boolean isRoot() {
         if (getParentId() != null && getParentId() == 0) {
             return true;
@@ -89,7 +86,7 @@ public class ShowcaseTree extends ShowcaseTreeBase   implements Treeable<Long> {
     }
 
 
-    @Override
+
     public boolean isLeaf() {
         if (isRoot()) {
             return false;
@@ -115,9 +112,9 @@ public class ShowcaseTree extends ShowcaseTreeBase   implements Treeable<Long> {
      *
      * @return
      */
-    @Override
+
     public String getRootDefaultIcon() {
-        return "ztree_setting";
+        return "SimpleZtree_setting";
     }
 
     /**
@@ -125,9 +122,9 @@ public class ShowcaseTree extends ShowcaseTreeBase   implements Treeable<Long> {
      *
      * @return
      */
-    @Override
+
     public String getBranchDefaultIcon() {
-        return "ztree_folder";
+        return "SimpleZtree_folder";
     }
 
     /**
@@ -135,9 +132,9 @@ public class ShowcaseTree extends ShowcaseTreeBase   implements Treeable<Long> {
      *
      * @return
      */
-    @Override
+
     public String getLeafDefaultIcon() {
-        return "ztree_file";
+        return "SimpleZtree_file";
     }
 
 }

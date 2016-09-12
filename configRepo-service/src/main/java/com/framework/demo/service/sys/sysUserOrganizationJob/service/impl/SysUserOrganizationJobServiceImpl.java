@@ -21,7 +21,7 @@ public class SysUserOrganizationJobServiceImpl extends GenericSqlMapServiceImpl<
     @Resource(name = "sysUserOrganizationJobDao")
     private SysUserOrganizationJobDao sysUserOrganizationJobDao;
 
-    @Override
+
     public SqlMapDao<SysUserOrganizationJob, Long> getDao() {
         return sysUserOrganizationJobDao;
     }

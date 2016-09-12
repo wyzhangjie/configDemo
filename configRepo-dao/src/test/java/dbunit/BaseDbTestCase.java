@@ -13,12 +13,12 @@ public abstract class BaseDbTestCase extends BaseBusinessTestCase {
     protected JdbcTemplate jdbcTemplate;
     private DataSource dataSource;
     
-    @Override
+
     protected DataSource getDataSource() {
         return dataSource;
     }
     
-    @Override
+
     protected JdbcTemplate getSimpleJdbcTemplate() {
         return jdbcTemplate;
     }

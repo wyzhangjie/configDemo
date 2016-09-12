@@ -23,33 +23,33 @@ public class SysGroupRelationDaoImpl extends ConfigurableBaseSqlMapDao<SysGroupR
     @Autowired
     private SysGroupRelationMapper sysGroupRelationMapper;
 
-    @Override
+
     public DaoMapper<SysGroupRelation, Long> getDaoMapper() {
         return sysGroupRelationMapper;
     }
 
     @Resource(name = "sqlSessionFactory")
-    @Override
+
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         setSqlSessionFactoryInternal(sqlSessionFactory);
     }
 
-    @Override
+
     public SysGroupRelation findByGroupIdAndOrganizationId(Long groupId, Long organizationId) {
         return sysGroupRelationMapper.findByGroupIdAndOrganizationId(groupId,organizationId);
     }
 
-    @Override
+
     public void deleteInRange(Long startUserId, Long endUserId) {
         sysGroupRelationMapper.deleteInRange(startUserId,endUserId);
     }
 
-    @Override
+
     public SysGroupRelation findByGroupIdAndUserId(Long groupId, Long userId) {
         return sysGroupRelationMapper.findByGroupIdAndUserId(groupId,userId);
     }
 
-    @Override
+
     public SysGroupRelation findByGroupIdAndStartUserIdLessThanEqualAndEndUserIdGreaterThanEqual(Long groupId, Long startUserId, Long endUserId) {
         return sysGroupRelationMapper.findByGroupIdAndStartUserIdLessThanEqualAndEndUserIdGreaterThanEqual(groupId,startUserId,endUserId);
     }

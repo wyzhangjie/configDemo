@@ -106,12 +106,12 @@ public class EasyuiDatagrid extends EasyuiDatagridBase {
         this.realtime = realtime;
     }
 
-    @Override
+
     public String getFitColumns() {
         return fitColumns;
     }
 
-    @Override
+
     public void setFitColumns(String fitColumns) {
         this.fitColumns = fitColumns;
     }
@@ -140,12 +140,12 @@ public class EasyuiDatagrid extends EasyuiDatagridBase {
         this.otherOption = otherOption;
     }
 
-    @Override
+
     public String getMultime() {
         return multime;
     }
 
-    @Override
+
     public void setMultime(String multime) {
         this.multime = multime;
     }

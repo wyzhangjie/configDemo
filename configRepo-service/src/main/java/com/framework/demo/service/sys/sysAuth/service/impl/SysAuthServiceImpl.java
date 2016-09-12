@@ -68,16 +68,16 @@ public class SysAuthServiceImpl extends GenericSqlMapServiceImpl<SysAuth, Long> 
 
     @Autowired
     private SysRoleResourcePermissionService sysRoleResourcePermissionService;
-    @Override
+
     public SqlMapDao<SysAuth, Long> getDao() {
         return sysAuthDao;
     }
 
-    @Override
+
     public Set<String> findStringRoles(SysUser user) {
         Set<SysRole> roles =roleService.findRoles(user);
         return Sets.newHashSet(Collections2.transform(roles, new Function<SysRole, String>() {
-            @Override
+
             public String apply(SysRole input) {
                 return input.getRole();
             }
@@ -85,7 +85,7 @@ public class SysAuthServiceImpl extends GenericSqlMapServiceImpl<SysAuth, Long> 
 
     }
 
-    @Override
+
     public Set<String> findStringPermissions(SysUser user) {
 
         Set<String> permissions = Sets.newHashSet();
@@ -125,7 +125,7 @@ public class SysAuthServiceImpl extends GenericSqlMapServiceImpl<SysAuth, Long> 
 
     }
 
-    @Override
+
     public void addUserAuth(Long[] userIds, SysAuth m) {
         if (ArrayUtils.isEmpty(userIds)) {
             return;
@@ -152,12 +152,12 @@ public class SysAuthServiceImpl extends GenericSqlMapServiceImpl<SysAuth, Long> 
 
     }
 
-    @Override
+
     public void addGroupAuth(Long[] groupIds, SysAuth m) {
 
     }
 
-    @Override
+
     public void addOrganizationJobAuth(Long[] organizationIds, Long[][] jobIds, SysAuth m) {
 
     }

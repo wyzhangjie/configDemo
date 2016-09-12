@@ -22,7 +22,6 @@ public class HiddenInputTag extends org.springframework.web.servlet.tags.form.Hi
 
     private BindStatus bindStatus = null;
 
-    @Override
     protected BindStatus getBindStatus() throws JspException {
         if (this.bindStatus == null) {
             this.bindStatus = SearchBindStatus.create(pageContext, getName(), getRequestContext(), false);
@@ -30,14 +29,10 @@ public class HiddenInputTag extends org.springframework.web.servlet.tags.form.Hi
         return this.bindStatus;
     }
 
-
-    @Override
     protected String getPropertyPath() throws JspException {
         return getPath();
     }
 
-
-    @Override
     public void doFinally() {
         super.doFinally();
         this.bindStatus = null;

@@ -22,12 +22,12 @@ public class SysUserStatusHistoryServiceImpl extends GenericSqlMapServiceImpl<Sy
     @Resource(name = "sysUserStatusHistoryDao")
     private SysUserStatusHistoryDao sysUserStatusHistoryDao;
 
-    @Override
+
     public SqlMapDao<SysUserStatusHistory, Long> getDao() {
         return sysUserStatusHistoryDao;
     }
 
-    @Override
+
     public String getLastReason(SysUser user) {
         return sysUserStatusHistoryDao.getLastReason(user);
     }

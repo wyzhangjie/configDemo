@@ -25,18 +25,18 @@ public class SysRoleDaoImpl extends ConfigurableBaseSqlMapDao<SysRole, Long> imp
     @Autowired
     SysRoleMapper sysRoleMapper;
 
-    @Override
+
     public DaoMapper<SysRole, Long> getDaoMapper() {
         return null;
     }
 
     @Resource(name = "sqlSessionFactory")
-    @Override
+
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         setSqlSessionFactoryInternal(sqlSessionFactory);
     }
 
-    @Override
+
     public Set<SysRole> findByUserId(Long id) {
         return sysRoleMapper.findByUserId(id);
     }

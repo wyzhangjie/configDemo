@@ -4,10 +4,10 @@
 
 package com.framework.demo.service.sys.sysUserOnline.service;
 
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Page;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.PageRequest;
 import cn.vansky.framework.core.service.GenericService;
 import com.framework.demo.sys.sysUserOnline.bo.SysUserOnline;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 
 import java.util.Date;
 import java.util.List;

@@ -24,23 +24,19 @@ public class SysTemplColrDaoImpl extends ConfigurableBaseSqlMapDao<SysTemplColr,
     @Autowired
     private SysTemplColrMapper sysTemplColrMapper;
 
-    @Override
     public DaoMapper<SysTemplColr, Integer> getDaoMapper() {
         return sysTemplColrMapper;
     }
 
     @Resource(name = "sqlSessionFactory")
-    @Override
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         setSqlSessionFactoryInternal(sqlSessionFactory);
     }
 
-    @Override
     public int insert(SysTemplColr sysTemplColr) {
         return sysTemplColrMapper.insert(sysTemplColr);
     }
 
-    @Override
     public SysTemplColr findByModl(Integer model) {
         return sysTemplColrMapper.findByModl(model);
     }

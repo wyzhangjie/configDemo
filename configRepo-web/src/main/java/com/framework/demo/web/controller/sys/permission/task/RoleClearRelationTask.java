@@ -5,8 +5,7 @@
  */
 package com.framework.demo.web.controller.sys.permission.task;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.SearchRequest;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.*;
 import com.framework.demo.bo.sysRole.SysRole;
 import com.framework.demo.service.menu.MenuService;
 import com.framework.demo.service.sys.sysPermission.service.SysPermissionService;
@@ -15,9 +14,6 @@ import com.framework.demo.service.sysRole.SysRoleService;
 import com.framework.demo.sys.sysRoleResourcePermission.bo.SysRoleResourcePermission;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.framework.demo.utils.LogUtils;
 

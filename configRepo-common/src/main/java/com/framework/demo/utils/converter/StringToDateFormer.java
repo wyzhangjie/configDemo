@@ -12,12 +12,11 @@ import java.util.Locale;
  * To change this template use File | Settings | File Templates.
  */
 public class StringToDateFormer implements Formatter {
-    @Override
+
     public Object parse(String text, Locale locale) throws ParseException {
         return null;
     }
 
-    @Override
     public String print(Object object, Locale locale) {
         return null;
     }

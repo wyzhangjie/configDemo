@@ -28,7 +28,7 @@ public class UserStatusHistoryController extends BaseCRUDController<SysUserStatu
     }
 
 
-    @Override
+
     protected void setCommonData(Model model) {
         model.addAttribute("statusList", UserStatus.values());
     }

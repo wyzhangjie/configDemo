@@ -10,14 +10,12 @@ import cn.vansky.framework.core.dao.DaoMapper;
 import javax.annotation.Resource;
 
 import cn.vansky.framework.core.dao.FieldAccessVo;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import com.framework.demo.bo.collection.Collection;
 import com.framework.demo.dao.collection.CollectionDao;
 import com.framework.demo.dao.collection.CollectionMapper;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -30,24 +28,18 @@ public class CollectionDaoImpl extends ConfigurableBaseSqlMapDao<Collection, Int
     @Autowired
     private CollectionMapper collectionMapper;
 
-    @Override
     public DaoMapper<Collection, Integer> getDaoMapper() {
         return collectionMapper;
     }
 
     @Resource(name = "sqlSessionFactory")
-    @Override
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         setSqlSessionFactoryInternal(sqlSessionFactory);
     }
-
-
     public int saveComit(String comitmentarea, String model) {
         return collectionMapper.saveComit(comitmentarea,model);
     }
 
-
-    @Override
     public long countBySearchable(Searchable searchable) {
         return 0;
     }

@@ -22,17 +22,17 @@ public class EasyuiDatagridServiceImpl extends GenericSqlMapServiceImpl<EasyuiDa
     @Resource(name = "easyuiDatagridDao")
     private EasyuiDatagridDao easyuiDatagridDao;
 
-    @Override
+
     public SqlMapDao<EasyuiDatagrid, Integer> getDao() {
         return easyuiDatagridDao;
     }
 
-    @Override
+
     public void insert(EasyuiDatagrid easyuiDatagrid) {
         easyuiDatagridDao.insert(easyuiDatagrid);
     }
 
-    @Override
+
     public EasyuiDatagrid findByModel(int modl) {
         return easyuiDatagridDao.findByModel(modl);
     }

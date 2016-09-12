@@ -44,7 +44,7 @@ public class UserRealm extends AuthorizingRealm {
     /*    ctx.getBeansOfType(SimpleBaseRepositoryFactoryBean.class);*/
     }
 
-    @Override
+
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = (String) principals.getPrimaryPrincipal();
         SysUser user = userService.findByUsername(username);
@@ -106,7 +106,7 @@ public class UserRealm extends AuthorizingRealm {
         }
     }
 
-    @Override
+
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
         UsernamePasswordToken upToken = (UsernamePasswordToken) token;

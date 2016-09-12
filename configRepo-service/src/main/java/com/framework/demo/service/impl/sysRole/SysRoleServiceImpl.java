@@ -24,32 +24,32 @@ public class SysRoleServiceImpl extends GenericSqlMapServiceImpl<SysRole, Long> 
     @Resource(name = "sysRoleDao")
     private SysRoleDao sysRoleDao;
 
-    @Override
+
     public SqlMapDao<SysRole, Long> getDao() {
         return sysRoleDao;
     }
 
-    @Override
+
     public Set<SysRole> findRoles(SysUser user) {
         return sysRoleDao.findByUserId(user.getId());
     }
 
-    @Override
+
     public void createRole(SysRole role) {
          sysRoleDao.save(role);
     }
 
-    @Override
+
     public void deleteRole(Long roleId) {
         sysRoleDao.delete(roleId);
     }
 
-    @Override
+
     public void correlationPermissions(Long roleId, Long... permissionIds) {
 
     }
 
-    @Override
+
     public void uncorrelationPermissions(Long roleId, Long... permissionIds) {
 
     }

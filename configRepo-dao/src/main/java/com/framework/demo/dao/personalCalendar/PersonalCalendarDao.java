@@ -5,7 +5,7 @@
 package com.framework.demo.dao.personalCalendar;
 
 import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import com.framework.demo.bo.personalCalendar.PersonalCalendar;
 
 import java.util.List;

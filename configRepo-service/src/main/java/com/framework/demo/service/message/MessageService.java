@@ -5,7 +5,8 @@
  */
 package com.framework.demo.service.message;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Page;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import cn.vansky.framework.core.dao.SqlMapDao;
 import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
 import com.framework.demo.bo.collection.Collection;
@@ -16,7 +17,6 @@ import com.framework.demo.dao.personalMessage.PersonalMessageDao;
 import com.framework.demo.enm.MessageState;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.time.DateUtils;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -36,38 +36,38 @@ public class MessageService   extends GenericSqlMapServiceImpl<PersonalMessage, 
     @Resource(name = "personalMessageDao")
     private PersonalMessageDao personalMessageDao;
 
-    @Override
+
     public SqlMapDao<PersonalMessage, Long> getDao() {
         return personalMessageDao;
     }
 
 
-    @Override
+
     public Integer changeSenderState(Long senderId, MessageState oldState, MessageState newState) {
         return personalMessageDao.changeSenderState(senderId,oldState,newState,new Date());
     }
 
-    @Override
+
     public Integer changeReceiverState(Long receiverId, MessageState oldState, MessageState newState) {
         return personalMessageDao.changeReceiverState(receiverId,oldState,newState,new Date());
     }
 
-    @Override
+
     public Integer clearDeletedMessage(MessageState deletedState) {
         return personalMessageDao.clearDeletedMessage(deletedState);
     }
 
-    @Override
+
     public Integer changeState(ArrayList<MessageState> oldStates, MessageState newState, int expireDays) {
         return personalMessageDao.changeState(oldStates,newState,expireDays);
     }
 
-    @Override
+
     public Long countUnread(Long userId) {
         return personalMessageDao.countUnread(userId,MessageState.in_box.getInfo());
     }
 
-    @Override
+
     public void markRead(Long userId, Long[] ids) {
          personalMessageDao.markRead(userId, Arrays.asList(ids));
     }

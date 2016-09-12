@@ -17,10 +17,6 @@ public class SearchB extends SearchRegistry {
         System.out.println("B");
         return  "B";
     }
-
-
-
-    @Override
     public String doSearch(Map<String, Object> params) {
         return doSearch();
     }

@@ -4,11 +4,11 @@
 
 package com.framework.demo.dao.personalMessage;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Page;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import cn.vansky.framework.core.dao.SqlMapDao;
 import com.framework.demo.bo.personalMessage.PersonalMessage;
 import com.framework.demo.enm.MessageState;
-import org.springframework.data.domain.Page;
 
 import java.util.ArrayList;
 import java.util.Date;

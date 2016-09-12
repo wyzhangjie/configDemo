@@ -57,7 +57,7 @@ public class ReadWriteDataSource extends AbstractDataSource implements Initializ
     }
     
     
-    @Override
+
     public void afterPropertiesSet() throws Exception {
         if(writeDataSource == null) {
             throw new IllegalArgumentException("property 'writeDataSource' is required");
@@ -109,12 +109,12 @@ public class ReadWriteDataSource extends AbstractDataSource implements Initializ
         return readDataSources[index];
     }
     
-    @Override
+
     public Connection getConnection() throws SQLException {
         return determineDataSource().getConnection();
     }
     
-    @Override
+
     public Connection getConnection(String username, String password) throws SQLException {
         return determineDataSource().getConnection(username, password);
     }

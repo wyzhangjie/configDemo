@@ -122,7 +122,7 @@ public class UserController {
         if(allList.size()!=0){
             AuthWrapper authWrapper = new AuthWrapper();
             List<Object> l = easyUITreeService.findChildren(allList, new EasyUITreeService.ModelCall<Menu>() {
-                @Override
+
                 public EasyUITreeModel convert(Menu o) {
                     EasyUITreeModel model = new EasyUITreeModel();
                     model.setId(o.getId());

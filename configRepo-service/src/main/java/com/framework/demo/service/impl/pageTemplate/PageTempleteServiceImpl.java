@@ -27,12 +27,12 @@ public class PageTempleteServiceImpl extends GenericSqlMapServiceImpl<PageTemple
     @Resource(name = "pageTempleteDao")
     private PageTempleteDao pageTempleteDao;
 
-    @Override
+
     public SqlMapDao<PageTemplete, Integer> getDao() {
         return pageTempleteDao;
     }
 
-    @Override
+
     public PageTemplete selectPg(String model) {
         return pageTempleteDao.selectPg(model);
     }
@@ -40,19 +40,19 @@ public class PageTempleteServiceImpl extends GenericSqlMapServiceImpl<PageTemple
         return pageTempleteDao.saveComit(comitmentarea,model);
     }
 
-    @Override
+
     public List<Map<String, Object>> getData(String sql) {
         return pageTempleteDao.getData(sql);
     }
 
-    @Override
+
     public List<Map<String, Object>> findPageSql(SqlPage sql) {
         return pageTempleteDao.findPageSql(sql);
     }
 
 
 
-    @Override
+
     public int insert(PageTemplete pageTemplete) {
         return pageTempleteDao.insert(pageTemplete);
     }

@@ -70,7 +70,7 @@ public class LDataZoomTemplate<T> extends BaseDataTemplate {
 	        }
 	    }
 
-	    @Override
+
 	    protected void fillCategoryList(OutputParams outputParams, List<String> categoryList) {
 	        for (int i=0;i<outputParams.getData().size();i++){
 	            T dataVo=(T) outputParams.getData().get(i);
@@ -87,14 +87,14 @@ public class LDataZoomTemplate<T> extends BaseDataTemplate {
 	    }
 
 
-	    @Override
+
 	    protected void fillLegendListForConfig(OutputParams outputParams) throws Exception {
 	        for(int i=0;i<outputParams.getLegend().length;i++){
 	            legendList.add(outputParams.getLegend()[i]);
 	        }
 	    }
 
-	    @Override
+
 	    public <T> DataVelodity fillTemplate(OutputParams outputParams) throws Exception {
 	        legendList.clear();
 	        pieSeriesList.clear();

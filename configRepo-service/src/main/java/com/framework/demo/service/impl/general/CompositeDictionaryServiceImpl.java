@@ -24,17 +24,17 @@ public class CompositeDictionaryServiceImpl extends GenericSqlMapServiceImpl<Com
     @Resource(name = "compositeDictionaryDao")
     private CompositeDictionaryDao compositeDictionaryDao;
 
-    @Override
+
     public SqlMapDao<CompositeDictionary, Long> getDao() {
         return compositeDictionaryDao;
     }
 
-    @Override
+
     public List<CompositeDictionary> findByParams(Map<String, Object> params) {
         return compositeDictionaryDao.findByParams(params);
     }
 
-    @Override
+
     public Map<Integer, String> findMapByParams(Map<String, Object> params) {
         List<CompositeDictionary> list = findByParams(params);
         Map<Integer, String> map = new HashMap<Integer, String>();

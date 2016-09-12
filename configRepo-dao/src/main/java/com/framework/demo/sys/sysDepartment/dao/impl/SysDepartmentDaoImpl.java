@@ -23,13 +23,13 @@ public class SysDepartmentDaoImpl extends ConfigurableBaseSqlMapDao<SysDepartmen
     @Autowired
     private SysDepartmentMapper sysDepartmentMapper;
 
-    @Override
+
     public DaoMapper<SysDepartment, Integer> getDaoMapper() {
         return sysDepartmentMapper;
     }
 
     @Resource(name = "sqlSessionFactory")
-    @Override
+
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         setSqlSessionFactoryInternal(sqlSessionFactory);
     }

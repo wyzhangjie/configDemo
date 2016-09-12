@@ -71,7 +71,7 @@ public class SysUserFilter extends AccessControlFilter {
         this.userUnknownErrorUrl = userUnknownErrorUrl;
     }
 
-    @Override
+
     protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {
         Subject subject = getSubject(request, response);
         if (subject == null||subject.getPrincipal()==null) {
@@ -91,7 +91,7 @@ public class SysUserFilter extends AccessControlFilter {
     }
 
 
-    @Override
+
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
         SysUser user = (SysUser) request.getAttribute(Constants.CURRENT_USER);
         if (user == null) {
@@ -106,7 +106,7 @@ public class SysUserFilter extends AccessControlFilter {
         return true;
     }
 
-    @Override
+
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
         getSubject(request, response).logout();
         saveRequestAndRedirectToLogin(request, response);

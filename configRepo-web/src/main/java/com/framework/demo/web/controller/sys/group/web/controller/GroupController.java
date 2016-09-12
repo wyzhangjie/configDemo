@@ -5,8 +5,10 @@
  */
 package com.framework.demo.web.controller.sys.group.web.controller;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.enums.BooleanEnum;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable;
+
+import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.BooleanEnum;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Page;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import com.framework.demo.enm.GroupType;
 import com.framework.demo.service.sys.sysGroup.service.SysGroupService;
 import com.framework.demo.service.sys.sysGroupRelation.service.SysGroupRelationService;
@@ -14,7 +16,6 @@ import com.framework.demo.sys.sysGroup.bo.SysGroup;
 
 import com.framework.demo.common.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -52,7 +53,7 @@ public class GroupController extends BaseCRUDController<SysGroup, Long> {
         return (SysGroupService) baseService;
     }
 
-    @Override
+
     protected void setCommonData(Model model) {
         super.setCommonData(model);
         model.addAttribute("types", GroupType.values());
@@ -199,11 +200,11 @@ public class GroupController extends BaseCRUDController<SysGroup, Long> {
         this.permissionList.assertHasDeletePermission();
 
         if (group.getType() == GroupType.user.toString()) {
-            groupRelationService.deleteBantch(ids);
+            groupRelationService.deleteBatch(ids);
         }
 
         if (group.getType() == GroupType.organization.toString()) {
-            groupRelationService.deleteBantch(ids);
+            groupRelationService.deleteBatch(ids);
         }
 
         redirectAttributes.addFlashAttribute(Constants.MESSAGE, "删除成功");

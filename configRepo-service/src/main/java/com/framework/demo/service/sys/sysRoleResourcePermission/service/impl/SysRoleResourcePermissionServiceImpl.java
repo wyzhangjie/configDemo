@@ -23,17 +23,17 @@ public class SysRoleResourcePermissionServiceImpl extends GenericSqlMapServiceIm
     @Resource(name = "sysRoleResourcePermissionDao")
     private SysRoleResourcePermissionDao sysRoleResourcePermissionDao;
 
-    @Override
+
     public SqlMapDao<SysRoleResourcePermission, Long> getDao() {
         return sysRoleResourcePermissionDao;
     }
 
-    @Override
+
     public SysRoleResourcePermission findByRoleId(Long roleId) {
         return sysRoleResourcePermissionDao.findByRoleId(roleId);
     }
 
-    @Override
+
     public List<SysRoleResourcePermission> findByRoleIds(Long id) {
         return sysRoleResourcePermissionDao.findByRoleIds(id);
     }

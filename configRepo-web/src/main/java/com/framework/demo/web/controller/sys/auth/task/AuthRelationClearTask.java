@@ -5,8 +5,7 @@
  */
 package com.framework.demo.web.controller.sys.auth.task;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.SearchRequest;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.*;
 import com.framework.demo.bo.sysRole.SysRole;
 import com.framework.demo.enm.AuthType;
 import com.framework.demo.service.sys.sysAuth.service.SysAuthService;
@@ -22,9 +21,6 @@ import com.google.common.collect.Sets;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.framework.demo.utils.LogUtils;
 
@@ -136,7 +132,7 @@ public class AuthRelationClearTask {
 
     private Set<Long> findAllRoleIds() {
         return Sets.newHashSet(Lists.transform(roleService.findAll(), new Function<SysRole, Long>() {
-            @Override
+
             public Long apply(SysRole input) {
                 return input.getId();
             }

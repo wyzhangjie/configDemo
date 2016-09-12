@@ -5,10 +5,11 @@
  */
 package com.framework.demo.web.controller.sys.user.web.controller;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.enums.BooleanEnum;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.BooleanEnum;
 import com.framework.demo.bo.sysUser.SysUser;
 
 import com.framework.demo.enm.UserStatus;
+import com.framework.demo.service.showcaseTree.ShowcaseTreeService;
 import com.framework.demo.service.sys.sysUserLastOnline.service.SysUserLastOnlineService;
 import com.framework.demo.service.sys.sysUserStatusHistory.service.PasswordService;
 import com.framework.demo.service.sysuser.SysUserService;
@@ -34,6 +35,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller()
 @RequestMapping("/admin/sys/user/loginUser")
 public class LoginUserController extends BaseController<SysUser, Long> {
+    @Autowired
+    ShowcaseTreeService showcaseTreeService;
 
     @Autowired
     private SysUserService userService;
@@ -45,7 +48,7 @@ public class LoginUserController extends BaseController<SysUser, Long> {
     private SysUserLastOnlineService sysUserLastOnlineService;
 
 
-    @Override
+
     public void setCommonData(Model model) {
         model.addAttribute("booleanList", BooleanEnum.values());
         model.addAttribute("statusList", UserStatus.values());

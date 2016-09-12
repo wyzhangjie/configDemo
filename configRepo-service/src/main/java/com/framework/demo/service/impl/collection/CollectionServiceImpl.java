@@ -21,12 +21,12 @@ public class CollectionServiceImpl extends GenericSqlMapServiceImpl<Collection, 
     @Resource(name = "collectionDao")
     private CollectionDao collectionDao;
 
-    @Override
+
     public SqlMapDao<Collection, Integer> getDao() {
         return collectionDao;
     }
 
-    @Override
+
     public int saveComit(String comitmentarea, String model) {
         return collectionDao.saveComit(comitmentarea,model);
     }

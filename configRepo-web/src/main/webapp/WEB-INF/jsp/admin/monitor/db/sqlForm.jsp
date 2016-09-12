@@ -1,4 +1,4 @@
-<%@ page import="org.springframework.data.domain.Page" %>
+<%@ page import="cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Page" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/WEB-INF/jsp/common/taglibs.jspf" %>

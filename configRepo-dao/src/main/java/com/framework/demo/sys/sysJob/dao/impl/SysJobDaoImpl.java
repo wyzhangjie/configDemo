@@ -23,13 +23,11 @@ public class SysJobDaoImpl extends ConfigurableBaseSqlMapDao<SysJob, Long> imple
     @Autowired
     private SysJobMapper sysJobMapper;
 
-    @Override
     public DaoMapper<SysJob, Long> getDaoMapper() {
         return sysJobMapper;
     }
 
     @Resource(name = "sqlSessionFactory")
-    @Override
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         setSqlSessionFactoryInternal(sqlSessionFactory);
     }

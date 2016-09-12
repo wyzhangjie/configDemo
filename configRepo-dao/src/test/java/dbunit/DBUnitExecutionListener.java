@@ -7,7 +7,7 @@ import java.lang.reflect.Method;
 
 public class DBUnitExecutionListener extends AbstractTestExecutionListener {
     
-    @Override
+
     public void beforeTestMethod(TestContext testContext) throws Exception {
         Object testInstance = testContext.getTestInstance();
         Method testMethod = testContext.getTestMethod();
@@ -25,7 +25,7 @@ public class DBUnitExecutionListener extends AbstractTestExecutionListener {
         }
     }
     
-    @Override
+
     public void afterTestMethod(TestContext testContext) throws Exception {
         Object testInstance = testContext.getTestInstance();
         Method testMethod = testContext.getTestMethod();

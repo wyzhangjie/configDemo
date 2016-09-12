@@ -48,7 +48,7 @@ public class BaseCacheAspect implements InitializingBean {
     }
 
 
-    @Override
+
     public void afterPropertiesSet() throws Exception {
         cache = cacheManager.getCache(cacheName);
     }

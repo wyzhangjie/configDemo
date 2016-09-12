@@ -27,7 +27,6 @@ public class AccessLogFilter extends BaseFilter {
     }
 
 
-    @Override
     public boolean isLoggable(LogRecord record) {
         return false;
     }

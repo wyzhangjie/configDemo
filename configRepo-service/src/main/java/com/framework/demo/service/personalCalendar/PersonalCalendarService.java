@@ -4,7 +4,7 @@
 
 package com.framework.demo.service.personalCalendar;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import cn.vansky.framework.core.service.GenericService;
 import com.framework.demo.bo.personalCalendar.PersonalCalendar;
 

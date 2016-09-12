@@ -6,20 +6,17 @@ package com.framework.demo.sys.sysOrganization.bo;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
-import com.framework.demo.plugin.entity.Treeable;
 
 /**
  * This class corresponds to the database table `sys_organization`
  */
 
 @Component("sysOrganization")
-public class SysOrganization extends SysOrganizationBase implements Treeable<Long> {
-    @Override
+public class SysOrganization extends SysOrganizationBase {
     public String makeSelfAsNewParentIds() {
         return getParentIds() + getId() + getSeparator();
     }
 
-    @Override
     public String getSeparator() {
         return "/";
     }
@@ -50,7 +47,6 @@ public class SysOrganization extends SysOrganizationBase implements Treeable<Lon
     }
 
 
-    @Override
     public boolean isRoot() {
         if (getParentId() != null && getParentId() == 0) {
             return true;
@@ -59,7 +55,6 @@ public class SysOrganization extends SysOrganizationBase implements Treeable<Lon
     }
 
 
-    @Override
     public boolean isLeaf() {
         if (isRoot()) {
             return false;
@@ -93,9 +88,8 @@ public class SysOrganization extends SysOrganizationBase implements Treeable<Lon
      *
      * @return
      */
-    @Override
     public String getRootDefaultIcon() {
-        return "ztree_root_open";
+        return "SimpleZtree_root_open";
     }
 
     /**
@@ -103,9 +97,8 @@ public class SysOrganization extends SysOrganizationBase implements Treeable<Lon
      *
      * @return
      */
-    @Override
     public String getBranchDefaultIcon() {
-        return "ztree_branch";
+        return "SimpleZtree_branch";
     }
 
     /**
@@ -113,8 +106,7 @@ public class SysOrganization extends SysOrganizationBase implements Treeable<Lon
      *
      * @return
      */
-    @Override
     public String getLeafDefaultIcon() {
-        return "ztree_leaf";
+        return "SimpleZtree_leaf";
     }
 }

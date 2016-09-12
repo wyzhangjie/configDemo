@@ -22,17 +22,17 @@ public class SysTemplColrServiceImpl extends GenericSqlMapServiceImpl<SysTemplCo
     @Resource(name = "sysTemplColrDao")
     private SysTemplColrDao sysTemplColrDao;
 
-    @Override
+
     public SqlMapDao<SysTemplColr, Integer> getDao() {
         return sysTemplColrDao;
     }
 
-    @Override
+
     public int insert(SysTemplColr sysTemplColr) {
         return sysTemplColrDao.insert(sysTemplColr);
     }
 
-    @Override
+
     public SysTemplColr findByModl(Integer model) {
         return sysTemplColrDao.findByModl(model);
     }

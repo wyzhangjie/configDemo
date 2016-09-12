@@ -26,23 +26,19 @@ public class EasyuiColumnDaoImpl extends ConfigurableBaseSqlMapDao<EasyuiColumn,
     @Autowired
     private EasyuiColumnMapper easyuiColumnMapper;
 
-    @Override
     public DaoMapper<EasyuiColumn, Integer> getDaoMapper() {
         return easyuiColumnMapper;
     }
 
     @Resource(name = "sqlSessionFactory")
-    @Override
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         setSqlSessionFactoryInternal(sqlSessionFactory);
     }
 
-    @Override
     public void insertBatch(List<EasyuiColumn> columns) {
         easyuiColumnMapper.insertBatch(columns);
     }
 
-    @Override
     public List<EasyuiColumn> findByModel(int modl) {
         return easyuiColumnMapper.findByModel(modl);
     }

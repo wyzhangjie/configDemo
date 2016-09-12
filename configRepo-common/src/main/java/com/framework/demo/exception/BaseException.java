@@ -59,7 +59,6 @@ public class BaseException extends RuntimeException {
         this(null, null, null, defaultMessage);
     }
 
-    @Override
     public String getMessage() {
         String message = null;
         if (!StringUtils.isEmpty(code)) {
@@ -88,7 +87,6 @@ public class BaseException extends RuntimeException {
         return defaultMessage;
     }
 
-    @Override
     public String toString() {
         return this.getClass() + "{" +
                 "module='" + module + '\'' +

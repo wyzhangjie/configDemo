@@ -33,7 +33,7 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter {
     @Autowired
     SysUserService sysUserService;
 
-    @Override
+
     protected void setFailureAttribute(ServletRequest request, AuthenticationException ae) {
         request.setAttribute(getFailureKeyAttribute(), ae);
     }
@@ -72,7 +72,7 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter {
      *
      * @return
      */
-    @Override
+
     public String getSuccessUrl() {
         String username = (String) SecurityUtils.getSubject().getPrincipal();
         SysUser user = sysUserService.findByUsername(username);

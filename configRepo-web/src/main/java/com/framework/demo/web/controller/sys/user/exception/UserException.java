@@ -5,10 +5,11 @@
  */
 package com.framework.demo.web.controller.sys.user.exception;
 
-import com.sishuok.es.common.exception.BaseException;
+
+import com.framework.demo.exception.BaseException;
 
 /**
- * <p>User: Zhang Kaitao
+ * <p>User: hyssop
  * <p>Date: 13-3-11 下午8:19
  * <p>Version: 1.0
  */

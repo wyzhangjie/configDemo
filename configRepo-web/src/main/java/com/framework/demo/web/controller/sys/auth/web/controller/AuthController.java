@@ -6,7 +6,7 @@
 package com.framework.demo.web.controller.sys.auth.web.controller;
 
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import com.framework.demo.enm.AuthType;
 import com.framework.demo.service.sys.sysAuth.service.SysAuthService;
 import com.framework.demo.service.sysRole.SysRoleService;
@@ -45,7 +45,7 @@ public class AuthController extends BaseCRUDController<SysAuth, Long> {
         return (SysAuthService) baseService;
     }
 
-    @Override
+
     protected void setCommonData(Model model) {
         super.setCommonData(model);
         model.addAttribute("types", AuthType.values());
@@ -54,16 +54,14 @@ public class AuthController extends BaseCRUDController<SysAuth, Long> {
 //        searchable.addSearchFilter("show", SearchOperator.eq, true);
         try {
             model.addAttribute("roles", roleService.findBySearchable(searchable));
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
 
     @SearchableDefaults(value = "type_eq=user")
-    @Override
+
     public String list(Searchable searchable, Model model) {
 
         String typeName = String.valueOf(searchable.getValue("type_eq"));

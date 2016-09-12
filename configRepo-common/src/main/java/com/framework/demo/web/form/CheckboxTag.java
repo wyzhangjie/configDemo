@@ -20,10 +20,8 @@ import javax.servlet.jsp.JspException;
  */
 public class CheckboxTag extends org.springframework.web.servlet.tags.form.CheckboxTag {
 
-
     private BindStatus bindStatus = null;
 
-    @Override
     protected BindStatus getBindStatus() throws JspException {
         if (this.bindStatus == null) {
             this.bindStatus = SearchBindStatus.create(pageContext, getName(), getRequestContext(), false);
@@ -31,13 +29,10 @@ public class CheckboxTag extends org.springframework.web.servlet.tags.form.Check
         return this.bindStatus;
     }
 
-    @Override
     protected String getPropertyPath() throws JspException {
         return getPath();
     }
 
-
-    @Override
     public void doFinally() {
         super.doFinally();
         this.bindStatus = null;

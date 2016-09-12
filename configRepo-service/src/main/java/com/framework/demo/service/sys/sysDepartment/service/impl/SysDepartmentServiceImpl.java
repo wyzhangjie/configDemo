@@ -21,7 +21,7 @@ public class SysDepartmentServiceImpl extends GenericSqlMapServiceImpl<SysDepart
     @Resource(name = "sysDepartmentDao")
     private SysDepartmentDao sysDepartmentDao;
 
-    @Override
+
     public SqlMapDao<SysDepartment, Integer> getDao() {
         return sysDepartmentDao;
     }

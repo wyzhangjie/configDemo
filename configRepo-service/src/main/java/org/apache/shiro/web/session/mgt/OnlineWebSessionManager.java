@@ -5,6 +5,8 @@
  */
 package org.apache.shiro.web.session.mgt;
 
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Page;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.PageRequest;
 import com.framework.demo.service.sys.sysUserOnline.service.SysUserOnlineService;
 import com.framework.demo.sys.sysUserOnline.bo.SysUserOnline;
 import com.framework.demo.common.Constants;
@@ -20,8 +22,6 @@ import org.apache.shiro.session.mgt.SessionKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
@@ -48,7 +48,7 @@ public class OnlineWebSessionManager extends DefaultWebSessionManager {
         this.userOnlineService = userOnlineService;
     }
 
-    @Override
+
     public void setAttribute(SessionKey sessionKey, Object attributeKey, Object value) throws InvalidSessionException {
         super.setAttribute(sessionKey, attributeKey, value);
         if (value != null && needMarkAttributeChanged(attributeKey)) {
@@ -75,7 +75,7 @@ public class OnlineWebSessionManager extends DefaultWebSessionManager {
         return true;
     }
 
-    @Override
+
     public Object removeAttribute(SessionKey sessionKey, Object attributeKey) throws InvalidSessionException {
         Object removed = super.removeAttribute(sessionKey, attributeKey);
         if (removed != null) {
@@ -89,7 +89,7 @@ public class OnlineWebSessionManager extends DefaultWebSessionManager {
     /**
      * 验证session是否有效 用于删除过期session
      */
-    @Override
+
     public void validateSessions() {
         if (log.isInfoEnabled()) {
             log.info("invalidation sessions...");
@@ -150,7 +150,7 @@ public class OnlineWebSessionManager extends DefaultWebSessionManager {
 
     }
 
-    @Override
+
     protected Collection<Session> getActiveSessions() {
         throw new UnsupportedOperationException("getActiveSessions method not supported");
     }

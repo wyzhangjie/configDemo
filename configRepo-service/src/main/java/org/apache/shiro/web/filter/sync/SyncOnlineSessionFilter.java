@@ -39,7 +39,7 @@ public class SyncOnlineSessionFilter extends PathMatchingFilter {
      * @return
      * @throws Exception
      */
-    @Override
+
     protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {
         OnlineSession session = (OnlineSession) request.getAttribute(ShiroConstants.ONLINE_SESSION);
         //如果session stop了 也不同步

@@ -4,7 +4,7 @@
 
 package com.framework.demo.service.impl.personalCalendar;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import cn.vansky.framework.core.dao.SqlMapDao;
 import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
 import javax.annotation.Resource;
@@ -28,12 +28,12 @@ public class PersonalCalendarServiceImpl extends GenericSqlMapServiceImpl<Person
         return personalCalendarDao;
     }
 
-    @Override
+
     public Object countRecentlyCalendar(Long id, int i) {
         return personalCalendarDao.countRecentlyCalendar(id,i);
     }
 
-    @Override
+
     public List<PersonalCalendar> findAllWithNoPageNoSort(Searchable searchable) {
         searchable.removePageable();
         searchable.removeSort();

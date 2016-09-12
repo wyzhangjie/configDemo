@@ -4,7 +4,7 @@
 
 package com.framework.demo.dao.impl.showcaseSample;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import cn.vansky.framework.core.dao.ConfigurableBaseSqlMapDao;
 import cn.vansky.framework.core.dao.DaoMapper;
 
@@ -16,8 +16,6 @@ import com.framework.demo.dao.showcaseSample.ShowcaseSampleDao;
 import com.framework.demo.dao.showcaseSample.ShowcaseSampleMapper;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -30,18 +28,18 @@ public class ShowcaseSampleDaoImpl extends ConfigurableBaseSqlMapDao<ShowcaseSam
     @Autowired
     private ShowcaseSampleMapper showcaseSampleMapper;
 
-    @Override
+
     public DaoMapper<ShowcaseSample, Long> getDaoMapper() {
         return showcaseSampleMapper;
     }
 
     @Resource(name = "sqlSessionFactory")
-    @Override
+
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         setSqlSessionFactoryInternal(sqlSessionFactory);
     }
 
-    @Override
+
     public ShowcaseSample findByName(String fieldValue) {
         return showcaseSampleMapper.findByName(fieldValue);
     }

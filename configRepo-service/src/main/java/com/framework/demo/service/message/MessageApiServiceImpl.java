@@ -5,10 +5,10 @@
  */
 package com.framework.demo.service.message;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.SearchOperator;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.filter.SearchFilter;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.filter.SearchFilterHelper;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.SearchOperator;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.*;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.filter.SearchFilter;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.filter.CustomConditionFactory;
 import com.framework.demo.bo.personalMessage.PersonalMessage;
 import com.framework.demo.bo.personalMessageContent.PersonalMessageContent;
 import com.framework.demo.bo.sysUser.SysUser;
@@ -22,10 +22,6 @@ import com.google.common.collect.Lists;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -55,7 +51,7 @@ public class MessageApiServiceImpl implements MessageApiService {
 
 
 
-    @Override
+
     public Page<PersonalMessage> findUserMessage(Long userId, MessageState state, Pageable pageable) {
         Searchable searchable = Searchable.newSearchable();
         searchable.setPage(pageable);
@@ -77,14 +73,14 @@ public class MessageApiServiceImpl implements MessageApiService {
             case trash_box:
                 //sender
 
-                SearchFilter senderFilter = SearchFilterHelper.newCondition("senderId", SearchOperator.eq, userId);
-                SearchFilter senderStateFilter = SearchFilterHelper.newCondition("senderState", SearchOperator.eq, state);
-                SearchFilter and1 = SearchFilterHelper.and(senderFilter, senderStateFilter);
+                SearchFilter senderFilter = CustomConditionFactory.newCustomCondition("senderId", SearchOperator.eq, userId);
+                SearchFilter senderStateFilter = CustomConditionFactory.newCustomCondition("senderState", SearchOperator.eq, state);
+                SearchFilter and1 = CustomConditionFactory.and(senderFilter, senderStateFilter);
 
                 //receiver
-                SearchFilter receiverFilter = SearchFilterHelper.newCondition("receiverId", SearchOperator.eq, userId);
-                SearchFilter receiverStateFilter = SearchFilterHelper.newCondition("receiverState", SearchOperator.eq, state);
-                SearchFilter and2 = SearchFilterHelper.and(receiverFilter, receiverStateFilter);
+                SearchFilter receiverFilter = CustomConditionFactory.newCustomCondition("receiverId", SearchOperator.eq, userId);
+                SearchFilter receiverStateFilter = CustomConditionFactory.newCustomCondition("receiverState", SearchOperator.eq, state);
+                SearchFilter and2 = CustomConditionFactory.and(receiverFilter, receiverStateFilter);
 
                 searchable.or(and1, and2);
         }
@@ -93,7 +89,7 @@ public class MessageApiServiceImpl implements MessageApiService {
         return messageService.findBySeachableForPage(searchable);
     }
 
-    @Override
+
     public List<PersonalMessage> findAncestorsAndDescendants(PersonalMessage message) {
         Searchable searchable = Searchable.newSearchable();
 
@@ -103,14 +99,14 @@ public class MessageApiServiceImpl implements MessageApiService {
         //祖先 不为空 从祖先查起
         if (!StringUtils.isEmpty(message.getParentIds())) {
             String ancestorsId = message.getParentIds().split("/")[0];
-            filter = SearchFilterHelper.or(
-                    SearchFilterHelper.newCondition("parentIds", SearchOperator.prefixLike, ancestorsId + "/"),
-                    SearchFilterHelper.newCondition("id", SearchOperator.eq, ancestorsId)
+            filter = CustomConditionFactory.or(
+                    CustomConditionFactory.newCustomCondition("parentIds", SearchOperator.prefixLike, ancestorsId + "/"),
+                    CustomConditionFactory.newCustomCondition("id", SearchOperator.eq, ancestorsId)
             );
         } else {
             //祖先为空 查自己的后代
             String descendantsParentIds = message.makeSelfAsParentIds();
-            filter = SearchFilterHelper.newCondition("parentIds", SearchOperator.prefixLike, descendantsParentIds);
+            filter = CustomConditionFactory.newCustomCondition("parentIds", SearchOperator.prefixLike, descendantsParentIds);
         }
 
         searchable.addSearchFilter(filter);
@@ -170,7 +166,7 @@ public class MessageApiServiceImpl implements MessageApiService {
     }
 
 
-    @Override
+
     public void sendSystemMessage(Long[] receiverIds, PersonalMessage message) {
         message.setType(MessageType.system_message.getInfo());
 
@@ -196,7 +192,7 @@ public class MessageApiServiceImpl implements MessageApiService {
     }
 
     @Async
-    @Override
+
     public void sendSystemMessageToAllUser(PersonalMessage message) throws InvocationTargetException, IllegalAccessException {
         //TODO 变更实现策略 使用异步发送
 
@@ -232,36 +228,36 @@ public class MessageApiServiceImpl implements MessageApiService {
         sendSystemMessage(receiverIds.toArray(new Long[0]), message);
     }
 
-    @Override
+
     public void recycle(Long userId, Long messageId) {
         changeState(userId, messageId, MessageState.trash_box);
     }
 
-    @Override
+
     public void recycle(Long userId, Long[] messageIds) {
         for (Long messageId : messageIds) {
             recycle(userId, messageId);
         }
     }
 
-    @Override
+
     public void store(Long userId, Long messageId) {
         changeState(userId, messageId, MessageState.store_box);
     }
 
-    @Override
+
     public void store(Long userId, Long[] messageIds) {
         for (Long messageId : messageIds) {
             store(userId, messageId);
         }
     }
 
-    @Override
+
     public void delete(Long userId, Long messageId) {
         changeState(userId, messageId, MessageState.delete_box);
     }
 
-    @Override
+
     public void delete(Long userId, Long[] messageIds) {
         for (Long messageId : messageIds) {
             delete(userId, messageId);
@@ -290,7 +286,7 @@ public class MessageApiServiceImpl implements MessageApiService {
         messageService.saveOrUpdate(message);
     }
 
-    @Override
+
     public void clearBox(Long userId, MessageState state) {
         switch (state) {
             case draft_box:
@@ -314,27 +310,27 @@ public class MessageApiServiceImpl implements MessageApiService {
         }
     }
 
-    @Override
+
     public void clearDraftBox(Long userId) {
         clearBox(userId, MessageState.draft_box);
     }
 
-    @Override
+
     public void clearInBox(Long userId) {
         clearBox(userId, MessageState.in_box);
     }
 
-    @Override
+
     public void clearOutBox(Long userId) {
         clearBox(userId, MessageState.out_box);
     }
 
-    @Override
+
     public void clearStoreBox(Long userId) {
         clearBox(userId, MessageState.store_box);
     }
 
-    @Override
+
     public void clearTrashBox(Long userId) {
         clearBox(userId, MessageState.trash_box);
     }
@@ -356,13 +352,13 @@ public class MessageApiServiceImpl implements MessageApiService {
 
     }
 
-    @Override
+
     public Long countUnread(Long userId) {
         return messageService.countUnread(userId);
     }
 
 
-    @Override
+
     public void markRead(PersonalMessage message) {
         if (Boolean.TRUE.equals(message.getIsRead())) {
             return;
@@ -371,7 +367,7 @@ public class MessageApiServiceImpl implements MessageApiService {
         messageService.saveOrUpdate(message);
     }
 
-    @Override
+
     public void markReplied(PersonalMessage message) {
         if (Boolean.TRUE.equals(message.getIsReplied())) {
             return;
@@ -380,7 +376,7 @@ public class MessageApiServiceImpl implements MessageApiService {
         messageService.saveOrUpdate(message);
     }
 
-    @Override
+
     public void markRead(final Long userId, final Long[] ids) {
         messageService.markRead(userId, ids);
     }

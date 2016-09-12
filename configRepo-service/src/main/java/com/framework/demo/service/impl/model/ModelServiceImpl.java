@@ -22,7 +22,7 @@ public class ModelServiceImpl extends GenericSqlMapServiceImpl<Model, Integer> i
     @Resource(name = "modelDao")
     private ModelDao modelDao;
 
-    @Override
+
     public SqlMapDao<Model, Integer> getDao() {
         return modelDao;
     }

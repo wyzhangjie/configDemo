@@ -4,9 +4,10 @@
 
 package com.framework.demo.service.impl.menu;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.SearchOperator;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.SearchOperator;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import cn.vansky.framework.core.dao.SqlMapDao;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Sort;
 import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
 
 import javax.annotation.Resource;
@@ -29,7 +30,6 @@ import com.framework.demo.service.util.PageTempleteUtil;
 import com.google.common.collect.Lists;
 import org.apache.shiro.authz.permission.WildcardPermission;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -62,23 +62,23 @@ public class MenuServiceImpl extends GenericSqlMapServiceImpl<Menu, Integer> imp
 
     @Resource(name = "sysAuthService")
     SysAuthService sysAuthService;
-    @Override
+
     public SqlMapDao<Menu, Integer> getDao() {
         return menuDao;
     }
 
-    @Override
+
     public List<Menu> findAuthWrapper(Integer id) {
 
         return menuDao.findMenuByUserId(id);
     }
 
-    @Override
+
     public List<Menu> findNoFirestMenu() {
         return menuDao.findNoFirestMenu();
     }
 
-    @Override
+
     public int insert(Menu menu) {
       return  menuDao.insert(menu);
 
@@ -87,12 +87,12 @@ public class MenuServiceImpl extends GenericSqlMapServiceImpl<Menu, Integer> imp
         return menuDao.selectIdByName(name);
     }
 
-    @Override
+
     public String findId(String name) {
         return menuDao.findById(name);
     }
 
-    @Override
+
     public int updateByPrimaryKey(Menu menu) {
       return    menuDao.updateById(menu);
     }
@@ -123,17 +123,17 @@ public class MenuServiceImpl extends GenericSqlMapServiceImpl<Menu, Integer> imp
         return insert(menu);
     }
 
-    @Override
+
     public int getResult4(SysTemplColr sysTemplColr, String id) {
         return 0;
     }
 
-    @Override
+
     public int getResult3(Menu menu, String id, String path) {
         return 0;
     }
 
-    @Override
+
     public  int insertPageInfoForJq(PageTemplete pageTemplete, SysTemplColr sysTemplColr) {
         Menu menu = findMenu(pageTemplete);
         int result1 = insertResult1(menu);
@@ -191,7 +191,7 @@ public class MenuServiceImpl extends GenericSqlMapServiceImpl<Menu, Integer> imp
         return menu;
     }
 
-    @Override
+
     public int insertPageInfoForDatagrid(EasyuiDatagrid easyuiDatagrid) {
         try {
 
@@ -212,7 +212,7 @@ public class MenuServiceImpl extends GenericSqlMapServiceImpl<Menu, Integer> imp
         }
         return 1;
     }
-    @Override
+
     public  List<Menu> findAuthSource(SysUser user) throws InvocationTargetException, IllegalAccessException {
         List<Menu> allList = new ArrayList<Menu>();
         if("root".equalsIgnoreCase(user.getUsername())){

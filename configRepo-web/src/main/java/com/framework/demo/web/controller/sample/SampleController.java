@@ -6,7 +6,7 @@
 package com.framework.demo.web.controller.sample;
 
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.enums.BooleanEnum;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.BooleanEnum;
 import com.framework.demo.bo.showcaseSample.ShowcaseSample;
 import com.framework.demo.enm.Sex;
 import com.framework.demo.service.samplecaseSample.ShowcaseSampleService;
@@ -44,7 +44,7 @@ public class SampleController extends BaseCRUDController<ShowcaseSample, Long> {
         setResourceIdentity("showcase:sample");
     }
 
-    @Override
+
     protected void setCommonData(Model model) {
         model.addAttribute("sexList", Sex.values());
         model.addAttribute("booleanList", BooleanEnum.values());
@@ -57,7 +57,7 @@ public class SampleController extends BaseCRUDController<ShowcaseSample, Long> {
      * @param result
      * @return
      */
-    @Override
+
     protected boolean hasError(ShowcaseSample m, BindingResult result) {
         Assert.notNull(m);
 

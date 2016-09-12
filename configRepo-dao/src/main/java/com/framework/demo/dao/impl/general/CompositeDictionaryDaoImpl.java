@@ -25,18 +25,18 @@ public class CompositeDictionaryDaoImpl extends ConfigurableBaseSqlMapDao<Compos
     @Autowired
     private CompositeDictionaryMapper compositeDictionaryMapper;
 
-    @Override
+
     public DaoMapper<CompositeDictionary, Long> getDaoMapper() {
         return compositeDictionaryMapper;
     }
 
     @Resource(name = "sqlSessionFactory")
-    @Override
+
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         setSqlSessionFactoryInternal(sqlSessionFactory);
     }
 
-    @Override
+
     public List<CompositeDictionary> findByParams(Map<String, Object> params) {
         return compositeDictionaryMapper.findByParams(params);
     }

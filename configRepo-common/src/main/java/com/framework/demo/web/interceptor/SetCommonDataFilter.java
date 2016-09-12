@@ -30,7 +30,6 @@ public class SetCommonDataFilter extends BaseFilter {
 
     private SetCommonDataInterceptor setCommonDataInterceptor = new SetCommonDataInterceptor();
 
-    @Override
     public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         try {
             //使用Filter时 文件上传时 getParameter时为null 所以改成Interceptor
@@ -41,7 +40,6 @@ public class SetCommonDataFilter extends BaseFilter {
         chain.doFilter(request, response);
     }
 
-    @Override
     public boolean isLoggable(LogRecord record) {
         return false;
     }

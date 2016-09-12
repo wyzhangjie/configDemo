@@ -49,7 +49,7 @@ public class OnlineSessionDAO extends EnterpriseCacheSessionDAO {
         this.dbSyncPeriod = dbSyncPeriod;
     }
 
-    @Override
+
     protected Session doReadSession(Serializable sessionId) {
         SysUserOnline userOnline = userOnlineService.findOne(String.valueOf(sessionId));
         if (userOnline == null) {
@@ -103,7 +103,7 @@ public class OnlineSessionDAO extends EnterpriseCacheSessionDAO {
      *
      * @param session
      */
-    @Override
+
     protected void doDelete(Session session) {
         OnlineSession onlineSession = (OnlineSession) session;
         //定时任务删除的此时就不删除了

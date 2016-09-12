@@ -27,28 +27,28 @@ public class MenuDaoImpl extends ConfigurableBaseSqlMapDao<Menu, Integer> implem
     @Autowired
     private MenuMapper menuMapper;
 
-    @Override
+
     public DaoMapper<Menu, Integer> getDaoMapper() {
         return menuMapper;
     }
 
     @Resource(name = "sqlSessionFactory")
-    @Override
+
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         setSqlSessionFactoryInternal(sqlSessionFactory);
     }
 
-    @Override
+
     public List<Menu> findMenuByUserId(Integer id) {
         return menuMapper.findMenuByUserId(id);
     }
 
-    @Override
+
     public List<Menu> findNoFirestMenu() {
         return menuMapper.findNoFirestMenu();
     }
 
-    @Override
+
     public int insert(Menu menu) {
         return menuMapper.insert(menu);
     }
@@ -57,17 +57,17 @@ public class MenuDaoImpl extends ConfigurableBaseSqlMapDao<Menu, Integer> implem
         return menuMapper.selectIdByName(name);
     }
 
-    @Override
+
     public String findById(String name) {
         return menuMapper.findById(name);
     }
 
-    @Override
+
     public int updateByPrimaryKey(Menu menu) {
         return menuMapper.updateByPrimaryKey(menu);
     }
 
-    @Override
+
     public int updateById(Menu menu) {
         return menuMapper.updateById(menu);
     }

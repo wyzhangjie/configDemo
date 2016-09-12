@@ -5,12 +5,13 @@
  */
 package com.framework.demo.web.bind.method.annotation;
 
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.PageRequest;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Pageable;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Sort;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.MethodParameter;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -123,12 +124,10 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
         this.sortPrefix = null == sortPrefix ? DEFAULT_SORT_PREFIX : sortPrefix;
     }
 
-    @Override
     public boolean supportsParameter(MethodParameter parameter) {
         return Pageable.class.isAssignableFrom(parameter.getParameterType());
     }
 
-    @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
 
         PageableDefaults pageableDefaults = getPageableDefaults(parameter);
@@ -424,7 +423,6 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
             this.order = order;
         }
 
-        @Override
         public int compareTo(OrderedSort o) {
             if (o == null) {
                 return -1;

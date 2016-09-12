@@ -25,23 +25,19 @@ public class SysRoleResourcePermissionDaoImpl extends ConfigurableBaseSqlMapDao<
     @Autowired
     private SysRoleResourcePermissionMapper sysRoleResourcePermissionMapper;
 
-    @Override
     public DaoMapper<SysRoleResourcePermission, Long> getDaoMapper() {
         return sysRoleResourcePermissionMapper;
     }
 
     @Resource(name = "sqlSessionFactory")
-    @Override
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         setSqlSessionFactoryInternal(sqlSessionFactory);
     }
 
-    @Override
     public SysRoleResourcePermission findByRoleId(Long roleId) {
         return sysRoleResourcePermissionMapper.findByRoleId(roleId);
     }
 
-    @Override
     public List<SysRoleResourcePermission> findByRoleIds(Long id) {
         return sysRoleResourcePermissionMapper.findByRoleIds(id);
     }

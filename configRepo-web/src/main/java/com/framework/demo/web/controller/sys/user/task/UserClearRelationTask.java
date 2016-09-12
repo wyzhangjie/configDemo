@@ -5,6 +5,9 @@
  */
 package com.framework.demo.web.controller.sys.user.task;
 
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Page;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.PageRequest;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Pageable;
 import com.framework.demo.bo.sysUser.SysUser;
 import com.framework.demo.service.sys.sysJob.service.SysJobService;
 import com.framework.demo.service.sys.sysOrganization.service.SysOrganizationService;
@@ -14,9 +17,6 @@ import com.framework.demo.service.sysuser.SysUserService;
 import com.framework.demo.sys.sysUserOrganizationJob.bo.SysUserOrganizationJob;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.framework.demo.utils.LogUtils;
 

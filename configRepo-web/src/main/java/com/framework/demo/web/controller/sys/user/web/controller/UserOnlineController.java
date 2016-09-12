@@ -6,7 +6,7 @@
 package com.framework.demo.web.controller.sys.user.web.controller;
 
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import com.framework.demo.sys.sysUserOnline.bo.SysUserOnline;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.UnauthorizedException;
@@ -36,7 +36,7 @@ public class UserOnlineController extends BaseCRUDController<SysUserOnline, Stri
     }
 
 
-    @Override
+
     public String list(Searchable searchable, Model model) {
         if (!SecurityUtils.getSubject().isPermitted("sys:userOnline:view or monitor:userOnline:view")) {
             throw new UnauthorizedException(MessageUtils.message("no.view.permission", "sys:userOnline:view或monitor:userOnline:view"));

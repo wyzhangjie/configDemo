@@ -24,13 +24,13 @@ public class SysRoleMenuDaoImpl extends ConfigurableBaseSqlMapDao<SysRoleMenu, I
     @Autowired
     private SysRoleMenuMapper sysRoleMenuMapper;
 
-    @Override
+
     public DaoMapper<SysRoleMenu, Integer> getDaoMapper() {
         return sysRoleMenuMapper;
     }
 
     @Resource(name = "sqlSessionFactory")
-    @Override
+
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         setSqlSessionFactoryInternal(sqlSessionFactory);
     }

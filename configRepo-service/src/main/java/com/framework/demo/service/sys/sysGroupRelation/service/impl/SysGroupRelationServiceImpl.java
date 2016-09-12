@@ -22,7 +22,7 @@ public class SysGroupRelationServiceImpl extends GenericSqlMapServiceImpl<SysGro
     @Resource(name = "sysGroupRelationDao")
     private SysGroupRelationDao sysGroupRelationDao;
 
-    @Override
+
     public SqlMapDao<SysGroupRelation, Long> getDao() {
         return sysGroupRelationDao;
     }

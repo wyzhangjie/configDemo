@@ -133,7 +133,7 @@ public class SpringSessionValidationScheduler implements SessionValidationSchedu
             trigger.setInitialDelay(sessionValidationInterval);
 
             scheduler.schedule(new Runnable() {
-                @Override
+
                 public void run() {
                     if(enabled) {
                         sessionManager.validateSessions();

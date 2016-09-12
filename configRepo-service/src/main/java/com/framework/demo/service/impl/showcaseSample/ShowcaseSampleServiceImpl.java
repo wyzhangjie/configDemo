@@ -21,12 +21,12 @@ public class ShowcaseSampleServiceImpl extends GenericSqlMapServiceImpl<Showcase
     @Resource(name = "showcaseSampleDao")
     private ShowcaseSampleDao showcaseSampleDao;
 
-    @Override
+
     public SqlMapDao<ShowcaseSample, Long> getDao() {
         return showcaseSampleDao;
     }
 
-    @Override
+
     public ShowcaseSample findByName(String fieldValue) {
         return showcaseSampleDao.findByName(fieldValue);
     }

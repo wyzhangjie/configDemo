@@ -6,48 +6,49 @@
 package com.framework.demo.web.controller.sys.resource.web.controller;
 
 
-import cn.vansky.framework.common.entity.search.Searchable;
 import cn.vansky.framework.core.dao.FieldAccessVo;
-import com.sun.xml.internal.bind.v2.model.core.ID;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
+import cn.vansky.framework.core.service.GenericService;
+import com.framework.demo.service.showcaseMoveable.ShowcaseMoveableService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import plugin.entity.Movable;
-import utils.MessageUtils;
-import web.bind.annotation.PageableDefaults;
-import web.controller.BaseCRUDController;
-import web.validate.AjaxResponse;
+import com.framework.demo.utils.MessageUtils;
+import com.framework.demo.web.bind.annotation.PageableDefaults;
+import com.framework.demo.web.controller.BaseCRUDController;
+import com.framework.demo.web.validate.AjaxResponse;
 
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * <p>User: hyssop
  * <p>Date: 13-2-22 下午4:15
  * <p>Version: 1.0
  */
-public abstract class BaseMovableController<M , ID > extends  BaseCRUDController{
+public abstract class BaseMovableController<M  extends FieldAccessVo, ID  extends Serializable > extends BaseCRUDController{
+    protected GenericService<M, ID > baseService;
 
-    protected ShowcaseMoveableService<M, ID> getMovableService() {
-        return (ShowcaseMoveableService<M, ID>) baseService;
+    private ShowcaseMoveableService getMovableService() {
+        return (ShowcaseMoveableService) baseService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
     @PageableDefaults(value = 10, sort = "weight=desc")
-    @Override
+
     public String list(Searchable searchable, Model model) {
         return super.list(searchable, model);
     }
 
     @RequestMapping(value = "{fromId}/{toId}/up")
     @ResponseBody
-    public AjaxResponse up(@PathVariable("fromId") ID fromId, @PathVariable("toId") ID toId) {
+    public AjaxResponse up(@PathVariable("fromId") Long fromId, @PathVariable("toId") Long toId) throws Exception {
 
         if (this.permissionList != null) {
             this.permissionList.assertHasEditPermission();
         }
-
         AjaxResponse ajaxResponse = new AjaxResponse("移动位置成功");
         try {
             getMovableService().up(fromId, toId);
@@ -60,9 +61,7 @@ public abstract class BaseMovableController<M , ID > extends  BaseCRUDController
 
     @RequestMapping(value = "{fromId}/{toId}/down")
     @ResponseBody
-    public AjaxResponse down(@PathVariable("fromId") ID fromId, @PathVariable("toId") ID toId) {
-
-
+    public AjaxResponse down(@PathVariable("fromId") Long fromId, @PathVariable("toId") Long toId) throws Exception {
         if (this.permissionList != null) {
             this.permissionList.assertHasEditPermission();
         }
@@ -79,7 +78,7 @@ public abstract class BaseMovableController<M , ID > extends  BaseCRUDController
 
     @RequestMapping(value = "reweight")
     @ResponseBody
-    public AjaxResponse reweight() {
+    public AjaxResponse reweight() throws InvocationTargetException, IllegalAccessException {
 
         if (this.permissionList != null) {
             this.permissionList.assertHasEditPermission();

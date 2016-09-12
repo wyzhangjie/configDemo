@@ -17,4 +17,10 @@ public interface SysAuthService extends GenericService<SysAuth, Long> {
     Set<String> findStringRoles(SysUser user);
 
     Set<String> findStringPermissions(SysUser user);
+
+    void addUserAuth(Long[] userIds, SysAuth m);
+
+    void addGroupAuth(Long[] groupIds, SysAuth m);
+
+    void addOrganizationJobAuth(Long[] organizationIds, Long[][] jobIds, SysAuth m);
 }

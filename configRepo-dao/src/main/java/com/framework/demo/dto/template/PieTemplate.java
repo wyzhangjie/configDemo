@@ -30,7 +30,6 @@ public class PieTemplate<T> extends BaseDataTemplate {
         return dataVelodity;
     }
 
-    @Override
     protected void fillSeriesForConfig(OutputParams outputParams) throws Exception {
         for(int i=0;i<outputParams.getData().size();i++ ){
             PieSeries pieSeries=new PieSeries();
@@ -56,7 +55,6 @@ public class PieTemplate<T> extends BaseDataTemplate {
             }
         }
     }
-    @Override
     protected void fillCategoryList(OutputParams outputParams, List<String> categoryList) {
         //填充横坐标  categoryList
         for (int i=0;i<outputParams.getData().size();i++){
@@ -72,7 +70,6 @@ public class PieTemplate<T> extends BaseDataTemplate {
         }
     }
 
-    @Override
     protected void fillLegendListForConfig(OutputParams outputParams) throws Exception {
         for(int i=0;i<outputParams.getData().size();i++){
             fillPieLegendForConfig((Map)outputParams.getData().get(i),outputParams.getLegend(),legendList);

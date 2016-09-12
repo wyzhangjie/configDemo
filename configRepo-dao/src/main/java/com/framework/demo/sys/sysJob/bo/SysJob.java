@@ -6,20 +6,19 @@ package com.framework.demo.sys.sysJob.bo;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
-import com.framework.demo.plugin.entity.Treeable;
 
 /**
  * This class corresponds to the database table `sys_job`
  */
 
 @Component("sysJob")
-public class SysJob extends SysJobBase implements Treeable<Long> {
-    @Override
+public class SysJob extends SysJobBase {
+
     public String makeSelfAsNewParentIds() {
         return getParentIds() + getId() + getSeparator();
     }
 
-    @Override
+
     public String getSeparator() {
         return "/";
     }
@@ -49,13 +48,13 @@ public class SysJob extends SysJobBase implements Treeable<Long> {
        super.setIcon(icon);
     }
 
-    @Override
+
     public void setParentId(Long parentId) {
         super.setParentId(parentId);
     }
 
 
-    @Override
+
     public boolean isRoot() {
         if (getParentId() != null && getParentId() == 0) {
             return true;
@@ -64,7 +63,7 @@ public class SysJob extends SysJobBase implements Treeable<Long> {
     }
 
 
-    @Override
+
     public boolean isLeaf() {
         if (isRoot()) {
             return false;
@@ -95,9 +94,9 @@ public class SysJob extends SysJobBase implements Treeable<Long> {
      *
      * @return
      */
-    @Override
+
     public String getRootDefaultIcon() {
-        return "ztree_root_open";
+        return "SimpleZtree_root_open";
     }
 
     /**
@@ -105,9 +104,9 @@ public class SysJob extends SysJobBase implements Treeable<Long> {
      *
      * @return
      */
-    @Override
+
     public String getBranchDefaultIcon() {
-        return "ztree_branch";
+        return "SimpleZtree_branch";
     }
 
     /**
@@ -115,8 +114,8 @@ public class SysJob extends SysJobBase implements Treeable<Long> {
      *
      * @return
      */
-    @Override
+
     public String getLeafDefaultIcon() {
-        return "ztree_leaf";
+        return "SimpleZtree_leaf";
     }
 }

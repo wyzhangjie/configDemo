@@ -23,13 +23,13 @@ public class SysUserOnlineDaoImpl extends ConfigurableBaseSqlMapDao<SysUserOnlin
     @Autowired
     private SysUserOnlineMapper sysUserOnlineMapper;
 
-    @Override
+
     public DaoMapper<SysUserOnline, String> getDaoMapper() {
         return sysUserOnlineMapper;
     }
 
     @Resource(name = "sqlSessionFactory")
-    @Override
+
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         setSqlSessionFactoryInternal(sqlSessionFactory);
     }

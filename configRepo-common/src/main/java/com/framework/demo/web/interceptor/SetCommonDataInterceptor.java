@@ -46,7 +46,6 @@ public class SetCommonDataInterceptor extends HandlerInterceptorAdapter {
         this.excludeUrlPatterns = excludeUrlPatterns;
     }
 
-    @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         if(isExclude(request)) {

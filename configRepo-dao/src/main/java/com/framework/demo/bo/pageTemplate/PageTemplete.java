@@ -161,22 +161,22 @@ public class PageTemplete extends PageTempleteBase {
         this.seriesListName1 = seriesListName1;
     }
 
-    @Override
+
     public String getPmenuName() {
         return pmenuName;
     }
 
-    @Override
+
     public void setPmenuName(String pmenuName) {
         this.pmenuName = pmenuName;
     }
 
-    @Override
+
     public String getMenuName() {
         return menuName;
     }
 
-    @Override
+
     public void setMenuName(String menuName) {
         this.menuName = menuName;
     }
@@ -529,12 +529,12 @@ public class PageTemplete extends PageTempleteBase {
         this.iscollect = iscollect;
     }
 
-    @Override
+
     public String getMultime() {
         return multime;
     }
 
-    @Override
+
     public void setMultime(String multime) {
         this.multime = multime;
     }
@@ -576,12 +576,12 @@ public class PageTemplete extends PageTempleteBase {
     }
 
 
-    @Override
+
     public String getYaxisNames() {
         return yaxisNames;
     }
 
-    @Override
+
     public void setYaxisNames(String yaxisNames) {
         this.yaxisNames = yaxisNames;
     }

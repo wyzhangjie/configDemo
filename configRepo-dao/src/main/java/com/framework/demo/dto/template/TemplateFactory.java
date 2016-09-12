@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class TemplateFactory extends AbstractTemplateFactory {
     Logger logger = LoggerFactory.getLogger(AreaTemplate.class);
 
-    @Override
+
     public <T extends DataTemplate> T createTemplate(Class<T> c) {
         DataTemplate template =null;
         try{

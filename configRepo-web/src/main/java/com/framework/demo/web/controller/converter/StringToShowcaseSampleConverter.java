@@ -14,7 +14,7 @@ import org.springframework.core.convert.converter.Converter;
  */
 public class StringToShowcaseSampleConverter implements Converter<String,ShowcaseSample> {
 
-    @Override
+
     public ShowcaseSample convert(String source) {
         ShowcaseSample showcaseSample = new ShowcaseSample();
         BeanWrapper beanWrapper = new BeanWrapperImpl(showcaseSample);

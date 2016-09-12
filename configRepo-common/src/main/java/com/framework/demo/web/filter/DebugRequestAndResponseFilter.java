@@ -28,7 +28,6 @@ import java.util.logging.LogRecord;
 public final class DebugRequestAndResponseFilter extends BaseFilter {
     private static final Logger log = LoggerFactory.getLogger("debugRequest");
 
-    @Override
     public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
 
         if (log.isDebugEnabled()) {
@@ -95,7 +94,6 @@ public final class DebugRequestAndResponseFilter extends BaseFilter {
         log.debug("=====================response   end==========================");
     }
 
-    @Override
     public boolean isLoggable(LogRecord record) {
         return false;
     }

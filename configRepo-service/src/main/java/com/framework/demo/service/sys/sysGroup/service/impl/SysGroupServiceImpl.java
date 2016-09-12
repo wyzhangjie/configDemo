@@ -4,8 +4,8 @@
 
 package com.framework.demo.service.sys.sysGroup.service.impl;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.SearchOperator;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.SearchOperator;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import cn.vansky.framework.core.dao.SqlMapDao;
 import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
 import javax.annotation.Resource;
@@ -38,7 +38,7 @@ public class SysGroupServiceImpl extends GenericSqlMapServiceImpl<SysGroup, Long
                 Lists.transform(
                         findBySearchable(searchable).getContent(),
                         new Function<SysGroup, Map<String, Object>>() {
-                            @Override
+
                             public Map<String, Object> apply(SysGroup input) {
                                 Map<String, Object> data = Maps.newHashMap();
                                 data.put("label", input.getName());
@@ -51,7 +51,7 @@ public class SysGroupServiceImpl extends GenericSqlMapServiceImpl<SysGroup, Long
     }
 
 
-    @Override
+
     public SqlMapDao<SysGroup, Long> getDao() {
         return sysGroupDao;
     }

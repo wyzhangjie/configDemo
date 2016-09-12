@@ -23,13 +23,13 @@ public class SysGroupDaoImpl extends ConfigurableBaseSqlMapDao<SysGroup, Long> i
     @Autowired
     private SysGroupMapper sysGroupMapper;
 
-    @Override
+
     public DaoMapper<SysGroup, Long> getDaoMapper() {
         return sysGroupMapper;
     }
 
     @Resource(name = "sqlSessionFactory")
-    @Override
+
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         setSqlSessionFactoryInternal(sqlSessionFactory);
     }

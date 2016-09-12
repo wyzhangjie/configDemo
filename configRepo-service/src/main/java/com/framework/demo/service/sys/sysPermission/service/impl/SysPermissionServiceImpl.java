@@ -21,17 +21,17 @@ public class SysPermissionServiceImpl extends GenericSqlMapServiceImpl<SysPermis
     @Resource(name = "sysPermissionDao")
     private SysPermissionDao sysPermissionDao;
 
-    @Override
+
     public SqlMapDao<SysPermission, Long> getDao() {
         return sysPermissionDao;
     }
 
-    @Override
+
     public void createPermission(SysPermission s) {
          sysPermissionDao.save(s);
     }
 
-    @Override
+
     public void deletePermission(Long permissionId) {
         sysPermissionDao.delete(permissionId);
     }

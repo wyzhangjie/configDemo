@@ -48,7 +48,7 @@ public class OnlineSessionFilter extends AccessControlFilter {
         this.onlineSessionDAO = onlineSessionDAO;
     }
 
-    @Override
+
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
         Subject subject = getSubject(request, response);
         if (subject == null || subject.getSession() == null) {
@@ -77,7 +77,7 @@ public class OnlineSessionFilter extends AccessControlFilter {
     }
 
 
-    @Override
+
     protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
         Subject subject = getSubject(request, response);
         if (subject != null) {

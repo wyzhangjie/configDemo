@@ -24,23 +24,23 @@ public class EasyuiDatagridDaoImpl extends ConfigurableBaseSqlMapDao<EasyuiDatag
     @Autowired
     private EasyuiDatagridMapper easyuiDatagridMapper;
 
-    @Override
+
     public DaoMapper<EasyuiDatagrid, Integer> getDaoMapper() {
         return easyuiDatagridMapper;
     }
 
     @Resource(name = "sqlSessionFactory")
-    @Override
+
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         setSqlSessionFactoryInternal(sqlSessionFactory);
     }
 
-    @Override
+
     public void insert(EasyuiDatagrid easyuiDatagrid) {
         easyuiDatagridMapper.insert(easyuiDatagrid);
     }
 
-    @Override
+
     public EasyuiDatagrid findByModel(int modl) {
         return easyuiDatagridMapper.findByModel(modl);
     }

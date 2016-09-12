@@ -13,7 +13,7 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 public class StringToDateConverter implements Converter<String, Date> {
-    @Override
+
     public Date convert(String source) {
         String former = "yyyy-MM-dd HH:mm:ss";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(former);

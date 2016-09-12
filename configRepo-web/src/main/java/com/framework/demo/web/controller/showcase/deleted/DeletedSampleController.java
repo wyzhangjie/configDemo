@@ -5,7 +5,7 @@
  */
 package com.framework.demo.web.controller.showcase.deleted;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.enums.BooleanEnum;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.BooleanEnum;
 import com.framework.demo.bo.showcaseSample.ShowcaseSample;
 
 import com.framework.demo.enm.Sex;
@@ -46,7 +46,7 @@ public class DeletedSampleController extends BaseCRUDController<ShowcaseSample, 
         setResourceIdentity("showcase:deleted");
     }
 
-    @Override
+
     protected void setCommonData(Model model) {
         super.setCommonData(model);
         model.addAttribute("sexList", Sex.values());
@@ -59,10 +59,9 @@ public class DeletedSampleController extends BaseCRUDController<ShowcaseSample, 
      * @param result
      * @return
      */
-    @Override
+
     protected boolean hasError(ShowcaseSample m, BindingResult result) {
         Assert.notNull(m);
-
         //字段错误 前台使用<es:showFieldError commandName="showcase/sample"/> 显示
         try {
             if (m.getBirthday() != null && dateFormat.parse(m.getBirthday()).after(new Date())) {
@@ -72,12 +71,10 @@ public class DeletedSampleController extends BaseCRUDController<ShowcaseSample, 
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
         //全局错误 前台使用<es:showGlobalError commandName="showcase/sample"/> 显示
         if (m.getName().contains("admin")) {
             result.reject("name.must.not.admin");
         }
-
         return result.hasErrors();
     }
 

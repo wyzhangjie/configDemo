@@ -11,27 +11,27 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
  * To change this template use File | Settings | File Templates.
  */
 public class MyFilterFactoryBean implements FactoryBean, BeanPostProcessor {
-    @Override
+
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         return null;
     }
 
-    @Override
+
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         return null;
     }
 
-    @Override
+
     public Object getObject() throws Exception {
         return new MyBean();
     }
 
-    @Override
+
     public Class<?> getObjectType() {
         return null;
     }
 
-    @Override
+
     public boolean isSingleton() {
         return true;
     }

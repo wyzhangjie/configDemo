@@ -61,7 +61,7 @@
 
 </update>
 
-    <select id="findBySearchable"   parameterType="org.springframework.data.domain.Sort" resultMap="BaseResultMap">
+    <select id="findBySearchable"   parameterType="cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Sort" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from menu where 1=1

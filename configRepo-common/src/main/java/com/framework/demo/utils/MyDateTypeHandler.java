@@ -22,12 +22,10 @@ public class MyDateTypeHandler implements TypeHandler<String> {
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    @Override
     public void setParameter(java.sql.PreparedStatement ps, int i, String parameter, JdbcType jdbcType) throws SQLException {
         ps.setString(i, String.valueOf(parameter));
     }
 
-    @Override
     public String getResult(ResultSet rs, String columnName) throws SQLException {
          String sqlTimestamp = rs.getString(columnName);
         if (sqlTimestamp != null) {
@@ -40,7 +38,6 @@ public class MyDateTypeHandler implements TypeHandler<String> {
         return null;
     }
 
-    @Override
     public String getResult(ResultSet rs, int columnIndex) throws SQLException {
         Date sqlTimestamp = rs.getDate(columnIndex);
 
@@ -54,7 +51,6 @@ public class MyDateTypeHandler implements TypeHandler<String> {
         return null;
     }
 
-    @Override
     public String getResult(java.sql.CallableStatement cs, int columnIndex) throws SQLException {
         String sqlTimestamp = cs.getString(columnIndex);
         if (sqlTimestamp != null) {

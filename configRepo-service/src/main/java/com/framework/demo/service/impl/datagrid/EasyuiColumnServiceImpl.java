@@ -24,17 +24,17 @@ public class EasyuiColumnServiceImpl extends GenericSqlMapServiceImpl<EasyuiColu
     @Resource(name = "easyuiColumnDao")
     private EasyuiColumnDao easyuiColumnDao;
 
-    @Override
+
     public SqlMapDao<EasyuiColumn, Integer> getDao() {
         return easyuiColumnDao;
     }
 
-    @Override
+
     public void insertBatch(List<EasyuiColumn> columns) {
         easyuiColumnDao.insertBatch(columns);
     }
 
-    @Override
+
     public List<EasyuiColumn> findByModel(int modl) {
         return easyuiColumnDao.findByModel(modl);
     }

@@ -26,10 +26,10 @@ public class TeamNameKvHandler extends DefaultKvHandler {
         this.kvDao = kvDao;
     }
 
-    @Override
+
     protected void setupTemplates() {
         this.fn = new Function<Map<String, Object>, List<Map<String, Object>>>() {
-            @Override
+
             public List<Map<String, Object>> apply(Map<String, Object> input) {
                 List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
                 String sql = "select team_name, id from tb_team where team_name = :team_name";

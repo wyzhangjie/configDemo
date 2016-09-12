@@ -5,7 +5,7 @@
  */
 package com.framework.demo.web.controller.calendar;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import com.framework.demo.bo.personalCalendar.PersonalCalendar;
 import com.framework.demo.bo.sysUser.SysUser;
 import com.framework.demo.service.personalCalendar.PersonalCalendarService;
@@ -58,7 +58,7 @@ public class CalendarController extends BaseController<PersonalCalendar, Long> {
         List<PersonalCalendar> calendarList = calendarService.findAllWithNoPageNoSort(searchable);
 
         return Lists.<PersonalCalendar, Map>transform(calendarList, new Function<PersonalCalendar, Map>() {
-            @Override
+
             public Map apply(PersonalCalendar c) {
                 Map<String, Object> m = Maps.newHashMap();
 

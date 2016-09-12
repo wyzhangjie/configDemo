@@ -23,7 +23,6 @@ public class RadioButtonsTag extends org.springframework.web.servlet.tags.form.R
 
     private BindStatus bindStatus = null;
 
-    @Override
     protected BindStatus getBindStatus() throws JspException {
         if (this.bindStatus == null) {
             this.bindStatus = SearchBindStatus.create(pageContext, getName(), getRequestContext(), false);
@@ -31,13 +30,10 @@ public class RadioButtonsTag extends org.springframework.web.servlet.tags.form.R
         return this.bindStatus;
     }
 
-    @Override
     protected String getPropertyPath() throws JspException {
         return getPath();
     }
 
-
-    @Override
     public void doFinally() {
         super.doFinally();
         this.bindStatus = null;

@@ -15,5 +15,5 @@ import java.util.Set;
  */
 @SqlMapper
 public interface SysRoleMapper extends DaoMapper<SysRole, Long> {
-    SysRole findByUserId(Long id);
+    Set<SysRole> findByUserId(Long id);
 }

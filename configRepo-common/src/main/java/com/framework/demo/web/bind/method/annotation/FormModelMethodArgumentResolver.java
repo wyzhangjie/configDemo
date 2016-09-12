@@ -56,7 +56,6 @@ public class FormModelMethodArgumentResolver extends BaseMethodArgumentResolver 
     public FormModelMethodArgumentResolver() {
     }
 
-    @Override
     public boolean supportsParameter(MethodParameter parameter) {
         if (parameter.hasParameterAnnotation(FormModel.class)) {
             return true;
@@ -542,42 +541,34 @@ public class FormModelMethodArgumentResolver extends BaseMethodArgumentResolver 
             this.delegate = delegate;
         }
 
-        @Override
         public String getName() {
             return name;
         }
 
-        @Override
         public String getOriginalFilename() {
             return delegate.getOriginalFilename();
         }
 
-        @Override
         public String getContentType() {
             return delegate.getContentType();
         }
 
-        @Override
         public boolean isEmpty() {
             return delegate.isEmpty();
         }
 
-        @Override
         public long getSize() {
             return delegate.getSize();
         }
 
-        @Override
         public byte[] getBytes() throws IOException {
             return delegate.getBytes();
         }
 
-        @Override
         public InputStream getInputStream() throws IOException {
             return delegate.getInputStream();
         }
 
-        @Override
         public void transferTo(File dest) throws IOException, IllegalStateException {
             delegate.transferTo(dest);
         }

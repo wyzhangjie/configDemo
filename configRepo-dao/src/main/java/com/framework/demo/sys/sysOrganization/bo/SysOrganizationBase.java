@@ -8,11 +8,12 @@ import cn.vansky.framework.core.dao.FieldAccessVo;
 import cn.vansky.framework.core.dao.TableDataConvertable;
 import cn.vansky.framework.core.dao.annotation.ColumnDescription;
 import cn.vansky.framework.core.dao.annotation.Id;
+import cn.vansky.framework.tree.bo.Treeable;
 
 /**
  * This class corresponds to the database table `sys_organization`
  */
-public abstract class SysOrganizationBase extends FieldAccessVo implements TableDataConvertable {
+public abstract class SysOrganizationBase extends Treeable<Long> implements TableDataConvertable {
     /**
      * This field corresponds to the database column `sys_organization`.id
      */

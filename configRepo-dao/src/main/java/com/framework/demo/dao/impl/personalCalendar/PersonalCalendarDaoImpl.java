@@ -8,7 +8,7 @@ import cn.vansky.framework.core.dao.ConfigurableBaseSqlMapDao;
 import cn.vansky.framework.core.dao.DaoMapper;
 import javax.annotation.Resource;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import com.framework.demo.bo.personalCalendar.PersonalCalendar;
 import com.framework.demo.dao.personalCalendar.PersonalCalendarDao;
 import com.framework.demo.dao.personalCalendar.PersonalCalendarMapper;
@@ -37,7 +37,6 @@ public class PersonalCalendarDaoImpl extends ConfigurableBaseSqlMapDao<PersonalC
         setSqlSessionFactoryInternal(sqlSessionFactory);
     }
 
-    @Override
     public Object countRecentlyCalendar(Long userId, int i) {
         Date nowDate = new Date();
         Date nowTime = new Time(nowDate.getHours(), nowDate.getMinutes(), nowDate.getSeconds());
@@ -48,7 +47,6 @@ public class PersonalCalendarDaoImpl extends ConfigurableBaseSqlMapDao<PersonalC
         return personalCalendarMapper.countRecentlyCalendar(userId, nowDate, nowTime, i);
     }
 
-    @Override
     public List<PersonalCalendar> findAllWithNoPageNoSort(Searchable searchable) {
         return personalCalendarMapper.findAllWithNoPageNoSort(searchable);
     }

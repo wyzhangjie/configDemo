@@ -51,7 +51,6 @@ public class ExceptionResponse {
         this.stackTrace = stackTrace;
     }
 
-    @Override
     public String toString() {
         return "ExceptionResponse{" +
                 "exception='" + exception + '\'' +

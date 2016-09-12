@@ -60,7 +60,7 @@ public class PushService {
     public DeferredResult newDeferredResult(final Long userId) {
         final DeferredResult<Object> deferredResult = new DeferredResult<Object>();
         deferredResult.onCompletion(new Runnable() {
-            @Override
+
             public void run() {
                 Queue<DeferredResult<Object>> queue = userIdToDeferredResultMap.get(userId);
                 if(queue != null) {
@@ -70,7 +70,7 @@ public class PushService {
             }
         });
         deferredResult.onTimeout(new Runnable() {
-            @Override
+
             public void run() {
                 deferredResult.setErrorResult("");
             }
