@@ -5,8 +5,7 @@
  */
 package com.framework.demo.service.message;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Page;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Pageable;
+import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
 import com.framework.demo.bo.personalMessage.PersonalMessage;
 import com.framework.demo.enm.MessageState;
 
@@ -31,7 +30,7 @@ public interface MessageApiService {
      * @param pageable
      * @return
      */
-    public Page<PersonalMessage> findUserMessage(Long userId, MessageState state, Pageable pageable);
+    public Pagination<PersonalMessage> findUserMessage(Long userId, MessageState state, Pagination pageable);
 
     /**
      * 查询消息的祖先 和 后代

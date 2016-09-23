@@ -92,10 +92,10 @@
             if(checkbox.size() == 0) {
                 return;
             }
-            var isShow = $(this).is(".status-show");
-            var title = isShow ? "可用数据" : "不可用数据";
-            var message = isShow ? "确认可用数据吗？" : "确认不可用数据吗？";
-            var url = isShow ?
+            var is_show = $(this).is(".status-show");
+            var title = is_show ? "可用数据" : "不可用数据";
+            var message = is_show ? "确认可用数据吗？" : "确认不可用数据吗？";
+            var url = is_show ?
                     "${ctx}/admin/sys/permission/permission/changeStatus/true?" + checkbox.serialize()
                     :
                     "${ctx}/admin/sys/permission/permission/changeStatus/false?" + checkbox.serialize();

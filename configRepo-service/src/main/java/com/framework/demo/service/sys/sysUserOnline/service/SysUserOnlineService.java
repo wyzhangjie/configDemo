@@ -4,8 +4,8 @@
 
 package com.framework.demo.service.sys.sysUserOnline.service;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Page;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.PageRequest;
+import cn.vansky.framework.core.orm.mybatis.plugin.page.PageRequest;
+import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
 import cn.vansky.framework.core.service.GenericService;
 import com.framework.demo.sys.sysUserOnline.bo.SysUserOnline;
 
@@ -23,7 +23,7 @@ public interface SysUserOnlineService extends GenericService<SysUserOnline, Stri
 
     void online(SysUserOnline sysUserOnline);
 
-    Page<SysUserOnline> findExpiredUserOnlineList(Date expiredDate, PageRequest pageRequest);
+    Pagination<SysUserOnline> findExpiredUserOnlineList(Date expiredDate, PageRequest pageRequest);
 
     void batchOffline(List<String> needOfflineIdList);
 }

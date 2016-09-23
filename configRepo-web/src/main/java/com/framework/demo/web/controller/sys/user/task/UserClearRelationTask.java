@@ -5,9 +5,8 @@
  */
 package com.framework.demo.web.controller.sys.user.task;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Page;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.PageRequest;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Pageable;
+import cn.vansky.framework.core.orm.mybatis.plugin.page.PageRequest;
+import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
 import com.framework.demo.bo.sysUser.SysUser;
 import com.framework.demo.service.sys.sysJob.service.SysJobService;
 import com.framework.demo.service.sys.sysOrganization.service.SysOrganizationService;
@@ -53,11 +52,11 @@ public class UserClearRelationTask {
         //删除用户不存在的情况的SysUserOrganizationJob（比如手工从数据库物理删除）。。
         userService.deleteSysUserOrganizationJobOnNotExistsUser();
 
-        Page<SysUserOrganizationJob> page = null;
+        Pagination<SysUserOrganizationJob> page = null;
 
         int pn = 0;
         final int PAGE_SIZE = 100;
-        Pageable pageable = null;
+        Pagination pageable = null;
         do {
             pageable = new PageRequest(pn++, PAGE_SIZE);
             page = userService.findSysUserOrganizationJobOnNotExistsOrganizationOrJob(pageable);
@@ -65,7 +64,7 @@ public class UserClearRelationTask {
             //开启新事物清除
             try {
                 UserClearRelationTask userClearRelationTask = (UserClearRelationTask) AopContext.currentProxy();
-                userClearRelationTask.doClear(page.getContent());
+                userClearRelationTask.doClear(page.getRows());
             } catch (Exception e) {
                 //出异常也无所谓
                 LogUtils.logError("clear user relation error", e);

@@ -6,6 +6,7 @@
 package com.framework.demo.web.controller;
 
 import cn.vansky.framework.core.dao.FieldAccessVo;
+import cn.vansky.framework.core.service.GenericService;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
@@ -27,7 +28,7 @@ public abstract class BaseController<M extends FieldAccessVo, ID extends Seriali
     /**
      * 实体类型
      */
-    protected final Class<M> entityClass;
+    protected Class<M> entityClass;
 
     private String viewPrefix;
 
@@ -64,10 +65,18 @@ public abstract class BaseController<M extends FieldAccessVo, ID extends Seriali
         return viewPrefix;
     }
 
-    protected M newModel() {
+    protected M newModel() throws Exception{
         try {
             return entityClass.newInstance();
         } catch (Exception e) {
+            this.entityClass = ReflectUtils.findParameterizedType(getClass(), 0);
+            try {
+                return entityClass.newInstance();
+            } catch (InstantiationException e1) {
+                throw new IllegalStateException("can not instantiated model : " + this.entityClass, e);
+            } catch (IllegalAccessException e1) {
+                e1.printStackTrace();
+            }
             throw new IllegalStateException("can not instantiated model : " + this.entityClass, e);
         }
     }

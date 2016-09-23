@@ -26,7 +26,7 @@ import java.util.Set;
  * This class corresponds to the database table `showcase_tree`
  */
 @Service("showcaseTreeService")
-public class ShowcaseTreeServiceImpl extends BaseTreeableServiceImpl<ShowcaseTree, Long> implements ShowcaseTreeService  {
+public class ShowcaseTreeServiceImpl extends BaseTreeableServiceImpl<ShowcaseTree> implements ShowcaseTreeService  {
     @Resource(name = "showcaseTreeDao")
     private ShowcaseTreeDao showcaseTreeDao;
 

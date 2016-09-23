@@ -111,7 +111,6 @@ public class SpeedUpSpringProcessor implements BeanFactoryPostProcessor {
         this.noneLazyBeanNames = noneLazyBeanNames;
     }
 
-    @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
 
         if(!(beanFactory instanceof DefaultListableBeanFactory)) {
@@ -132,7 +131,7 @@ public class SpeedUpSpringProcessor implements BeanFactoryPostProcessor {
 
             //否则设置为lazy
             if(needLazyInit(beanName)) {
-                beanDefinition.setLazyInit(true);
+//                beanDefinition.setLazyInit(true);
             }
         }
     }

@@ -12,7 +12,7 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${page.content}" var="m">
+    <c:forEach items="${page.rows}" var="m">
         <tr>
             <td>${m.id}</td>
             <td><a href="${ctx}/admin/sys/user/${m.user.id}">${m.user.username}</a></td>

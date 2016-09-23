@@ -5,8 +5,8 @@
  */
 package com.framework.demo.web.bind.method.annotation;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.PageRequest;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Pageable;
+import cn.vansky.framework.core.orm.mybatis.plugin.page.PageRequest;
+import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
 import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Sort;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -71,13 +71,13 @@ import java.util.*;
  */
 public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
 
-    private static final Pageable DEFAULT_PAGE_REQUEST = new PageRequest(0, 10);
+    private static final PageRequest DEFAULT_PAGE_REQUEST = new PageRequest(1, 10);
     private static final String DEFAULT_PAGE_PREFIX = "page";
-    private static final String DEFAULT_SORT_PREFIX = "sort";
 
-    private Pageable fallbackPagable = DEFAULT_PAGE_REQUEST;
+
+    private PageRequest fallbackPagable = DEFAULT_PAGE_REQUEST;
     private String pagePrefix = DEFAULT_PAGE_PREFIX;
-    private String sortPrefix = DEFAULT_SORT_PREFIX;
+
 
     private int minPageSize = 5;
     private int maxPageSize = 100;
@@ -102,11 +102,11 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
 
 
     /**
-     * Setter to configure a fallback instance of {@link Pageable} that is being used to back missing parameters. Defaults
+     * Setter to configure a fallback instance of {@link Pagination} that is being used to back missing parameters. Defaults
      *
      * @param fallbackPagable the fallbackPagable to set
      */
-    public void setFallbackPagable(Pageable fallbackPagable) {
+    public void setFallbackPagable(PageRequest fallbackPagable) {
         this.fallbackPagable = null == fallbackPagable ? DEFAULT_PAGE_REQUEST : fallbackPagable;
     }
 
@@ -120,77 +120,33 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
         this.pagePrefix = null == pagePrefix ? DEFAULT_PAGE_PREFIX : pagePrefix;
     }
 
-    public void setSortPrefix(String sortPrefix) {
-        this.sortPrefix = null == sortPrefix ? DEFAULT_SORT_PREFIX : sortPrefix;
-    }
-
     public boolean supportsParameter(MethodParameter parameter) {
-        return Pageable.class.isAssignableFrom(parameter.getParameterType());
+        return PageRequest.class.isAssignableFrom(parameter.getParameterType());
     }
 
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
 
         PageableDefaults pageableDefaults = getPageableDefaults(parameter);
         //默认的page request
-        Pageable defaultPageRequest = getDefaultFromAnnotationOrFallback(pageableDefaults);
+        PageRequest defaultPageRequest = getDefaultFromAnnotationOrFallback(pageableDefaults);
 
         String pageableNamePrefix = getPagePrefix(parameter);
-        String sortNamePrefix = getSortPrefix(parameter);
         Map<String, String[]> pageableMap = getPrefixParameterMap(pageableNamePrefix, webRequest, true);
-        Map<String, String[]> sortMap = getPrefixParameterMap(sortNamePrefix, webRequest, false);
 
-        Sort sort = getSort(sortNamePrefix, sortMap, defaultPageRequest, webRequest);
+
+
         if (pageableMap.size() == 0) {
-            return new PageRequest(defaultPageRequest.getPageNumber(), defaultPageRequest.getPageSize(), sort == null ? defaultPageRequest.getSort() : sort);
+            return new PageRequest(defaultPageRequest.getCurrentPage(), defaultPageRequest.getLimit());
         }
 
         int pn = getPn(pageableMap, defaultPageRequest);
         int pageSize = getPageSize(pageableMap, defaultPageRequest);
 
-        return new PageRequest(pn - 1, pageSize, sort);
+        return new PageRequest(pn , pageSize);
 
     }
 
-    private Sort getSort(String sortNamePrefix, Map<String, String[]> sortMap, Pageable defaultPageRequest, NativeWebRequest webRequest) {
-        Sort sort = null;
-        List<OrderedSort> orderedSortList = Lists.newArrayList();
-        for (String name : sortMap.keySet()) {
 
-            //sort1.abc
-            int propertyIndex = name.indexOf(".") + 1;
-
-            int order = 0;
-            String orderStr = name.substring(sortNamePrefix.length(), propertyIndex - 1);
-            try {
-                if (!StringUtils.isEmpty(orderStr)) {
-                    order = Integer.valueOf(orderStr);
-                }
-            } catch (Exception e) {
-            }
-
-            String property = name.substring(propertyIndex);
-            assertSortProperty(property);
-            Sort.Direction direction = Sort.Direction.fromString(sortMap.get(name)[0]);
-
-            orderedSortList.add(new OrderedSort(property, direction, order));
-        }
-
-        Collections.sort(orderedSortList);
-        for (OrderedSort orderedSort : orderedSortList) {
-            Sort newSort = new Sort(orderedSort.direction, orderedSort.property);
-            if (sort == null) {
-                sort = newSort;
-            } else {
-                sort = sort.and(newSort);
-            }
-        }
-
-        if (sort == null) {
-            return defaultPageRequest.getSort();
-        }
-
-        return sort;
-    }
 
     /**
      * 防止sql注入，排序字符串只能包含字符 数字 下划线 点 ` "
@@ -203,17 +159,17 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
         }
     }
 
-    private int getPageSize(Map<String, String[]> pageableMap, Pageable defaultPageRequest) {
+    private int getPageSize(Map<String, String[]> pageableMap, Pagination defaultPageRequest) {
         int pageSize = 0;
         try {
             String pageSizeStr = pageableMap.get("size")[0];
             if (pageSizeStr != null) {
                 pageSize = Integer.valueOf(pageSizeStr);
             } else {
-                pageSize = defaultPageRequest.getPageSize();
+                pageSize = defaultPageRequest.getLimit();
             }
         } catch (Exception e) {
-            pageSize = defaultPageRequest.getPageSize();
+            pageSize = defaultPageRequest.getLimit();
         }
 
         if (pageSize < minPageSize) {
@@ -226,17 +182,17 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
         return pageSize;
     }
 
-    private int getPn(Map<String, String[]> pageableMap, Pageable defaultPageRequest) {
+    private int getPn(Map<String, String[]> pageableMap, Pagination defaultPageRequest) {
         int pn = 1;
         try {
             String pnStr = pageableMap.get("pn")[0];
             if (pnStr != null) {
                 pn = Integer.valueOf(pnStr);
             } else {
-                pn = defaultPageRequest.getPageNumber();
+                pn = defaultPageRequest.getCurrentPage();
             }
         } catch (Exception e) {
-            pn = defaultPageRequest.getPageNumber();
+            pn = defaultPageRequest.getCurrentPage();
         }
 
         if (pn < 1) {
@@ -265,22 +221,9 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
         return pagePrefix;
     }
 
+    private PageRequest getDefaultFromAnnotationOrFallback(PageableDefaults pageableDefaults) {
 
-    private String getSortPrefix(MethodParameter parameter) {
-
-        Qualifier qualifier = parameter.getParameterAnnotation(Qualifier.class);
-
-        if (qualifier != null) {
-            return new StringBuilder(qualifier.value()).append("_").append(sortPrefix).toString();
-        }
-
-        return sortPrefix;
-    }
-
-
-    private Pageable getDefaultFromAnnotationOrFallback(PageableDefaults pageableDefaults) {
-
-        Pageable defaultPageable = defaultPageable(pageableDefaults);
+        PageRequest defaultPageable = defaultPageable(pageableDefaults);
         if (defaultPageable != null) {
             return defaultPageable;
         }
@@ -298,7 +241,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
         return pageableDefaults;
     }
 
-    private Pageable defaultPageable(PageableDefaults pageableDefaults) {
+    private PageRequest defaultPageable(PageableDefaults pageableDefaults) {
 
         if (pageableDefaults == null) {
             return null;
@@ -319,12 +262,12 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
                 sort = sort.and(newSort);
             }
         }
-        return new PageRequest(pageNumber, pageSize, sort);
+        return new PageRequest(pageNumber, pageSize);
     }
 
 
     /**
-     * Asserts uniqueness of all {@link Pageable} parameters of the method of the given {@link MethodParameter}.
+     * Asserts uniqueness of all {@link Pagination} parameters of the method of the given {@link MethodParameter}.
      *
      * @param parameter
      */
@@ -339,7 +282,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
     }
 
     /**
-     * Returns whether the given {@link Method} has more than one {@link Pageable} parameter.
+     * Returns whether the given {@link Method} has more than one {@link Pagination} parameter.
      *
      * @param method
      * @return
@@ -350,11 +293,11 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
 
         for (Class<?> type : method.getParameterTypes()) {
 
-            if (pageableFound && type.equals(Pageable.class)) {
+            if (pageableFound && type.equals(Pagination.class)) {
                 return true;
             }
 
-            if (type.equals(Pageable.class)) {
+            if (type.equals(Pagination.class)) {
                 pageableFound = true;
             }
         }
@@ -363,7 +306,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
     }
 
     /**
-     * Asserts that every {@link Pageable} parameter of the given parameters carries an {@link org.springframework.beans.factory.annotation.Qualifier} annotation to
+     * Asserts that every {@link Pagination} parameter of the given parameters carries an {@link org.springframework.beans.factory.annotation.Qualifier} annotation to
      * distinguish them from each other.
      *
      * @param parameterTypes
@@ -375,7 +318,7 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
 
         for (int i = 0; i < annotations.length; i++) {
 
-            if (Pageable.class.equals(parameterTypes[i])) {
+            if (Pagination.class.equals(parameterTypes[i])) {
 
                 Qualifier qualifier = findAnnotation(annotations[i]);
 
@@ -411,30 +354,5 @@ public class PageableMethodArgumentResolver extends BaseMethodArgumentResolver {
         return null;
     }
 
-
-    static class OrderedSort implements Comparable<OrderedSort> {
-        private String property;
-        private Sort.Direction direction;
-        private int order = 0; //默认0 即无序
-
-        OrderedSort(String property, Sort.Direction direction, int order) {
-            this.property = property;
-            this.direction = direction;
-            this.order = order;
-        }
-
-        public int compareTo(OrderedSort o) {
-            if (o == null) {
-                return -1;
-            }
-            if (this.order > o.order) {
-                return 1;
-            } else if (this.order < o.order) {
-                return -1;
-            } else {
-                return 0;
-            }
-        }
-    }
 
 }

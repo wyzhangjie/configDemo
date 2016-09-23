@@ -62,11 +62,9 @@ public class AuthController extends BaseCRUDController<SysAuth, Long> {
 
     @SearchableDefaults(value = "type_eq=user")
 
-    public String list(Searchable searchable, Model model) {
-
+    public String list(Searchable searchable, Model model) throws Exception{
         String typeName = String.valueOf(searchable.getValue("type_eq"));
         model.addAttribute("type", AuthType.valueOf(typeName));
-
         return super.list(searchable, model);
     }
 
@@ -74,7 +72,6 @@ public class AuthController extends BaseCRUDController<SysAuth, Long> {
     public String showCreateForm(Model model) {
         throw new RuntimeException("discard method");
     }
-
 
     @RequestMapping(value = "create/discarded", method = RequestMethod.POST)
     public String create(
@@ -84,13 +81,12 @@ public class AuthController extends BaseCRUDController<SysAuth, Long> {
     }
 
     @RequestMapping(value = "{type}/create", method = RequestMethod.GET)
-    public String showCreateFormWithType(@PathVariable("type") AuthType type, Model model) {
+    public String showCreateFormWithType(@PathVariable("type") AuthType type, Model model) throws Exception{
         SysAuth auth = new SysAuth();
         auth.setType(type.name());
         model.addAttribute("m", auth);
         return super.showCreateForm(model);
     }
-
 
     @RequestMapping(value = "{type}/create", method = RequestMethod.POST)
     public String createWithType(
@@ -101,13 +97,10 @@ public class AuthController extends BaseCRUDController<SysAuth, Long> {
             @RequestParam(value = "jobIds", required = false) Long[][] jobIds,
             @Valid @ModelAttribute("m") SysAuth m, BindingResult result,
             RedirectAttributes redirectAttributes) {
-
         this.permissionList.assertHasCreatePermission();
-
         if (hasError(m, result)) {
             return showCreateForm(model);
         }
-
         if (m.getType() == AuthType.user.toString()) {
             getAuthService().addUserAuth(userIds, m);
         } else if (m.getType() == AuthType.user_group.toString() || m.getType() == AuthType.organization_group.toString()) {
@@ -118,6 +111,4 @@ public class AuthController extends BaseCRUDController<SysAuth, Long> {
         redirectAttributes.addFlashAttribute(Constants.MESSAGE, "新增成功");
         return redirectToUrl("/admin/sys/auth?search.type_eq=" + m.getType());
     }
-
-
 }

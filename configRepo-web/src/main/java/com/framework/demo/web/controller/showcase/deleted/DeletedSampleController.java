@@ -52,6 +52,7 @@ public class DeletedSampleController extends BaseCRUDController<ShowcaseSample, 
         model.addAttribute("sexList", Sex.values());
         model.addAttribute("booleanList", BooleanEnum.values());
     }
+
     /**
      * 验证失败返回true
      *
@@ -93,18 +94,19 @@ public class DeletedSampleController extends BaseCRUDController<ShowcaseSample, 
             @RequestParam("fieldId") String fieldId, @RequestParam("fieldValue") String fieldValue,
             @RequestParam(value = "id", required = false) Long id) {
 
-            ValidateResponse response = ValidateResponse.newInstance();
-            if ("name".equals(fieldId)) {
+        ValidateResponse response = ValidateResponse.newInstance();
+        if ("name".equals(fieldId)) {
             ShowcaseSample sample = getSampleService().findByName(fieldValue);
-                if (sample == null || (sample.getId().equals(id) && sample.getName().equals(fieldValue))) {
-                    //如果msg 不为空 将弹出提示框
-                    response.validateSuccess(fieldId, "");
+            if (sample == null || (sample.getId().equals(id) && sample.getName().equals(fieldValue))) {
+                //如果msg 不为空 将弹出提示框
+                response.validateSuccess(fieldId, "");
             } else {
                 response.validateFail(fieldId, "该名称已被其他人使用");
             }
         }
         return response.result();
     }
+
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

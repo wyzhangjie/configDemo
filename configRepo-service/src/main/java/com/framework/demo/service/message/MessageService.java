@@ -5,7 +5,7 @@
  */
 package com.framework.demo.service.message;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Page;
+import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
 import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import cn.vansky.framework.core.dao.SqlMapDao;
 import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
@@ -76,7 +76,7 @@ public class MessageService   extends GenericSqlMapServiceImpl<PersonalMessage, 
         return personalMessageDao.findBySeachable(searchable);
     }
 
-    public Page<PersonalMessage> findBySeachableForPage(Searchable searchable) {
+    public Pagination<PersonalMessage> findBySeachableForPage(Searchable searchable) {
         return personalMessageDao.findBySeachableForPage(searchable);
     }
 

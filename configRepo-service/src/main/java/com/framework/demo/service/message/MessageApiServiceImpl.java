@@ -5,6 +5,8 @@
  */
 package com.framework.demo.service.message;
 
+import cn.vansky.framework.core.orm.mybatis.plugin.page.PageRequest;
+import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
 import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.SearchOperator;
 import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.*;
 import cn.vansky.framework.core.orm.mybatis.plugin.search.filter.SearchFilter;
@@ -52,7 +54,7 @@ public class MessageApiServiceImpl implements MessageApiService {
 
 
 
-    public Page<PersonalMessage> findUserMessage(Long userId, MessageState state, Pageable pageable) {
+    public Pagination<PersonalMessage> findUserMessage(Long userId, MessageState state, Pagination pageable) {
         Searchable searchable = Searchable.newSearchable();
         searchable.setPage(pageable);
 
@@ -199,15 +201,15 @@ public class MessageApiServiceImpl implements MessageApiService {
         int pn = 0;
         int pageSize = 100;
 
-        Pageable pageable = null;
-        Page<SysUser> page = null;
+        Pagination pageable = null;
+        Pagination<SysUser> page = null;
 
         do {
             pageable = new PageRequest(pn++, pageSize);
             page = userService.findByPageable(pageable);
 
             try {
-               doSendSystemMessage(page.getContent(), message);
+               doSendSystemMessage(page.getRows(), message);
             } catch (Exception e) {
             }
         } while (page.hasNextPage());

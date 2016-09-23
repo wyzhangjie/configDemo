@@ -22,7 +22,7 @@ public class SysRoleMenuServiceImpl extends GenericSqlMapServiceImpl<SysRoleMenu
     @Resource(name = "sysRoleMenuDao")
     private SysRoleMenuDao sysRoleMenuDao;
 
-    @Override
+
     public SqlMapDao<SysRoleMenu, Integer> getDao() {
         return sysRoleMenuDao;
     }

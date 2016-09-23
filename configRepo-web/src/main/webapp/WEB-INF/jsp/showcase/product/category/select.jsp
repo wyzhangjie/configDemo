@@ -17,7 +17,7 @@
             </tr>
           </thead>
           <tbody>
-          <c:forEach items="${page.content}" var="m" varStatus="status">
+          <c:forEach items="${page.rows}" var="m" varStatus="status">
             <tr id="${m.id}">
 
                 <td>${m.id}</td>

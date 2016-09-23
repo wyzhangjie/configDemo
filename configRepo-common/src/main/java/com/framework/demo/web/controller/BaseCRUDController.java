@@ -1,13 +1,13 @@
 /**
  * Copyright (c) 2005-2012 https://github.com/zhangkaitao
- *
+ * <p/>
  * Licensed under the Apache License, Version 2.0 (the "License");
  */
 package com.framework.demo.web.controller;
 
 
 import cn.vansky.framework.core.dao.FieldAccessVo;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Page;
+import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
 import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import cn.vansky.framework.core.service.GenericService;
 import com.framework.demo.common.Constants;
@@ -74,20 +74,14 @@ public abstract class BaseCRUDController<M extends FieldAccessVo, ID extends Ser
 
     @RequestMapping(method = RequestMethod.GET)
     @PageableDefaults(sort = "id=desc")
-    public String list(Searchable searchable, Model model) {
+    public String list(Searchable searchable, Model model) throws Exception {
 
-            if (permissionList != null) {
+        if (permissionList != null) {
             this.permissionList.assertHasViewPermission();
         }
+        Pagination page = baseService.findBySearchable(searchable);
+        model.addAttribute("page", page);
 
-        try {
-            Page page =baseService.findBySearchable(searchable);
-            model.addAttribute("page",page );
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
         if (listAlsoSetCommonData) {
             setCommonData(model);
         }
@@ -103,14 +97,13 @@ public abstract class BaseCRUDController<M extends FieldAccessVo, ID extends Ser
      */
     @RequestMapping(method = RequestMethod.GET, headers = "table=true")
     @PageableDefaults(sort = "id=desc")
-    public String listTable(Searchable searchable, Model model) {
+    public String listTable(Searchable searchable, Model model) throws Exception {
         list(searchable, model);
         return viewName("listTable");
     }
 
-
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String view(Model model, @PathVariable("id") M m) {
+    public String view(Model model, @PathVariable("id") M m) throws Exception {
 
         if (permissionList != null) {
             this.permissionList.assertHasViewPermission();
@@ -123,7 +116,7 @@ public abstract class BaseCRUDController<M extends FieldAccessVo, ID extends Ser
     }
 
     @RequestMapping(value = "create", method = RequestMethod.GET)
-    public String showCreateForm(Model model) {
+    public String showCreateForm(Model model) throws Exception {
 
         if (permissionList != null) {
             this.permissionList.assertHasCreatePermission();
@@ -137,12 +130,10 @@ public abstract class BaseCRUDController<M extends FieldAccessVo, ID extends Ser
         return viewName("editForm");
     }
 
-
     @RequestMapping(value = "create", method = RequestMethod.POST)
-    public String  create(
+    public String create(
             Model model, @Valid @ModelAttribute("m") M m, BindingResult result,
-            RedirectAttributes redirectAttributes) {
-
+            RedirectAttributes redirectAttributes) throws Exception {
         if (permissionList != null) {
             this.permissionList.assertHasCreatePermission();
         }
@@ -155,14 +146,12 @@ public abstract class BaseCRUDController<M extends FieldAccessVo, ID extends Ser
         return redirectToUrl(null);
     }
 
-
     @RequestMapping(value = "{id}/update", method = RequestMethod.GET)
-    public String showUpdateForm(@PathVariable("id") M m, Model model) {
+    public String showUpdateForm(@PathVariable("id") M m, Model model) throws Exception {
 
         if (permissionList != null) {
             this.permissionList.assertHasUpdatePermission();
         }
-
         setCommonData(model);
         model.addAttribute(Constants.OP_NAME, "修改");
         model.addAttribute("m", m);
@@ -173,7 +162,7 @@ public abstract class BaseCRUDController<M extends FieldAccessVo, ID extends Ser
     public String update(
             Model model, @Valid @ModelAttribute("m") M m, BindingResult result,
             @RequestParam(value = Constants.BACK_URL, required = false) String backURL,
-            RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes) throws Exception {
 
         if (permissionList != null) {
             this.permissionList.assertHasUpdatePermission();
@@ -204,8 +193,7 @@ public abstract class BaseCRUDController<M extends FieldAccessVo, ID extends Ser
     public String delete(
             @PathVariable("id") M m,
             @RequestParam(value = Constants.BACK_URL, required = false) String backURL,
-            RedirectAttributes redirectAttributes) {
-
+            RedirectAttributes redirectAttributes) throws Exception {
 
         if (permissionList != null) {
             this.permissionList.assertHasDeletePermission();
@@ -221,14 +209,14 @@ public abstract class BaseCRUDController<M extends FieldAccessVo, ID extends Ser
     public String deleteInBatch(
             @RequestParam(value = "ids", required = false) ID[] ids,
             @RequestParam(value = Constants.BACK_URL, required = false) String backURL,
-            RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes) throws Exception {
 
 
         if (permissionList != null) {
             this.permissionList.assertHasDeletePermission();
         }
 
-        baseService.deleteBantch(ids);
+        baseService.deleteBatch(ids);
 
         redirectAttributes.addFlashAttribute(Constants.MESSAGE, "删除成功");
         return redirectToUrl(backURL);

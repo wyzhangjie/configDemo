@@ -23,14 +23,16 @@ public class SysUserLastOnlineDaoImpl extends ConfigurableBaseSqlMapDao<SysUserL
     @Autowired
     private SysUserLastOnlineMapper sysUserLastOnlineMapper;
 
-    @Override
     public DaoMapper<SysUserLastOnline, Long> getDaoMapper() {
         return sysUserLastOnlineMapper;
     }
 
     @Resource(name = "sqlSessionFactory")
-    @Override
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         setSqlSessionFactoryInternal(sqlSessionFactory);
+    }
+
+    public Object findByUserId(Long id) {
+        return sysUserLastOnlineMapper.findByUserId(id);
     }
 }

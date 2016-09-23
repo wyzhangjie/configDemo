@@ -18,7 +18,7 @@
         </c:if>
     </tr>
     <tbody>
-    <c:forEach items="${page.content}" var="m">
+    <c:forEach items="${page.rows}" var="m">
         <%--如果组织机构删除了 就没必要显示了--%>
         <c:if test="${group.type eq 'organization' and esfn:existsOrganization(m.organizationId, onlyDisplayShow)}">
         <tr>

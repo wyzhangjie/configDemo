@@ -6,8 +6,12 @@
     </typeHandlers>
 
     <plugins>
-        <plugin interceptor="cn.vansky.framework.core.orm.mybatis.plugin.page.PaginationInterceptor"/>
-        <plugin interceptor="cn.vansky.framework.core.orm.mybatis.plugin.search.SearchableInterceptor"/>
+        <plugin interceptor="cn.vansky.framework.core.orm.mybatis.plugin.page.PaginationInterceptor">
+            <property name="sqlPattern" value=".*findPage*.*"/>
+        </plugin>
+        <plugin interceptor="cn.vansky.framework.core.orm.mybatis.plugin.search.SearchableInterceptor">
+        <property name="sqlPattern" value=".*BySearchable*.*"/>
+        </plugin>
     </plugins>
 
 

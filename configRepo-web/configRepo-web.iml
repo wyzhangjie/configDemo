@@ -138,10 +138,11 @@
     <orderEntry type="library" name="Maven: org.apache.struts:struts-tiles:1.3.8" level="project" />
     <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.8.3" level="project" />
     <orderEntry type="library" name="Maven: cn.vansky:framework-tree:1.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.3" level="project" />
     <orderEntry type="library" name="Maven: cn.vansky:framework-core:1.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: cn.vansky:framework-exception:1.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: cn.vansky:framework-poi:1.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: cn.vansky:framework-common:1.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.3" level="project" />
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2" level="project" />
     <orderEntry type="library" name="Maven: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.3.1" level="project" />

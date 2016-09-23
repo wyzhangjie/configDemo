@@ -5,6 +5,8 @@
  */
 package com.framework.demo.web.controller.sys.auth.task;
 
+import cn.vansky.framework.core.orm.mybatis.plugin.page.PageRequest;
+import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
 import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.*;
 import com.framework.demo.bo.sysRole.SysRole;
 import com.framework.demo.enm.AuthType;
@@ -67,24 +69,24 @@ public class AuthRelationClearTask {
         final int PAGE_SIZE = 100;
         int pn = 0;
 
-        Page<SysAuth> authPage = null;
+        Pagination<SysAuth> authPage = null;
 
         do {
-            Pageable pageable = new PageRequest(pn++, PAGE_SIZE);
+            Pagination pageable = new PageRequest(pn++, PAGE_SIZE);
             Searchable seachable = new SearchRequest();
             seachable.setPage(pageable);
             authPage = authService.findBySearchable(seachable);
             //开启新事物清除
             try {
                 AuthRelationClearTask authRelationClearService = (AuthRelationClearTask) AopContext.currentProxy();
-                authRelationClearService.doClear(authPage.getContent(), allRoleIds);
+                authRelationClearService.doClear(authPage.getRows(), allRoleIds);
             } catch (Exception e) {
                 //出异常也无所谓
                 LogUtils.logError("clear auth relation error", e);
             }
             //清空会话
         //    RepositoryHelper.clear();
-        } while (authPage.hasNextPage());
+        } while (authPage.isHasNext());
     }
 
     public void doClear(Collection<SysAuth> authColl, Set<Long> allRoleIds) {

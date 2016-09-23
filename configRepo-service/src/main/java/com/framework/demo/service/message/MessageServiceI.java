@@ -1,6 +1,6 @@
 package com.framework.demo.service.message;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Page;
+import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
 import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
 import com.framework.demo.bo.personalMessage.PersonalMessage;
@@ -70,7 +70,7 @@ public interface MessageServiceI  {
     public List<PersonalMessage> findAllWithSort(Searchable searchable) ;
 
 
-    Page<PersonalMessage> findBySeachableForPage(Searchable searchable);
+    Pagination<PersonalMessage> findBySeachableForPage(Searchable searchable);
 
     PersonalMessage saveOrUpdate(PersonalMessage message);
 

@@ -4,7 +4,7 @@
 
 package com.framework.demo.dao.personalMessage;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Page;
+import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
 import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import cn.vansky.framework.core.dao.SqlMapDao;
 import com.framework.demo.bo.personalMessage.PersonalMessage;
@@ -34,7 +34,7 @@ public interface PersonalMessageDao extends SqlMapDao<PersonalMessage, Long> {
 
     List<PersonalMessage> findBySeachable(Searchable searchable);
 
-    Page<PersonalMessage> findBySeachableForPage(Searchable searchable);
+    Pagination<PersonalMessage> findBySeachableForPage(Searchable searchable);
 
     Integer changeState(ArrayList<MessageState> oldStates, MessageState newState, int expireDays);
 }

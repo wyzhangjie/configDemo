@@ -14,7 +14,7 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${page.content}" var="m">
+    <c:forEach items="${page.rows}" var="m">
         <tr>
             <td class="check"><input type="checkbox" name="ids" value="${m.id}"/></td>
             <td>

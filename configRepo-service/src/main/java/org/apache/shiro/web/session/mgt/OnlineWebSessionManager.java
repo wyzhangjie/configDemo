@@ -5,8 +5,8 @@
  */
 package org.apache.shiro.web.session.mgt;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Page;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.PageRequest;
+import cn.vansky.framework.core.orm.mybatis.plugin.page.PageRequest;
+import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
 import com.framework.demo.service.sys.sysUserOnline.service.SysUserOnlineService;
 import com.framework.demo.sys.sysUserOnline.bo.SysUserOnline;
 import com.framework.demo.common.Constants;
@@ -100,12 +100,12 @@ public class OnlineWebSessionManager extends DefaultWebSessionManager {
         int timeout = (int) getGlobalSessionTimeout();
         Date expiredDate = DateUtils.addMilliseconds(new Date(), 0 - timeout);
         PageRequest pageRequest = new PageRequest(0, 100);
-        Page<SysUserOnline> page = userOnlineService.findExpiredUserOnlineList(expiredDate, pageRequest);
+        Pagination<SysUserOnline> page = userOnlineService.findExpiredUserOnlineList(expiredDate, pageRequest);
 
         //改成批量过期删除
-        while (page.hasContent()) {
+        while (!page.getRows().isEmpty()) {
             List<String> needOfflineIdList = Lists.newArrayList();
-            for (SysUserOnline userOnline : page.getContent()) {
+            for (SysUserOnline userOnline : page.getRows()) {
                 try {
                     SessionKey key = new DefaultSessionKey(userOnline.getId());
                     Session session = retrieveSession(key);

@@ -5,33 +5,33 @@
  */
 package com.framework.demo.web.controller.sys.permission.web.controller;
 
-import com.sishuok.es.common.Constants;
-import com.sishuok.es.common.entity.enums.AvailableEnum;
-import com.sishuok.es.common.web.controller.BaseCRUDController;
-import com.sishuok.es.sys.permission.entity.Permission;
-import com.sishuok.es.sys.permission.service.PermissionService;
+
+import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.AvailableEnum;
+import com.framework.demo.sys.sysPermission.bo.SysPermission;
+import com.framework.demo.common.Constants;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.framework.demo.web.controller.BaseCRUDController;
 
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * <p>User: Zhang Kaitao
+ * <p>User: hyssop
  * <p>Date: 13-1-28 下午4:29
  * <p>Version: 1.0
  */
 @Controller
 @RequestMapping(value = "/admin/sys/permission/permission")
-public class PermissionController extends BaseCRUDController<Permission, Long> {
+public class PermissionController extends BaseCRUDController<SysPermission, Long> {
 
     public PermissionController() {
         setResourceIdentity("sys:permission");
     }
 
-    @Override
+
     protected void setCommonData(Model model) {
         super.setCommonData(model);
         model.addAttribute("availableList", AvailableEnum.values());
@@ -47,9 +47,9 @@ public class PermissionController extends BaseCRUDController<Permission, Long> {
         this.permissionList.assertHasUpdatePermission();
 
         for (Long id : ids) {
-            Permission permission = baseService.findOne(id);
-            permission.setShow(newStatus);
-            baseService.update(permission);
+            SysPermission permission = baseService.findById(id);
+            permission.setIsShow(newStatus);
+            baseService.saveOrUpdate(permission);
         }
 
 

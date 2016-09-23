@@ -1,6 +1,7 @@
 package com.framework.demo.web.controller.template;
 
 import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.BooleanEnum;
+import cn.vansky.framework.core.service.GenericService;
 import cn.vansky.framework.core.util.JsonResp;
 import com.alibaba.fastjson.JSON;
 

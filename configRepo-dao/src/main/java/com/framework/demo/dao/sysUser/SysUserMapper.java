@@ -6,8 +6,7 @@ package com.framework.demo.dao.sysUser;
 
 import cn.vansky.framework.core.dao.DaoMapper;
 import cn.vansky.framework.core.orm.mybatis.annotation.SqlMapper;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Page;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Pageable;
+import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
 import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import com.framework.demo.bo.sysUser.SysUser;
 import com.framework.demo.enm.UserStatus;
@@ -37,15 +36,15 @@ public interface SysUserMapper extends DaoMapper<SysUser, Long> {
 
     Set<String> findPermissionsByUserName(@Param("username")String username);
 
-    Page<SysUser> findByPageable(Pageable pageable);
+    Pagination<SysUser> findByPageable(Pagination pageable);
 
     void deleteUserOrganizationJobOnNotExistsUser();
 
-    List<SysUserOrganizationJob> findUserOrganizationJobOnNotExistsOrganizationOrJob(Pageable pageable);
+    List<SysUserOrganizationJob> findUserOrganizationJobOnNotExistsOrganizationOrJob(Pagination pageable);
 
     void deleteSysUserOrganizationJobOnNotExistsUser();
 
-    List<SysUserOrganizationJob> findSysUserOrganizationJobOnNotExistsOrganizationOrJob(Pageable pageable);
+    List<SysUserOrganizationJob> findSysUserOrganizationJobOnNotExistsOrganizationOrJob(Pagination pageable);
 
     SysUser findByEmail(String email);
 

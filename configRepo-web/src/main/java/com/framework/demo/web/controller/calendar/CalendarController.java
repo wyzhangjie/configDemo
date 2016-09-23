@@ -6,6 +6,7 @@
 package com.framework.demo.web.controller.calendar;
 
 import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
+import cn.vansky.framework.core.service.GenericService;
 import com.framework.demo.bo.personalCalendar.PersonalCalendar;
 import com.framework.demo.bo.sysUser.SysUser;
 import com.framework.demo.service.personalCalendar.PersonalCalendarService;

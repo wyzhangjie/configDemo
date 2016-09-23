@@ -37,7 +37,7 @@ public class UserOnlineController extends BaseCRUDController<SysUserOnline, Stri
 
 
 
-    public String list(Searchable searchable, Model model) {
+    public String list(Searchable searchable, Model model) throws Exception{
         if (!SecurityUtils.getSubject().isPermitted("sys:userOnline:view or monitor:userOnline:view")) {
             throw new UnauthorizedException(MessageUtils.message("no.view.permission", "sys:userOnline:view或monitor:userOnline:view"));
         }

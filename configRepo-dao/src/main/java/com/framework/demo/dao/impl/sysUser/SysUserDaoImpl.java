@@ -6,8 +6,7 @@ package com.framework.demo.dao.impl.sysUser;
 
 import cn.vansky.framework.core.dao.ConfigurableBaseSqlMapDao;
 import cn.vansky.framework.core.dao.DaoMapper;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Page;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Pageable;
+import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
 import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import com.framework.demo.bo.sysUser.SysUser;
 import com.framework.demo.dao.sysUser.SysUserDao;
@@ -79,7 +78,7 @@ public class SysUserDaoImpl extends ConfigurableBaseSqlMapDao<SysUser, Long> imp
     }
 
 
-    public Page<SysUser> findByPageable(Pageable pageable) {
+    public Pagination<SysUser> findByPageable(Pagination pageable) {
         return sysUserMapper.findByPageable(pageable);
     }
 
@@ -89,7 +88,7 @@ public class SysUserDaoImpl extends ConfigurableBaseSqlMapDao<SysUser, Long> imp
     }
 
 
-    public List<SysUserOrganizationJob> findUserOrganizationJobOnNotExistsOrganizationOrJob(Pageable pageable) {
+    public List<SysUserOrganizationJob> findUserOrganizationJobOnNotExistsOrganizationOrJob(Pagination pageable) {
         return sysUserMapper.findUserOrganizationJobOnNotExistsOrganizationOrJob(pageable);
     }
 
@@ -99,7 +98,7 @@ public class SysUserDaoImpl extends ConfigurableBaseSqlMapDao<SysUser, Long> imp
     }
 
 
-    public List<SysUserOrganizationJob> findSysUserOrganizationJobOnNotExistsOrganizationOrJob(Pageable pageable) {
+    public List<SysUserOrganizationJob> findSysUserOrganizationJobOnNotExistsOrganizationOrJob(Pagination pageable) {
 
 
         return sysUserMapper.findSysUserOrganizationJobOnNotExistsOrganizationOrJob(pageable);

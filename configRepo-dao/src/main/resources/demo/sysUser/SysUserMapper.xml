@@ -85,7 +85,7 @@
         WHERE a.id = b.user_id
         AND a.id IS NULL
     </delete>
-<select id="findSysUserOrganizationJobOnNotExistsOrganizationOrJob" parameterType="org.springframework.data.domain.Pageable"  resultMap="BaseResultMap">
+<select id="findSysUserOrganizationJobOnNotExistsOrganizationOrJob" parameterType="cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination"  resultMap="BaseResultMap">
     SELECT
     *
     FROM

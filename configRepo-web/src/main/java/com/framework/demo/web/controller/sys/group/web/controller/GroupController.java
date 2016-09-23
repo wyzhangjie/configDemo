@@ -6,8 +6,8 @@
 package com.framework.demo.web.controller.sys.group.web.controller;
 
 
+import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
 import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.BooleanEnum;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Page;
 import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import com.framework.demo.enm.GroupType;
 import com.framework.demo.service.sys.sysGroup.service.SysGroupService;
@@ -63,7 +63,7 @@ public class GroupController extends BaseCRUDController<SysGroup, Long> {
 
     @RequestMapping(value = "{type}/list", method = RequestMethod.GET)
     @PageableDefaults(sort = "id=desc")
-    public String list(@PathVariable("type") GroupType type, Searchable searchable, Model model) {
+    public String list(@PathVariable("type") GroupType type, Searchable searchable, Model model) throws Exception{
 
         searchable.addSearchParam("type_eq", type);
 
@@ -77,7 +77,7 @@ public class GroupController extends BaseCRUDController<SysGroup, Long> {
 
 
     @RequestMapping(value = "{type}/create", method = RequestMethod.GET)
-    public String showCreateFormWithType(@PathVariable("type") GroupType type, Model model) {
+    public String showCreateFormWithType(@PathVariable("type") GroupType type, Model model) throws Exception{
         if (!model.containsAttribute("m")) {
             SysGroup group = new SysGroup();
             group.setType(type.getInfo());
@@ -89,7 +89,7 @@ public class GroupController extends BaseCRUDController<SysGroup, Long> {
     @RequestMapping(value = "{type}/create", method = RequestMethod.POST)
     public String create(
             Model model, @Valid @ModelAttribute("m") SysGroup m, BindingResult result,
-            RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes) throws Exception{
 
         return super.create(model, m, result, redirectAttributes);
     }
@@ -160,7 +160,7 @@ public class GroupController extends BaseCRUDController<SysGroup, Long> {
 
         searchable.addSearchParam("groupId_eq", group.getId());
 
-        Page page = null;
+        Pagination page = null;
         if (group.getType() == GroupType.user.toString()) {
             page = groupRelationService.findBySearchable(searchable);
         }

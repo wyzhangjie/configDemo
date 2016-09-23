@@ -5,6 +5,7 @@
 package com.framework.demo.service.impl.menu;
 
 import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.SearchOperator;
+import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.SearchRequest;
 import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import cn.vansky.framework.core.dao.SqlMapDao;
 import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Sort;
@@ -225,7 +226,7 @@ public class MenuServiceImpl extends GenericSqlMapServiceImpl<Menu, Integer> imp
                             .addSearchFilter("status", SearchOperator.eq, "1")
                             .addSort(new Sort(Sort.Direction.DESC, "parentId", "weight"));
             searchable.removePageable();
-            allList= Lists.newArrayList(findBySearchable(searchable).getContent());
+            allList= Lists.newArrayList(findBySearchable(searchable).getRows());
             Set<String> userPermissions = sysAuthService.findStringPermissions(user);
             Iterator<Menu> iter = allList.iterator();
             while (iter.hasNext()) {

@@ -36,7 +36,7 @@ public class SysGroupServiceImpl extends GenericSqlMapServiceImpl<SysGroup, Long
 
         return Sets.newHashSet(
                 Lists.transform(
-                        findBySearchable(searchable).getContent(),
+                        findBySearchable(searchable).getRows(),
                         new Function<SysGroup, Map<String, Object>>() {
 
                             public Map<String, Object> apply(SysGroup input) {

@@ -5,8 +5,8 @@
 package com.framework.demo.service.sys.sysUserOnline.service.impl;
 
 import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Page;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.PageRequest;
+import cn.vansky.framework.core.orm.mybatis.plugin.page.PageRequest;
+import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
 import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
 import javax.annotation.Resource;
 
@@ -26,11 +26,9 @@ public class SysUserOnlineServiceImpl extends GenericSqlMapServiceImpl<SysUserOn
     @Resource(name = "sysUserOnlineDao")
     private SysUserOnlineDao sysUserOnlineDao;
 
-
     public SqlMapDao<SysUserOnline, String> getDao() {
         return sysUserOnlineDao;
     }
-
 
     public void offline(String s) {
         SysUserOnline userOnline = findOne(s);
@@ -38,7 +36,6 @@ public class SysUserOnlineServiceImpl extends GenericSqlMapServiceImpl<SysUserOn
             delete(userOnline);
         }
     }
-
 
     public SysUserOnline findOne(String s) {
         return sysUserOnlineDao.findById(s);
@@ -49,11 +46,9 @@ public class SysUserOnlineServiceImpl extends GenericSqlMapServiceImpl<SysUserOn
         sysUserOnlineDao.update(sysUserOnline);
     }
 
-
-    public Page<SysUserOnline> findExpiredUserOnlineList(Date expiredDate, PageRequest pageRequest) {
+    public Pagination<SysUserOnline> findExpiredUserOnlineList(Date expiredDate, PageRequest pageRequest) {
         return null;
     }
-
 
     public void batchOffline(List<String> needOfflineIdList) {
 

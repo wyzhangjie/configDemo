@@ -92,10 +92,10 @@
             if(checkbox.size() == 0) {
                 return;
             }
-            var isShow = $(this).is(".status-show");
-            var title = isShow ? "显示数据" : "隐藏数据";
-            var message = isShow ? "确认显示数据吗？" : "确认隐藏数据吗？";
-            var url = isShow ?
+            var is_show = $(this).is(".status-show");
+            var title = is_show ? "显示数据" : "隐藏数据";
+            var message = is_show ? "确认显示数据吗？" : "确认隐藏数据吗？";
+            var url = is_show ?
                     "${ctx}/showcase/status/show/status/show?" + checkbox.serialize()
                     :
                     "${ctx}/showcase/status/show/status/hide?" + checkbox.serialize();

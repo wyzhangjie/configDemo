@@ -13,7 +13,7 @@ import cn.vansky.framework.tree.bo.Treeable;
 /**
  * This class corresponds to the database table `sys_job`
  */
-public abstract class SysJobBase extends Treeable<Long> implements TableDataConvertable {
+public abstract class SysJobBase extends Treeable implements TableDataConvertable {
     /**
      * This field corresponds to the database column `sys_job`.id
      */

@@ -18,7 +18,7 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${page.content}" var="m">
+    <c:forEach items="${page.rows}" var="m">
         <tr>
             <td>
                 <a data-id="${m.id}" class="btn-link toggle-child icon-plus-sign"></a>

@@ -30,16 +30,13 @@ public @interface PageableDefaults {
 
 
     /**
-     * The default-size the injected {@link org.springframework.data.domain.Pageable} should get if no corresponding
      * parameter defined in request (default is 10).
      */
     int value() default 10;
 
     /**
-     * The default-pagenumber the injected {@link org.synyx.hades.domain.Pageable} should get if no corresponding
-     * parameter defined in request (default is 0).
      */
-    int pageNumber() default 0;
+    int pageNumber() default 1;
 
     /**
      * 默认的排序 格式为{"a=desc, a.b=desc"}

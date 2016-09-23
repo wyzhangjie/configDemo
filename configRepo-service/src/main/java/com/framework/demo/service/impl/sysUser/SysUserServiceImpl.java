@@ -4,6 +4,8 @@
 
 package com.framework.demo.service.impl.sysUser;
 
+import cn.vansky.framework.core.orm.mybatis.plugin.page.BasePagination;
+import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
 import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.SearchOperator;
 import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.*;
 import cn.vansky.framework.core.dao.SqlMapDao;
@@ -60,7 +62,7 @@ public class SysUserServiceImpl extends GenericSqlMapServiceImpl<SysUser, Long> 
     }
 
 
-    public Page<SysUser> findByPageable(Pageable pageable) throws InvocationTargetException, IllegalAccessException {
+    public Pagination<SysUser> findByPageable(Pagination pageable) throws InvocationTargetException, IllegalAccessException {
         Searchable searchable = new SearchRequest();
         searchable.setPage(pageable);
         return      sysUserDao.findBySearchable(searchable);
@@ -73,11 +75,11 @@ public class SysUserServiceImpl extends GenericSqlMapServiceImpl<SysUser, Long> 
     }
 
 
-    public Page<SysUserOrganizationJob> findUserOrganizationJobOnNotExistsOrganizationOrJob(Pageable pageable) throws InvocationTargetException, IllegalAccessException {
+    public BasePagination<SysUserOrganizationJob> findUserOrganizationJobOnNotExistsOrganizationOrJob(Pagination pageable) throws InvocationTargetException, IllegalAccessException {
         Searchable searchable = new SearchRequest();
         searchable.setPage(pageable);
         List<SysUserOrganizationJob>sysUserOrganizationJobs = sysUserDao.findUserOrganizationJobOnNotExistsOrganizationOrJob(pageable);
-        return new PageImpl(sysUserOrganizationJobs);
+        return  new BasePagination(sysUserOrganizationJobs,sysUserOrganizationJobs.size());
     }
 
 
@@ -86,12 +88,12 @@ public class SysUserServiceImpl extends GenericSqlMapServiceImpl<SysUser, Long> 
     }
 
 
-    public Page<SysUserOrganizationJob> findSysUserOrganizationJobOnNotExistsOrganizationOrJob(Pageable pageable) {
+    public BasePagination<SysUserOrganizationJob> findSysUserOrganizationJobOnNotExistsOrganizationOrJob(Pagination pageable) {
 
         Searchable searchable = new SearchRequest();
         searchable.setPage(pageable);
         List<SysUserOrganizationJob> sysUserOrganizationJobs = sysUserDao.findSysUserOrganizationJobOnNotExistsOrganizationOrJob(pageable);
-        return new PageImpl(sysUserOrganizationJobs);
+        return new BasePagination(sysUserOrganizationJobs,sysUserOrganizationJobs.size());
 
 
     }
@@ -120,7 +122,7 @@ public class SysUserServiceImpl extends GenericSqlMapServiceImpl<SysUser, Long> 
     public Set<Map<String, Object>> findIdAndNames(Searchable searchable, String term) throws InvocationTargetException, IllegalAccessException {
         return Sets.newHashSet(
                 Lists.transform(
-                        findBySearchable(searchable).getContent(),
+                        findBySearchable(searchable).getRows(),
                         new Function<SysUser, Map<String, Object>>() {
 
                             public Map<String, Object> apply(SysUser input) {

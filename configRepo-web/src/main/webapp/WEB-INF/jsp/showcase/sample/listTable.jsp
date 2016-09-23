@@ -39,7 +39,7 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${page.content}" var="m">
+    <c:forEach items="${page.rows}" var="m">
         <tr>
             <td class="check"><input type="checkbox" name="ids" value="${m.id}"></td>
             <td>
@@ -48,8 +48,8 @@
             <td>${m.name}</td>
             <td>${m.age}</td>
             <td><spring:eval expression="m.birthday"/></td>
-            <td>${m.sex.info}</td>
-            <td>${m.show ? '是' : '否'}</td>
+            <td>${m.sex=='male'?男:女}</td>
+            <td>${m.is_show ? '是' : '否'}</td>
         </tr>
     </c:forEach>
     </tbody>

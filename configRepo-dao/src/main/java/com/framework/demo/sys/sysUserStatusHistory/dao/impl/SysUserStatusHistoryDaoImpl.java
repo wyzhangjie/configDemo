@@ -24,18 +24,15 @@ public class SysUserStatusHistoryDaoImpl extends ConfigurableBaseSqlMapDao<SysUs
     @Autowired
     private SysUserStatusHistoryMapper sysUserStatusHistoryMapper;
 
-    @Override
     public DaoMapper<SysUserStatusHistory, Long> getDaoMapper() {
         return sysUserStatusHistoryMapper;
     }
 
     @Resource(name = "sqlSessionFactory")
-    @Override
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         setSqlSessionFactoryInternal(sqlSessionFactory);
     }
 
-    @Override
     public String getLastReason(SysUser user) {
         return sysUserStatusHistoryMapper.getLastReason(user);
     }

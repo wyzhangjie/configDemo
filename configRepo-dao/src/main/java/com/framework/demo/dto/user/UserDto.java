@@ -2,6 +2,7 @@ package com.framework.demo.dto.user;
 
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Date;
  * Date: 2016/5/12
  */
 @Component("userDto")
-public class UserDto {
+public class UserDto implements Serializable{
     private Integer id;
     private String name;
     private String password;

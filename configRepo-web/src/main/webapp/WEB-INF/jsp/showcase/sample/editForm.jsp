@@ -89,9 +89,9 @@
                 </div>
             </div>
             <div class="control-group">
-                <form:label path="isShow" cssClass="control-label">是否显示</form:label>
+                <form:label path="is_show" cssClass="control-label">是否显示</form:label>
                 <div class="controls inline-radio">
-                    <form:radiobuttons path="isShow" items="${booleanList}" itemLabel="info" itemValue="value" cssClass="validate[required]"/>
+                    <form:radiobuttons path="is_show" items="${booleanList}" itemLabel="info" itemValue="value" cssClass="validate[required]"/>
 
                 </div>
             </div>

@@ -4,7 +4,7 @@
 <%@include file="/WEB-INF/jsp/common/import-zTree-css.jspf"%>
 
 <ul class="nav nav-tabs">
-    <li ${empty param['search.show_eq'] ? 'class="active"' : ''}>
+    <li ${empty param['search.is_show_eq'] ? 'class="active"' : ''}>
         <a href="${ctx}/showcase/tree/tree?async=${not empty param.async and param.async eq true}">
             <i class="icon-table"></i>
             所有
@@ -12,7 +12,7 @@
         </a>
     </li>
     <li ${not empty param['search.show_eq'] ? 'class="active"' : ''}>
-        <a href="${ctx}/showcase/tree/tree?async=${not empty param.async and param.async eq true}&search.show_eq=true">
+        <a href="${ctx}/showcase/tree/tree?async=${not empty param.async and param.async eq true}&search.is_show_eq=true">
             <i class="icon-table"></i>
             显示的
         </a>

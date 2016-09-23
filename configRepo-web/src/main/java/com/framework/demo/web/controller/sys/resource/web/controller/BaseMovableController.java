@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2005-2012 https://github.com/zhangkaitao
- *
+ * <p/>
  * Licensed under the Apache License, Version 2.0 (the "License");
  */
 package com.framework.demo.web.controller.sys.resource.web.controller;
@@ -28,8 +28,8 @@ import java.lang.reflect.InvocationTargetException;
  * <p>Date: 13-2-22 下午4:15
  * <p>Version: 1.0
  */
-public abstract class BaseMovableController<M  extends FieldAccessVo, ID  extends Serializable > extends BaseCRUDController{
-    protected GenericService<M, ID > baseService;
+public abstract class BaseMovableController<M extends FieldAccessVo, ID extends Serializable> extends BaseCRUDController {
+    protected GenericService<M, ID> baseService;
 
     private ShowcaseMoveableService getMovableService() {
         return (ShowcaseMoveableService) baseService;
@@ -38,7 +38,7 @@ public abstract class BaseMovableController<M  extends FieldAccessVo, ID  extend
     @RequestMapping(method = RequestMethod.GET)
     @PageableDefaults(value = 10, sort = "weight=desc")
 
-    public String list(Searchable searchable, Model model) {
+    public String list(Searchable searchable, Model model) throws Exception {
         return super.list(searchable, model);
     }
 
