@@ -1,6 +1,7 @@
 package com.framework.demo.vo.template;
 
-import cn.vansky.framework.core.vo.BaseVo;
+
+import com.github.fartherp.framework.database.mybatis.plugin.page.BaseVo;
 
 /**
  * @author zhangjie@qianbao.com

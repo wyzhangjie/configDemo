@@ -4,14 +4,14 @@
 
 package com.framework.demo.dao.impl.datagrid;
 
-import cn.vansky.framework.core.dao.ConfigurableBaseSqlMapDao;
-import cn.vansky.framework.core.dao.DaoMapper;
 
 import javax.annotation.Resource;
 
 import com.framework.demo.bo.datagrid.EasyuiColumn;
 import com.framework.demo.dao.datagrid.EasyuiColumnDao;
 import com.framework.demo.dao.datagrid.EasyuiColumnMapper;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

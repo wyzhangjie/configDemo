@@ -5,18 +5,16 @@
  */
 package com.framework.demo.web.bind.method.annotation;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.page.PageRequest;
-import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Sort;
-import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.MethodParameter;
 
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.ModelAndViewContainer;
 import com.framework.demo.web.bind.annotation.PageableDefaults;
+import com.github.fartherp.framework.database.mybatis.plugin.page.PageRequest;
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Sort;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;

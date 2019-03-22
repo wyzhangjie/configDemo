@@ -19,9 +19,11 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
-            <version>4.0.0.RELEASE</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.github.fartherp</groupId>
+            <artifactId>framework-poi</artifactId>
+        </dependency>
     </dependencies>
 
 

@@ -4,9 +4,9 @@
 
 package com.framework.demo.dao.general;
 
-import cn.vansky.framework.core.dao.DaoMapper;
-import cn.vansky.framework.core.orm.mybatis.annotation.SqlMapper;
 import com.framework.demo.bo.general.CompositeDictionary;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.mybatis.annotation.SqlMapper;
 
 import java.util.List;
 import java.util.Map;

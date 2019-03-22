@@ -4,13 +4,13 @@
 
 package com.framework.demo.dao.collection;
 
-import cn.vansky.framework.core.dao.SqlMapDao;
 import com.framework.demo.bo.collection.Collection;
+import com.github.fartherp.framework.database.dao.DaoMapper;
 
 /**
  * This class corresponds to the database table `tb_collection`
  */
-public interface CollectionDao extends SqlMapDao<Collection, Integer> {
+public interface CollectionDao extends DaoMapper<Collection, Integer> {
     public int saveComit(String comitmentarea, String model);
 
 }

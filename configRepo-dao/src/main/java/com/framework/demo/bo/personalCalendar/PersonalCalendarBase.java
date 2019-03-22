@@ -4,16 +4,16 @@
 
 package com.framework.demo.bo.personalCalendar;
 
-import cn.vansky.framework.core.dao.FieldAccessVo;
-import cn.vansky.framework.core.dao.TableDataConvertable;
-import cn.vansky.framework.core.dao.annotation.ColumnDescription;
-import cn.vansky.framework.core.dao.annotation.Id;
+import com.github.fartherp.framework.database.dao.FieldAccessVo;
+import com.github.fartherp.framework.database.dao.annotation.ColumnDescription;
+import com.github.fartherp.framework.database.dao.annotation.Id;
+
 import java.util.Date;
 
 /**
  * This class corresponds to the database table `personal_calendar`
  */
-public abstract class PersonalCalendarBase extends FieldAccessVo implements TableDataConvertable {
+public abstract class PersonalCalendarBase extends FieldAccessVo  {
     /**
      * This field corresponds to the database column `personal_calendar`.id
      */

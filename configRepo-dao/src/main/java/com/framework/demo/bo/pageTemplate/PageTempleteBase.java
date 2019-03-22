@@ -4,18 +4,14 @@
 
 package com.framework.demo.bo.pageTemplate;
 
-import cn.vansky.framework.core.dao.FieldAccessVo;
-import cn.vansky.framework.core.dao.TableDataConvertable;
-import cn.vansky.framework.core.dao.TableField;
-import cn.vansky.framework.core.dao.annotation.ColumnDescription;
-import cn.vansky.framework.core.dao.annotation.Id;
-import java.util.List;
-import java.util.Map;
+import com.github.fartherp.framework.database.dao.FieldAccessVo;
+import com.github.fartherp.framework.database.dao.annotation.ColumnDescription;
+import com.github.fartherp.framework.database.dao.annotation.Id;
 
 /**
  * This class corresponds to the database table `page_templete`
  */
-public abstract class PageTempleteBase extends FieldAccessVo  {
+public abstract class PageTempleteBase extends FieldAccessVo {
     /**
      * This field corresponds to the database column `page_templete`.Id
      */

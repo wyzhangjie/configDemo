@@ -4,15 +4,15 @@
 
 package com.framework.demo.bo.showcaseMoveable;
 
-import cn.vansky.framework.core.dao.FieldAccessVo;
-import cn.vansky.framework.core.dao.TableDataConvertable;
-import cn.vansky.framework.core.dao.annotation.ColumnDescription;
-import cn.vansky.framework.core.dao.annotation.Id;
+
+import com.github.fartherp.framework.database.dao.FieldAccessVo;
+import com.github.fartherp.framework.database.dao.annotation.ColumnDescription;
+import com.github.fartherp.framework.database.dao.annotation.Id;
 
 /**
  * This class corresponds to the database table `showcase_moveable`
  */
-public abstract class ShowcaseMoveableBase extends FieldAccessVo implements TableDataConvertable {
+public abstract class ShowcaseMoveableBase extends FieldAccessVo {
     /**
      * This field corresponds to the database column `showcase_moveable`.id
      */

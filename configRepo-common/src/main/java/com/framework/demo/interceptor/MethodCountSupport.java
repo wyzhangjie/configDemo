@@ -1,10 +1,14 @@
 package com.framework.demo.interceptor;
 
-import cn.vansky.framework.common.util.CsvUtil;
-import cn.vansky.poi.csv.read.CSVRead;
+import com.framework.demo.common.InstanceRevert;
+import com.framework.demo.spring.SpeedUpSpringProcessor;
+import com.github.fartherp.framework.common.util.CsvUtil;
+import com.github.fartherp.framework.poi.csv.CSVRead;
+import com.github.fartherp.framework.poi.csv.CSVReadDeal;
+
 import org.aopalliance.intercept.MethodInvocation;
-import org.apache.commons.collections.ListUtils;
-import org.apache.commons.collections.Transformer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
@@ -21,6 +25,7 @@ import java.util.Properties;
  * Date: 2016-09-13-10:28
  */
 public abstract class MethodCountSupport implements InitializingBean {
+    private final Logger log = LoggerFactory.getLogger(MethodCountSupport.class);
     /**
      * csv文件
      */
@@ -36,7 +41,6 @@ public abstract class MethodCountSupport implements InitializingBean {
     /**
     *类型转换器
     */
-    private static final CountVoConverter countConverter= new CountVoConverter();
 
     static {
         // Load default strategy implementations from properties file.
@@ -61,19 +65,24 @@ public abstract class MethodCountSupport implements InitializingBean {
         InputStream inputStream = new BufferedInputStream(new FileInputStream(new File(DEFAULT_CSV_PATH)));
         final String classname = classc.getSimpleName();
         final String methodname = method.getName();
-        csvReader.read(inputStream, new CSVRead.DefaultCSVReaderDeal<CountVo>() {
-
+        CSVRead.read(inputStream, new CSVReadDeal<CountVo> () {
+            @Override
             public void dealBatchBean(List<CountVo> list) {
 
                 String[] title = new String[]{"类名称","方法名称","访问次数"};
                 List<String[]> strs =new ArrayList<String[]>();
                 for(CountVo countVo:list){
-                   String[] ss = countConverter.converter(countVo);
-                   strs.add(ss);
+                    String[] ss = new String[0];
+                    try {
+                        ss = InstanceRevert.convertItoString(countVo);
+                    } catch (Exception e) {
+                        log.info("字符串转换错误");
+                    }
+                    strs.add(ss);
                 }
                 CsvUtil.writeCsvFile(DEFAULT_CSV_PATH.toString().substring(0, DEFAULT_CSV_PATH.toString().lastIndexOf("csv")-1),title,strs);
             }
-
+            @Override
             public CountVo dealBean(String[] arr) {
                 CountVo countVo = new CountVo();
                 countVo.setClassName(arr[0]);

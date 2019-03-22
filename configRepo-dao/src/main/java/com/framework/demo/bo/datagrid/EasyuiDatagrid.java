@@ -4,7 +4,6 @@
 
 package com.framework.demo.bo.datagrid;
 
-import cn.vansky.framework.core.vo.BaseVo;
 
 import java.util.ArrayList;
 import java.util.List;

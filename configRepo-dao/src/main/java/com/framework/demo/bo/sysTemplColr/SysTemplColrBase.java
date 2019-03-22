@@ -4,15 +4,15 @@
 
 package com.framework.demo.bo.sysTemplColr;
 
-import cn.vansky.framework.core.dao.FieldAccessVo;
-import cn.vansky.framework.core.dao.TableDataConvertable;
-import cn.vansky.framework.core.dao.annotation.ColumnDescription;
-import cn.vansky.framework.core.dao.annotation.Id;
+
+import com.github.fartherp.framework.database.dao.FieldAccessVo;
+import com.github.fartherp.framework.database.dao.annotation.ColumnDescription;
+import com.github.fartherp.framework.database.dao.annotation.Id;
 
 /**
  * This class corresponds to the database table `sys_templ_colr`
  */
-public abstract class SysTemplColrBase extends FieldAccessVo implements TableDataConvertable {
+public abstract class SysTemplColrBase extends FieldAccessVo  {
     /**
      * This field corresponds to the database column `sys_templ_colr`.Id
      */

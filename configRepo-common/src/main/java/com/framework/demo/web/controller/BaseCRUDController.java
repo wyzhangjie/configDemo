@@ -6,28 +6,22 @@
 package com.framework.demo.web.controller;
 
 
-import cn.vansky.framework.core.dao.FieldAccessVo;
-import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
-import cn.vansky.framework.core.service.GenericService;
 import com.framework.demo.common.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.ClassEditor;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.framework.demo.web.bind.annotation.PageableDefaults;
 import com.framework.demo.web.controller.permission.PermissionList;
+import com.github.fartherp.framework.database.dao.FieldAccessVo;
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
+import com.github.fartherp.framework.database.service.GenericService;
 
 import javax.validation.Valid;
 import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * 基础CRUD 控制器
@@ -191,7 +185,7 @@ public abstract class BaseCRUDController<M extends FieldAccessVo, ID extends Ser
 
     @RequestMapping(value = "{id}/delete", method = RequestMethod.POST)
     public String delete(
-            @PathVariable("id") M m,
+            @PathVariable("id") ID m,
             @RequestParam(value = Constants.BACK_URL, required = false) String backURL,
             RedirectAttributes redirectAttributes) throws Exception {
 

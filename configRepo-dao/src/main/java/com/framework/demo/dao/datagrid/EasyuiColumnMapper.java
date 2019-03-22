@@ -4,9 +4,9 @@
 
 package com.framework.demo.dao.datagrid;
 
-import cn.vansky.framework.core.dao.DaoMapper;
-import cn.vansky.framework.core.orm.mybatis.annotation.SqlMapper;
 import com.framework.demo.bo.datagrid.EasyuiColumn;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.mybatis.annotation.SqlMapper;
 
 import java.util.List;
 

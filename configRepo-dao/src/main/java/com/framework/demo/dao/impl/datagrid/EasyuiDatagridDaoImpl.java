@@ -36,8 +36,9 @@ public class EasyuiDatagridDaoImpl extends ConfigurableBaseSqlMapDao<EasyuiDatag
     }
 
 
-    public void insert(EasyuiDatagrid easyuiDatagrid) {
+    public int insert(EasyuiDatagrid easyuiDatagrid) {
         easyuiDatagridMapper.insert(easyuiDatagrid);
+        return 0;
     }
 
 

@@ -4,11 +4,10 @@
 
 package com.framework.demo.bo.datagrid;
 
-import cn.vansky.framework.core.dao.FieldAccessVo;
-import cn.vansky.framework.core.dao.TableDataConvertable;
-import cn.vansky.framework.core.dao.annotation.ColumnDescription;
-import cn.vansky.framework.core.dao.annotation.Id;
-import cn.vansky.framework.core.vo.BaseVo;
+
+import com.github.fartherp.framework.database.dao.FieldAccessVo;
+import com.github.fartherp.framework.database.dao.annotation.ColumnDescription;
+import com.github.fartherp.framework.database.dao.annotation.Id;
 
 /**
  * This class corresponds to the database table `easyui_datagrid`

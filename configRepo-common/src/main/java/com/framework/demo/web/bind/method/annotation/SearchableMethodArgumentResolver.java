@@ -5,17 +5,17 @@
  */
 package com.framework.demo.web.bind.method.annotation;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.MethodParameter;
-import org.springframework.data.domain.Pageable;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.ModelAndViewContainer;
 import com.framework.demo.web.bind.annotation.SearchableDefaults;
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
 
 import java.util.List;
 import java.util.Map;
@@ -115,7 +115,7 @@ public class SearchableMethodArgumentResolver extends BaseMethodArgumentResolver
             }
         }
 
-        Pageable pageable = (Pageable) pageableMethodArgumentResolver.resolveArgument(parameter, mavContainer, webRequest, binderFactory);
+        Pagination pageable = (Pagination) pageableMethodArgumentResolver.resolveArgument(parameter, mavContainer, webRequest, binderFactory);
         //默认分页及排序
         if (searchDefaults == null) {
             searchable.setPage(pageable);
@@ -126,7 +126,8 @@ public class SearchableMethodArgumentResolver extends BaseMethodArgumentResolver
         }
         //needPage=false needSort=true  不要分页，但排序
         if (searchDefaults != null && !searchDefaults.needPage() && searchDefaults.needSort()) {
-            searchable.addSort(pageable.getSort());
+            // TODO: 2019/3/22  排序功能
+          /*  searchable.addSort(pageable.getS);*/
         }
 
         return searchable;

@@ -4,14 +4,15 @@
 
 package com.framework.demo.service.impl.datagrid;
 
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
 
 import javax.annotation.Resource;
 
 import com.framework.demo.bo.datagrid.EasyuiColumn;
 import com.framework.demo.dao.datagrid.EasyuiColumnDao;
 import com.framework.demo.service.datagrid.EasyuiColumnService;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class EasyuiColumnServiceImpl extends GenericSqlMapServiceImpl<EasyuiColu
     private EasyuiColumnDao easyuiColumnDao;
 
 
-    public SqlMapDao<EasyuiColumn, Integer> getDao() {
+    public DaoMapper<EasyuiColumn, Integer> getDao() {
         return easyuiColumnDao;
     }
 
