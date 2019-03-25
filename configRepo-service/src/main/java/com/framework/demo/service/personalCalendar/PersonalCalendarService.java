@@ -4,9 +4,9 @@
 
 package com.framework.demo.service.personalCalendar;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
-import cn.vansky.framework.core.service.GenericService;
 import com.framework.demo.bo.personalCalendar.PersonalCalendar;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
+import com.github.fartherp.framework.database.service.GenericService;
 
 import java.util.List;
 

@@ -4,26 +4,27 @@
 
 package com.framework.demo.service.impl.datagrid;
 
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
+import com.framework.demo.bo.datagrid.EasyuiDatagrid;
+import com.framework.demo.dao.datagrid.EasyuiDatagridMapper;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
+
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
-import com.framework.demo.bo.datagrid.EasyuiDatagrid;
-import com.framework.demo.dao.datagrid.EasyuiDatagridDao;
-import com.framework.demo.service.datagrid.EasyuiDatagridService;
-import org.springframework.stereotype.Service;
+
 
 /**
  * This class corresponds to the database table `easyui_datagrid`
  */
 @Service("easyuiDatagridService")
-public class EasyuiDatagridServiceImpl extends GenericSqlMapServiceImpl<EasyuiDatagrid, Integer> implements EasyuiDatagridService {
+public class EasyuiDatagridServiceImpl extends GenericSqlMapServiceImpl<EasyuiDatagrid, Integer>  {
     @Resource(name = "easyuiDatagridDao")
-    private EasyuiDatagridDao easyuiDatagridDao;
+    private EasyuiDatagridMapper easyuiDatagridDao;
 
 
-    public SqlMapDao<EasyuiDatagrid, Integer> getDao() {
+    public DaoMapper<EasyuiDatagrid, Integer> getDao() {
         return easyuiDatagridDao;
     }
 

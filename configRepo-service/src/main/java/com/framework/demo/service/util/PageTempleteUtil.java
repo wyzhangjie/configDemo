@@ -18,18 +18,16 @@ import com.framework.demo.enm.TemplateEnum;
 import com.framework.demo.service.pageTemplate.PageTempleteService;
 import com.framework.demo.service.sysColor.SysTemplColrService;
 import com.framework.demo.vo.template.EasyUiDatagridPage;
-import com.framework.demo.vo.template.Pagination;
 import com.framework.demo.vo.template.SqlPage;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import com.alibaba.fastjson.JSON;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
+
 import java.util.*;
 
 /**

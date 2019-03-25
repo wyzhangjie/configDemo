@@ -5,18 +5,15 @@
  */
 package com.framework.demo.service.message;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
-import com.framework.demo.bo.collection.Collection;
+
 import com.framework.demo.bo.personalMessage.PersonalMessage;
-import com.framework.demo.dao.collection.CollectionDao;
-import com.framework.demo.dao.personalCalendar.PersonalCalendarDao;
-import com.framework.demo.dao.personalMessage.PersonalMessageDao;
+import com.framework.demo.dao.personalMessage.PersonalMessageMapper;
 import com.framework.demo.enm.MessageState;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.time.DateUtils;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
+
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -34,10 +31,10 @@ import java.util.List;
 public class MessageService   extends GenericSqlMapServiceImpl<PersonalMessage, Long> implements MessageServiceI {
 
     @Resource(name = "personalMessageDao")
-    private PersonalMessageDao personalMessageDao;
+    private PersonalMessageMapper personalMessageDao;
 
 
-    public SqlMapDao<PersonalMessage, Long> getDao() {
+    public DaoMapper<PersonalMessage, Long> getDao() {
         return personalMessageDao;
     }
 

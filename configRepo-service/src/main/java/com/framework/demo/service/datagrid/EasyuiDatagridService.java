@@ -4,8 +4,8 @@
 
 package com.framework.demo.service.datagrid;
 
-import cn.vansky.framework.core.service.GenericService;
 import com.framework.demo.bo.datagrid.EasyuiDatagrid;
+import com.github.fartherp.framework.database.service.GenericService;
 
 /**
  * This class corresponds to the database table `easyui_datagrid`

@@ -85,7 +85,7 @@
         WHERE a.id = b.user_id
         AND a.id IS NULL
     </delete>
-<select id="findSysUserOrganizationJobOnNotExistsOrganizationOrJob" parameterType="cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination"  resultMap="BaseResultMap">
+<select id="findSysUserOrganizationJobOnNotExistsOrganizationOrJob" parameterType="com.github.fartherp.framework.database.mybatis.plugin.page.Pagination"  resultMap="BaseResultMap">
     SELECT
     *
     FROM
@@ -112,6 +112,12 @@
     <include refid="Base_Column_List"/>
     from `sys_user` where mobile_phone_number = #{"mobilePhoneNumber",jdbcType=VARCHAR}
 </select>
+
+    <select id="findById"  resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from `sys_user` where id =#{"id"}
+    </select>
 
 
 </mapper>

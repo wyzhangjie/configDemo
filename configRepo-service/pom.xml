@@ -15,6 +15,15 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.github.fartherp</groupId>
+            <artifactId>framework-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.fartherp</groupId>
+            <artifactId>framework-database</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>com.framework</groupId>
             <artifactId>configRepo-dao</artifactId>
             <version>1.0.0</version>
@@ -29,6 +38,7 @@
             <artifactId>spring-test</artifactId>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpasyncclient</artifactId>

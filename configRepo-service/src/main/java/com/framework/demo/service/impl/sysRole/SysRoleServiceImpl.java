@@ -4,14 +4,16 @@
 
 package com.framework.demo.service.impl.sysRole;
 
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
 import javax.annotation.Resource;
 
 import com.framework.demo.bo.sysRole.SysRole;
 import com.framework.demo.bo.sysUser.SysUser;
-import com.framework.demo.dao.sysRole.SysRoleDao;
+import com.framework.demo.dao.sysRole.SysRoleMapper;
 import com.framework.demo.service.sysRole.SysRoleService;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -21,11 +23,11 @@ import java.util.Set;
  */
 @Service("sysRoleService")
 public class SysRoleServiceImpl extends GenericSqlMapServiceImpl<SysRole, Long> implements SysRoleService {
-    @Resource(name = "sysRoleDao")
-    private SysRoleDao sysRoleDao;
+    @Autowired
+    private SysRoleMapper sysRoleDao;
 
 
-    public SqlMapDao<SysRole, Long> getDao() {
+    public DaoMapper<SysRole, Long> getDao() {
         return sysRoleDao;
     }
 
@@ -36,12 +38,12 @@ public class SysRoleServiceImpl extends GenericSqlMapServiceImpl<SysRole, Long> 
 
 
     public void createRole(SysRole role) {
-         sysRoleDao.save(role);
+         sysRoleDao.insert(role);
     }
 
 
     public void deleteRole(Long roleId) {
-        sysRoleDao.delete(roleId);
+        sysRoleDao.deleteByPrimaryKey(roleId);
     }
 
 

@@ -4,28 +4,30 @@
 
 package com.framework.demo.service.impl.general;
 
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
 import com.framework.demo.bo.general.CompositeDictionary;
-import com.framework.demo.dao.general.CompositeDictionaryDao;
-import com.framework.demo.service.general.CompositeDictionaryService;
+import com.framework.demo.dao.general.CompositeDictionaryMapper;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
+
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.annotation.Resource;
+
 
 /**
  * This class corresponds to the database table `td_composite_dictionary`
  */
 @Service("compositeDictionaryService")
-public class CompositeDictionaryServiceImpl extends GenericSqlMapServiceImpl<CompositeDictionary, Long> implements CompositeDictionaryService {
+public class CompositeDictionaryServiceImpl extends GenericSqlMapServiceImpl<CompositeDictionary, Long>  {
     @Resource(name = "compositeDictionaryDao")
-    private CompositeDictionaryDao compositeDictionaryDao;
+    private CompositeDictionaryMapper compositeDictionaryDao;
 
 
-    public SqlMapDao<CompositeDictionary, Long> getDao() {
+    public DaoMapper<CompositeDictionary, Long> getDao() {
         return compositeDictionaryDao;
     }
 

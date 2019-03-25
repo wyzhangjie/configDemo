@@ -4,13 +4,13 @@
 
 package com.framework.demo.dao.sysUser;
 
-import cn.vansky.framework.core.dao.DaoMapper;
-import cn.vansky.framework.core.orm.mybatis.annotation.SqlMapper;
-import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import com.framework.demo.bo.sysUser.SysUser;
-import com.framework.demo.enm.UserStatus;
 import com.framework.demo.sys.sysUserOrganizationJob.bo.SysUserOrganizationJob;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.Set;
 /**
  * This class corresponds to the database table `sys_user`
  */
-@SqlMapper
+@Mapper
 public interface SysUserMapper extends DaoMapper<SysUser, Long> {
     SysUser findByUsername(String username);
 
@@ -54,4 +54,8 @@ public interface SysUserMapper extends DaoMapper<SysUser, Long> {
     Set<Map<String,Object>> findIdAndNames(Searchable searchable, String term);
 
     void changePasswords(SysUser opSysUser, Long[] ids, String newPassword);
+
+    Pagination<SysUser> findBySearchable(Searchable searchable);
+
+    SysUser findById(Long id);
 }

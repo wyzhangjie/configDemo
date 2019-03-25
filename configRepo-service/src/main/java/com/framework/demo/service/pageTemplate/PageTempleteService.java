@@ -4,7 +4,7 @@
 
 package com.framework.demo.service.pageTemplate;
 
-import cn.vansky.framework.core.service.GenericService;
+import com.github.fartherp.framework.database.service.GenericService;
 import com.framework.demo.bo.pageTemplate.PageTemplete;
 import com.framework.demo.bo.sysTemplColr.SysTemplColr;
 import com.framework.demo.vo.template.SqlPage;

@@ -5,9 +5,9 @@
  */
 package com.framework.demo.service.message;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
 import com.framework.demo.bo.personalMessage.PersonalMessage;
 import com.framework.demo.enm.MessageState;
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;

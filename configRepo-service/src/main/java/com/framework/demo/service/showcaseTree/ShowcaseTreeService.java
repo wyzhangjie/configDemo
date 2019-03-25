@@ -4,7 +4,7 @@
 
 package com.framework.demo.service.showcaseTree;
 
-import cn.vansky.framework.core.service.GenericService;
+import com.github.fartherp.framework.database.service.GenericService;
 import cn.vansky.framework.tree.service.BaseTreeableService;
 import com.framework.demo.bo.showcaseTree.ShowcaseTree;
 

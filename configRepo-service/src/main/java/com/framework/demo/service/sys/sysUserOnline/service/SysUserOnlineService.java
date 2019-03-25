@@ -6,7 +6,7 @@ package com.framework.demo.service.sys.sysUserOnline.service;
 
 import cn.vansky.framework.core.orm.mybatis.plugin.page.PageRequest;
 import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
-import cn.vansky.framework.core.service.GenericService;
+import com.github.fartherp.framework.database.service.GenericService;
 import com.framework.demo.sys.sysUserOnline.bo.SysUserOnline;
 
 import java.util.Date;

@@ -4,14 +4,13 @@
 
 package com.framework.demo.service.impl.collection;
 
-import javax.annotation.Resource;
-
 import com.framework.demo.bo.collection.Collection;
-import com.framework.demo.dao.collection.CollectionDao;
+import com.framework.demo.dao.collection.CollectionMapper;
 import com.framework.demo.service.collection.CollectionService;
 import com.github.fartherp.framework.database.dao.DaoMapper;
 import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,16 +18,16 @@ import org.springframework.stereotype.Service;
  */
 @Service("collectionService")
 public class CollectionServiceImpl extends GenericSqlMapServiceImpl<Collection, Integer> implements CollectionService {
-    @Resource(name = "collectionDao")
-    private CollectionDao collectionDao;
-
+    @Autowired
+    private CollectionMapper collectionMapper;
 
     public DaoMapper<Collection, Integer> getDao() {
-        return collectionDao;
+        return collectionMapper;
     }
 
 
+    @Override
     public int saveComit(String comitmentarea, String model) {
-        return collectionDao.saveComit(comitmentarea,model);
+        return collectionMapper.saveComit(comitmentarea,model);
     }
 }

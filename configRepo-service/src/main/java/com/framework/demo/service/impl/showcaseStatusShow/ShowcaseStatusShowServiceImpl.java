@@ -10,7 +10,6 @@ import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
 import javax.annotation.Resource;
 
 import com.framework.demo.bo.showcaseStatusShow.ShowcaseStatusShow;
-import com.framework.demo.dao.showcaseStatusShow.ShowcaseStatusShowDao;
 import com.framework.demo.service.showcaseStatusShow.ShowcaseStatusShowService;
 import org.springframework.stereotype.Service;
 

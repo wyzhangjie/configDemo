@@ -33,7 +33,7 @@ public class SysAuthDaoImplTest extends TestCase {
 
     public void testFindStringRoles() throws Exception {
         //mybatis的配置文件applicationContext-persistence.xml
-        String resource = "D:\\sourcestudy\\configRepo-master\\configRepo-dao\\src\\test\\resources\\conf.dao\\applicationContext-sqlmapping.xml";
+        String resource = "D:\\sourcestudy\\configRepo-master\\configRepo-dao\\src\\test\\resources\\conf.dao\\applicationContext-datasource.xml";
         File f = new File(resource);
         ClassLoader classLoader= getClass().getClassLoader();
         InputStream inputStream  = new FileInputStream(f);

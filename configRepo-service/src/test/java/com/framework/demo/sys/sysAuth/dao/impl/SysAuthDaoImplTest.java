@@ -1,8 +1,6 @@
 package com.framework.demo.sys.sysAuth.dao.impl;
 
-import com.framework.demo.dao.showcaseSample.ShowcaseSampleDao;
 import junit.framework.TestCase;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author zhangjie@qianbao.com

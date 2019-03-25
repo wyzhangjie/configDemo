@@ -4,8 +4,11 @@
 
 package com.framework.demo.service.datagrid;
 
-import cn.vansky.framework.core.service.GenericService;
 import com.framework.demo.bo.datagrid.EasyuiColumn;
+import com.framework.demo.bo.datagrid.EasyuiDatagrid;
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
+import com.github.fartherp.framework.database.service.GenericService;
 
 import java.util.List;
 
@@ -16,4 +19,6 @@ public interface EasyuiColumnService extends GenericService<EasyuiColumn, Intege
     void insertBatch(List<EasyuiColumn> columns);
 
     List<EasyuiColumn> findByModel(int modl);
+
+    Pagination<EasyuiDatagrid> findBySearchable(Searchable searchable);
 }

@@ -4,33 +4,35 @@
 
 package com.framework.demo.service.impl.personalCalendar;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
-import javax.annotation.Resource;
-
 import com.framework.demo.bo.personalCalendar.PersonalCalendar;
-import com.framework.demo.dao.personalCalendar.PersonalCalendarDao;
+import com.framework.demo.dao.personalCalendar.PersonalCalendarMapper;
 import com.framework.demo.service.personalCalendar.PersonalCalendarService;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
+
 
 /**
  * This class corresponds to the database table `personal_calendar`
  */
 @Service("personalCalendarService")
 public class PersonalCalendarServiceImpl extends GenericSqlMapServiceImpl<PersonalCalendar, Long> implements PersonalCalendarService {
-    @Resource(name = "personalCalendarDao")
-    private PersonalCalendarDao personalCalendarDao;
+    @Autowired
+    private PersonalCalendarMapper personalCalendarDao;
 
-    public SqlMapDao<PersonalCalendar, Long> getDao() {
+    public DaoMapper<PersonalCalendar, Long> getDao() {
         return personalCalendarDao;
     }
 
 
     public Object countRecentlyCalendar(Long id, int i) {
-        return personalCalendarDao.countRecentlyCalendar(id,i);
+        return personalCalendarDao.countRecentlyCalendar(id,new Date(),new Date(),i);
     }
 
 

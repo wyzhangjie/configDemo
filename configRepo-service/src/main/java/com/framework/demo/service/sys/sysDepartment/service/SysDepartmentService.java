@@ -4,7 +4,7 @@
 
 package com.framework.demo.service.sys.sysDepartment.service;
 
-import cn.vansky.framework.core.service.GenericService;
+import com.github.fartherp.framework.database.service.GenericService;
 import com.framework.demo.sys.sysDepartment.bo.SysDepartment;
 
 /**

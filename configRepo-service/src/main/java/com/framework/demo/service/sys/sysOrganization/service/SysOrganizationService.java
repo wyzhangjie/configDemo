@@ -4,7 +4,7 @@
 
 package com.framework.demo.service.sys.sysOrganization.service;
 
-import cn.vansky.framework.core.service.GenericService;
+import com.github.fartherp.framework.database.service.GenericService;
 import cn.vansky.framework.tree.service.BaseTreeableService;
 import com.framework.demo.sys.sysOrganization.bo.SysOrganization;
 

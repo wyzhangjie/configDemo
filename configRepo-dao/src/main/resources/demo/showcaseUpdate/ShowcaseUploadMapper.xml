@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.framework.demo.dao.showcaseUpload.ShowcaseUploadMapper">
-    <select id="findBySearchable"   parameterType="cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable" resultMap="BaseResultMap">
+    <select id="findBySearchable"   parameterType="com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable" resultMap="BaseResultMap">
     select * from  `showcase_upload` where 1=1
     </select>
-    <select id="countBySearchable" parameterType="cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable"  resultType="java.lang.Long">
+    <select id="countBySearchable" parameterType="com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable"  resultType="java.lang.Long">
         select count(*) from `showcase_upload` where 1=1
     </select>
 </mapper>

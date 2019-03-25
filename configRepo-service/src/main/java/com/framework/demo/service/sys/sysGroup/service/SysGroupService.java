@@ -5,7 +5,7 @@
 package com.framework.demo.service.sys.sysGroup.service;
 
 import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
-import cn.vansky.framework.core.service.GenericService;
+import com.github.fartherp.framework.database.service.GenericService;
 import com.framework.demo.sys.sysGroup.bo.SysGroup;
 
 import java.util.Map;

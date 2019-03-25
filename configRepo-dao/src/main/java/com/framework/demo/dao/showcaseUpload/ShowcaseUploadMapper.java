@@ -4,13 +4,14 @@
 
 package com.framework.demo.dao.showcaseUpload;
 
-import cn.vansky.framework.core.dao.DaoMapper;
-import cn.vansky.framework.core.orm.mybatis.annotation.SqlMapper;
 import com.framework.demo.bo.showcaseUpload.ShowcaseUpload;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * This class corresponds to the database table `showcase_upload`
  */
-@SqlMapper
+@Mapper
 public interface ShowcaseUploadMapper extends DaoMapper<ShowcaseUpload, Long> {
 }

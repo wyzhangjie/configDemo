@@ -4,12 +4,13 @@
 
 package com.framework.demo.dao.personalMessage;
 
-import cn.vansky.framework.core.dao.DaoMapper;
-import cn.vansky.framework.core.orm.mybatis.annotation.SqlMapper;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Page;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import com.framework.demo.bo.personalMessage.PersonalMessage;
 import com.framework.demo.enm.MessageState;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
+
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,7 +19,7 @@ import java.util.List;
 /**
  * This class corresponds to the database table `personal_message`
  */
-@SqlMapper
+@Mapper
 public interface PersonalMessageMapper extends DaoMapper<PersonalMessage, Long> {
     Integer changeSenderState(Long senderId, MessageState oldState, MessageState newState, Date changeDate);
 
@@ -36,7 +37,7 @@ public interface PersonalMessageMapper extends DaoMapper<PersonalMessage, Long> 
 
     List<PersonalMessage> findBySeachable(Searchable searchable);
 
-    Page<PersonalMessage> findBySeachableForPage(Searchable searchable);
+    Pagination<PersonalMessage> findBySeachableForPage(Searchable searchable);
 
     Integer changeState(ArrayList<MessageState> oldStates, MessageState newState, int expireDays);
 }

@@ -4,13 +4,14 @@
 
 package com.framework.demo.dao.showcaseTree;
 
-import cn.vansky.framework.core.dao.DaoMapper;
-import cn.vansky.framework.core.orm.mybatis.annotation.SqlMapper;
 import com.framework.demo.bo.showcaseTree.ShowcaseTree;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * This class corresponds to the database table `showcase_tree`
  */
-@SqlMapper
+@Mapper
 public interface ShowcaseTreeMapper extends DaoMapper<ShowcaseTree, Long> {
 }

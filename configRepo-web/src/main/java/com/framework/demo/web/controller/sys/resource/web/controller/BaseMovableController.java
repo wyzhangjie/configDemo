@@ -8,7 +8,7 @@ package com.framework.demo.web.controller.sys.resource.web.controller;
 
 import cn.vansky.framework.core.dao.FieldAccessVo;
 import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
-import cn.vansky.framework.core.service.GenericService;
+import com.github.fartherp.framework.database.service.GenericService;
 import com.framework.demo.service.showcaseMoveable.ShowcaseMoveableService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;

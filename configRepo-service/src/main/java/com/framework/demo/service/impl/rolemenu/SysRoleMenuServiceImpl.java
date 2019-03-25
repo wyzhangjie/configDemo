@@ -4,14 +4,14 @@
 
 package com.framework.demo.service.impl.rolemenu;
 
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
-
-import javax.annotation.Resource;
 
 import com.framework.demo.bo.RoleMenu.SysRoleMenu;
-import com.framework.demo.dao.rolemenu.SysRoleMenuDao;
+import com.framework.demo.dao.rolemenu.SysRoleMenuMapper;
 import com.framework.demo.service.rolemenu.SysRoleMenuService;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,11 +19,11 @@ import org.springframework.stereotype.Service;
  */
 @Service("sysRoleMenuService")
 public class SysRoleMenuServiceImpl extends GenericSqlMapServiceImpl<SysRoleMenu, Integer> implements SysRoleMenuService {
-    @Resource(name = "sysRoleMenuDao")
-    private SysRoleMenuDao sysRoleMenuDao;
+    @Autowired
+    private SysRoleMenuMapper sysRoleMenuDao;
 
 
-    public SqlMapDao<SysRoleMenu, Integer> getDao() {
+    public DaoMapper<SysRoleMenu, Integer> getDao() {
         return sysRoleMenuDao;
     }
 }

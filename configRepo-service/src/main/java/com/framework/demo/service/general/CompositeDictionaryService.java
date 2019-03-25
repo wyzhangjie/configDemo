@@ -4,8 +4,8 @@
 
 package com.framework.demo.service.general;
 
-import cn.vansky.framework.core.service.GenericService;
 import com.framework.demo.bo.general.CompositeDictionary;
+import com.github.fartherp.framework.database.service.GenericService;
 
 import java.util.List;
 import java.util.Map;

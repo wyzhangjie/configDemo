@@ -9,7 +9,6 @@ import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
 import javax.annotation.Resource;
 
 import com.framework.demo.bo.showcaseSample.ShowcaseSample;
-import com.framework.demo.dao.showcaseSample.ShowcaseSampleDao;
 import com.framework.demo.service.samplecaseSample.ShowcaseSampleService;
 import org.springframework.stereotype.Service;
 

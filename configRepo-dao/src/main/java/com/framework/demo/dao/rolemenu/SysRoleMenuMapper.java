@@ -4,13 +4,14 @@
 
 package com.framework.demo.dao.rolemenu;
 
-import cn.vansky.framework.core.dao.DaoMapper;
-import cn.vansky.framework.core.orm.mybatis.annotation.SqlMapper;
 import com.framework.demo.bo.RoleMenu.SysRoleMenu;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * This class corresponds to the database table `sys_role_menu`
  */
-@SqlMapper
+@Mapper
 public interface SysRoleMenuMapper extends DaoMapper<SysRoleMenu, Integer> {
 }

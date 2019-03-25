@@ -6,7 +6,7 @@
 package com.framework.demo.web.controller.sys.user.web.controller;
 
 import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.BooleanEnum;
-import cn.vansky.framework.core.service.GenericService;
+import com.github.fartherp.framework.database.service.GenericService;
 import com.framework.demo.bo.sysUser.SysUser;
 
 import com.framework.demo.enm.UserStatus;

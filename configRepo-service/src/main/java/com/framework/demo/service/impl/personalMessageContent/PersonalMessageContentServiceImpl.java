@@ -4,13 +4,15 @@
 
 package com.framework.demo.service.impl.personalMessageContent;
 
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
 import javax.annotation.Resource;
 
 import com.framework.demo.bo.personalMessageContent.PersonalMessageContent;
-import com.framework.demo.dao.personalMessageContent.PersonalMessageContentDao;
+import com.framework.demo.dao.personalMessageContent.PersonalMessageContentMapper;
 import com.framework.demo.service.personalMessageContent.PersonalMessageContentService;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,10 +20,10 @@ import org.springframework.stereotype.Service;
  */
 @Service("personalMessageContentService")
 public class PersonalMessageContentServiceImpl extends GenericSqlMapServiceImpl<PersonalMessageContent, Long> implements PersonalMessageContentService {
-    @Resource(name = "personalMessageContentDao")
-    private PersonalMessageContentDao personalMessageContentDao;
+    @Autowired
+    private PersonalMessageContentMapper personalMessageContentDao;
 
-    public SqlMapDao<PersonalMessageContent, Long> getDao() {
+    public DaoMapper<PersonalMessageContent, Long> getDao() {
         return personalMessageContentDao;
     }
 }

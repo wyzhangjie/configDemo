@@ -1,7 +1,7 @@
 package com.framework.demo.service.impl.showcaseSample;
 
 import com.framework.demo.bo.showcaseSample.ShowcaseSample;
-import com.framework.demo.dao.showcaseSample.ShowcaseSampleDao;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

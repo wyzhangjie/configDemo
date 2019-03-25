@@ -1,14 +1,10 @@
 package com.framework.demo.utils;
 
-import com.mysql.jdbc.CallableStatement;
-import com.mysql.jdbc.PreparedStatement;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeHandler;
-import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

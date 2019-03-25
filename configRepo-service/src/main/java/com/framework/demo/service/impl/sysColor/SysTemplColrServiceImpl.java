@@ -4,14 +4,16 @@
 
 package com.framework.demo.service.impl.sysColor;
 
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
 
 import javax.annotation.Resource;
 
 import com.framework.demo.bo.sysTemplColr.SysTemplColr;
-import com.framework.demo.dao.sysTemplColr.SysTemplColrDao;
+import com.framework.demo.dao.sysTemplColr.SysTemplColrMapper;
 import com.framework.demo.service.sysColor.SysTemplColrService;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,11 +21,11 @@ import org.springframework.stereotype.Service;
  */
 @Service("sysTemplColrService")
 public class SysTemplColrServiceImpl extends GenericSqlMapServiceImpl<SysTemplColr, Integer> implements SysTemplColrService {
-    @Resource(name = "sysTemplColrDao")
-    private SysTemplColrDao sysTemplColrDao;
+    @Autowired
+    private SysTemplColrMapper sysTemplColrDao;
 
 
-    public SqlMapDao<SysTemplColr, Integer> getDao() {
+    public DaoMapper<SysTemplColr, Integer> getDao() {
         return sysTemplColrDao;
     }
 

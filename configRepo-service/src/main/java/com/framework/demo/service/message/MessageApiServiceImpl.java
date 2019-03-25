@@ -5,12 +5,8 @@
  */
 package com.framework.demo.service.message;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.page.PageRequest;
-import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.SearchOperator;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.*;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.filter.SearchFilter;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.filter.CustomConditionFactory;
+import com.google.common.collect.Lists;
+
 import com.framework.demo.bo.personalMessage.PersonalMessage;
 import com.framework.demo.bo.personalMessageContent.PersonalMessageContent;
 import com.framework.demo.bo.sysUser.SysUser;
@@ -19,8 +15,13 @@ import com.framework.demo.enm.MessageType;
 import com.framework.demo.enm.UserStatus;
 import com.framework.demo.service.push.PushApi;
 import com.framework.demo.service.sysuser.SysUserService;
-import com.google.common.collect.Lists;
-
+import com.github.fartherp.framework.database.mybatis.plugin.page.PageRequest;
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
+import com.github.fartherp.framework.database.mybatis.plugin.search.enums.SearchOperator;
+import com.github.fartherp.framework.database.mybatis.plugin.search.filter.CustomConditionFactory;
+import com.github.fartherp.framework.database.mybatis.plugin.search.filter.SearchFilter;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Sort;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,11 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import javax.annotation.Resource;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 import java.util.List;
+
+
 
 /**
  * <p>User: hyssop
@@ -194,7 +196,6 @@ public class MessageApiServiceImpl implements MessageApiService {
     }
 
     @Async
-
     public void sendSystemMessageToAllUser(PersonalMessage message) throws InvocationTargetException, IllegalAccessException {
         //TODO 变更实现策略 使用异步发送
 
@@ -212,7 +213,7 @@ public class MessageApiServiceImpl implements MessageApiService {
                doSendSystemMessage(page.getRows(), message);
             } catch (Exception e) {
             }
-        } while (page.hasNextPage());
+        } while (page.isHasNext());
 
     }
 

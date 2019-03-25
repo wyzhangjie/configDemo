@@ -4,24 +4,27 @@
 
 package com.framework.demo.service.impl.sysUser;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.page.BasePagination;
-import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.SearchOperator;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.*;
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
-import com.framework.demo.bo.menu.Menu;
+
 import com.framework.demo.bo.sysUser.SysUser;
-import com.framework.demo.dao.sysUser.SysUserDao;
+import com.framework.demo.dao.sysUser.SysUserMapper;
 import com.framework.demo.enm.UserStatus;
 import com.framework.demo.service.menu.MenuService;
 import com.framework.demo.service.sys.sysAuth.service.SysAuthService;
 import com.framework.demo.service.sysuser.SysUserService;
 import com.framework.demo.sys.sysUserOrganizationJob.bo.SysUserOrganizationJob;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.mybatis.plugin.page.BasePagination;
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.SearchRequest;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
+
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -33,8 +36,8 @@ import java.util.*;
  */
 @Service("sysUserService")
 public class SysUserServiceImpl extends GenericSqlMapServiceImpl<SysUser, Long> implements SysUserService {
-    @Resource(name = "sysUserDao")
-    private SysUserDao sysUserDao;
+    @Autowired
+    private SysUserMapper sysUserDao;
 
     @Resource(name = "menuService")
     MenuService menuService;
@@ -42,7 +45,7 @@ public class SysUserServiceImpl extends GenericSqlMapServiceImpl<SysUser, Long> 
     @Resource(name = "sysAuthService")
     SysAuthService sysAuthService;
 
-    public SqlMapDao<SysUser, Long> getDao() {
+    public DaoMapper<SysUser, Long> getDao() {
         return sysUserDao;
     }
 
@@ -113,7 +116,7 @@ public class SysUserServiceImpl extends GenericSqlMapServiceImpl<SysUser, Long> 
         for(Long id :ids){
             SysUser user = sysUserDao.findById(id);
             user.setStatus(newStatus.getInfo());
-            sysUserDao.saveOrUpdate(user);
+            sysUserDao.insert(user);
         }
 
     }
@@ -136,12 +139,16 @@ public class SysUserServiceImpl extends GenericSqlMapServiceImpl<SysUser, Long> 
         );
     }
 
+    private Pagination findBySearchable(Searchable searchable) {
+        return sysUserDao.findBySearchable(searchable);
+    }
+
 
     public void changePasswords(SysUser opSysUser, Long[] ids, String newPassword) {
         for(Long id:ids){
             SysUser user = sysUserDao.findById(id);
             user.setPassword(newPassword);
-            sysUserDao.saveOrUpdate(user);
+            sysUserDao.insertSelective(user);
         }
     }
 
@@ -154,7 +161,7 @@ public class SysUserServiceImpl extends GenericSqlMapServiceImpl<SysUser, Long> 
 
 
     public void createUser(SysUser user) {
-         sysUserDao.save(user);
+         sysUserDao.insert(user);
     }
 
 

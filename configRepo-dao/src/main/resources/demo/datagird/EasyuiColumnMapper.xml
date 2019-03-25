@@ -8,4 +8,9 @@
         from `easyui_column`
         where `model` = #{modl,jdbcType=INTEGER}
     </select>
+    <select id="findBySearchable" parameterType="com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable" resultMap="BaseResultMap">
+        select * from `easyui_column` where 1=1
+    </select>
+
+
 </mapper>

@@ -5,14 +5,16 @@
 package com.framework.demo.service.impl.datagrid;
 
 
-import javax.annotation.Resource;
 
 import com.framework.demo.bo.datagrid.EasyuiColumn;
-import com.framework.demo.dao.datagrid.EasyuiColumnDao;
+import com.framework.demo.bo.datagrid.EasyuiDatagrid;
+import com.framework.demo.dao.datagrid.EasyuiColumnMapper;
 import com.framework.demo.service.datagrid.EasyuiColumnService;
 import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
 import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,8 +24,8 @@ import java.util.List;
  */
 @Service("easyuiColumnService")
 public class EasyuiColumnServiceImpl extends GenericSqlMapServiceImpl<EasyuiColumn, Integer> implements EasyuiColumnService {
-    @Resource(name = "easyuiColumnDao")
-    private EasyuiColumnDao easyuiColumnDao;
+    @Autowired
+    private EasyuiColumnMapper easyuiColumnDao;
 
 
     public DaoMapper<EasyuiColumn, Integer> getDao() {
@@ -38,5 +40,10 @@ public class EasyuiColumnServiceImpl extends GenericSqlMapServiceImpl<EasyuiColu
 
     public List<EasyuiColumn> findByModel(int modl) {
         return easyuiColumnDao.findByModel(modl);
+    }
+
+    @Override
+    public Pagination<EasyuiDatagrid> findBySearchable(Searchable searchable) {
+        return easyuiColumnDao.findBySearchable(searchable);
     }
 }

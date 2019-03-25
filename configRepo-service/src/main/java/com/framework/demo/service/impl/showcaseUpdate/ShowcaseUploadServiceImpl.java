@@ -4,14 +4,16 @@
 
 package com.framework.demo.service.impl.showcaseUpdate;
 
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
 
 import javax.annotation.Resource;
 
 import com.framework.demo.bo.showcaseUpload.ShowcaseUpload;
-import com.framework.demo.dao.showcaseUpload.ShowcaseUploadDao;
+import com.framework.demo.dao.showcaseUpload.ShowcaseUploadMapper;
 import com.framework.demo.service.showcaseUpdate.ShowcaseUploadService;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,10 +21,10 @@ import org.springframework.stereotype.Service;
  */
 @Service("showcaseUploadService")
 public class ShowcaseUploadServiceImpl extends GenericSqlMapServiceImpl<ShowcaseUpload, Long> implements ShowcaseUploadService {
-    @Resource(name = "showcaseUploadDao")
-    private ShowcaseUploadDao showcaseUploadDao;
+    @Autowired
+    private ShowcaseUploadMapper showcaseUploadDao;
 
-    public SqlMapDao<ShowcaseUpload, Long> getDao() {
+    public DaoMapper<ShowcaseUpload, Long> getDao() {
         return showcaseUploadDao;
     }
 }

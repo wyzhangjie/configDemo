@@ -4,8 +4,9 @@
 
 package com.framework.demo.service.model;
 
-import cn.vansky.framework.core.service.GenericService;
+
 import com.framework.demo.bo.model.Model;
+import com.github.fartherp.framework.database.service.GenericService;
 
 /**
  * This class corresponds to the database table `tb_model`

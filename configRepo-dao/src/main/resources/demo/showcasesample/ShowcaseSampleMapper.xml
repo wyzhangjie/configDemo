@@ -6,14 +6,14 @@
         select * from `showcase_sample` where name = #{name,jdbcType=VARCHAR}
 
     </select>
-    <select id="findBySearchable" parameterType="cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable" resultMap="BaseResultMap">
+    <select id="findBySearchable" parameterType="com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable" resultMap="BaseResultMap">
         select * from `showcase_sample` where 1=1
     </select>
 
-    <select id="findBySort" parameterType="cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Sort" resultMap="BaseResultMap">
+    <select id="findBySort" parameterType="com.github.fartherp.framework.database.mybatis.plugin.search.vo.Sort" resultMap="BaseResultMap">
         select * from `showcase_sample` where 1=1
     </select>
-    <select id="countBySearchable" parameterType="cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable"  resultType="java.lang.Long">
+    <select id="countBySearchable" parameterType="com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable"  resultType="java.lang.Long">
         select count(*) from `showcase_sample` where 1=1
     </select>
 </mapper>

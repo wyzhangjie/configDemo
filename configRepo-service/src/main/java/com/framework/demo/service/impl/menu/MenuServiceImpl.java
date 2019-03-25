@@ -4,50 +4,49 @@
 
 package com.framework.demo.service.impl.menu;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.SearchOperator;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.SearchRequest;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Sort;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
 
-import javax.annotation.Resource;
+import com.google.common.collect.Lists;
 
-import cn.vansky.framework.core.web.filter.auth.AuthWrapper;
-import com.framework.demo.bo.datagrid.EasyuiColumn;
 import com.framework.demo.bo.datagrid.EasyuiDatagrid;
 import com.framework.demo.bo.menu.Menu;
 import com.framework.demo.bo.pageTemplate.PageTemplete;
 import com.framework.demo.bo.sysTemplColr.SysTemplColr;
 import com.framework.demo.bo.sysUser.SysUser;
-import com.framework.demo.dao.menu.MenuDao;
+import com.framework.demo.dao.menu.MenuMapper;
 import com.framework.demo.service.datagrid.EasyuiColumnService;
-import com.framework.demo.service.datagrid.EasyuiDatagridService;
-import com.framework.demo.service.menu.MenuService;
 import com.framework.demo.service.pageTemplate.PageTempleteService;
 import com.framework.demo.service.sys.sysAuth.service.SysAuthService;
 import com.framework.demo.service.sysColor.SysTemplColrService;
 import com.framework.demo.service.util.PageTempleteUtil;
-import com.google.common.collect.Lists;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
+import com.github.fartherp.framework.database.mybatis.plugin.search.enums.SearchOperator;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Sort;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
+
 import org.apache.shiro.authz.permission.WildcardPermission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import javax.annotation.Resource;
 
 /**
  * This class corresponds to the database table `menu`
  */
 @Service("menuService")
-public class MenuServiceImpl extends GenericSqlMapServiceImpl<Menu, Integer> implements MenuService {
-    @Resource(name = "menuDao")
-    private MenuDao menuDao;
+public class MenuServiceImpl extends GenericSqlMapServiceImpl<Menu, Integer>  {
+    @Autowired
+    private MenuMapper menuDao;
     @Autowired
     PageTempleteService pageTempleteService;
     @Autowired
@@ -56,7 +55,7 @@ public class MenuServiceImpl extends GenericSqlMapServiceImpl<Menu, Integer> imp
     SysTemplColrService sysTemplColrService;
 
     @Autowired
-    EasyuiDatagridService EasyuiDatagridService;
+    com.framework.demo.service.datagrid.EasyuiDatagridService EasyuiDatagridService;
 
     @Autowired
     EasyuiColumnService easyuiColumnService;
@@ -64,7 +63,8 @@ public class MenuServiceImpl extends GenericSqlMapServiceImpl<Menu, Integer> imp
     @Resource(name = "sysAuthService")
     SysAuthService sysAuthService;
 
-    public SqlMapDao<Menu, Integer> getDao() {
+    @Override
+    public DaoMapper<Menu, Integer> getDao() {
         return menuDao;
     }
 
@@ -89,7 +89,7 @@ public class MenuServiceImpl extends GenericSqlMapServiceImpl<Menu, Integer> imp
     }
 
 
-    public String findId(String name) {
+    public Menu findId(String name) {
         return menuDao.findById(name);
     }
 
@@ -101,7 +101,7 @@ public class MenuServiceImpl extends GenericSqlMapServiceImpl<Menu, Integer> imp
     public int insertPageInfo(PageTemplete pageTemplete){
         Menu menu =findMenu(pageTemplete);
         int result1 = insertResult1(menu);
-        String id = findId(menu.getName());
+        String id = findId(menu.getName()).getId().toString();
         String path = pageTempleteUtil.findPath(pageTemplete.getKind(), pageTemplete.getMultime(), id);
          menu.setId(Integer.parseInt(id));
         //插入page_template
@@ -138,7 +138,7 @@ public class MenuServiceImpl extends GenericSqlMapServiceImpl<Menu, Integer> imp
     public  int insertPageInfoForJq(PageTemplete pageTemplete, SysTemplColr sysTemplColr) {
         Menu menu = findMenu(pageTemplete);
         int result1 = insertResult1(menu);
-        String id = findId(menu.getName());
+        String id = findId(menu.getName()).getId().toString();
         int result2 = insertResult2(pageTemplete, id);
         //更新menu
         String path = pageTempleteUtil.findPath(pageTemplete.getKind(), pageTemplete.getMultime(), id);
@@ -198,7 +198,7 @@ public class MenuServiceImpl extends GenericSqlMapServiceImpl<Menu, Integer> imp
 
             Menu menu = getMenu(easyuiDatagrid.getPmenuName(), easyuiDatagrid.getMenuName());
             int result1 = insertResult1(menu);
-            String id = findId(menu.getName());
+            String id = findId(menu.getName()).getId().toString();
             easyuiDatagrid.setModel(Integer.parseInt(id));
             EasyuiDatagridService.insert(easyuiDatagrid);
             String path = pageTempleteUtil.findPath(easyuiDatagrid.getKind(), easyuiDatagrid.getMultime(), id);
@@ -226,7 +226,7 @@ public class MenuServiceImpl extends GenericSqlMapServiceImpl<Menu, Integer> imp
                             .addSearchFilter("status", SearchOperator.eq, "1")
                             .addSort(new Sort(Sort.Direction.DESC, "parentId", "weight"));
             searchable.removePageable();
-            allList= Lists.newArrayList(findBySearchable(searchable).getRows());
+            allList= Lists.newArrayList(findBySearchableOfMenu(searchable).getRows());
             Set<String> userPermissions = sysAuthService.findStringPermissions(user);
             Iterator<Menu> iter = allList.iterator();
             while (iter.hasNext()) {
@@ -237,6 +237,14 @@ public class MenuServiceImpl extends GenericSqlMapServiceImpl<Menu, Integer> imp
         }
         return allList;
     }
+
+    private Pagination<EasyuiDatagrid> findBySearchable(Searchable searchable) {
+        return easyuiColumnService.findBySearchable(searchable);
+    }
+    private Pagination<Menu> findBySearchableOfMenu(Searchable searchable) {
+        return menuDao.findBySearchable(searchable);
+    }
+
     private boolean hasPermission(String permission, String actualResourceIdentity) {
 
         //得到权限字符串中的 资源部分，如a:b:create --->资源是a:b
@@ -284,13 +292,13 @@ public class MenuServiceImpl extends GenericSqlMapServiceImpl<Menu, Integer> imp
 
         boolean hasResourceIdentity = !StringUtils.isEmpty(resource.getIdentity());
 
-        Menu parent = menuDao.findById(Integer.parseInt(resource.getParentId().toString()));
+        Menu parent = menuDao.findById(resource.getParentId().toString());
         while(parent != null) {
             if(!StringUtils.isEmpty(parent.getIdentity())) {
                 s.insert(0, parent.getIdentity() + ":");
                 hasResourceIdentity = true;
             }
-            parent = menuDao.findById(Integer.parseInt(parent.getParentId().toString()));
+            parent = menuDao.findById(parent.getParentId().toString());
         }
 
         //如果用户没有声明 资源标识  且父也没有，那么就为空

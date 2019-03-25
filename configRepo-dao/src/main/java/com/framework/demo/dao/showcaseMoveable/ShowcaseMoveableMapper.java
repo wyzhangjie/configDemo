@@ -4,13 +4,14 @@
 
 package com.framework.demo.dao.showcaseMoveable;
 
-import cn.vansky.framework.core.dao.DaoMapper;
-import cn.vansky.framework.core.orm.mybatis.annotation.SqlMapper;
 import com.framework.demo.bo.showcaseMoveable.ShowcaseMoveable;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * This class corresponds to the database table `showcase_moveable`
  */
-@SqlMapper
+@Mapper
 public interface ShowcaseMoveableMapper extends DaoMapper<ShowcaseMoveable, Long> {
 }

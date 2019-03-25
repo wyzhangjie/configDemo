@@ -18,7 +18,7 @@
         menu WHERE menu.parentId = 0 and status=1
     </select>
     <select id="findById" resultType="java.lang.String">
-        select id from menu where name=#{name,jdbcType=VARCHAR} and status=1
+        select * from menu where name=#{name,jdbcType=VARCHAR} and status=1
     </select>
 <update id="updateById" parameterType="com.framework.demo.bo.menu.Menu">
     update menu
@@ -61,7 +61,7 @@
 
 </update>
 
-    <select id="findBySearchable"   parameterType="cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Sort" resultMap="BaseResultMap">
+    <select id="findBySearchable"   parameterType="com.github.fartherp.framework.database.mybatis.plugin.search.vo.Sort" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
         from menu where 1=1
@@ -70,4 +70,5 @@
         select identity from `menu` where id =#{id,jdbcType=BIGINT}
 
     </select>
+
 </mapper>

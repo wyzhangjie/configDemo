@@ -4,16 +4,15 @@
 
 package com.framework.demo.service.sysuser;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Page;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Pageable;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
-import cn.vansky.framework.core.service.GenericService;
-import com.framework.demo.bo.menu.Menu;
+
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
+import com.github.fartherp.framework.database.service.GenericService;
 import com.framework.demo.bo.sysUser.SysUser;
 import com.framework.demo.enm.UserStatus;
 import com.framework.demo.sys.sysUserOrganizationJob.bo.SysUserOrganizationJob;
+
 import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -38,15 +37,15 @@ public interface SysUserService extends GenericService<SysUser, Long> {
 
     public Set<String> findPermissions(String username); //根据用户名查找其权限
 
-    Page<SysUser> findByPageable(Pageable pageable) throws InvocationTargetException, IllegalAccessException;
+    Pagination<SysUser> findByPageable(Pagination pageable) throws InvocationTargetException, IllegalAccessException;
 
     void deleteUserOrganizationJobOnNotExistsUser();
 
-    Page<SysUserOrganizationJob> findUserOrganizationJobOnNotExistsOrganizationOrJob(Pageable pageable) throws InvocationTargetException, IllegalAccessException;
+    Pagination<SysUserOrganizationJob> findUserOrganizationJobOnNotExistsOrganizationOrJob(Pagination pageable) throws InvocationTargetException, IllegalAccessException;
 
     void deleteSysUserOrganizationJobOnNotExistsUser();
 
-    Page<SysUserOrganizationJob> findSysUserOrganizationJobOnNotExistsOrganizationOrJob(Pageable pageable);
+    Pagination<SysUserOrganizationJob> findSysUserOrganizationJobOnNotExistsOrganizationOrJob(Pagination pageable);
 
     SysUser findByEmail(String email);
 

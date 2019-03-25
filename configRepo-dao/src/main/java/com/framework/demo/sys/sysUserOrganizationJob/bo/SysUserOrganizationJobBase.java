@@ -4,15 +4,15 @@
 
 package com.framework.demo.sys.sysUserOrganizationJob.bo;
 
-import cn.vansky.framework.core.dao.FieldAccessVo;
-import cn.vansky.framework.core.dao.TableDataConvertable;
-import cn.vansky.framework.core.dao.annotation.ColumnDescription;
-import cn.vansky.framework.core.dao.annotation.Id;
+
+import com.github.fartherp.framework.database.dao.FieldAccessVo;
+import com.github.fartherp.framework.database.dao.annotation.ColumnDescription;
+import com.github.fartherp.framework.database.dao.annotation.Id;
 
 /**
  * This class corresponds to the database table `sys_user_organization_job`
  */
-public abstract class SysUserOrganizationJobBase extends FieldAccessVo implements TableDataConvertable {
+public abstract class SysUserOrganizationJobBase extends FieldAccessVo {
     /**
      * This field corresponds to the database column `sys_user_organization_job`.id
      */

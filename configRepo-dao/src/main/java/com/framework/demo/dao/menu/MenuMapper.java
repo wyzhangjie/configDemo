@@ -4,10 +4,13 @@
 
 package com.framework.demo.dao.menu;
 
+import com.framework.demo.bo.datagrid.EasyuiDatagrid;
 import com.framework.demo.bo.menu.Menu;
 import com.framework.demo.bo.pageTemplate.PageTemplete;
 import com.github.fartherp.framework.database.dao.DaoMapper;
 import com.github.fartherp.framework.database.mybatis.annotation.SqlMapper;
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
 
 import java.util.List;
 
@@ -24,7 +27,9 @@ public interface MenuMapper extends DaoMapper<Menu, Integer> {
 
     int selectIdByName(String name);
 
-    String findById(String name);
+    Menu findById(String name);
 
     int updateById(Menu menu);
+
+    Pagination<Menu> findBySearchable(Searchable searchable);
 }

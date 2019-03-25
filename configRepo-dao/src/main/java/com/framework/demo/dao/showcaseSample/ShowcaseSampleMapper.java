@@ -4,14 +4,15 @@
 
 package com.framework.demo.dao.showcaseSample;
 
-import cn.vansky.framework.core.dao.DaoMapper;
-import cn.vansky.framework.core.orm.mybatis.annotation.SqlMapper;
 import com.framework.demo.bo.showcaseSample.ShowcaseSample;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * This class corresponds to the database table `showcase_sample`
  */
-@SqlMapper
+@Mapper
 public interface ShowcaseSampleMapper extends DaoMapper<ShowcaseSample, Long> {
     ShowcaseSample findByName(String name);
 }
