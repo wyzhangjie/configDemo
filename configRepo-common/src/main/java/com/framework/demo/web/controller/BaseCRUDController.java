@@ -1,8 +1,3 @@
-/**
- * Copyright (c) 2005-2012 https://github.com/zhangkaitao
- * <p/>
- * Licensed under the Apache License, Version 2.0 (the "License");
- */
 package com.framework.demo.web.controller;
 
 
@@ -15,10 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.framework.demo.web.bind.annotation.PageableDefaults;
 import com.framework.demo.web.controller.permission.PermissionList;
+import com.framework.demo.web.service.GenericServiceExt;
 import com.github.fartherp.framework.database.dao.FieldAccessVo;
 import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
 import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
-import com.github.fartherp.framework.database.service.GenericService;
 
 import javax.validation.Valid;
 import java.io.Serializable;
@@ -33,7 +28,7 @@ import java.io.Serializable;
 public abstract class BaseCRUDController<M extends FieldAccessVo, ID extends Serializable>
         extends BaseController<M, ID> {
 
-    protected GenericService<M, ID> baseService;
+    protected GenericServiceExt<M, ID> baseService;
 
     private boolean listAlsoSetCommonData = false;
 
@@ -45,7 +40,7 @@ public abstract class BaseCRUDController<M extends FieldAccessVo, ID extends Ser
      * @param baseService
      */
     @Autowired
-    public void setBaseService(GenericService<M, ID> baseService) {
+    public void setBaseService(GenericServiceExt<M, ID> baseService) {
         this.baseService = baseService;
     }
 

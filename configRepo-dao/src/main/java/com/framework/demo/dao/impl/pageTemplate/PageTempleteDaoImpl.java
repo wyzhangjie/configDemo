@@ -4,8 +4,6 @@
 
 package com.framework.demo.dao.impl.pageTemplate;
 
-import cn.vansky.framework.core.dao.ConfigurableBaseSqlMapDao;
-import cn.vansky.framework.core.dao.DaoMapper;
 
 import javax.annotation.Resource;
 
@@ -13,6 +11,8 @@ import com.framework.demo.bo.pageTemplate.PageTemplete;
 import com.framework.demo.dao.pageTemplate.PageTempleteDao;
 import com.framework.demo.dao.pageTemplate.PageTempleteMapper;
 import com.framework.demo.vo.template.SqlPage;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

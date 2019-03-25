@@ -6,7 +6,6 @@
 package com.framework.demo.web.controller.sys.auth.web.controller;
 
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import com.framework.demo.enm.AuthType;
 import com.framework.demo.service.sys.sysAuth.service.SysAuthService;
 import com.framework.demo.service.sysRole.SysRoleService;
@@ -22,7 +21,6 @@ import com.framework.demo.web.bind.annotation.SearchableDefaults;
 import com.framework.demo.web.controller.BaseCRUDController;
 
 import javax.validation.Valid;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * <p>User: hyssop

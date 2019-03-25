@@ -6,11 +6,14 @@
     </typeHandlers>
 
     <plugins>
-        <plugin interceptor="cn.vansky.framework.core.orm.mybatis.plugin.page.PaginationInterceptor">
+        <plugin interceptor="com.github.fartherp.framework.database.mybatis.plugin.page.PaginationInterceptor">
             <property name="sqlPattern" value=".*findPage*.*"/>
         </plugin>
-        <plugin interceptor="cn.vansky.framework.core.orm.mybatis.plugin.search.SearchableInterceptor">
+        <plugin interceptor="com.github.fartherp.framework.database.mybatis.plugin.search.SearchableInterceptor">
         <property name="sqlPattern" value=".*BySearchable*.*"/>
+        </plugin>
+        <plugin interceptor="com.framework.demo.dao.mybatis.DynamicPlugin">
+            <property name="sqlPattern" value="*"/>
         </plugin>
     </plugins>
 

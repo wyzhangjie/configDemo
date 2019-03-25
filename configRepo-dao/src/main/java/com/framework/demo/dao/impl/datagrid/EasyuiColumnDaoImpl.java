@@ -11,6 +11,7 @@ import com.framework.demo.bo.datagrid.EasyuiColumn;
 import com.framework.demo.dao.datagrid.EasyuiColumnDao;
 import com.framework.demo.dao.datagrid.EasyuiColumnMapper;
 import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.dao.ExtendDaoMapper;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ import java.util.List;
  * This class corresponds to the database table `easyui_column`
  */
 @Repository("easyuiColumnDao")
-public class EasyuiColumnDaoImpl extends ConfigurableBaseSqlMapDao<EasyuiColumn, Integer> implements EasyuiColumnDao {
+public class EasyuiColumnDaoImpl extends ExtendDaoMapper<EasyuiColumn, Integer> implements EasyuiColumnDao {
     @Autowired
     private EasyuiColumnMapper easyuiColumnMapper;
 

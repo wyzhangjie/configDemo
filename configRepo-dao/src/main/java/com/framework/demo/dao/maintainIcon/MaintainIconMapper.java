@@ -4,9 +4,8 @@
 
 package com.framework.demo.dao.maintainIcon;
 
-import cn.vansky.framework.core.dao.DaoMapper;
-import cn.vansky.framework.core.orm.mybatis.annotation.SqlMapper;
-import com.framework.demo.bo.maintainIcon.MaintainIcon;
+
+import com.github.fartherp.framework.database.mybatis.annotation.SqlMapper;
 
 /**
  * This class corresponds to the database table `maintain_icon`

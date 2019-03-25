@@ -4,11 +4,11 @@
 
 package com.framework.demo.dao.model;
 
-import cn.vansky.framework.core.dao.SqlMapDao;
 import com.framework.demo.bo.model.Model;
+import com.github.fartherp.framework.database.dao.DaoMapper;
 
 /**
  * This class corresponds to the database table `tb_model`
  */
-public interface ModelDao extends SqlMapDao<Model, Integer> {
+public interface ModelDao extends DaoMapper<Model, Integer> {
 }

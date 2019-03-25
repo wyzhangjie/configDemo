@@ -5,8 +5,6 @@
  */
 package com.framework.demo.web.controller;
 
-import cn.vansky.framework.core.dao.FieldAccessVo;
-import cn.vansky.framework.core.service.GenericService;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
@@ -14,6 +12,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.framework.demo.utils.ReflectUtils;
+import com.github.fartherp.framework.database.dao.FieldAccessVo;
 
 import java.io.Serializable;
 

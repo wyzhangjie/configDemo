@@ -5,10 +5,10 @@
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
             default-autowire="byName">
-    <bean id="kvDao" class="cn.vansky.framework.core.kv.dao.impl.KvDaoImpl">
+    <bean id="kvDao" class="com.github.fartherp.framework.core.kv.dao.impl.KvDaoImpl">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-    <bean id="kvService" class="cn.vansky.framework.core.kv.service.impl.KvServiceImpl">
+    <bean id="kvService" class="com.github.fartherp.framework.core.kv.service.impl.KvServiceImpl">
         <property name="dao" ref="kvDao"/>
     </bean>
 </beans>
