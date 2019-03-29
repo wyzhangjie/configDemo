@@ -70,7 +70,7 @@ http://www.springframework.org/schema/data/jpa "
     <!--设置查询字符串转换器的conversion service-->
     <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
         <property name="staticMethod"
-                  value="cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.utils.SearchableConvertUtils.setConversionService"/>
+                  value="com.github.fartherp.framework.database.mybatis.plugin.search.utils.SearchableConvertUtils.setConversionService"/>
         <property name="arguments" ref="conversionService"/>
     </bean>
     <bean id="myDateTypeHandler" class="com.framework.demo.utils.MyDateTypeHandler"/>

@@ -5,7 +5,6 @@
 package com.framework.demo.dao.sysUser;
 
 import com.framework.demo.bo.sysUser.SysUser;
-import com.framework.demo.sys.sysUserOrganizationJob.bo.SysUserOrganizationJob;
 import com.github.fartherp.framework.database.dao.DaoMapper;
 import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
 import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
@@ -50,4 +49,7 @@ public interface SysUserMapper extends DaoMapper<SysUser, Long> {
     Pagination<SysUser> findBySearchable(Searchable searchable);
 
     SysUser findById(Long id);
+
+
+    void deleteSysUserOrganizationJobOnNotExistsUser();
 }

@@ -72,7 +72,7 @@ public class SysUserServiceImpl extends GenericSqlMapServiceImpl<SysUser, Long> 
 
     @Override
     public void deleteSysUserOrganizationJobOnNotExistsUser() {
-              sysUserDao.deleteBatch(new Long[]{Long.parseLong("1111"),Long.parseLong("1111"),Long.parseLong("1111")});
+              sysUserDao.deleteSysUserOrganizationJobOnNotExistsUser();
 
     }
 
@@ -102,6 +102,7 @@ public class SysUserServiceImpl extends GenericSqlMapServiceImpl<SysUser, Long> 
 
     }
 */
+
 
     public SysUser findByEmail(String email) {
         return sysUserDao.findByEmail(email);

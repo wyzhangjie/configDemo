@@ -27,7 +27,7 @@
         )
     </foreach>
   </insert>
-  <insert id="insertSelective" parameterType="com.framework.demo.sys.SysUserOrganizationJob.bo.SysUserOrganizationJob" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insertSelective" parameterType="com.framework.demo.sys.sysUserOrganizationJob.bo.SysUserOrganizationJob" useGeneratedKeys="true" keyProperty="id">
     insert into `sys_user_organization_job`
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -70,7 +70,7 @@
   <select id="count" resultType="java.lang.Integer">
     select count(*) from `sys_user_organization_job`
   </select>
-  <update id="updateByPrimaryKeySelective" parameterType="com.framework.demo.sys.SysUserOrganizationJob.bo.SysUserOrganizationJob">
+  <update id="updateByPrimaryKeySelective" parameterType="com.framework.demo.sys.sysUserOrganizationJob.bo.SysUserOrganizationJob">
     update `sys_user_organization_job`
     <set>
       <if test="userId != null">
@@ -85,7 +85,7 @@
     </set>
     where `id` = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.framework.demo.sys.SysUserOrganizationJob.bo.SysUserOrganizationJob">
+  <update id="updateByPrimaryKey" parameterType="com.framework.demo.sys.sysUserOrganizationJob.bo.SysUserOrganizationJob">
     update `sys_user_organization_job`
     set `user_id` = #{userId,jdbcType=BIGINT},
       `organization_id` = #{organizationId,jdbcType=BIGINT},

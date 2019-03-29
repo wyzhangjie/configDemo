@@ -14,6 +14,7 @@ import com.framework.demo.sys.sysRoleResourcePermission.dao.SysRoleResourcePermi
 import com.github.fartherp.framework.database.dao.DaoMapper;
 import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +24,7 @@ import java.util.List;
  */
 @Service("sysRoleResourcePermissionService")
 public class SysRoleResourcePermissionServiceImpl extends GenericSqlMapServiceImpl<SysRoleResourcePermission, Long> implements SysRoleResourcePermissionService {
-    @Resource(name = "sysRoleResourcePermissionDao")
+    @Autowired
     private SysRoleResourcePermissionMapper sysRoleResourcePermissionDao;
 
 
