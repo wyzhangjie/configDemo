@@ -1,7 +1,5 @@
 package com.framework.demo.sys.sysRoleResourcePermission.dao.impl;
 
-import cn.vansky.framework.core.bean.ServiceLocator;
-import cn.vansky.framework.core.util.SpringUtils;
 import com.framework.demo.sys.sysRoleResourcePermission.bo.SysRoleResourcePermission;
 
 import dbunit.BaseDbTestCase;
@@ -20,16 +18,16 @@ import java.util.List;
  */
 
 public class SysRoleResourcePermissionDaoImplTest  extends BaseDbTestCase {
-    @Resource(name = "sysRoleResourcePermissionDao")
+  /*  @Resource(name = "sysRoleResourcePermissionDao")
     SysRoleResourcePermissionDao sysRoleResourcePermissionDao;
 
 
     @Test
     public void testFindByRoleId() throws Exception {
-      /*  sysRoleResourcePermissionDao = new SysRoleResourcePermissionDaoImpl();*/
+      *//*  sysRoleResourcePermissionDao = new SysRoleResourcePermissionDaoImpl();*//*
         List<SysRoleResourcePermission> sysRoleResourcePermissions = sysRoleResourcePermissionDao.findByRoleIds(Long.valueOf("1"));
         Assert.isTrue(sysRoleResourcePermissions.size()==4,"lenth is right");
-    }
+    }*/
 
 
 }

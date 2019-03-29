@@ -1,15 +1,11 @@
 package com.framework.demo.dto.jqgrid;
 
 
-
-import cn.vansky.framework.core.vo.BaseVo;
-
+import com.github.fartherp.framework.database.mybatis.plugin.page.BaseVo;
 import java.util.List;
 
-public class JdData extends BaseVo{
+public class JdData extends BaseVo {
 
-
-	
 	/**
 	 * 查询出的记录数
 	 */

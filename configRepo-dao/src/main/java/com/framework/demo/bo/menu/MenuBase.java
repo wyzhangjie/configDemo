@@ -8,11 +8,12 @@ package com.framework.demo.bo.menu;
 import com.github.fartherp.framework.database.dao.FieldAccessVo;
 import com.github.fartherp.framework.database.dao.annotation.ColumnDescription;
 import com.github.fartherp.framework.database.dao.annotation.Id;
+import com.github.fartherp.framework.tree.bo.Treeable;
 
 /**
  * This class corresponds to the database table `menu`
  */
-public abstract class MenuBase extends FieldAccessVo {
+public abstract class MenuBase extends Treeable<Long> {
     /**
      * This field corresponds to the database column `menu`.id
      */

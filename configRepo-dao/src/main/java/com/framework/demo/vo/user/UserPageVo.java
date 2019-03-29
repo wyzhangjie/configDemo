@@ -1,7 +1,7 @@
 package com.framework.demo.vo.user;
 
-import cn.vansky.framework.core.vo.BaseVo;
 import com.framework.demo.dto.user.UserDto;
+import com.github.fartherp.framework.database.mybatis.plugin.page.BaseVo;
 
 /**
  * Created by IntelliJ IDEA .

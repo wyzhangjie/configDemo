@@ -5,6 +5,8 @@
 package com.framework.demo.sys.sysDepartment.bo;
 
 import com.github.fartherp.framework.database.dao.FieldAccessVo;
+import com.github.fartherp.framework.database.dao.annotation.ColumnDescription;
+import com.github.fartherp.framework.database.dao.annotation.Id;
 
 /**
  * This class corresponds to the database table `sys_department`

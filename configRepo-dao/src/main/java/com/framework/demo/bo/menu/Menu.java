@@ -4,6 +4,8 @@
 
 package com.framework.demo.bo.menu;
 
+import com.github.fartherp.framework.tree.bo.Treeable;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +14,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component("menu")
-public class Menu extends MenuBase implements Treeable<Long> {
+public class Menu extends MenuBase {
     public void setName(String name) {
         super.setName(name);
     }

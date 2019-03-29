@@ -1,25 +1,20 @@
 package com.framework.demo.sys.sysAuth.dao.impl.dao;
 
 
-import cn.vansky.framework.core.orm.mybatis.SqlFacade;
-import cn.vansky.framework.core.orm.mybatis.plugin.page.dialect.Dialect;
-import cn.vansky.framework.core.orm.mybatis.plugin.page.dialect.MySQLDialect;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.resolver.DefaultSqlResolver;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.utils.SearchableConvertUtils;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Sort;
-import com.framework.demo.bo.sysUser.SysUser;
-import org.junit.Test;
-import junit.framework.TestCase;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.support.DefaultConversionService;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.transaction.annotation.Transactional;
+import com.github.fartherp.framework.database.mybatis.plugin.page.dialect.Dialect;
+import com.github.fartherp.framework.database.mybatis.plugin.page.dialect.MySQLDialect;
+import com.github.fartherp.framework.database.mybatis.plugin.search.SqlFacade;
+import com.github.fartherp.framework.database.mybatis.plugin.search.resolver.DefaultSqlResolver;
+import com.github.fartherp.framework.database.mybatis.plugin.search.utils.SearchableConvertUtils;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Sort;
 
-import javax.annotation.Resource;
+import junit.framework.TestCase;
+
+import org.junit.Test;
+import org.springframework.core.convert.support.DefaultConversionService;
+
+
 
 /**
  * @author hyssop

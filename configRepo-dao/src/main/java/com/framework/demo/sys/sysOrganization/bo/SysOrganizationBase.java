@@ -8,7 +8,6 @@ package com.framework.demo.sys.sysOrganization.bo;
 import com.github.fartherp.framework.database.dao.annotation.ColumnDescription;
 import com.github.fartherp.framework.database.dao.annotation.Id;
 import com.github.fartherp.framework.tree.bo.Treeable;
-import com.sun.xml.internal.bind.v2.model.core.ID;
 
 /**
  * This class corresponds to the database table `sys_organization`

@@ -1,6 +1,5 @@
 package ifelse;
 
-import jdbc.FunB;
 
 
 import java.util.ArrayList;

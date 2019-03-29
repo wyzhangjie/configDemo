@@ -5,6 +5,9 @@
 package com.framework.demo.sys.sysUserStatusHistory.bo;
 
 import com.github.fartherp.framework.database.dao.FieldAccessVo;
+import com.github.fartherp.framework.database.dao.annotation.ColumnDescription;
+import com.github.fartherp.framework.database.dao.annotation.Id;
+
 import java.util.Date;
 
 /**

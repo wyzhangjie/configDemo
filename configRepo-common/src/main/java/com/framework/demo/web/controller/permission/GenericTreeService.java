@@ -2,6 +2,7 @@ package com.framework.demo.web.controller.permission;
 
 import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
 import com.github.fartherp.framework.database.service.GenericService;
+import com.github.fartherp.framework.tree.bo.Treeable;
 
 import java.io.Serializable;
 import java.util.List;

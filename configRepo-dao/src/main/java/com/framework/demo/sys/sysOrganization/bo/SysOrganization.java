@@ -48,10 +48,6 @@ public class SysOrganization extends SysOrganizationBase {
         super.setIcon(icon);
     }
 
-    @Override
-    public void setParentId(Serializable parentId) {
-
-    }
 
     @Override
     public void setParentIds(String parentIds) {
