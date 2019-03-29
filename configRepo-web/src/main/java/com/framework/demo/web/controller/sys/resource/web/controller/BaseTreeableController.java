@@ -503,15 +503,16 @@ public abstract class BaseTreeableController<T extends BaseTreeableService, M ex
             return ztrees;
         }
         ConvertTool c = new ZtreeConvertTool();
-        List<SimpleZtree> list = c.findChildren(m, (M iterm)->{
+        List<SimpleZtree> list = c.findChildren(m, ( iterm)->{
+
             SimpleZtree ztree = new SimpleZtree();
-            ztree.setId((ID) iterm.getId());
-            ztree.setpId((ID) iterm.getParentId());
-            ztree.setName(iterm.getName());
-            ztree.setIsParent(!iterm.isLeaf());
-            ztree.setIconSkin(iterm.getIcon());
+            ztree.setId((ID) ((M)iterm).getId());
+            ztree.setpId((ID) ((M)iterm).getParentId());
+            ztree.setName(((M)iterm).getName());
+            ztree.setIsParent(!((M)iterm).isLeaf());
+            ztree.setIconSkin(((M)iterm).getIcon());
             ztree.setOpen(open);
-            ztree.setRoot(iterm.isRoot());
+            ztree.setRoot(((M)iterm).isRoot());
             if (onlyCheckLeaf && ztree.getIsParent()) {
                 ztree.setNocheck(true);
             } else {

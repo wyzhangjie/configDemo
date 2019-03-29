@@ -25,12 +25,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 /**
- * Auth: CK
- * Date: 2016/5/12
+ * Auth: CK Date: 2016/5/12
  */
 
 @Controller
@@ -74,7 +74,6 @@ public class UserController {
         }
 
 
-
         //表示用户锁定了 @see org.apache.shiro.web.filter.
         // user.SysUserFilter
         if (!StringUtils.isEmpty(request.getParameter("blocked"))) {
@@ -108,34 +107,31 @@ public class UserController {
     }
 
     @RequestMapping(value = {"/{index}"})
-    public String index(@CurrentUser SysUser user, Model model,ServletRequest request) throws InvocationTargetException, IllegalAccessException {
-        if(user==null||user.getUsername()==null){
+    public String index(@CurrentUser SysUser user, Model model, ServletRequest request) throws InvocationTargetException, IllegalAccessException {
+        if (user == null || user.getUsername() == null) {
             return "redirect:/user/login";
         }
-        List<Menu> allList =  menuService.findAuthSource(user);
+        List<Menu> allList = menuService.findAuthSource(user);
         converToMenu(user, model, allList);
         return "index/index";
     }
 
 
-
     private void converToMenu(@CurrentUser SysUser user, Model model, List<Menu> allList) {
-        if(allList.size()!=0){
+        if (allList.size() != 0) {
             AuthWrapper authWrapper = new AuthWrapper();
-            EasyUITreeModel easyUITreeModel = new EasyUITreeModel();
-            List<Object> l = easyUITreeService.findChildren(allList,()
-
-                  );
+            List<Object> l = easyUITreeService.findChildren(allList, (o) -> {
+                EasyUITreeModel easyUITreeModel = new EasyUITreeModel();
+                easyUITreeModel.setId(((Menu) o).getId());
+                easyUITreeModel.setText(((Menu) o).getName());
+                easyUITreeModel.setUrl(((Menu) o).getPath());
+                easyUITreeModel.setPid(Integer.parseInt(((Menu) o).getParentId().toString()));
+                easyUITreeModel.setOpen(false);
+                return easyUITreeModel;
+            });
 
             authWrapper.setMenuList(l);
-          //  model.addAttribute("menus", JSON.toJSONString(authWrapper));
-            easyUITreeModel.setId(o.getId());
-            easyUITreeModel.setText(o.getName());
-            easyUITreeModel.setUrl(o.getPath());
-            easyUITreeModel.setPid(Integer.parseInt(o.getParentId().toString()));
-            easyUITreeModel.setOpen(false);
-
-
+            //  model.addAttribute("menus", JSON.toJSONString(authWrapper));
 
             model.addAttribute("menus", authWrapper.getMenuList());
             model.addAttribute("username", user.getUsername());

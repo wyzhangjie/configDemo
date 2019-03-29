@@ -59,4 +59,8 @@ public class JobController extends BaseTreeableController<SysJobService,SysJob, 
     }
 
 
+    @Override
+    public void setBaseService(SysJobService baseService) {
+        super.baseService = sysJobService;
+    }
 }
