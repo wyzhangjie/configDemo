@@ -4,8 +4,9 @@
 
 package com.framework.demo.service.showcaseStatusShow;
 
+
+import com.framework.demo.bo.showcaseStatusShow.ShowcaseStatusShow;
 import com.github.fartherp.framework.database.service.GenericService;
-import com.framework.demo.showcaseStatusShow.bo.ShowcaseStatusShow;
 
 /**
  * This class corresponds to the database table `showcase_status_show`

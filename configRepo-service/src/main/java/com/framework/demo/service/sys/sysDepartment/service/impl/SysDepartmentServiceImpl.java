@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 
 import com.framework.demo.service.sys.sysDepartment.service.SysDepartmentService;
 import com.framework.demo.sys.sysDepartment.bo.SysDepartment;
-import com.framework.demo.sys.sysDepartment.dao.SysDepartmentDao;
+
 import org.springframework.stereotype.Service;
 
 /**

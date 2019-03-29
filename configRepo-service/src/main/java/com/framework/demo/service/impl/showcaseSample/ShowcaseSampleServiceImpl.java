@@ -4,12 +4,15 @@
 
 package com.framework.demo.service.impl.showcaseSample;
 
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
 import javax.annotation.Resource;
 
 import com.framework.demo.bo.showcaseSample.ShowcaseSample;
+import com.framework.demo.dao.showcaseSample.ShowcaseSampleMapper;
 import com.framework.demo.service.samplecaseSample.ShowcaseSampleService;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,11 +20,11 @@ import org.springframework.stereotype.Service;
  */
 @Service("showcaseSampleService")
 public class ShowcaseSampleServiceImpl extends GenericSqlMapServiceImpl<ShowcaseSample, Long> implements ShowcaseSampleService {
-    @Resource(name = "showcaseSampleDao")
-    private ShowcaseSampleDao showcaseSampleDao;
+    @Autowired
+    private ShowcaseSampleMapper showcaseSampleDao;
 
 
-    public SqlMapDao<ShowcaseSample, Long> getDao() {
+    public DaoMapper<ShowcaseSample, Long> getDao() {
         return showcaseSampleDao;
     }
 

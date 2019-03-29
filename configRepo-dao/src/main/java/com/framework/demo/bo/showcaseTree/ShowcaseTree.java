@@ -4,22 +4,23 @@
 
 package com.framework.demo.bo.showcaseTree;
 
+
 import org.apache.commons.lang3.StringUtils;
+
+import java.io.Serializable;
 
 /**
  * This class corresponds to the database table `showcase_tree`
  */
-public class ShowcaseTree extends ShowcaseTreeBase {
+public class ShowcaseTree extends ShowcaseTreeBase{
     public void setName(String name) {
         super.setName(name);
     }
 
-
-
-
     public Long getParentId() {
         return super.getParentId() ;
     }
+
 
     public void setParentId(Long parentId) {
         super.setParentId(parentId);

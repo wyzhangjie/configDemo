@@ -5,8 +5,6 @@
  */
 package com.framework.demo.web.controller.sys.user.web.controller;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.BooleanEnum;
-import com.github.fartherp.framework.database.service.GenericService;
 import com.framework.demo.bo.sysUser.SysUser;
 
 import com.framework.demo.enm.UserStatus;
@@ -18,6 +16,8 @@ import com.framework.demo.service.sysuser.SysUserService;
 import com.framework.demo.web.controller.BaseController;
 import com.framework.demo.web.controller.sys.user.web.bind.annotation.CurrentUser;
 import com.framework.demo.common.Constants;
+import com.github.fartherp.framework.database.mybatis.plugin.search.enums.BooleanEnum;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

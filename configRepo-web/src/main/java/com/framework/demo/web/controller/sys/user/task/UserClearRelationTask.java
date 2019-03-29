@@ -5,19 +5,19 @@
  */
 package com.framework.demo.web.controller.sys.user.task;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.page.PageRequest;
-import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
 import com.framework.demo.bo.sysUser.SysUser;
 import com.framework.demo.service.sys.sysJob.service.SysJobService;
 import com.framework.demo.service.sys.sysOrganization.service.SysOrganizationService;
-import com.framework.demo.service.sys.sysUserOrganizationJob.service.SysUserOrganizationJobService;
+import com.framework.demo.service.sys.sysSysUserOrganizationJob.service.SysSysUserOrganizationJobService;
 import com.framework.demo.service.sysuser.SysUserService;
 
-import com.framework.demo.sys.sysUserOrganizationJob.bo.SysUserOrganizationJob;
+import com.framework.demo.sys.sysSysUserOrganizationJob.bo.SysSysUserOrganizationJob;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.framework.demo.utils.LogUtils;
+import com.github.fartherp.framework.database.mybatis.plugin.page.PageRequest;
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
 
 import java.util.Collection;
 
@@ -39,7 +39,7 @@ public class UserClearRelationTask {
     private SysOrganizationService organizationService;
 
     @Autowired
-    private SysUserOrganizationJobService sysUserOrganizationJobService;
+    private SysSysUserOrganizationJobService sysSysUserOrganizationJobService;
 
 
     @Autowired
@@ -49,17 +49,17 @@ public class UserClearRelationTask {
      */
     public void clearDeletedUserRelation() {
 
-        //删除用户不存在的情况的SysUserOrganizationJob（比如手工从数据库物理删除）。。
-        userService.deleteSysUserOrganizationJobOnNotExistsUser();
+        //删除用户不存在的情况的SysSysUserOrganizationJob（比如手工从数据库物理删除）。。
+        userService.deleteSysSysUserOrganizationJobOnNotExistsUser();
 
-        Pagination<SysUserOrganizationJob> page = null;
+        Pagination<SysSysUserOrganizationJob> page = null;
 
         int pn = 0;
         final int PAGE_SIZE = 100;
         Pagination pageable = null;
         do {
             pageable = new PageRequest(pn++, PAGE_SIZE);
-            page = userService.findSysUserOrganizationJobOnNotExistsOrganizationOrJob(pageable);
+            page = userService.findSysSysUserOrganizationJobOnNotExistsOrganizationOrJob(pageable);
 
             //开启新事物清除
             try {
@@ -72,21 +72,21 @@ public class UserClearRelationTask {
             }
             //清空会话
 
-        } while (page.hasNextPage());
+        } while (page.isHasNext());
 
     }
 
-    public void doClear(Collection<SysUserOrganizationJob> SysUserOrganizationJobColl) {
-        for (SysUserOrganizationJob SysUserOrganizationJob : SysUserOrganizationJobColl) {
+    public void doClear(Collection<SysSysUserOrganizationJob> SysSysUserOrganizationJobColl) {
+        for (SysSysUserOrganizationJob SysSysUserOrganizationJob : SysSysUserOrganizationJobColl) {
 
-            SysUser user = userService.findById(SysUserOrganizationJob.getUserId());
+            SysUser user = userService.findById(SysSysUserOrganizationJob.getUserId());
 
-            if (organizationService.findById(SysUserOrganizationJob.getOrganizationId())==null) {
-                sysUserOrganizationJobService.delete(SysUserOrganizationJob);//如果是组织机构删除了 直接移除
-            } else if (sysJobService.findById(SysUserOrganizationJob.getJobId())==null) {
-                sysUserOrganizationJobService.delete(SysUserOrganizationJob);
-                SysUserOrganizationJob.setJobId(null);
-                sysUserOrganizationJobService.saveOrUpdate(SysUserOrganizationJob);
+            if (organizationService.findById(SysSysUserOrganizationJob.getOrganizationId())==null) {
+                sysSysUserOrganizationJobService.delete(SysSysUserOrganizationJob.getOrganizationId());//如果是组织机构删除了 直接移除
+            } else if (sysJobService.findById(SysSysUserOrganizationJob.getJobId())==null) {
+                sysSysUserOrganizationJobService.delete(SysSysUserOrganizationJob.getOrganizationId());
+                SysSysUserOrganizationJob.setJobId(null);
+                sysSysUserOrganizationJobService.saveOrUpdate(SysSysUserOrganizationJob);
             }
             //不加也可 加上的目的是为了清缓存
             userService.saveOrUpdate(user);

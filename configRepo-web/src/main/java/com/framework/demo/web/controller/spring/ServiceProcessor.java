@@ -1,7 +1,8 @@
 package com.framework.demo.web.controller.spring;
 
-import cn.vansky.framework.core.util.SpringProxyUtils;
 import com.framework.demo.service.menu.MenuService;
+import com.github.fartherp.framework.core.util.SpringProxyUtils;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;

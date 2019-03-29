@@ -4,10 +4,10 @@
 
 package com.framework.demo.sys.sysAuth.bo.SysAuth;
 
-import cn.vansky.framework.core.dao.FieldAccessVo;
-import cn.vansky.framework.core.dao.TableDataConvertable;
-import cn.vansky.framework.core.dao.annotation.ColumnDescription;
-import cn.vansky.framework.core.dao.annotation.Id;
+import com.github.fartherp.framework.database.dao.FieldAccessVo;
+import com.github.fartherp.framework.database.dao.annotation.ColumnDescription;
+import com.github.fartherp.framework.database.dao.annotation.Id;
+
 import com.google.common.collect.Sets;
 
 import java.util.Set;
@@ -15,7 +15,7 @@ import java.util.Set;
 /**
  * This class corresponds to the database table `sys_auth`
  */
-public abstract class SysAuthBase extends FieldAccessVo implements TableDataConvertable {
+public abstract class SysAuthBase extends FieldAccessVo  {
     /**
      * This field corresponds to the database column `sys_auth`.id
      */

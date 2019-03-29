@@ -34,15 +34,6 @@ public abstract class BaseCRUDController<M extends FieldAccessVo, ID extends Ser
 
     protected PermissionList permissionList = null;
 
-    /**
-     * 设置基础service
-     *
-     * @param baseService
-     */
-    @Autowired
-    public void setBaseService(GenericServiceExt<M, ID> baseService) {
-        this.baseService = baseService;
-    }
 
     /**
      * 列表也设置common data

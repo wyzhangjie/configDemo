@@ -4,16 +4,17 @@
 
 package com.framework.demo.sys.sysRoleResourcePermission.dao;
 
-import cn.vansky.framework.core.dao.DaoMapper;
-import cn.vansky.framework.core.orm.mybatis.annotation.SqlMapper;
 import com.framework.demo.sys.sysRoleResourcePermission.bo.SysRoleResourcePermission;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 /**
  * This class corresponds to the database table `sys_role_resource_permission`
  */
-@SqlMapper
+@Mapper
 public interface SysRoleResourcePermissionMapper extends DaoMapper<SysRoleResourcePermission, Long> {
     SysRoleResourcePermission findByRoleId(Long roleId);
 

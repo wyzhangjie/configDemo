@@ -1,6 +1,5 @@
 package com.framework.demo.web.controller.converter;
 
-import cn.vansky.framework.core.dao.FieldAccessVo;
 import com.framework.demo.bo.showcaseSample.ShowcaseSample;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;

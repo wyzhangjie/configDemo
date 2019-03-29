@@ -3,19 +3,10 @@ package com.framework.demo.sys.sysRoleResourcePermission.dao.impl;
 import cn.vansky.framework.core.bean.ServiceLocator;
 import cn.vansky.framework.core.util.SpringUtils;
 import com.framework.demo.sys.sysRoleResourcePermission.bo.SysRoleResourcePermission;
-import com.framework.demo.sys.sysRoleResourcePermission.dao.SysRoleResourcePermissionDao;
+
 import dbunit.BaseDbTestCase;
-import junit.framework.TestCase;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.transaction.annotation.Transactional;
+
 import org.springframework.util.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import javax.annotation.Resource;

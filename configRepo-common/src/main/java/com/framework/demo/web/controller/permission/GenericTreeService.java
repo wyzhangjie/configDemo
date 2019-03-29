@@ -1,7 +1,7 @@
 package com.framework.demo.web.controller.permission;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable;
-import com.framework.demo.plugin.entity.Treeable;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
+import com.github.fartherp.framework.database.service.GenericService;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.Set;
  * @date 2016/8/6 0006
  * To change this template use File | Settings | File Templates.
  */
- public abstract  class  GenericTreeService<T, ID extends Serializable>  implements cn.vansky.framework.core.service.GenericService {
+ public abstract  class  GenericTreeService<T, ID extends Serializable>  implements GenericService {
 
   abstract   <M extends Treeable> List<M> findAllByName(Searchable searchable, Object o);
 

@@ -2,15 +2,16 @@
  * Copyright (C) 2016 CK, Inc. All Rights Reserved.
  */
 
-package com.framework.demo.sys.sysUserOrganizationJob.dao;
+package com.framework.demo.sys.sysSysUserOrganizationJob.dao;
 
-import cn.vansky.framework.core.dao.DaoMapper;
-import cn.vansky.framework.core.orm.mybatis.annotation.SqlMapper;
-import com.framework.demo.sys.sysUserOrganizationJob.bo.SysUserOrganizationJob;
+import com.framework.demo.sys.sysSysUserOrganizationJob.bo.SysSysUserOrganizationJob;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * This class corresponds to the database table `sys_user_organization_job`
  */
-@SqlMapper
-public interface SysUserOrganizationJobMapper extends DaoMapper<SysUserOrganizationJob, Long> {
+@Mapper
+public interface SysSysUserOrganizationJobMapper extends DaoMapper<SysSysUserOrganizationJob, Long> {
 }

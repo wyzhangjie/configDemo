@@ -1,6 +1,4 @@
-/*
- * Copyright (C) 2016 CK, Inc. All Rights Reserved.
- */
+
 
 package com.framework.demo.service.impl.menu;
 
@@ -14,6 +12,7 @@ import com.framework.demo.bo.sysTemplColr.SysTemplColr;
 import com.framework.demo.bo.sysUser.SysUser;
 import com.framework.demo.dao.menu.MenuMapper;
 import com.framework.demo.service.datagrid.EasyuiColumnService;
+import com.framework.demo.service.menu.MenuService;
 import com.framework.demo.service.pageTemplate.PageTempleteService;
 import com.framework.demo.service.sys.sysAuth.service.SysAuthService;
 import com.framework.demo.service.sysColor.SysTemplColrService;
@@ -30,7 +29,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -44,7 +42,7 @@ import javax.annotation.Resource;
  * This class corresponds to the database table `menu`
  */
 @Service("menuService")
-public class MenuServiceImpl extends GenericSqlMapServiceImpl<Menu, Integer>  {
+public class MenuServiceImpl extends GenericSqlMapServiceImpl<Menu, Integer> implements MenuService {
     @Autowired
     private MenuMapper menuDao;
     @Autowired
@@ -214,7 +212,7 @@ public class MenuServiceImpl extends GenericSqlMapServiceImpl<Menu, Integer>  {
         return 1;
     }
 
-    public  List<Menu> findAuthSource(SysUser user) throws InvocationTargetException, IllegalAccessException {
+    public  List<Menu> findAuthSource(SysUser user) {
         List<Menu> allList = new ArrayList<Menu>();
         if("root".equalsIgnoreCase(user.getUsername())){
             allList = new ArrayList<Menu>();

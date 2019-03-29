@@ -7,6 +7,8 @@ package com.framework.demo.sys.sysJob.bo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 /**
  * This class corresponds to the database table `sys_job`
  */
@@ -47,6 +49,7 @@ public class SysJob extends SysJobBase {
     public void setIcon(String icon) {
        super.setIcon(icon);
     }
+
 
 
     public void setParentId(Long parentId) {

@@ -4,13 +4,14 @@
 
 package com.framework.demo.sys.sysGroup.dao;
 
-import cn.vansky.framework.core.dao.DaoMapper;
-import cn.vansky.framework.core.orm.mybatis.annotation.SqlMapper;
 import com.framework.demo.sys.sysGroup.bo.SysGroup;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * This class corresponds to the database table `sys_group`
  */
-@SqlMapper
+@Mapper
 public interface SysGroupMapper extends DaoMapper<SysGroup, Long> {
 }

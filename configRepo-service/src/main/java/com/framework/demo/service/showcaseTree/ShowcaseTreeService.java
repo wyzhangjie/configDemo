@@ -4,9 +4,8 @@
 
 package com.framework.demo.service.showcaseTree;
 
-import com.github.fartherp.framework.database.service.GenericService;
-import cn.vansky.framework.tree.service.BaseTreeableService;
 import com.framework.demo.bo.showcaseTree.ShowcaseTree;
+import com.github.fartherp.framework.tree.service.BaseTreeableService;
 
 /**
  * This class corresponds to the database table `showcase_tree`

@@ -5,20 +5,14 @@
  */
 package com.framework.demo.web.controller.showcase.move;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.enums.BooleanEnum;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.validate.group.Create;
 import com.framework.demo.bo.showcaseMoveable.ShowcaseMoveable;
 
 import com.framework.demo.web.controller.sys.resource.web.controller.BaseMovableController;
+import com.github.fartherp.framework.database.mybatis.plugin.search.enums.BooleanEnum;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.validation.Valid;
 
 /**
  * Created by demo.

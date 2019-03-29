@@ -4,13 +4,14 @@
 
 package com.framework.demo.sys.sysUserOnline.dao;
 
-import cn.vansky.framework.core.dao.DaoMapper;
-import cn.vansky.framework.core.orm.mybatis.annotation.SqlMapper;
 import com.framework.demo.sys.sysUserOnline.bo.SysUserOnline;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * This class corresponds to the database table `sys_user_online`
  */
-@SqlMapper
+@Mapper
 public interface SysUserOnlineMapper extends DaoMapper<SysUserOnline, String> {
 }

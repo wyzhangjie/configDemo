@@ -10,7 +10,7 @@ import cn.vansky.framework.core.dao.SqlMapDao;
 import cn.vansky.framework.tree.service.BaseTreeableServiceImpl;
 import com.framework.demo.service.sys.sysJob.service.SysJobService;
 import com.framework.demo.sys.sysJob.bo.SysJob;
-import com.framework.demo.sys.sysJob.dao.SysJobDao;
+
 import org.springframework.stereotype.Service;
 
 /**

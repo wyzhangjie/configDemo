@@ -5,16 +5,14 @@
  */
 package com.framework.demo.web.controller.showcase.deleted;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.BooleanEnum;
 import com.framework.demo.bo.showcaseSample.ShowcaseSample;
 
 import com.framework.demo.enm.Sex;
 import com.framework.demo.service.samplecaseSample.ShowcaseSampleService;
-import com.framework.demo.utils.converter.StringToDateConverter;
-import com.framework.demo.vo.showcase.ShowcaseSampleVo;
 import com.framework.demo.web.controller.BaseCRUDController;
 import com.framework.demo.web.validate.ValidateResponse;
-import org.springframework.beans.propertyeditors.ClassEditor;
+import com.github.fartherp.framework.database.mybatis.plugin.search.enums.BooleanEnum;
+
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,13 +62,9 @@ public class DeletedSampleController extends BaseCRUDController<ShowcaseSample, 
     protected boolean hasError(ShowcaseSample m, BindingResult result) {
         Assert.notNull(m);
         //字段错误 前台使用<es:showFieldError commandName="showcase/sample"/> 显示
-        try {
-            if (m.getBirthday() != null && dateFormat.parse(m.getBirthday()).after(new Date())) {
-                //前台字段名（前台使用[name=字段名]取得dom对象） 错误消息键。。
-                result.rejectValue("m.birthday", "birthday.past");
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
+        if (m.getBirthday() != null && m.getBirthday().after(new Date())) {
+            //前台字段名（前台使用[name=字段名]取得dom对象） 错误消息键。。
+            result.rejectValue("m.birthday", "birthday.past");
         }
         //全局错误 前台使用<es:showGlobalError commandName="showcase/sample"/> 显示
         if (m.getName().contains("admin")) {

@@ -1,8 +1,5 @@
 package com.framework.demo.web.controller.user;
 
-import cn.vansky.framework.core.web.easyUI.model.EasyUITreeModel;
-import cn.vansky.framework.core.web.easyUI.service.EasyUITreeService;
-import cn.vansky.framework.core.web.filter.auth.AuthWrapper;
 import com.framework.demo.bo.menu.Menu;
 import com.framework.demo.bo.sysUser.SysUser;
 import com.framework.demo.service.menu.MenuService;
@@ -10,6 +7,10 @@ import com.framework.demo.service.sys.sysAuth.service.SysAuthService;
 import com.framework.demo.service.sysuser.SysUserService;
 import com.framework.demo.web.bind.annotation.CurrentUser;
 import com.framework.demo.common.Constants;
+import com.github.fartherp.framework.core.web.easyUI.model.EasyUITreeModel;
+import com.github.fartherp.framework.core.web.easyUI.service.EasyUITreeService;
+import com.github.fartherp.framework.core.web.filter.auth.AuthWrapper;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
@@ -121,20 +122,20 @@ public class UserController {
     private void converToMenu(@CurrentUser SysUser user, Model model, List<Menu> allList) {
         if(allList.size()!=0){
             AuthWrapper authWrapper = new AuthWrapper();
-            List<Object> l = easyUITreeService.findChildren(allList, new EasyUITreeService.ModelCall<Menu>() {
+            EasyUITreeModel easyUITreeModel = new EasyUITreeModel();
+            List<Object> l = easyUITreeService.findChildren(allList,()
 
-                public EasyUITreeModel convert(Menu o) {
-                    EasyUITreeModel model = new EasyUITreeModel();
-                    model.setId(o.getId());
-                    model.setText(o.getName());
-                    model.setUrl(o.getPath());
-                    model.setPid(Integer.parseInt(o.getParentId().toString()));
-                    model.setOpen(false);
-                    return model;
-                }
-            });
+                  );
+
             authWrapper.setMenuList(l);
           //  model.addAttribute("menus", JSON.toJSONString(authWrapper));
+            easyUITreeModel.setId(o.getId());
+            easyUITreeModel.setText(o.getName());
+            easyUITreeModel.setUrl(o.getPath());
+            easyUITreeModel.setPid(Integer.parseInt(o.getParentId().toString()));
+            easyUITreeModel.setOpen(false);
+
+
 
             model.addAttribute("menus", authWrapper.getMenuList());
             model.addAttribute("username", user.getUsername());

@@ -8,6 +8,7 @@ import com.framework.demo.bo.datagrid.EasyuiDatagrid;
 import com.framework.demo.bo.menu.Menu;
 import com.framework.demo.bo.pageTemplate.PageTemplete;
 import com.framework.demo.bo.sysTemplColr.SysTemplColr;
+import com.framework.demo.bo.sysUser.SysUser;
 import com.github.fartherp.framework.database.service.GenericService;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public interface MenuService extends GenericService<Menu, Integer> {
     int insert(Menu menu);
     int selectIdByName(String name);
 
-    String findId(String name);
+    Menu findId(String name);
 
 
     int updateByPrimaryKey(Menu menu);
@@ -42,4 +43,8 @@ public interface MenuService extends GenericService<Menu, Integer> {
 
 
     int insertPageInfoForDatagrid(EasyuiDatagrid easyUiDatagrid);
+
+    String findActualResourceIdentity(Menu resource);
+
+    List<Menu> findAuthSource(SysUser user);
 }

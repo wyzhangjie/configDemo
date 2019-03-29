@@ -7,6 +7,8 @@ package com.framework.demo.sys.sysOrganization.bo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 /**
  * This class corresponds to the database table `sys_organization`
  */
@@ -44,6 +46,16 @@ public class SysOrganization extends SysOrganizationBase {
 
     public void setIcon(String icon) {
         super.setIcon(icon);
+    }
+
+    @Override
+    public void setParentId(Serializable parentId) {
+
+    }
+
+    @Override
+    public void setParentIds(String parentIds) {
+
     }
 
 

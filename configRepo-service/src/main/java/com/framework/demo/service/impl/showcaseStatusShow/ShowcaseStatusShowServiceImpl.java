@@ -4,13 +4,16 @@
 
 package com.framework.demo.service.impl.showcaseStatusShow;
 
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
 
 import javax.annotation.Resource;
 
 import com.framework.demo.bo.showcaseStatusShow.ShowcaseStatusShow;
+import com.framework.demo.dao.showcaseStatusShow.ShowcaseStatusShowMapper;
 import com.framework.demo.service.showcaseStatusShow.ShowcaseStatusShowService;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,10 +21,10 @@ import org.springframework.stereotype.Service;
  */
 @Service("showcaseStatusShowService")
 public class ShowcaseStatusShowServiceImpl extends GenericSqlMapServiceImpl<ShowcaseStatusShow, Long> implements ShowcaseStatusShowService {
-    @Resource(name = "showcaseStatusShowDao")
-    private ShowcaseStatusShowDao showcaseStatusShowDao;
+    @Autowired
+    private ShowcaseStatusShowMapper showcaseStatusShowDao;
 
-    public SqlMapDao<ShowcaseStatusShow, Long> getDao() {
+    public DaoMapper<ShowcaseStatusShow, Long> getDao() {
         return showcaseStatusShowDao;
     }
 }

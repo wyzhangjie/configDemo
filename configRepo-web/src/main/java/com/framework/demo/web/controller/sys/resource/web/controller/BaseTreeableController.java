@@ -6,15 +6,7 @@
 package com.framework.demo.web.controller.sys.resource.web.controller;
 
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.BooleanEnum;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.SearchOperator;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
-import cn.vansky.framework.tree.bo.Treeable;
-import cn.vansky.framework.tree.convert.ConvertTool;
-import cn.vansky.framework.tree.convert.ZtreeConvertTool;
-import cn.vansky.framework.tree.model.ztree.SimpleZtree;
-import cn.vansky.framework.tree.model.ztree.Ztree;
-import cn.vansky.framework.tree.service.BaseTreeableService;
+
 import com.google.common.collect.Lists;
 import com.framework.demo.common.Constants;
 import org.springframework.ui.Model;
@@ -22,9 +14,19 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.framework.demo.web.bind.annotation.PageableDefaults;
 import com.framework.demo.web.controller.BaseController;
 import com.framework.demo.web.controller.permission.PermissionList;
+import com.github.fartherp.framework.database.mybatis.plugin.search.enums.BooleanEnum;
+import com.github.fartherp.framework.database.mybatis.plugin.search.enums.SearchOperator;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
+import com.github.fartherp.framework.tree.bo.Treeable;
+import com.github.fartherp.framework.tree.convert.ConvertTool;
+import com.github.fartherp.framework.tree.convert.ZtreeConvertTool;
+import com.github.fartherp.framework.tree.model.common.Tree;
+import com.github.fartherp.framework.tree.model.ztree.SimpleZtree;
+import com.github.fartherp.framework.tree.service.BaseTreeableService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
@@ -496,30 +498,31 @@ public abstract class BaseTreeableController<T extends BaseTreeableService, M ex
 
 
     private List convertToSimpleZtreeList(List<M> m, final boolean open, final boolean onlyCheckLeaf) {
-        List<SimpleZtree<SimpleZtree>> ztree = Lists.newArrayList();
+        List<SimpleZtree<SimpleZtree,Long>> ztrees = Lists.newArrayList();
         if (m == null || m.isEmpty()) {
-            return ztree;
+            return ztrees;
         }
         ConvertTool c = new ZtreeConvertTool();
-        return c.findChildren(m, new ConvertTool.ModelCall<M, SimpleZtree>() {
-            public SimpleZtree convert(M m) {
-                SimpleZtree ztree = new SimpleZtree();
-                ztree.setId((ID) m.getId());
-                ztree.setpId((ID) m.getParentId());
-                ztree.setName(m.getName());
-                ztree.setIsParent(!m.isLeaf());
-                ztree.setIconSkin(m.getIcon());
-                ztree.setOpen(open);
-                ztree.setRoot(m.isRoot());
-                if (onlyCheckLeaf && ztree.getIsParent()) {
-                    ztree.setNocheck(true);
-                } else {
-                    ztree.setNocheck(false);
-                }
-                return ztree;
-            }
+        List<SimpleZtree> list = c.findChildren(m, (M iterm)->{
+            SimpleZtree ztree = new SimpleZtree();
+            ztree.setId((ID) iterm.getId());
+            ztree.setpId((ID) iterm.getParentId());
+            ztree.setName(iterm.getName());
+            ztree.setIsParent(!iterm.isLeaf());
+            ztree.setIconSkin(iterm.getIcon());
+            ztree.setOpen(open);
+            ztree.setRoot(iterm.isRoot());
+            if (onlyCheckLeaf && ztree.getIsParent()) {
+                ztree.setNocheck(true);
+            } else {
+                ztree.setNocheck(false);
+
+
+        }
+            return ztree;
         });
-    }
+        return list;
+}
 
     private SimpleZtree convertToSimpleZtree(M m, final boolean open, final boolean onlyCheckLeaf) {
         SimpleZtree ztree = new SimpleZtree();

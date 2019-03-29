@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 
 import com.framework.demo.service.sys.sysRoleResourcePermission.service.SysRoleResourcePermissionService;
 import com.framework.demo.sys.sysRoleResourcePermission.bo.SysRoleResourcePermission;
-import com.framework.demo.sys.sysRoleResourcePermission.dao.SysRoleResourcePermissionDao;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;

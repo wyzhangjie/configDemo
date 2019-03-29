@@ -6,7 +6,7 @@
 package com.framework.demo.web.controller.sys.user.web.controller;
 
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
+import com.framework.demo.service.sys.sysUserOnline.service.SysUserOnlineService;
 import com.framework.demo.sys.sysUserOnline.bo.SysUserOnline;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.UnauthorizedException;
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.framework.demo.utils.MessageUtils;
 import com.framework.demo.web.controller.BaseCRUDController;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
 
 /**
  * <p>User: hyssop
@@ -36,6 +37,10 @@ public class UserOnlineController extends BaseCRUDController<SysUserOnline, Stri
     }
 
 
+    @Autowired
+    public void setBaseService(SysUserOnlineService baseService) {
+
+    }
 
     public String list(Searchable searchable, Model model) throws Exception{
         if (!SecurityUtils.getSubject().isPermitted("sys:userOnline:view or monitor:userOnline:view")) {
@@ -52,7 +57,7 @@ public class UserOnlineController extends BaseCRUDController<SysUserOnline, Stri
         }
 
         for (String id : ids) {
-            SysUserOnline online = baseService.findById(id);
+            SysUserOnline online = (SysUserOnline)baseService.findById(id);
             if (online == null) {
                 continue;
             }

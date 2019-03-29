@@ -126,6 +126,11 @@
                 <version>${guava.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-mapper-asl</artifactId>
+                <version>1.9.12</version>
+            </dependency>
+            <dependency>
                 <groupId>taglibs</groupId>
                 <artifactId>standard</artifactId>
                 <version>${standard.version}</version>
@@ -307,6 +312,11 @@
             <dependency>
                 <groupId>com.github.fartherp</groupId>
                 <artifactId>framework-poi</artifactId>
+                <version>${com.github.fartherp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.fartherp</groupId>
+                <artifactId>framework-tree</artifactId>
                 <version>${com.github.fartherp.version}</version>
             </dependency>
 
@@ -662,12 +672,20 @@
     </dependencyManagement>
     <dependencies>
         <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.github.fartherp</groupId>
             <artifactId>framework-poi</artifactId>
         </dependency>
         <dependency>
             <groupId>com.github.fartherp</groupId>
             <artifactId>framework-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.fartherp</groupId>
+            <artifactId>framework-tree</artifactId>
         </dependency>
         <dependency>
             <groupId>com.github.fartherp</groupId>

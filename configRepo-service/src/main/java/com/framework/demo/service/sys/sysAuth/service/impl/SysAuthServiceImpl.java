@@ -4,9 +4,9 @@
 
 package com.framework.demo.service.sys.sysAuth.service.impl;
 
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
-import javax.annotation.Resource;
+import com.google.common.base.Function;
+import com.google.common.collect.Collections2;
+import com.google.common.collect.Sets;
 
 import com.framework.demo.bo.menu.Menu;
 import com.framework.demo.bo.sysRole.SysRole;
@@ -21,14 +21,12 @@ import com.framework.demo.service.sys.sysRoleResourcePermission.service.SysRoleR
 import com.framework.demo.service.sysRole.SysRoleService;
 import com.framework.demo.service.sysuser.SysUserService;
 import com.framework.demo.sys.sysAuth.bo.SysAuth.SysAuth;
-import com.framework.demo.sys.sysAuth.dao.SysAuthDao;
 import com.framework.demo.sys.sysPermission.bo.SysPermission;
 import com.framework.demo.sys.sysRoleResourcePermission.bo.SysRoleResourcePermission;
-import com.google.common.base.Function;
-import com.google.common.collect.Collections2;
-import com.google.common.collect.Sets;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
+
 import org.apache.commons.lang3.ArrayUtils;
-import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -36,11 +34,13 @@ import org.springframework.util.StringUtils;
 import java.util.List;
 import java.util.Set;
 
+import javax.annotation.Resource;
+
 /**
  * This class corresponds to the database table `sys_auth`
  */
 @Service("sysAuthService")
-public class SysAuthServiceImpl extends GenericSqlMapServiceImpl<SysAuth, Long> implements SysAuthService {
+public class SysAuthServiceImpl   extends GenericSqlMapServiceImpl<SysAuth, Long> implements SysAuthService {
     @Resource(name = "sysAuthDao")
     private SysAuthDao sysAuthDao;
 
@@ -69,7 +69,7 @@ public class SysAuthServiceImpl extends GenericSqlMapServiceImpl<SysAuth, Long> 
     @Autowired
     private SysRoleResourcePermissionService sysRoleResourcePermissionService;
 
-    public SqlMapDao<SysAuth, Long> getDao() {
+    public DaoMapper<SysAuth, Long> getDao() {
         return sysAuthDao;
     }
 
@@ -147,7 +147,7 @@ public class SysAuthServiceImpl extends GenericSqlMapServiceImpl<SysAuth, Long> 
             auth.setUserId(userId);
             auth.setType(m.getType());
             auth.setRoleIds(m.getRoleIds());
-            sysAuthDao.save(auth);
+            sysAuthDao.insert(auth);
         }
 
     }

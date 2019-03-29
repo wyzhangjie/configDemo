@@ -4,10 +4,8 @@
 
 package com.framework.demo.bo.menu;
 
-import com.framework.demo.bo.showcaseTree.ShowcaseTree;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
-import com.framework.demo.plugin.entity.Treeable;
 
 /**
  * This class corresponds to the database table `menu`

@@ -5,8 +5,6 @@
  */
 package com.framework.demo.web.controller.calendar;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
-import com.github.fartherp.framework.database.service.GenericService;
 import com.framework.demo.bo.personalCalendar.PersonalCalendar;
 import com.framework.demo.bo.sysUser.SysUser;
 import com.framework.demo.service.personalCalendar.PersonalCalendarService;
@@ -24,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.framework.demo.web.bind.annotation.CurrentUser;
 import com.framework.demo.web.controller.BaseController;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
 
 import java.util.Collection;
 import java.util.Date;
@@ -176,7 +175,7 @@ public class CalendarController extends BaseController<PersonalCalendar, Long> {
     public String deleteCalendar(@RequestParam("id") Long id) {
         PersonalCalendar personalCalendar =new PersonalCalendar();
         personalCalendar.setId(id);
-        calendarService.delete(personalCalendar);
+        calendarService.delete(id);
         return "ok";
     }
 

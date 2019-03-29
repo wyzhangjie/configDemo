@@ -10,7 +10,7 @@ import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchabl
 import com.github.fartherp.framework.database.service.GenericService;
 import com.framework.demo.bo.sysUser.SysUser;
 import com.framework.demo.enm.UserStatus;
-import com.framework.demo.sys.sysUserOrganizationJob.bo.SysUserOrganizationJob;
+import com.framework.demo.sys.sysSysUserOrganizationJob.bo.SysSysUserOrganizationJob;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
@@ -39,13 +39,13 @@ public interface SysUserService extends GenericService<SysUser, Long> {
 
     Pagination<SysUser> findByPageable(Pagination pageable) throws InvocationTargetException, IllegalAccessException;
 
-    void deleteUserOrganizationJobOnNotExistsUser();
-
-    Pagination<SysUserOrganizationJob> findUserOrganizationJobOnNotExistsOrganizationOrJob(Pagination pageable) throws InvocationTargetException, IllegalAccessException;
-
     void deleteSysUserOrganizationJobOnNotExistsUser();
 
-    Pagination<SysUserOrganizationJob> findSysUserOrganizationJobOnNotExistsOrganizationOrJob(Pagination pageable);
+    Pagination<SysSysUserOrganizationJob> findSysUserOrganizationJobOnNotExistsOrganizationOrJob(Pagination pageable) throws InvocationTargetException, IllegalAccessException;
+
+    void deleteSysSysUserOrganizationJobOnNotExistsUser();
+
+    Pagination<SysSysUserOrganizationJob> findSysSysUserOrganizationJobOnNotExistsOrganizationOrJob(Pagination pageable);
 
     SysUser findByEmail(String email);
 

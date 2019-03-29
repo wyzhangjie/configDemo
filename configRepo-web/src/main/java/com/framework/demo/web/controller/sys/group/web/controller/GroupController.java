@@ -6,9 +6,6 @@
 package com.framework.demo.web.controller.sys.group.web.controller;
 
 
-import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.BooleanEnum;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import com.framework.demo.enm.GroupType;
 import com.framework.demo.service.sys.sysGroup.service.SysGroupService;
 import com.framework.demo.service.sys.sysGroupRelation.service.SysGroupRelationService;
@@ -24,6 +21,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.framework.demo.web.bind.annotation.PageableDefaults;
 import com.framework.demo.web.controller.BaseCRUDController;
 import com.framework.demo.web.controller.permission.PermissionList;
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
+import com.github.fartherp.framework.database.mybatis.plugin.search.enums.BooleanEnum;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;

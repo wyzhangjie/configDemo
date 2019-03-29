@@ -6,14 +6,18 @@
 package com.framework.demo.web.controller.sys.organization.web.controller;
 
 
+import com.framework.demo.service.sys.sysJob.service.SysJobService;
 import com.framework.demo.sys.sysJob.bo.SysJob;
 import com.framework.demo.common.Constants;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.framework.demo.web.controller.sys.resource.web.controller.BaseTreeableController;
+import com.github.fartherp.framework.tree.service.BaseTreeableService;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,7 +28,10 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 @RequestMapping(value = "/admin/sys/organization/job")
-public class JobController extends BaseTreeableController<SysJob, Long> {
+public class JobController extends BaseTreeableController<SysJobService,SysJob, Long> {
+
+    @Autowired
+    private SysJobService sysJobService;
 
 
     public JobController() {
@@ -50,5 +57,6 @@ public class JobController extends BaseTreeableController<SysJob, Long> {
 
         return "redirect:" + request.getAttribute(Constants.BACK_URL);
     }
+
 
 }

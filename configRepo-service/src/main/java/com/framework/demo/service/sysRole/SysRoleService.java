@@ -4,6 +4,7 @@
 
 package com.framework.demo.service.sysRole;
 
+import com.github.fartherp.framework.database.service.ExtendGenericService;
 import com.github.fartherp.framework.database.service.GenericService;
 import com.framework.demo.bo.sysRole.SysRole;
 import com.framework.demo.bo.sysUser.SysUser;
@@ -13,7 +14,7 @@ import java.util.Set;
 /**
  * This class corresponds to the database table `sys_role`
  */
-public interface SysRoleService extends GenericService<SysRole, Long> {
+public interface SysRoleService extends ExtendGenericService<SysRole, Long> {
      Set<SysRole> findRoles(SysUser user);
      public  void  createRole(SysRole  role);
      public   void     deleteRole(Long roleId);

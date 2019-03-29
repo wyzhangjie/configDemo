@@ -5,9 +5,6 @@
  */
 package com.framework.demo.web.controller.sys.auth.task;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.page.PageRequest;
-import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.*;
 import com.framework.demo.bo.sysRole.SysRole;
 import com.framework.demo.enm.AuthType;
 import com.framework.demo.service.sys.sysAuth.service.SysAuthService;
@@ -25,6 +22,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 import com.framework.demo.utils.LogUtils;
+import com.github.fartherp.framework.database.mybatis.plugin.page.PageRequest;
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.SearchRequest;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -98,7 +99,7 @@ public class AuthRelationClearTask {
                 case user_group:
                 case organization_group:
                     if (groupService.findById(auth.getGroupId())!=null) {
-                        authService.delete(auth);
+                        authService.delete(auth.getId());
                         continue;
                     }
                     break;
@@ -111,7 +112,7 @@ public class AuthRelationClearTask {
                     }
                     //如果组织机构/工作职务都为0L 那么可以删除
                     if (auth.getOrganizationId() == 0L && auth.getJobId() == 0L) {
-                        authService.delete(auth);
+                        authService.delete(auth.getId());
                         continue;
                     }
                     break;

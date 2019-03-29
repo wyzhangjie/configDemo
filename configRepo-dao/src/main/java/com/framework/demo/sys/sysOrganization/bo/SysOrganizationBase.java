@@ -4,16 +4,16 @@
 
 package com.framework.demo.sys.sysOrganization.bo;
 
-import cn.vansky.framework.core.dao.FieldAccessVo;
-import cn.vansky.framework.core.dao.TableDataConvertable;
-import cn.vansky.framework.core.dao.annotation.ColumnDescription;
-import cn.vansky.framework.core.dao.annotation.Id;
-import cn.vansky.framework.tree.bo.Treeable;
+
+import com.github.fartherp.framework.database.dao.annotation.ColumnDescription;
+import com.github.fartherp.framework.database.dao.annotation.Id;
+import com.github.fartherp.framework.tree.bo.Treeable;
+import com.sun.xml.internal.bind.v2.model.core.ID;
 
 /**
  * This class corresponds to the database table `sys_organization`
  */
-public abstract class SysOrganizationBase extends Treeable implements TableDataConvertable {
+public abstract class SysOrganizationBase extends Treeable<Long>  {
     /**
      * This field corresponds to the database column `sys_organization`.id
      */
@@ -229,7 +229,7 @@ public abstract class SysOrganizationBase extends Treeable implements TableDataC
      *
      * @param parentIds the value for `sys_organization`.parent_ids
      */
-    public void setParentIds(String parentIds) {
+    public void setParentId(String parentIds) {
         this.parentIds = parentIds;
     }
 
@@ -286,4 +286,5 @@ public abstract class SysOrganizationBase extends Treeable implements TableDataC
     public void setIsShow(Boolean isShow) {
         this.isShow = isShow;
     }
+
 }

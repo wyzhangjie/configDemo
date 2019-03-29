@@ -5,7 +5,7 @@
 package com.framework.demo.dao.sysUser;
 
 import com.framework.demo.bo.sysUser.SysUser;
-import com.framework.demo.sys.sysUserOrganizationJob.bo.SysUserOrganizationJob;
+import com.framework.demo.sys.sysSysUserOrganizationJob.bo.SysSysUserOrganizationJob;
 import com.github.fartherp.framework.database.dao.DaoMapper;
 import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
 import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
@@ -38,13 +38,13 @@ public interface SysUserMapper extends DaoMapper<SysUser, Long> {
 
     Pagination<SysUser> findByPageable(Pagination pageable);
 
-    void deleteUserOrganizationJobOnNotExistsUser();
-
-    List<SysUserOrganizationJob> findUserOrganizationJobOnNotExistsOrganizationOrJob(Pagination pageable);
-
     void deleteSysUserOrganizationJobOnNotExistsUser();
 
-    List<SysUserOrganizationJob> findSysUserOrganizationJobOnNotExistsOrganizationOrJob(Pagination pageable);
+    List<SysSysUserOrganizationJob> findSysUserOrganizationJobOnNotExistsOrganizationOrJob(Pagination pageable);
+
+    void deleteSysSysUserOrganizationJobOnNotExistsUser();
+
+    List<SysSysUserOrganizationJob> findSysSysUserOrganizationJobOnNotExistsOrganizationOrJob(Pagination pageable);
 
     SysUser findByEmail(String email);
 

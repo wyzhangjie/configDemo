@@ -7,6 +7,7 @@ package com.framework.demo.bo.showcaseStatusShow;
 import com.github.fartherp.framework.database.dao.FieldAccessVo;
 import com.github.fartherp.framework.database.dao.annotation.ColumnDescription;
 import com.github.fartherp.framework.database.dao.annotation.Id;
+import com.github.fartherp.framework.tree.bo.Treeable;
 
 /**
  * This class corresponds to the database table `showcase_status_show`
@@ -62,12 +63,29 @@ public abstract class ShowcaseStatusShowBase extends FieldAccessVo {
     private String status;
 
     /**
-     * This method returns the value of the database column `showcase_status_show`.id
+     * This method returns the value of the database column `showcase_tree`.id
      *
-     * @return the value of `showcase_status_show`.id
+     * @return the value of `showcase_tree`.id
      */
     public Long getId() {
         return id;
+    }
+
+    /**
+     * This method sets the value of the database column `showcase_tree`.name
+     *
+     * @param name the value for `showcase_tree`.name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+    /**
+     * This method returns the value of the database column `showcase_tree`.name
+     *
+     * @return the value of `showcase_tree`.name
+     */
+    public String getName() {
+        return name;
     }
 
     /**
@@ -77,24 +95,6 @@ public abstract class ShowcaseStatusShowBase extends FieldAccessVo {
      */
     public void setId(Long id) {
         this.id = id;
-    }
-
-    /**
-     * This method returns the value of the database column `showcase_status_show`.name
-     *
-     * @return the value of `showcase_status_show`.name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * This method sets the value of the database column `showcase_status_show`.name
-     *
-     * @param name the value for `showcase_status_show`.name
-     */
-    public void setName(String name) {
-        this.name = name;
     }
 
     /**
@@ -114,4 +114,6 @@ public abstract class ShowcaseStatusShowBase extends FieldAccessVo {
     public void setStatus(String status) {
         this.status = status;
     }
+
+
 }

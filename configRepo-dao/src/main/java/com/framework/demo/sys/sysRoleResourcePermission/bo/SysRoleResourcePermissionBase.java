@@ -4,10 +4,10 @@
 
 package com.framework.demo.sys.sysRoleResourcePermission.bo;
 
-import cn.vansky.framework.core.dao.FieldAccessVo;
-import cn.vansky.framework.core.dao.TableDataConvertable;
-import cn.vansky.framework.core.dao.annotation.ColumnDescription;
-import cn.vansky.framework.core.dao.annotation.Id;
+import com.github.fartherp.framework.database.dao.FieldAccessVo;
+import com.github.fartherp.framework.database.dao.annotation.ColumnDescription;
+import com.github.fartherp.framework.database.dao.annotation.Id;
+
 import org.springframework.util.StringUtils;
 
 import java.util.Set;
@@ -15,7 +15,7 @@ import java.util.Set;
 /**
  * This class corresponds to the database table `sys_role_resource_permission`
  */
-public abstract class SysRoleResourcePermissionBase extends FieldAccessVo implements TableDataConvertable {
+public abstract class SysRoleResourcePermissionBase extends FieldAccessVo  {
     /**
      * This field corresponds to the database column `sys_role_resource_permission`.id
      */

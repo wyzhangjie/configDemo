@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 
 import com.framework.demo.service.sys.sysPermission.service.SysPermissionService;
 import com.framework.demo.sys.sysPermission.bo.SysPermission;
-import com.framework.demo.sys.sysPermission.dao.SysPermissionDao;
+
 import org.springframework.stereotype.Service;
 
 /**

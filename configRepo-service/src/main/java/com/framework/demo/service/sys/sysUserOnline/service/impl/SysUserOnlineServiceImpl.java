@@ -4,15 +4,17 @@
 
 package com.framework.demo.service.sys.sysUserOnline.service.impl;
 
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.orm.mybatis.plugin.page.PageRequest;
-import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
 import javax.annotation.Resource;
 
 import com.framework.demo.service.sys.sysUserOnline.service.SysUserOnlineService;
 import com.framework.demo.sys.sysUserOnline.bo.SysUserOnline;
-import com.framework.demo.sys.sysUserOnline.dao.SysUserOnlineDao;
+import com.framework.demo.sys.sysUserOnline.dao.SysUserOnlineMapper;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.mybatis.plugin.page.PageRequest;
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -23,27 +25,28 @@ import java.util.List;
  */
 @Service("sysUserOnlineService")
 public class SysUserOnlineServiceImpl extends GenericSqlMapServiceImpl<SysUserOnline, String> implements SysUserOnlineService {
-    @Resource(name = "sysUserOnlineDao")
-    private SysUserOnlineDao sysUserOnlineDao;
 
-    public SqlMapDao<SysUserOnline, String> getDao() {
+    @Autowired
+    private SysUserOnlineMapper sysUserOnlineDao;
+
+    public DaoMapper<SysUserOnline, String> getDao() {
         return sysUserOnlineDao;
     }
 
     public void offline(String s) {
         SysUserOnline userOnline = findOne(s);
         if (userOnline != null) {
-            delete(userOnline);
+            delete(userOnline.getId());
         }
     }
 
     public SysUserOnline findOne(String s) {
-        return sysUserOnlineDao.findById(s);
+        return sysUserOnlineDao.selectByPrimaryKey(s);
     }
 
 
     public void online(SysUserOnline sysUserOnline) {
-        sysUserOnlineDao.update(sysUserOnline);
+        sysUserOnlineDao.insert(sysUserOnline);
     }
 
     public Pagination<SysUserOnline> findExpiredUserOnlineList(Date expiredDate, PageRequest pageRequest) {

@@ -4,15 +4,12 @@
 
 package com.framework.demo.sys.sysDepartment.bo;
 
-import cn.vansky.framework.core.dao.FieldAccessVo;
-import cn.vansky.framework.core.dao.TableDataConvertable;
-import cn.vansky.framework.core.dao.annotation.ColumnDescription;
-import cn.vansky.framework.core.dao.annotation.Id;
+import com.github.fartherp.framework.database.dao.FieldAccessVo;
 
 /**
  * This class corresponds to the database table `sys_department`
  */
-public abstract class SysDepartmentBase extends FieldAccessVo implements TableDataConvertable {
+public abstract class SysDepartmentBase extends FieldAccessVo  {
     /**
      * This field corresponds to the database column `sys_department`.id
      */

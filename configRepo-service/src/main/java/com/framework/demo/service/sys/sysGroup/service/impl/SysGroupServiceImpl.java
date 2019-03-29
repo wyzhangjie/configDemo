@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 
 import com.framework.demo.service.sys.sysGroup.service.SysGroupService;
 import com.framework.demo.sys.sysGroup.bo.SysGroup;
-import com.framework.demo.sys.sysGroup.dao.SysGroupDao;
+
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;

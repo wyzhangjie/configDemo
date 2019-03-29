@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 import com.framework.demo.bo.sysUser.SysUser;
 import com.framework.demo.service.sys.sysUserStatusHistory.service.SysUserStatusHistoryService;
 import com.framework.demo.sys.sysUserStatusHistory.bo.SysUserStatusHistory;
-import com.framework.demo.sys.sysUserStatusHistory.dao.SysUserStatusHistoryDao;
+
 import org.springframework.stereotype.Service;
 
 /**

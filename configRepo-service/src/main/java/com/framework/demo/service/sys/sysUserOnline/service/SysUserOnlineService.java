@@ -4,8 +4,9 @@
 
 package com.framework.demo.service.sys.sysUserOnline.service;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.page.PageRequest;
-import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
+import com.github.fartherp.framework.database.mybatis.plugin.page.PageRequest;
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
+import com.github.fartherp.framework.database.service.ExtendGenericService;
 import com.github.fartherp.framework.database.service.GenericService;
 import com.framework.demo.sys.sysUserOnline.bo.SysUserOnline;
 
@@ -15,7 +16,7 @@ import java.util.List;
 /**
  * This class corresponds to the database table `sys_user_online`
  */
-public interface SysUserOnlineService extends GenericService<SysUserOnline, String> {
+public interface SysUserOnlineService extends ExtendGenericService<SysUserOnline, String> {
     void offline(String s);
 
 

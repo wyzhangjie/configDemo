@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
  */
 @Component
 public class MapperJsonUtil {
-    private static final String DEFAULT_DATE_FORMAT="yyyy-MM-dd HH:mm:ss";  
+    private static final String DEFAULT_DATE_FORMAT="yyyy-MM-dd HH:mm:ss";
                 private static final ObjectMapper mapper;
               
                 static {  

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.framework.demo.web.bind.annotation.SearchableDefaults;
 import com.framework.demo.web.controller.BaseCRUDController;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
 
 import javax.validation.Valid;
 
@@ -26,22 +27,22 @@ import javax.validation.Valid;
  * <p>User: hyssop
  * <p>Date: 13-1-28 下午4:29
  * <p>Version: 1.0
- */
-@Controller
-@RequestMapping(value = "/admin/sys/auth")
-public class AuthController extends BaseCRUDController<SysAuth, Long> {
+            */
+    @Controller
+    @RequestMapping(value = "/admin/sys/auth")
+    public class AuthController extends BaseCRUDController<SysAuth, Long> {
 
-    @Autowired
-    private SysRoleService roleService;
+        @Autowired
+        private SysRoleService roleService;
 
-    public AuthController() {
-        setListAlsoSetCommonData(true);
-        setResourceIdentity("sys:auth");
-    }
+        public AuthController() {
+            setListAlsoSetCommonData(true);
+            setResourceIdentity("sys:auth");
+        }
 
-    private SysAuthService getAuthService() {
-        return (SysAuthService) baseService;
-    }
+        private SysAuthService getAuthService() {
+            return (SysAuthService) baseService;
+        }
 
 
     protected void setCommonData(Model model) {

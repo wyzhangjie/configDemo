@@ -6,7 +6,6 @@
 package com.framework.demo.web.controller.sample;
 
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.BooleanEnum;
 import com.framework.demo.bo.showcaseSample.ShowcaseSample;
 import com.framework.demo.enm.Sex;
 import com.framework.demo.service.samplecaseSample.ShowcaseSampleService;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.framework.demo.web.controller.BaseCRUDController;
 import com.framework.demo.web.validate.ValidateResponse;
+import com.github.fartherp.framework.database.mybatis.plugin.search.enums.BooleanEnum;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -62,13 +62,9 @@ public class SampleController extends BaseCRUDController<ShowcaseSample, Long> {
         Assert.notNull(m);
 
         //字段错误 前台使用<es:showFieldError commandName="showcase/sample"/> 显示
-        try {
-            if (m.getBirthday() != null && dateFormat.parse(m.getBirthday()).after(new Date())) {
-                //前台字段名（前台使用[name=字段名]取得dom对象） 错误消息键。。
-                result.rejectValue("birthday", "birthday.past");
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
+        if (m.getBirthday() != null && m.getBirthday().after(new Date())) {
+            //前台字段名（前台使用[name=字段名]取得dom对象） 错误消息键。。
+            result.rejectValue("birthday", "birthday.past");
         }
 
         //全局错误 前台使用<es:showGlobalError commandName="showcase/sample"/> 显示

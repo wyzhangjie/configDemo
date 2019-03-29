@@ -20,8 +20,8 @@ import java.util.logging.LogRecord;
  * <p>Version: 1.0
  */
 public class OpenEntityManagerInViewFilter extends BaseFilter {
-    private org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter delegate =
-            new org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter();
+    private OpenEntityManagerInViewFilter delegate =
+            new OpenEntityManagerInViewFilter();
 
 
     @Override

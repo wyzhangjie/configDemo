@@ -4,10 +4,10 @@
 
 package com.framework.demo.sys.sysUserOnline.bo;
 
-import cn.vansky.framework.core.dao.FieldAccessVo;
-import cn.vansky.framework.core.dao.TableDataConvertable;
-import cn.vansky.framework.core.dao.annotation.ColumnDescription;
-import cn.vansky.framework.core.dao.annotation.Id;
+import com.github.fartherp.framework.database.dao.FieldAccessVo;
+import com.github.fartherp.framework.database.dao.annotation.ColumnDescription;
+import com.github.fartherp.framework.database.dao.annotation.Id;
+
 import org.apache.shiro.session.mgt.OnlineSession;
 
 import java.util.Date;

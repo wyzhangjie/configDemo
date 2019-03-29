@@ -4,17 +4,18 @@
 
 package com.framework.demo.sys.sysAuth.dao;
 
-import cn.vansky.framework.core.dao.DaoMapper;
-import cn.vansky.framework.core.orm.mybatis.annotation.SqlMapper;
 import com.framework.demo.bo.sysUser.SysUser;
 import com.framework.demo.sys.sysAuth.bo.SysAuth.SysAuth;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Set;
 
 /**
  * This class corresponds to the database table `sys_auth`
  */
-@SqlMapper
+@Mapper
 public interface SysAuthMapper extends DaoMapper<SysAuth, Long> {
    /* Set<String> findStringRoles(SysUser user);*/
 

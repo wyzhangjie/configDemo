@@ -1,7 +1,8 @@
 package com.framework.demo.web.controller.converter;
 
-import cn.vansky.framework.core.dao.ConfigurableBaseSqlMapDao;
-import cn.vansky.framework.core.dao.FieldAccessVo;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.dao.FieldAccessVo;
+
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -56,8 +57,8 @@ public class DomainClassConverter<T extends ConversionService & ConverterRegistr
         Class<?> domainType = targetType.getType();
         String daoImpl = domainType.getSimpleName().substring(0,1).toLowerCase()+domainType.getSimpleName().substring(1, domainType.getSimpleName().length())+"Dao";
         try{
-            ConfigurableBaseSqlMapDao bean =(ConfigurableBaseSqlMapDao)beanFactory.getBean(daoImpl);
-            return bean.findById(Long.valueOf(source.toString()));
+            DaoMapper bean =(DaoMapper)beanFactory.getBean(daoImpl);
+            return bean.selectByPrimaryKey(Long.valueOf(source.toString()));
         }catch (Exception e1){
 
             return null;

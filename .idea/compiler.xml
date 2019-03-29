@@ -17,7 +17,7 @@
       <module name="configRepo-common" target="1.6" />
       <module name="configRepo-dao" target="1.6" />
       <module name="configRepo-service" target="1.6" />
-      <module name="configRepo-web" target="1.6" />
+      <module name="configRepo-web" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

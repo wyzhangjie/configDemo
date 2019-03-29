@@ -5,14 +5,14 @@
 package com.framework.demo.bo.showcaseTree;
 
 
-import com.github.fartherp.framework.database.dao.FieldAccessVo;
 import com.github.fartherp.framework.database.dao.annotation.ColumnDescription;
 import com.github.fartherp.framework.database.dao.annotation.Id;
+import com.github.fartherp.framework.tree.bo.Treeable;
 
 /**
  * This class corresponds to the database table `showcase_tree`
  */
-public abstract class ShowcaseTreeBase extends FieldAccessVo {
+public abstract class ShowcaseTreeBase   extends Treeable<Long> {
     /**
      * This field corresponds to the database column `showcase_tree`.id
      */

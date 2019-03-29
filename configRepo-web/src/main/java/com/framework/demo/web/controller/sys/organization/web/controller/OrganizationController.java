@@ -10,6 +10,8 @@ import com.framework.demo.enm.OrganizationType;
 import com.framework.demo.service.sys.sysOrganization.service.SysOrganizationService;
 import com.framework.demo.sys.sysOrganization.bo.SysOrganization;
 import com.framework.demo.common.Constants;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,6 +42,7 @@ public class OrganizationController extends BaseTreeableController<SysOrganizati
     }
 
 
+    @Autowired
     public void setBaseService(SysOrganizationService baseService) {
 
     }

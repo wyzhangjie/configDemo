@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 
 import com.framework.demo.service.sys.sysUserLastOnline.service.SysUserLastOnlineService;
 import com.framework.demo.sys.sysUserLastOnline.bo.SysUserLastOnline;
-import com.framework.demo.sys.sysUserLastOnline.dao.SysUserLastOnlineDao;
+
 import org.springframework.stereotype.Service;
 
 /**
