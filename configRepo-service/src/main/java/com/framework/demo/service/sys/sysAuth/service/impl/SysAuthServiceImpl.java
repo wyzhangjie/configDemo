@@ -21,9 +21,15 @@ import com.framework.demo.service.sys.sysRoleResourcePermission.service.SysRoleR
 import com.framework.demo.service.sysRole.SysRoleService;
 import com.framework.demo.service.sysuser.SysUserService;
 import com.framework.demo.sys.sysAuth.bo.SysAuth.SysAuth;
+import com.framework.demo.sys.sysAuth.dao.SysAuthMapper;
 import com.framework.demo.sys.sysPermission.bo.SysPermission;
 import com.framework.demo.sys.sysRoleResourcePermission.bo.SysRoleResourcePermission;
 import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.dao.ExtendDaoMapper;
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Sort;
+import com.github.fartherp.framework.database.service.impl.ExtendGenericSqlMapServiceImpl;
 import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -40,9 +46,9 @@ import javax.annotation.Resource;
  * This class corresponds to the database table `sys_auth`
  */
 @Service("sysAuthService")
-public class SysAuthServiceImpl   extends GenericSqlMapServiceImpl<SysAuth, Long> implements SysAuthService {
-    @Resource(name = "sysAuthDao")
-    private SysAuthDao sysAuthDao;
+public class SysAuthServiceImpl   extends ExtendGenericSqlMapServiceImpl<SysAuth, Long> implements SysAuthService {
+    @Autowired
+    private SysAuthMapper sysAuthDao;
 
     @Autowired
     private SysGroupService groupService;
@@ -69,7 +75,7 @@ public class SysAuthServiceImpl   extends GenericSqlMapServiceImpl<SysAuth, Long
     @Autowired
     private SysRoleResourcePermissionService sysRoleResourcePermissionService;
 
-    public DaoMapper<SysAuth, Long> getDao() {
+    public ExtendDaoMapper<SysAuth, Long> getDao() {
         return sysAuthDao;
     }
 
@@ -166,6 +172,7 @@ public class SysAuthServiceImpl   extends GenericSqlMapServiceImpl<SysAuth, Long
     private Set<SysRole> findRoles(SysUser user) {
         return roleService.findRoles(user);
     }
+
 
 
 }

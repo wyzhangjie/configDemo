@@ -4,14 +4,15 @@
 
 package com.framework.demo.service.sys.sysUserStatusHistory.service.impl;
 
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
-import javax.annotation.Resource;
 
 import com.framework.demo.bo.sysUser.SysUser;
 import com.framework.demo.service.sys.sysUserStatusHistory.service.SysUserStatusHistoryService;
 import com.framework.demo.sys.sysUserStatusHistory.bo.SysUserStatusHistory;
+import com.framework.demo.sys.sysUserStatusHistory.dao.SysUserStatusHistoryMapper;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,11 +20,11 @@ import org.springframework.stereotype.Service;
  */
 @Service("sysUserStatusHistoryService")
 public class SysUserStatusHistoryServiceImpl extends GenericSqlMapServiceImpl<SysUserStatusHistory, Long> implements SysUserStatusHistoryService {
-    @Resource(name = "sysUserStatusHistoryDao")
-    private SysUserStatusHistoryDao sysUserStatusHistoryDao;
+    @Autowired
+    private SysUserStatusHistoryMapper sysUserStatusHistoryDao;
 
 
-    public SqlMapDao<SysUserStatusHistory, Long> getDao() {
+    public DaoMapper<SysUserStatusHistory, Long> getDao() {
         return sysUserStatusHistoryDao;
     }
 

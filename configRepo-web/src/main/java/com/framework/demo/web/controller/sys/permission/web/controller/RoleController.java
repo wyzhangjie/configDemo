@@ -5,10 +5,9 @@
  */
 package com.framework.demo.web.controller.sys.permission.web.controller;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.enums.AvailableEnum;
-import cn.vansky.framework.core.orm.mybatis.plugin.search.entity.search.Searchable;
 import com.framework.demo.bo.sysRole.SysRole;
 import com.framework.demo.service.sys.sysPermission.service.SysPermissionService;
+import com.framework.demo.service.sysRole.SysRoleService;
 import com.framework.demo.sys.sysRoleResourcePermission.bo.SysRoleResourcePermission;
 import com.google.common.collect.Sets;
 
@@ -21,6 +20,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.framework.demo.web.controller.BaseCRUDController;
+import com.github.fartherp.framework.database.mybatis.plugin.search.enums.AvailableEnum;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -38,6 +39,8 @@ public class RoleController extends BaseCRUDController<SysRole, Long> {
 
     @Autowired
     private SysPermissionService permissionService;
+    @Autowired
+    private SysRoleService sysRoleService;
 
     public RoleController() {
         setResourceIdentity("sys:role");
@@ -50,16 +53,12 @@ public class RoleController extends BaseCRUDController<SysRole, Long> {
 
         Searchable searchable = Searchable.newSearchable();
 //        searchable.addSearchFilter("show", SearchOperator.eq, true);
-        try {
-            model.addAttribute("permissions", permissionService.findBySearchable(searchable));
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        model.addAttribute("permissions", permissionService.findBySearchable(searchable));
     }
 
-
+    private SysRoleService getPermissionService() {
+        return (SysRoleService) sysRoleService;
+    }
     @RequestMapping(value = "create/discard", method = RequestMethod.POST)
     @Override
     public String create(
@@ -85,7 +84,7 @@ public class RoleController extends BaseCRUDController<SysRole, Long> {
             @Valid @ModelAttribute("m") SysRole role, BindingResult result,
             @RequestParam("resourceId") Long[] resourceIds,
             @RequestParam("permissionIds") Long[][] permissionIds,
-            RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes) throws Exception {
 
         fillResourcePermission(role, resourceIds, permissionIds);
 
@@ -99,7 +98,7 @@ public class RoleController extends BaseCRUDController<SysRole, Long> {
             @RequestParam("resourceId") Long[] resourceIds,
             @RequestParam("permissionIds") Long[][] permissionIds,
             @RequestParam(value = Constants.BACK_URL, required = false) String backURL,
-            RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes) throws Exception {
 
         fillResourcePermission(role, resourceIds, permissionIds);
 
@@ -149,7 +148,7 @@ public class RoleController extends BaseCRUDController<SysRole, Long> {
         this.permissionList.assertHasUpdatePermission();
 
         for (Long id : ids) {
-            SysRole role = baseService.findById(id);
+            SysRole role = getPermissionService().findById(id);
             role.setIsShow(newStatus);
             baseService.saveOrUpdate(role);
         }

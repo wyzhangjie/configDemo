@@ -6,15 +6,19 @@
 package com.framework.demo.web.controller.sys.permission.web.controller;
 
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.AvailableEnum;
+import com.framework.demo.service.sys.sysAuth.service.SysAuthService;
+import com.framework.demo.service.sys.sysPermission.service.SysPermissionService;
 import com.framework.demo.sys.sysPermission.bo.SysPermission;
 import com.framework.demo.common.Constants;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.framework.demo.web.controller.BaseCRUDController;
+import com.github.fartherp.framework.database.mybatis.plugin.search.enums.AvailableEnum;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -36,6 +40,10 @@ public class PermissionController extends BaseCRUDController<SysPermission, Long
         super.setCommonData(model);
         model.addAttribute("availableList", AvailableEnum.values());
     }
+    @Autowired
+    private SysPermissionService getBaseService() {
+        return (SysPermissionService) baseService;
+    }
 
     @RequestMapping(value = "/changeStatus/{newStatus}")
     public String changeStatus(
@@ -47,7 +55,7 @@ public class PermissionController extends BaseCRUDController<SysPermission, Long
         this.permissionList.assertHasUpdatePermission();
 
         for (Long id : ids) {
-            SysPermission permission = baseService.findById(id);
+            SysPermission permission = getBaseService().findById(id);
             permission.setIsShow(newStatus);
             baseService.saveOrUpdate(permission);
         }

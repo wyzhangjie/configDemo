@@ -10,6 +10,6 @@ import org.springframework.stereotype.Component;
  * This class corresponds to the database table `sys_user_organization_job`
  */
 
-@Component("sysSysUserOrganizationJob")
+@Component("SysUserOrganizationJob")
 public class SysUserOrganizationJob extends SysUserOrganizationJobBase {
 }

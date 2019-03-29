@@ -4,12 +4,15 @@
 
 package com.framework.demo.service.sys.sysRoleResourcePermission.service.impl;
 
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
+
+
 import javax.annotation.Resource;
 
 import com.framework.demo.service.sys.sysRoleResourcePermission.service.SysRoleResourcePermissionService;
 import com.framework.demo.sys.sysRoleResourcePermission.bo.SysRoleResourcePermission;
+import com.framework.demo.sys.sysRoleResourcePermission.dao.SysRoleResourcePermissionMapper;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
 
 import org.springframework.stereotype.Service;
 
@@ -21,10 +24,10 @@ import java.util.List;
 @Service("sysRoleResourcePermissionService")
 public class SysRoleResourcePermissionServiceImpl extends GenericSqlMapServiceImpl<SysRoleResourcePermission, Long> implements SysRoleResourcePermissionService {
     @Resource(name = "sysRoleResourcePermissionDao")
-    private SysRoleResourcePermissionDao sysRoleResourcePermissionDao;
+    private SysRoleResourcePermissionMapper sysRoleResourcePermissionDao;
 
 
-    public SqlMapDao<SysRoleResourcePermission, Long> getDao() {
+    public DaoMapper<SysRoleResourcePermission, Long> getDao() {
         return sysRoleResourcePermissionDao;
     }
 

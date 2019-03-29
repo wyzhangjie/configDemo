@@ -11,7 +11,6 @@ import com.framework.demo.enm.UserStatus;
 import com.framework.demo.service.menu.MenuService;
 import com.framework.demo.service.sys.sysAuth.service.SysAuthService;
 import com.framework.demo.service.sysuser.SysUserService;
-import com.framework.demo.sys.sysSysUserOrganizationJob.bo.SysSysUserOrganizationJob;
 import com.github.fartherp.framework.database.dao.DaoMapper;
 import com.github.fartherp.framework.database.mybatis.plugin.page.BasePagination;
 import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
@@ -71,36 +70,38 @@ public class SysUserServiceImpl extends GenericSqlMapServiceImpl<SysUser, Long> 
         return      sysUserDao.findBySearchable(searchable);
     }
 
-
+    @Override
     public void deleteSysUserOrganizationJobOnNotExistsUser() {
-        sysUserDao.deleteSysUserOrganizationJobOnNotExistsUser();
+              sysUserDao.deleteBatch(new Long[]{Long.parseLong("1111"),Long.parseLong("1111"),Long.parseLong("1111")});
 
     }
 
 
-    public BasePagination<SysSysUserOrganizationJob> findSysUserOrganizationJobOnNotExistsOrganizationOrJob(Pagination pageable) throws InvocationTargetException, IllegalAccessException {
+
+
+  /*  public BasePagination<sysUserOrganizationJob> findsysUserOrganizationJobOnNotExistsOrganizationOrJob(Pagination pageable) throws InvocationTargetException, IllegalAccessException {
         Searchable searchable = new SearchRequest();
         searchable.setPage(pageable);
-        List<SysSysUserOrganizationJob>sysSysUserOrganizationJobs = sysUserDao.findSysUserOrganizationJobOnNotExistsOrganizationOrJob(pageable);
-        return  new BasePagination(sysSysUserOrganizationJobs,sysSysUserOrganizationJobs.size());
+        List<sysUserOrganizationJob>sysUserOrganizationJobs = sysUserDao.findsysUserOrganizationJobOnNotExistsOrganizationOrJob(pageable);
+        return  new BasePagination(sysUserOrganizationJobs,sysUserOrganizationJobs.size());
     }
 
 
-    public void deleteSysSysUserOrganizationJobOnNotExistsUser() {
-        sysUserDao.deleteSysSysUserOrganizationJobOnNotExistsUser();
+    public void deletesysUserOrganizationJobOnNotExistsUser() {
+        sysUserDao.deletesysUserOrganizationJobOnNotExistsUser();
     }
 
 
-    public BasePagination<SysSysUserOrganizationJob> findSysSysUserOrganizationJobOnNotExistsOrganizationOrJob(Pagination pageable) {
+    public BasePagination<sysUserOrganizationJob> findsysUserOrganizationJobOnNotExistsOrganizationOrJob(Pagination pageable) {
 
         Searchable searchable = new SearchRequest();
         searchable.setPage(pageable);
-        List<SysSysUserOrganizationJob> sysSysUserOrganizationJobs = sysUserDao.findSysSysUserOrganizationJobOnNotExistsOrganizationOrJob(pageable);
-        return new BasePagination(sysSysUserOrganizationJobs,sysSysUserOrganizationJobs.size());
+        List<sysUserOrganizationJob> sysUserOrganizationJobs = sysUserDao.findsysUserOrganizationJobOnNotExistsOrganizationOrJob(pageable);
+        return new BasePagination(sysUserOrganizationJobs,sysUserOrganizationJobs.size());
 
 
     }
-
+*/
 
     public SysUser findByEmail(String email) {
         return sysUserDao.findByEmail(email);

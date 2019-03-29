@@ -4,35 +4,37 @@
 
 package com.framework.demo.service.sys.sysPermission.service.impl;
 
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
-import javax.annotation.Resource;
-
 import com.framework.demo.service.sys.sysPermission.service.SysPermissionService;
 import com.framework.demo.sys.sysPermission.bo.SysPermission;
+import com.framework.demo.sys.sysPermission.dao.SysPermissionMapper;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.dao.ExtendDaoMapper;
+import com.github.fartherp.framework.database.service.impl.ExtendGenericSqlMapServiceImpl;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
  * This class corresponds to the database table `sys_permission`
  */
 @Service("sysPermissionService")
-public class SysPermissionServiceImpl extends GenericSqlMapServiceImpl<SysPermission, Long> implements SysPermissionService {
-    @Resource(name = "sysPermissionDao")
-    private SysPermissionDao sysPermissionDao;
+public class SysPermissionServiceImpl extends ExtendGenericSqlMapServiceImpl<SysPermission, Long> implements SysPermissionService {
+    @Autowired
+    private SysPermissionMapper sysPermissionDao;
 
 
-    public SqlMapDao<SysPermission, Long> getDao() {
+    public ExtendDaoMapper<SysPermission, Long> getDao() {
         return sysPermissionDao;
     }
 
 
     public void createPermission(SysPermission s) {
-         sysPermissionDao.save(s);
+         sysPermissionDao.insert(s);
     }
 
 
     public void deletePermission(Long permissionId) {
-        sysPermissionDao.delete(permissionId);
+        sysPermissionDao.deleteByPrimaryKey(permissionId);
     }
 }

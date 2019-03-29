@@ -77,7 +77,7 @@
         `sys_organization` o
         WHERE uoj.organization_id = o.id)
     </select>
-    <delete id="deleteSysSysUserOrganizationJobOnNotExistsUser" parameterType="java.lang.String">
+    <delete id="deleteSysUserOrganizationJobOnNotExistsUser" parameterType="java.lang.String">
         DELETE
         FROM
         b USING sys_user a,
@@ -85,7 +85,7 @@
         WHERE a.id = b.user_id
         AND a.id IS NULL
     </delete>
-<select id="findSysSysUserOrganizationJobOnNotExistsOrganizationOrJob" parameterType="com.github.fartherp.framework.database.mybatis.plugin.page.Pagination"  resultMap="BaseResultMap">
+<select id="findSysUserOrganizationJobOnNotExistsOrganizationOrJob" parameterType="com.github.fartherp.framework.database.mybatis.plugin.page.Pagination"  resultMap="BaseResultMap">
     SELECT
     *
     FROM

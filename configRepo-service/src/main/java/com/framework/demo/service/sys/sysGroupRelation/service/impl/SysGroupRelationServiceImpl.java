@@ -4,26 +4,34 @@
 
 package com.framework.demo.service.sys.sysGroupRelation.service.impl;
 
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
+
+
 import javax.annotation.Resource;
 
 import com.framework.demo.service.sys.sysGroupRelation.service.SysGroupRelationService;
 import com.framework.demo.sys.sysGroupRelation.bo.SysGroupRelation;
+import com.framework.demo.sys.sysGroupRelation.dao.SysGroupRelationMapper;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.dao.ExtendDaoMapper;
+import com.github.fartherp.framework.database.service.ExtendGenericService;
+import com.github.fartherp.framework.database.service.impl.ExtendGenericSqlMapServiceImpl;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
  * This class corresponds to the database table `sys_group_relation`
  */
 @Service("sysGroupRelationService")
-public class SysGroupRelationServiceImpl extends GenericSqlMapServiceImpl<SysGroupRelation, Long> implements SysGroupRelationService {
-    @Resource(name = "sysGroupRelationDao")
-    private SysGroupRelationDao sysGroupRelationDao;
+public class SysGroupRelationServiceImpl extends ExtendGenericSqlMapServiceImpl<SysGroupRelation, Long> implements SysGroupRelationService {
+
+    @Autowired
+    private SysGroupRelationMapper sysGroupRelationDao;
 
 
-    public SqlMapDao<SysGroupRelation, Long> getDao() {
+    public ExtendDaoMapper<SysGroupRelation, Long> getDao() {
         return sysGroupRelationDao;
     }
 

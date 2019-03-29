@@ -5,7 +5,6 @@
  */
 package com.framework.demo.web.controller.sys.permission.task;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.*;
 import com.framework.demo.bo.sysRole.SysRole;
 import com.framework.demo.service.menu.MenuService;
 import com.framework.demo.service.sys.sysPermission.service.SysPermissionService;
@@ -16,6 +15,10 @@ import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.framework.demo.utils.LogUtils;
+import com.github.fartherp.framework.database.mybatis.plugin.page.PageRequest;
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.SearchRequest;
+import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -49,16 +52,16 @@ public class RoleClearRelationTask {
         final int PAGE_SIZE = 100;
         int pn = 0;
 
-        Page<SysRole> rolePage = null;
+        Pagination<SysRole> rolePage = null;
         do {
-            Pageable pageable = new PageRequest(pn++, PAGE_SIZE);
+            PageRequest pageable = new PageRequest(pn++, PAGE_SIZE);
             Searchable searchable = new SearchRequest();
             searchable.setPage(pageable);
             rolePage = roleService.findBySearchable(searchable);
             //开启新事物清除
             try {
                 RoleClearRelationTask roleClearRelationTask = (RoleClearRelationTask) AopContext.currentProxy();
-                roleClearRelationTask.doClear(rolePage.getContent());
+                roleClearRelationTask.doClear(((Pagination) rolePage).getRows());
             } catch (Exception e) {
                 //出异常也无所谓
                 LogUtils.logError("clear role relation error", e);
@@ -66,7 +69,7 @@ public class RoleClearRelationTask {
             }
             //清空会话
            /* RepositoryHelper.clear();*/
-        } while (rolePage.hasNextPage());
+        } while (rolePage.isHasNext());
     }
 
     public void doClear(Collection<SysRole> roleColl) {

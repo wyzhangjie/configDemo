@@ -226,5 +226,23 @@
             <groupId>com.github.fartherp</groupId>
             <artifactId>framework-tree</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.framework</groupId>
+            <artifactId>configRepo-common</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.fartherp</groupId>
+            <artifactId>framework-database</artifactId>
+        </dependency>
     </dependencies>
 </project>

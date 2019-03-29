@@ -1,6 +1,7 @@
 package com.framework.demo.service.impl.showcaseSample;
 
 import com.framework.demo.bo.showcaseSample.ShowcaseSample;
+import com.framework.demo.dao.showcaseSample.ShowcaseSampleMapper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,10 +22,10 @@ import java.util.Date;
 @ContextConfiguration(locations = {"classpath*:conf/applicationContext.xml"})
 public class ShowcaseSampleDaoImplTest {
     @Autowired
-    ShowcaseSampleDao showcaseSampleDao;
+    ShowcaseSampleMapper showcaseSampleDao;
     @Test
     public void testshowcaseSampleDao(){
-       ShowcaseSample showcaseSample =  showcaseSampleDao.findById(Long.valueOf(2));
+       ShowcaseSample showcaseSample =  showcaseSampleDao.selectByPrimaryKey(Long.valueOf(2));
         System.out.println("result");
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         dateFormat.format(new Date());

@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.framework.demo.sys.sysOrganization.dao.SysOrganizationMapper">
+    <select id="findBySearchable" parameterType="com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable" resultMap="BaseResultMap">
+        select * from `sys_organization` where 1=1
+    </select>
 
+    <select id="findBySort" parameterType="com.github.fartherp.framework.database.mybatis.plugin.search.vo.Sort" resultMap="BaseResultMap">
+        select * from `sys_organization` where 1=1
+    </select>
+    <select id="countBySearchable" parameterType="com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable"  resultType="java.lang.Long">
+        select count(*) from `sys_organization` where 1=1
+    </select>
 </mapper>

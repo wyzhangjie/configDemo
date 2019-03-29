@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.framework.demo.sys.sysSysUserOrganizationJob.dao.SysSysUserOrganizationJobMapper">
+<mapper namespace="com.framework.demo.sys.SysUserOrganizationJob.dao.SysUserOrganizationJobMapper">
   <resultMap id="BaseResultMap" type="com.framework.demo.sys.sysUserOrganizationJob.bo.SysUserOrganizationJob">
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="user_id" property="userId" jdbcType="BIGINT" />
@@ -27,7 +27,7 @@
         )
     </foreach>
   </insert>
-  <insert id="insertSelective" parameterType="com.framework.demo.sys.sysSysUserOrganizationJob.bo.SysSysUserOrganizationJob" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insertSelective" parameterType="com.framework.demo.sys.SysUserOrganizationJob.bo.SysUserOrganizationJob" useGeneratedKeys="true" keyProperty="id">
     insert into `sys_user_organization_job`
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -70,7 +70,7 @@
   <select id="count" resultType="java.lang.Integer">
     select count(*) from `sys_user_organization_job`
   </select>
-  <update id="updateByPrimaryKeySelective" parameterType="com.framework.demo.sys.sysSysUserOrganizationJob.bo.SysSysUserOrganizationJob">
+  <update id="updateByPrimaryKeySelective" parameterType="com.framework.demo.sys.SysUserOrganizationJob.bo.SysUserOrganizationJob">
     update `sys_user_organization_job`
     <set>
       <if test="userId != null">
@@ -85,7 +85,7 @@
     </set>
     where `id` = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.framework.demo.sys.sysSysUserOrganizationJob.bo.SysSysUserOrganizationJob">
+  <update id="updateByPrimaryKey" parameterType="com.framework.demo.sys.SysUserOrganizationJob.bo.SysUserOrganizationJob">
     update `sys_user_organization_job`
     set `user_id` = #{userId,jdbcType=BIGINT},
       `organization_id` = #{organizationId,jdbcType=BIGINT},

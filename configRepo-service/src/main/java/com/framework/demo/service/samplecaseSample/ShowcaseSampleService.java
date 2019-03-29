@@ -4,7 +4,6 @@
 
 package com.framework.demo.service.samplecaseSample;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.vo.Searchable;
 import com.github.fartherp.framework.database.service.GenericService;
 import com.framework.demo.bo.showcaseSample.ShowcaseSample;
 

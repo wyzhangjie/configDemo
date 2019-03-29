@@ -4,12 +4,15 @@
 
 package com.framework.demo.service.sys.sysUserLastOnline.service.impl;
 
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
+
+
 import javax.annotation.Resource;
 
 import com.framework.demo.service.sys.sysUserLastOnline.service.SysUserLastOnlineService;
 import com.framework.demo.sys.sysUserLastOnline.bo.SysUserLastOnline;
+import com.framework.demo.sys.sysUserLastOnline.dao.SysUserLastOnlineMapper;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
 
 import org.springframework.stereotype.Service;
 
@@ -19,10 +22,10 @@ import org.springframework.stereotype.Service;
 @Service("sysUserLastOnlineService")
 public class SysUserLastOnlineServiceImpl extends GenericSqlMapServiceImpl<SysUserLastOnline, Long> implements SysUserLastOnlineService {
     @Resource(name = "sysUserLastOnlineDao")
-    private SysUserLastOnlineDao sysUserLastOnlineDao;
+    private SysUserLastOnlineMapper sysUserLastOnlineDao;
 
 
-    public SqlMapDao<SysUserLastOnline, Long> getDao() {
+    public DaoMapper<SysUserLastOnline, Long> getDao() {
         return sysUserLastOnlineDao;
     }
 

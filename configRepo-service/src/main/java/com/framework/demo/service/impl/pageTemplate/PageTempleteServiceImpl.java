@@ -4,16 +4,18 @@
 
 package com.framework.demo.service.impl.pageTemplate;
 
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
+
+
 
 import javax.annotation.Resource;
 
 import com.framework.demo.bo.pageTemplate.PageTemplete;
-import com.framework.demo.bo.sysTemplColr.SysTemplColr;
 import com.framework.demo.dao.pageTemplate.PageTempleteDao;
 import com.framework.demo.service.pageTemplate.PageTempleteService;
 import com.framework.demo.vo.template.SqlPage;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +30,7 @@ public class PageTempleteServiceImpl extends GenericSqlMapServiceImpl<PageTemple
     private PageTempleteDao pageTempleteDao;
 
 
-    public SqlMapDao<PageTemplete, Integer> getDao() {
+    public DaoMapper<PageTemplete, Integer> getDao() {
         return pageTempleteDao;
     }
 

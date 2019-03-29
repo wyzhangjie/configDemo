@@ -5,7 +5,7 @@
 package com.framework.demo.sys.sysGroupRelation.dao;
 
 import com.framework.demo.sys.sysGroupRelation.bo.SysGroupRelation;
-import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.dao.ExtendDaoMapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -13,7 +13,7 @@ import org.apache.ibatis.annotations.Mapper;
  * This class corresponds to the database table `sys_group_relation`
  */
 @Mapper
-public interface SysGroupRelationMapper extends DaoMapper<SysGroupRelation, Long> {
+public interface SysGroupRelationMapper extends ExtendDaoMapper<SysGroupRelation, Long> {
     SysGroupRelation findByGroupIdAndOrganizationId(Long groupId, Long organizationId);
 
     void deleteInRange(Long startUserId, Long endUserId);

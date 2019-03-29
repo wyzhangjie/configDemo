@@ -4,13 +4,13 @@
 
 package com.framework.demo.service.sys.sysDepartment.service.impl;
 
-import cn.vansky.framework.core.dao.SqlMapDao;
-import cn.vansky.framework.core.service.GenericSqlMapServiceImpl;
-import javax.annotation.Resource;
-
 import com.framework.demo.service.sys.sysDepartment.service.SysDepartmentService;
 import com.framework.demo.sys.sysDepartment.bo.SysDepartment;
+import com.framework.demo.sys.sysDepartment.dao.SysDepartmentMapper;
+import com.github.fartherp.framework.database.dao.DaoMapper;
+import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,11 +18,11 @@ import org.springframework.stereotype.Service;
  */
 @Service("sysDepartmentService")
 public class SysDepartmentServiceImpl extends GenericSqlMapServiceImpl<SysDepartment, Integer> implements SysDepartmentService {
-    @Resource(name = "sysDepartmentDao")
-    private SysDepartmentDao sysDepartmentDao;
+    @Autowired
+    private SysDepartmentMapper sysDepartmentDao;
 
 
-    public SqlMapDao<SysDepartment, Integer> getDao() {
+    public DaoMapper<SysDepartment, Integer> getDao() {
         return sysDepartmentDao;
     }
 }

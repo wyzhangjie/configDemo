@@ -5,8 +5,8 @@
  */
 package org.apache.shiro.web.session.mgt;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.page.PageRequest;
-import cn.vansky.framework.core.orm.mybatis.plugin.page.Pagination;
+import com.github.fartherp.framework.database.mybatis.plugin.page.PageRequest;
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
 import com.framework.demo.service.sys.sysUserOnline.service.SysUserOnlineService;
 import com.framework.demo.sys.sysUserOnline.bo.SysUserOnline;
 import com.framework.demo.common.Constants;

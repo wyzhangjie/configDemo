@@ -249,7 +249,7 @@ public class DateUtil {
      * @return 字符串日期时间
      */
     public static String getDateStr(String dataDate, String formatStr, int i, int j) {
-        SimpleDateFormat df = DateEnum.getFormatByString(formatStr);
+        SimpleDateFormat df = (SimpleDateFormat)DateEnum.getFormatByString(formatStr);
         Date date = getTime(df, dataDate, i, j);
         return df.format(date);
     }
@@ -306,7 +306,7 @@ public class DateUtil {
      * @return 指定的年月日字符串
      */
     public static String getDateStr(String formatStr, int year, int month, int day) {
-        SimpleDateFormat df = DateEnum.getFormatByString(formatStr);
+        SimpleDateFormat df = (SimpleDateFormat)DateEnum.getFormatByString(formatStr);
         Calendar c = Calendar.getInstance();
         c.set(year, month - 1, day);
         return df.format(c.getTime());
@@ -320,7 +320,7 @@ public class DateUtil {
      * @return 当前年份
      */
     public static int year(String formatStr, String dateStr) {
-        SimpleDateFormat df = DateEnum.getFormatByString(formatStr);
+        SimpleDateFormat df = (SimpleDateFormat)DateEnum.getFormatByString(formatStr);
         return getYear(df, dateStr);
     }
 
@@ -343,7 +343,7 @@ public class DateUtil {
      * @return 当前月份
      */
     public static int month(String formatStr, String dateStr) {
-        SimpleDateFormat df = DateEnum.getFormatByString(formatStr);
+        SimpleDateFormat df = (SimpleDateFormat)DateEnum.getFormatByString(formatStr);
         return getMonth(df, dateStr);
     }
 
@@ -355,7 +355,7 @@ public class DateUtil {
      * @return 当前天数
      */
     public static int day(String formatStr, String dateStr) {
-        SimpleDateFormat df = DateEnum.getFormatByString(formatStr);
+        SimpleDateFormat df = (SimpleDateFormat)DateEnum.getFormatByString(formatStr);
         return getDay(df, dateStr);
     }
 
@@ -367,7 +367,7 @@ public class DateUtil {
      * @return 获取本周第几天
      */
     public static int week(String formatStr, String dateStr) {
-        SimpleDateFormat df = DateEnum.getFormatByString(formatStr);
+        SimpleDateFormat df =(SimpleDateFormat) DateEnum.getFormatByString(formatStr);
         return getWeek(df, dateStr);
     }
 
@@ -616,7 +616,7 @@ public class DateUtil {
      * @return 时间差
      */
     public static long getDaylong(String formatStr, String begin, String end) {
-        SimpleDateFormat df = DateEnum.getFormatByString(formatStr);
+        SimpleDateFormat df = (SimpleDateFormat)DateEnum.getFormatByString(formatStr);
         Date dbegin = null;
         Date dend = null;
         try {

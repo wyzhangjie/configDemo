@@ -1,8 +1,5 @@
 package com.framework.demo.web.controller.template;
 
-import cn.vansky.framework.core.orm.mybatis.plugin.search.enums.BooleanEnum;
-import com.github.fartherp.framework.database.service.GenericService;
-import cn.vansky.framework.core.util.JsonResp;
 import com.alibaba.fastjson.JSON;
 
 import com.framework.demo.bo.datagrid.EasyuiColumn;
@@ -39,6 +36,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.framework.demo.web.controller.BaseController;
+import com.github.fartherp.framework.core.util.JsonResp;
+import com.github.fartherp.framework.database.mybatis.plugin.search.enums.BooleanEnum;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
@@ -385,13 +384,9 @@ public class ConfigController   extends BaseController<PageTemplete, Long> {
         Assert.notNull(m);
 
         //字段错误 前台使用<es:showFieldError commandName="showcase/sample"/> 显示
-        try {
-            if (m.getBirthday() != null && dateFormat.parse(m.getBirthday()).after(new Date())) {
-                //前台字段名（前台使用[name=字段名]取得dom对象） 错误消息键。。
-                result.rejectValue("birthday", "birthday.past");
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
+        if (m.getBirthday() != null && m.getBirthday().after(new Date())) {
+            //前台字段名（前台使用[name=字段名]取得dom对象） 错误消息键。。
+            result.rejectValue("birthday", "birthday.past");
         }
 
         //全局错误 前台使用<es:showGlobalError commandName="showcase/sample"/> 显示

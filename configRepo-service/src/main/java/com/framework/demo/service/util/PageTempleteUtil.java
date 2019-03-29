@@ -25,6 +25,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSON;
+import com.github.fartherp.framework.database.mybatis.plugin.page.PageRequest;
+import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -138,11 +140,11 @@ public class PageTempleteUtil {
     }
 
     private Pagination getPagination(List t, SqlPage sqlPage) {
-        Pagination pagination = new Pagination();
-        pagination.setPageList(t.toArray());
+        Pagination pagination = new PageRequest(sqlPage.getPage(),sqlPage.getLimit());
+        pagination.setRows(t);
         pagination.setTotal(sqlPage.getLimit());
-        pagination.setPageNumber(sqlPage.getCurrentPage());
-        pagination.setPageSize(sqlPage.getRow());
+        pagination.setCurrentPage(sqlPage.getCurrentPage());
+        pagination.setLimit(sqlPage.getRow());
         return pagination;
     }
 
