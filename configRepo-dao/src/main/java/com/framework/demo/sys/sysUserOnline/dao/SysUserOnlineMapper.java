@@ -13,5 +13,5 @@ import org.apache.ibatis.annotations.Mapper;
  * This class corresponds to the database table `sys_user_online`
  */
 @Mapper
-public interface SysUserOnlineMapper extends ExtendDaoMapper<SysUserOnline, String> {
+public interface SysUserOnlineMapper extends ExtendDaoMapper<SysUserOnline, Long> {
 }

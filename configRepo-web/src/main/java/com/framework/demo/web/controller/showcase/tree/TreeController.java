@@ -27,6 +27,9 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping(value = "/showcase/tree")
 public class TreeController extends BaseTreeableController<ShowcaseTreeService, ShowcaseTree,Long> {
 
+    @Autowired
+    ShowcaseTreeService showcaseTreeService;
+
     public TreeController() {
         setResourceIdentity("showcase:tree");
     }
@@ -53,8 +56,10 @@ public class TreeController extends BaseTreeableController<ShowcaseTreeService, 
     }
 
 
-    @Autowired
+
+    @Override
     public void setBaseService(ShowcaseTreeService baseService) {
+        super.baseService = showcaseTreeService;
 
     }
 }

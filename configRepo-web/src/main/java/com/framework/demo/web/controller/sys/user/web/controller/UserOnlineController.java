@@ -7,6 +7,7 @@ package com.framework.demo.web.controller.sys.user.web.controller;
 
 
 import com.framework.demo.service.sys.sysUserOnline.service.SysUserOnlineService;
+import com.framework.demo.service.useronline.UserOnlineService;
 import com.framework.demo.sys.sysUserOnline.bo.SysUserOnline;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.UnauthorizedException;
@@ -33,14 +34,12 @@ public class UserOnlineController extends BaseCRUDController<SysUserOnline, Stri
     @Autowired
     private OnlineSessionDAO onlineSessionDAO;
 
+    @Autowired
+    private UserOnlineService userOnlineService;
+
     public UserOnlineController() {
     }
 
-
-    @Autowired
-    public void setBaseService(SysUserOnlineService baseService) {
-
-    }
 
     public String list(Searchable searchable, Model model) throws Exception{
         if (!SecurityUtils.getSubject().isPermitted("sys:userOnline:view or monitor:userOnline:view")) {

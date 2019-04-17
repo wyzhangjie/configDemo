@@ -31,6 +31,8 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping(value = "/admin/sys/organization/organization")
 public class OrganizationController extends BaseTreeableController<SysOrganizationService,SysOrganization, Long> {
 
+    @Autowired
+    SysOrganizationService sysOrganizationService;
       public OrganizationController() {
         setResourceIdentity("sys:organization");
     }
@@ -44,6 +46,7 @@ public class OrganizationController extends BaseTreeableController<SysOrganizati
 
     @Autowired
     public void setBaseService(SysOrganizationService baseService) {
+       super.baseService = sysOrganizationService ;
 
     }
 

@@ -6,7 +6,6 @@
 package com.framework.demo.web.controller.showcase.move;
 
 import com.framework.demo.bo.showcaseMoveable.ShowcaseMoveable;
-
 import com.framework.demo.web.controller.sys.resource.web.controller.BaseMovableController;
 import com.github.fartherp.framework.database.mybatis.plugin.search.enums.BooleanEnum;
 

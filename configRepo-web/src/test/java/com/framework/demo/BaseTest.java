@@ -1,4 +1,4 @@
-package java.com.framework.demo;
+package com.framework.demo;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

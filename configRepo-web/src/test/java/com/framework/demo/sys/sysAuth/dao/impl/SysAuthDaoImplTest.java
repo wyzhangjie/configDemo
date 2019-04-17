@@ -1,4 +1,4 @@
-package java.com.framework.demo.sys.sysAuth.dao.impl;
+package com.framework.demo.sys.sysAuth.dao.impl;
 
 import junit.framework.TestCase;
 

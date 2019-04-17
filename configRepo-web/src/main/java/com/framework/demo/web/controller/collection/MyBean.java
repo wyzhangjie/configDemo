@@ -1,7 +1,5 @@
 package com.framework.demo.web.controller.collection;
 
-import org.apache.shiro.subject.ExecutionException;
-
 import java.util.concurrent.Callable;
 
 /**

@@ -14,6 +14,7 @@ import com.framework.demo.sys.sysUserLastOnline.dao.SysUserLastOnlineMapper;
 import com.github.fartherp.framework.database.dao.DaoMapper;
 import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,7 +22,7 @@ import org.springframework.stereotype.Service;
  */
 @Service("sysUserLastOnlineService")
 public class SysUserLastOnlineServiceImpl extends GenericSqlMapServiceImpl<SysUserLastOnline, Long> implements SysUserLastOnlineService {
-    @Resource(name = "sysUserLastOnlineDao")
+    @Autowired
     private SysUserLastOnlineMapper sysUserLastOnlineDao;
 
 

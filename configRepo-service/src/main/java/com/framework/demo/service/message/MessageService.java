@@ -14,6 +14,7 @@ import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
 import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
 import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -30,7 +31,7 @@ import java.util.List;
 @Service("messageService")
 public class MessageService   extends GenericSqlMapServiceImpl<PersonalMessage, Long> implements MessageServiceI {
 
-    @Resource(name = "personalMessageDao")
+    @Autowired
     private PersonalMessageMapper personalMessageDao;
 
 

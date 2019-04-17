@@ -18,7 +18,7 @@ http://www.springframework.org/schema/data/jpa "
     <import resource="classpath:conf/applicationContext-properties.xml"/>
     <import resource="classpath:conf/applicationContext-datasource.xml"/>
     <import resource="classpath:conf/applicationContext-service.xml"/>
-    <import resource="classpath:conf/applicationContext-kv.xml"/>
+ <!--   <import resource="classpath:conf/applicationContext-kv.xml"/>-->
     <import resource="spring-config-cache.xml"/>
     <import resource="spring-mvc-shiro.xml"/>
     <import resource="spring-config-shiro.xml"/>

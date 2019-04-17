@@ -29,6 +29,7 @@
           <element id="library" level="project" name="Maven: ognl:ognl:3.2.10" />
           <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.12" />
           <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.12" />
+          <element id="library" level="project" name="Maven: org.redisson:redisson:unknown" />
           <element id="library" level="project" name="Maven: com.github.fartherp:framework-poi:3.0.5-SNAPSHOT" />
           <element id="library" level="project" name="Maven: com.itextpdf:barcodes:7.1.4" />
           <element id="library" level="project" name="Maven: com.itextpdf:font-asian:7.1.4" />

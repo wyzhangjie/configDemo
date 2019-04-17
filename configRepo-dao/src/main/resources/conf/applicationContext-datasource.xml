@@ -99,5 +99,10 @@
         <property name="markerInterface" value=" org.mybatis.spring.mapper.MapperFactoryBean" />
     </bean>
 
-
+  <!--  <bean id="kvDao" class="com.github.fartherp.framework.core.kv.dao.impl.KvDaoImpl">
+        <property name="dataSource" ref="shawnTimeDataSource"/>
+    </bean>
+    <bean id="kvService" class="com.github.fartherp.framework.core.kv.service.impl.KvServiceImpl">
+        <property name="dao" ref="kvDao"/>
+    </bean>-->
 </beans>

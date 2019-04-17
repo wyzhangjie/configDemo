@@ -1,4 +1,4 @@
-package java.org;
+package org;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;

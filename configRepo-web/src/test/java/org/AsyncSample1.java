@@ -1,4 +1,4 @@
-package java.org;
+package org;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;

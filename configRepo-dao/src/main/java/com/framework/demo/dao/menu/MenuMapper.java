@@ -8,16 +8,17 @@ import com.framework.demo.bo.datagrid.EasyuiDatagrid;
 import com.framework.demo.bo.menu.Menu;
 import com.framework.demo.bo.pageTemplate.PageTemplete;
 import com.github.fartherp.framework.database.dao.DaoMapper;
-import com.github.fartherp.framework.database.mybatis.annotation.SqlMapper;
 import com.github.fartherp.framework.database.mybatis.plugin.page.Pagination;
 import com.github.fartherp.framework.database.mybatis.plugin.search.vo.Searchable;
+
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 /**
  * This class corresponds to the database table `menu`
  */
-@SqlMapper
+@Mapper
 public interface MenuMapper extends DaoMapper<Menu, Integer> {
     List<Menu> findMenuByUserId(Integer id);
 

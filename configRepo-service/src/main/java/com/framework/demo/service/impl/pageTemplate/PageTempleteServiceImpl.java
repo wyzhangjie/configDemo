@@ -10,12 +10,13 @@ package com.framework.demo.service.impl.pageTemplate;
 import javax.annotation.Resource;
 
 import com.framework.demo.bo.pageTemplate.PageTemplete;
-import com.framework.demo.dao.pageTemplate.PageTempleteDao;
+import com.framework.demo.dao.pageTemplate.PageTempleteMapper;
 import com.framework.demo.service.pageTemplate.PageTempleteService;
 import com.framework.demo.vo.template.SqlPage;
 import com.github.fartherp.framework.database.dao.DaoMapper;
 import com.github.fartherp.framework.database.service.impl.GenericSqlMapServiceImpl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,8 +27,8 @@ import java.util.Map;
  */
 @Service("pageTempleteService")
 public class PageTempleteServiceImpl extends GenericSqlMapServiceImpl<PageTemplete, Integer> implements PageTempleteService {
-    @Resource(name = "pageTempleteDao")
-    private PageTempleteDao pageTempleteDao;
+    @Autowired
+    private PageTempleteMapper pageTempleteDao;
 
 
     public DaoMapper<PageTemplete, Integer> getDao() {
